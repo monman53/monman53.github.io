@@ -1,0 +1,56 @@
+C++
+===
+
+* link:http://en.cppreference.com/w/[reference]
+** link:http://en.cppreference.com/w/cpp/container[Containers library (でかすぎ)]
+
+== データ構造
+
+link:http://qiita.com/h_hiro_/items/a83a8fd2391d4a3f0e1c[使い分け]
+
+// === Container 使い方(簡略版)
+//
+// [options="header"]
+// |=================
+// |Container|データの追加|
+// |deque|push_back, push_front|
+// |set|insert|
+// |map|insert|
+// |=================
+
+=== deque
+
+* dequeueではないことに注意．
+* 割と速度も早くて便利そう．
+
+=== set
+
+* 要素は +const+ なので，変更できない．remove, swapはできる．
+* 自作のクラスを扱う場合は特別に関数を用意する必要がある．
+
+== <cmath>
+
+.atan2の使い方
+[source, cpp]
+----
+atan2(y, x);
+----
+
+M_PI::
+    π
+
+== プロトタイプ宣言
+
+[source, cpp]
+----
+struct Hoge;
+----
+
+== 小話
+
+classとstructの違い::
+    classはメンバ変数が標準でprivate +
+    structはpublic
+
+inline::
+    inline関数はファイル分割した時にヘッダファイルに記述しないとうまくいかない．

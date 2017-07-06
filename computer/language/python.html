@@ -1,0 +1,113 @@
+<!doctype html>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta charset='utf-8'>
+<link rel='stylesheet' href='/css/main.css'>
+<title>Python</title>
+<h1>Python</h1>
+<a href='/'>[Top]</a>
+<hr>
+<h3>Table of Contents</h3>
+<div id='toc'></div>
+<div id='content'>
+<div class="sect1">
+<h2 id="_python講座">python講座</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_2017_05_25">2017-05-25</h3>
+<div class="listingblock">
+<div class="content">
+<pre><code><span style="color:#838183; font-style:italic"># 関数の定義</span>
+<span style="color:#000000; font-weight:bold">def</span> <span style="color:#010181">func</span><span style="color:#000000">(</span>x<span style="color:#000000">,</span> a<span style="color:#000000">,</span> b<span style="color:#000000">,</span> c<span style="color:#000000">):</span>
+    output <span style="color:#000000">=</span> a <span style="color:#000000">+</span> b<span style="color:#000000">*</span>x <span style="color:#000000">+</span> c<span style="color:#000000">*</span>x<span style="color:#000000">*</span>X2
+    <span style="color:#000000; font-weight:bold">return</span> output</code></pre>
+</div></div>
+<div class="listingblock">
+<div class="title">numpy</div>
+<div class="content">
+<pre><code><span style="color:#838183; font-style:italic"># ndarray をリストとして使う</span>
+numpy<span style="color:#000000">.</span><span style="color:#010181">array</span><span style="color:#000000">([</span><span style="color:#b07e00">0</span><span style="color:#000000">,</span> <span style="color:#b07e00">1</span><span style="color:#000000">,</span> <span style="color:#b07e00">2</span><span style="color:#000000">])</span>  <span style="color:#838183; font-style:italic"># 普通のリストから変換</span>
+numpy<span style="color:#000000">.</span><span style="color:#010181">arange</span><span style="color:#000000">(</span><span style="color:#b07e00">0</span><span style="color:#000000">,</span> <span style="color:#b07e00">1</span><span style="color:#000000">,</span> <span style="color:#b07e00">0.1</span><span style="color:#000000">)</span> <span style="color:#838183; font-style:italic"># 普通のrangeと違って，float刻みができる</span></code></pre>
+</div></div>
+</div>
+<div class="sect2">
+<h3 id="_2017_05_18">2017-05-18</h3>
+<div class="listingblock">
+<div class="content">
+<pre><code><span style="color:#838183; font-style:italic"># comment</span>
+a <span style="color:#000000">=</span> <span style="color:#b07e00">10</span>
+b <span style="color:#000000">=</span> <span style="color:#b07e00">30</span>
+<span style="color:#000000; font-weight:bold">print</span><span style="color:#000000">(</span><span style="color:#bf0303">&quot;a = {0}, b = {1}&quot;</span><span style="color:#000000">.</span><span style="color:#010181">format</span><span style="color:#000000">(</span>a<span style="color:#000000">,</span> b<span style="color:#000000">))</span>
+<span style="color:#000000; font-weight:bold">print</span><span style="color:#000000">(</span><span style="color:#bf0303">&quot;Epock</span> <span style="color:#0057ae">%i</span><span style="color:#bf0303">/</span><span style="color:#0057ae">%i</span><span style="color:#bf0303">&quot;</span> % <span style="color:#000000">(</span>a<span style="color:#000000">,</span> b<span style="color:#000000">))</span>
+<span style="color:#000000; font-weight:bold">print</span><span style="color:#000000">(</span><span style="color:#bf0303">&quot;a = &quot;</span> <span style="color:#000000">+</span> <span style="color:#0057ae">str</span><span style="color:#000000">(</span>a<span style="color:#000000">))</span>  <span style="color:#838183; font-style:italic"># srtがないと怒られる</span>
+l  <span style="color:#000000">= [</span><span style="color:#bf0303">'a'</span><span style="color:#000000">,</span> <span style="color:#b07e00">1</span><span style="color:#000000">,</span> <span style="color:#b07e00">2</span><span style="color:#000000">,</span> <span style="color:#b07e00">3</span><span style="color:#000000">,</span> <span style="color:#b07e00">4</span><span style="color:#000000">, [</span><span style="color:#bf0303">'a'</span><span style="color:#000000">,</span> <span style="color:#b07e00">3</span><span style="color:#000000">]]</span>
+a_int_list <span style="color:#000000">=</span> <span style="color:#bf0303">'a'</span> <span style="color:#000000; font-weight:bold">in</span> l   <span style="color:#838183; font-style:italic"># True</span>
+l<span style="color:#000000">[</span><span style="color:#b07e00">2</span><span style="color:#000000">:</span><span style="color:#b07e00">4</span><span style="color:#000000">]</span>                  <span style="color:#838183; font-style:italic"># [2, 3]</span>
+l<span style="color:#000000">[</span><span style="color:#b07e00">0</span><span style="color:#000000">:</span><span style="color:#b07e00">4</span><span style="color:#000000">:</span><span style="color:#b07e00">2</span><span style="color:#000000">]</span>                <span style="color:#838183; font-style:italic"># ['a', 2]</span>
+l<span style="color:#000000">[::-</span><span style="color:#b07e00">1</span><span style="color:#000000">]</span>                 <span style="color:#838183; font-style:italic"># 逆順に出力</span>
+<span style="color:#0057ae">len</span><span style="color:#000000">(</span>l<span style="color:#000000">)</span>                  <span style="color:#838183; font-style:italic"># 6</span>
+<span style="color:#000000">(</span><span style="color:#b07e00">1</span><span style="color:#000000">,</span> <span style="color:#bf0303">'a'</span><span style="color:#000000">,</span> <span style="color:#b07e00">3</span><span style="color:#000000">)</span>             <span style="color:#838183; font-style:italic">#</span>
+<span style="color:#000000">{</span><span style="color:#bf0303">'a'</span><span style="color:#000000">:</span> <span style="color:#b07e00">1</span><span style="color:#000000">,</span> <span style="color:#bf0303">'b'</span><span style="color:#000000">:</span> <span style="color:#b07e00">2</span><span style="color:#000000">}</span>        <span style="color:#838183; font-style:italic"># ディクショナリ</span></code></pre>
+</div></div>
+<div class="listingblock">
+<div class="content">
+<pre><code><span style="color:#000000; font-weight:bold">if True</span><span style="color:#000000">:</span>
+    <span style="color:#000000; font-weight:bold">print</span><span style="color:#000000">(</span><span style="color:#000000; font-weight:bold">True</span><span style="color:#000000">)</span>
+<span style="color:#000000; font-weight:bold">else</span><span style="color:#000000">:</span>
+    <span style="color:#000000; font-weight:bold">print</span><span style="color:#000000">(</span><span style="color:#bf0303">&quot;never come here&quot;</span><span style="color:#000000">)</span>
+
+<span style="color:#838183; font-style:italic"># 論理演算子はand or not</span>
+
+<span style="color:#000000; font-weight:bold">for</span> i <span style="color:#000000; font-weight:bold">in</span> <span style="color:#0057ae">range</span><span style="color:#000000">(</span><span style="color:#b07e00">4</span><span style="color:#000000">):</span>
+    <span style="color:#000000; font-weight:bold">print</span><span style="color:#000000">(</span>i<span style="color:#000000">)</span>
+
+<span style="color:#000000; font-weight:bold">for</span> i <span style="color:#000000; font-weight:bold">in</span> <span style="color:#0057ae">xrange</span><span style="color:#000000">(</span><span style="color:#b07e00">4</span><span style="color:#000000">):</span>     <span style="color:#838183; font-style:italic">#</span>
+    <span style="color:#000000; font-weight:bold">print</span><span style="color:#000000">(</span>i<span style="color:#000000">)</span>
+
+<span style="color:#000000; font-weight:bold">for</span> i<span style="color:#000000">,</span> v <span style="color:#000000; font-weight:bold">in</span> <span style="color:#0057ae">enumerate</span><span style="color:#000000">(</span><span style="color:#0057ae">list</span><span style="color:#000000">):</span>
+    <span style="color:#000000; font-weight:bold">print</span><span style="color:#000000">(</span>i<span style="color:#000000">,</span> v<span style="color:#000000">)</span></code></pre>
+</div></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_文法">文法</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_loop">loop</h3>
+<div class="listingblock">
+<div class="content">
+<pre><code><span style="color:#000000; font-weight:bold">for</span> i <span style="color:#000000; font-weight:bold">in</span> <span style="color:#0057ae">range</span><span style="color:#000000">(</span><span style="color:#b07e00">0</span><span style="color:#000000">,</span> N<span style="color:#000000">):</span></code></pre>
+</div></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_input">input</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">一行を文字列で入力</div>
+<div class="content">
+<pre><code>parameter <span style="color:#000000">=</span> <span style="color:#0057ae">raw_input</span><span style="color:#000000">()</span></code></pre>
+</div></div>
+<div class="listingblock">
+<div class="title">一行に複数の数値がある場合</div>
+<div class="content">
+<pre><code>parameter <span style="color:#000000">=</span> <span style="color:#0057ae">raw_input</span><span style="color:#000000">().</span>split
+
+N <span style="color:#000000">=</span> <span style="color:#0057ae">int</span><span style="color:#000000">(</span>parameter<span style="color:#000000">[</span><span style="color:#b07e00">0</span><span style="color:#000000">])</span>
+R <span style="color:#000000">=</span> <span style="color:#0057ae">float</span><span style="color:#000000">(</span>parameter<span style="color:#000000">[</span><span style="color:#b07e00">1</span><span style="color:#000000">])</span>
+r <span style="color:#000000">=</span> <span style="color:#0057ae">float</span><span style="color:#000000">(</span>parameter<span style="color:#000000">[</span><span style="color:#b07e00">2</span><span style="color:#000000">])</span></code></pre>
+</div></div>
+<div class="paragraph"><p>要は，文字列はintとかfloatで数値に変換できる．</p></div>
+</div>
+</div>
+</div>
+<h2>脚注</h2>
+<div id='footnotes'></div>
+<hr>
+<p>last update 2017-05-25 11:39:17 (UTC)</p>
+<p>this page is generated by <a href='https://github.com/monman53/monsta'>monsta</a></p>
+<script src='/js/asciidoc.js'></script>
+<script>asciidoc.install(1);</script>
+<script src='/js/LaTeXMathML.js'></script>
+<script src='/js/ASCIIMathML.js'></script>

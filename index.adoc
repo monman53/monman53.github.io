@@ -1,0 +1,29 @@
+Top
+===
+
+いままで色々な方法でホームページを作ろうと試みてきましたが，静的サイトジェネレータ自作という形で落ち着きました．
+
+== Site Map
+
+
+* link:/[Top]
+** link:/profile/[Profile]
+// ** link:/computer/[Computer]
+** Computer 
+// *** link:/computer/tools.html[Tools]
+// *** link:/computer/programming.html[Programming]
+*** link:/computer/linux.html[GNU/Linux]
+// *** link:/computer/coreutils.html[coreutils]
+*** GNU
+**** link:/computer/gnu/parallel.html[parallel]
+*** non-GNU
+**** link:/computer/nongnu/imagemagick.html[ImageMagick]
+// *** Language
+// **** link:/computer/language/cpp.html[C++]
+// **** link:/computer/language/python.html[Python]
+*** link:/computer/contest.html[contest]
+*** link:/computer/lambda.html[λ]
+** Science
+*** link:/science/statistics.html[統計学]
+*** link:/science/math/[数学]
+* link:/test.html[test page]

@@ -1,0 +1,289 @@
+<!doctype html>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta charset='utf-8'>
+<link rel='stylesheet' href='/css/main.css'>
+<title>Rendering Test</title>
+<h1>Rendering Test</h1>
+<a href='/'>[Top]</a>
+<hr>
+<h3>Table of Contents</h3>
+<div id='toc'></div>
+<div id='content'>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph"><p>asciidoc source from <a href="http://asciidoc.org/">asciidoc.org</a></p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_css">CSS</h2>
+<div class="sectionbody">
+</div>
+</div>
+<div class="sect1">
+<h2 id="_h2">h2</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_h3">h3</h3>
+<div class="sect3">
+<h4 id="_h4">h4</h4>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_math_formulae">Math Formulae</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_asciimathml">ASCIIMathML</h3>
+<div class="paragraph"><p><a href="http://www1.chapman.edu/~jipsen/mathml/asciimath.html">ASCIIMathML</a> is
+a clever JavaScript written by Peter Jipsen that dynamically
+transforms mathematical formulae written in a wiki-like plain text
+markup to <a href="http://www.w3.org/Math/">MathML</a> markup which is displayed as
+standard mathematical notation by the Web Browser.  See <em>Appendix E</em>
+in the AsciiDoc User Guide for more details.</p></div>
+<div class="paragraph"><p>The AsciiDoc <span class="monospaced">xhtml11</span> backend supports ASCIIMathML&#8201;&#8212;&#8201;it links the
+ASCIIMathML script and escapes ASCIIMathML delimiters and special
+characters to yield valid XHTML. To use ASCIIMathML:</p></div>
+<div class="olist arabic"><ol class="arabic">
+<li>
+<p>
+Include the <span class="monospaced">-a asciimath</span> command-line option when you run
+   <span class="monospaced">asciidoc(1)</span>.
+</p>
+</li>
+<li>
+<p>
+Enclose ASCIIMathML formulas inside math or double-dollar
+   passthroughs or in math passthrough blocks.
+</p>
+</li>
+</ol></div>
+<div class="ulist"><div class="title">NOTE</div><ul>
+<li>
+<p>
+When you use the <span class="monospaced">asciimath:[]</span> inline macro you need to escape <span class="monospaced">]</span>
+  characters in the formulas with a backslash, escaping is unnecessary
+  if you use the double-dollar macro (for examples see the second
+  formula below).
+</p>
+</li>
+<li>
+<p>
+See the
+  <a href="http://www1.chapman.edu/~jipsen/mathml/asciimath.html">ASCIIMathML</a>
+  website for ASCIIMathML documentation and the latest version.
+</p>
+</li>
+<li>
+<p>
+If the formulas don&#8217;t appear to be correct you probably need to
+  install the correct math fonts (see the
+  <a href="http://www1.chapman.edu/~jipsen/mathml/asciimath.html">ASCIIMathML</a>
+  website for details).
+</p>
+</li>
+<li>
+<p>
+See the <a href="latexmathml.html">LaTeXMathML page</a> if you prefer to use
+  LaTeX math formulas.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>A list of example formulas:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+`[[a,b],[c,d]]((n),(k))`
+</p>
+</li>
+<li>
+<p>
+`x/x={(1,if x!=0),(text{undefined},if x=0):}`
+</p>
+</li>
+<li>
+<p>
+`d/dxf(x)=lim_(h-&gt;0)(f(x+h)-f(x))/h`
+</p>
+</li>
+<li>
+<p>
+`sum_(i=1)\^n i=(n(n+1))/2`$ and <strong>bold
+  `int_0\^(pi/2) sinx\ dx=1`</strong>
+</p>
+</li>
+<li>
+<p>
+`(a,b]={x in RR : a &lt; x &lt;= b}`
+</p>
+</li>
+<li>
+<p>
+`x^2+y_1+z_12^34`
+</p>
+</li>
+</ul></div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph"><p>The first three terms factor to give
+`(x+b/(2a))^2=(b^2)/(4a^2)-c/a`.</p></div>
+<div class="paragraph"><p>`x+b/(2a)=+-sqrt((b^2)/(4a^2)-c/a)`.</p></div>
+<div class="paragraph"><p>Now we take square roots on both sides and get
+`x+b/(2a)=+-sqrt((b^2)/(4a^2)-c/a)`.
+Finally we move the `b/(2a)` to the right and simplify to
+get the two solutions:
+<strong>`x_(1,2)=(-b+-sqrt(b^2-4ac))/(2a)`</strong>.</p></div>
+</div></div>
+</div>
+<div class="sect2">
+<h3 id="_latexmathml">LaTeXMathML</h3>
+<div class="paragraph"><p><a href="http://www.maths.nottingham.ac.uk/personal/drw/lm.html">LaTeXMathML</a>
+capability has been added to AsciiDoc for users who are more familar
+with or prefer LaTeX math formulas to the
+<a href="http://asciidoc.org/asciimathml.html">ASCIIMathML</a>
+notation.</p></div>
+<div class="paragraph"><p><em>LaTeXMathML</em> is a derivative of
+<a href="http://asciidoc.org/asciimathml.html">ASCIIMathML</a>&#8201;&#8212;&#8201;in
+terms of usage the only difference it that you use the <span class="monospaced">latexmath</span>
+attribute instead of the <span class="monospaced">asciimath</span> attribute.</p></div>
+<div class="paragraph"><p><em>LaTeXMathML</em> processes LaTeX math formulas not arbitrary LaTeX (as
+<span class="monospaced">dblatex(1)</span> does). See the
+<a href="http://www.maths.nottingham.ac.uk/personal/drw/lm.html">LaTeXMathML</a>
+website for details.</p></div>
+<div class="paragraph"><p>Here&#8217;s the <a href="latexmathml.txt">AsciiDoc source</a> that generated this
+page.</p></div>
+<div class="paragraph"><p>Some example <em>LaTeXMathML</em> formulas:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+$R_x = 10.0 \times \sin(R_\phi)$
+</p>
+</li>
+<li>
+<p>
+$\sum_{n=1}^\infty \frac{1}{2^n}$
+</p>
+</li>
+<li>
+<p>
+$\lim_{x\to\infty} f(x) = k \choose r + \frac ab
+  \sum_{n=1}^\infty a_n + \displaystyle{ \left\{ \frac{1}{13}
+  \sum_{n=1}^\infty b_n \right\} }$
+</p>
+</li>
+<li>
+<p>
+$\$\alpha + \$\beta = \$(\alpha + \beta)$
+</p>
+</li>
+<li>
+<p>
+$\begin{eqnarray} x &amp; = &amp; \frac{-7 \pm
+  \sqrt{49 - 24}}{6} \\ &amp; = &amp; -2 \textrm{ or } -\frac13.
+  \end{eqnarray}$
+</p>
+</li>
+<li>
+<p>
+$\displaystyle{ V_i = C_0 - C_3
+  \frac{C_1\cos(\theta_i+C_3)}{C_4+C_1\cos(\theta_i+C_2)} }$
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_syntax_highlighting">Syntax Highlighting</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_source_code_paragraphs">Source code paragraphs</h3>
+<div class="listingblock">
+<div class="content">
+<pre><code><span style="color:#000000; font-weight:bold">if</span> n <span style="color:#000000">&lt;</span> <span style="color:#b07e00">0</span><span style="color:#000000">:</span> <span style="color:#000000; font-weight:bold">print</span> <span style="color:#bf0303">'Hello World!'</span></code></pre>
+</div></div>
+<div class="listingblock">
+<div class="content">
+<pre><code><span style="color:#000000; font-weight:bold">if</span> n <span style="color:#000000">&lt;</span> <span style="color:#b07e00">0</span><span style="color:#000000">:</span> <span style="color:#000000; font-weight:bold">print</span> <span style="color:#bf0303">'Hello World!'</span></code></pre>
+</div></div>
+<div class="listingblock">
+<div class="content">
+<pre><code><span style="color:#555555">    1 </span><span style="color:#000000">[</span><span style="color:#000000; font-weight:bold">true</span><span style="color:#000000">,</span> <span style="color:#000000; font-weight:bold">false</span><span style="color:#000000">].</span><span style="color:#010181">cycle</span><span style="color:#000000">([</span><span style="color:#b07e00">0</span><span style="color:#000000">,</span> <span style="color:#b07e00">1</span><span style="color:#000000">,</span> <span style="color:#b07e00">2</span><span style="color:#000000">,</span> <span style="color:#b07e00">3</span><span style="color:#000000">,</span> <span style="color:#b07e00">4</span><span style="color:#000000">])</span> <span style="color:#000000; font-weight:bold">do</span> <span style="color:#000000">|</span>a<span style="color:#000000">,</span> b<span style="color:#000000">|</span>
+<span style="color:#555555">    2 </span>    puts <span style="color:#bf0303">&quot;</span><span style="color:#0057ae">#{a.inspect}</span> <span style="color:#bf0303">=&gt;</span> <span style="color:#0057ae">#{b.inspect}</span><span style="color:#bf0303">&quot;</span></code></pre>
+</div></div>
+</div>
+<div class="sect2">
+<h3 id="_unnumbered_source_code_listing">Unnumbered source code listing</h3>
+<div class="listingblock">
+<div class="content">
+<pre><code><span style="color:#bf0303">''' A multi-line</span>
+<span style="color:#bf0303">    comment.'''</span>
+<span style="color:#000000; font-weight:bold">def</span> <span style="color:#010181">sub_word</span><span style="color:#000000">(</span>mo<span style="color:#000000">):</span>
+    <span style="color:#bf0303">''' Single line comment.'''</span>
+    word <span style="color:#000000">=</span> mo<span style="color:#000000">.</span><span style="color:#010181">group</span><span style="color:#000000">(</span><span style="color:#bf0303">'word'</span><span style="color:#000000">)</span>   <span style="color:#838183; font-style:italic"># Inline comment</span>
+    <span style="color:#000000; font-weight:bold">if</span> word <span style="color:#000000; font-weight:bold">in</span> keywords<span style="color:#000000">[</span>language<span style="color:#000000">]:</span>
+        <span style="color:#000000; font-weight:bold">return</span> quote <span style="color:#000000">+</span> word <span style="color:#000000">+</span> quote
+    <span style="color:#000000; font-weight:bold">else</span><span style="color:#000000">:</span>
+        <span style="color:#000000; font-weight:bold">return</span> word</code></pre>
+</div></div>
+</div>
+<div class="sect2">
+<h3 id="_numbered_source_code_listing_with_callouts">Numbered source code listing with callouts</h3>
+<div class="listingblock">
+<div class="content">
+<pre><code><span style="color:#555555">    1 </span><span style="color:#838183; font-style:italic">#</span>
+<span style="color:#555555">    2 </span><span style="color:#838183; font-style:italic"># Useful Ruby base class extensions.</span>
+<span style="color:#555555">    3 </span><span style="color:#838183; font-style:italic">#</span>
+<span style="color:#555555">    4 </span>
+<span style="color:#555555">    5 </span><span style="color:#000000; font-weight:bold">class</span> Array
+<span style="color:#555555">    6 </span>
+<span style="color:#555555">    7 </span>  <span style="color:#838183; font-style:italic"># Execute a block passing it corresponding items in</span>
+<span style="color:#555555">    8 </span>  <span style="color:#838183; font-style:italic"># +self+ and +other_array+.</span>
+<span style="color:#555555">    9 </span>  <span style="color:#838183; font-style:italic"># If self has less items than other_array it is repeated.</span>
+<span style="color:#555555">   10 </span>
+<span style="color:#555555">   11 </span>  <span style="color:#000000; font-weight:bold">def</span> <span style="color:#010181">cycle</span><span style="color:#000000">(</span>other_array<span style="color:#000000">)</span>  <span style="color:#838183; font-style:italic"># :yields: item, other_item</span>
+<span style="color:#555555">   12 </span>    other_array<span style="color:#000000">.</span>each_with_index <span style="color:#000000; font-weight:bold">do</span> <span style="color:#000000">|</span>item<span style="color:#000000">,</span> index<span style="color:#000000">|</span>
+<span style="color:#555555">   13 </span>      <span style="color:#000000; font-weight:bold">yield</span><span style="color:#000000">(</span><span style="color:#000000; font-weight:bold">self</span><span style="color:#000000">[</span>index <span style="color:#000000">%</span> <span style="color:#000000; font-weight:bold">self</span><span style="color:#000000">.</span>length<span style="color:#000000">],</span> item<span style="color:#000000">)</span>
+<span style="color:#555555">   14 </span>    <span style="color:#000000; font-weight:bold">end</span>
+<span style="color:#555555">   15 </span>  <span style="color:#000000; font-weight:bold">end</span>
+<span style="color:#555555">   16 </span>
+<span style="color:#555555">   17 </span><span style="color:#000000; font-weight:bold">end</span>
+<span style="color:#555555">   18 </span>
+<span style="color:#555555">   19 </span><span style="color:#000000; font-weight:bold">if</span> <span style="color:#0057ae">$0</span> <span style="color:#000000">==</span> __FILE__                                 <span style="color:#838183; font-style:italic"># <b>&lt;1&gt;</b></span>
+<span style="color:#555555">   20 </span>  <span style="color:#838183; font-style:italic"># Array#cycle test</span>
+<span style="color:#555555">   21 </span>  <span style="color:#838183; font-style:italic"># true =&gt; 0</span>
+<span style="color:#555555">   22 </span>  <span style="color:#838183; font-style:italic"># false =&gt; 1</span>
+<span style="color:#555555">   23 </span>  <span style="color:#838183; font-style:italic"># true =&gt; 2</span>
+<span style="color:#555555">   24 </span>  <span style="color:#838183; font-style:italic"># false =&gt; 3</span>
+<span style="color:#555555">   25 </span>  <span style="color:#838183; font-style:italic"># true =&gt; 4</span>
+<span style="color:#555555">   26 </span>  puts <span style="color:#bf0303">'Array</span><span style="color:#0057ae">#</span><span style="color:#bf0303">cycle test'</span>                         <span style="color:#838183; font-style:italic"># <b>&lt;2&gt;</b></span>
+<span style="color:#555555">   27 </span>  <span style="color:#000000">[</span><span style="color:#000000; font-weight:bold">true</span><span style="color:#000000">,</span> <span style="color:#000000; font-weight:bold">false</span><span style="color:#000000">].</span><span style="color:#010181">cycle</span><span style="color:#000000">([</span><span style="color:#b07e00">0</span><span style="color:#000000">,</span> <span style="color:#b07e00">1</span><span style="color:#000000">,</span> <span style="color:#b07e00">2</span><span style="color:#000000">,</span> <span style="color:#b07e00">3</span><span style="color:#000000">,</span> <span style="color:#b07e00">4</span><span style="color:#000000">])</span> <span style="color:#000000; font-weight:bold">do</span> <span style="color:#000000">|</span>a<span style="color:#000000">,</span> b<span style="color:#000000">|</span>
+<span style="color:#555555">   28 </span>    puts <span style="color:#bf0303">&quot;</span><span style="color:#0057ae">#{a.inspect}</span> <span style="color:#bf0303">=&gt;</span> <span style="color:#0057ae">#{b.inspect}</span><span style="color:#bf0303">&quot;</span>
+<span style="color:#555555">   29 </span>  <span style="color:#000000; font-weight:bold">end</span>
+<span style="color:#555555">   30 </span><span style="color:#000000; font-weight:bold">end</span></code></pre>
+</div></div>
+<div class="colist arabic"><ol>
+<li>
+<p>
+First callout.
+</p>
+</li>
+<li>
+<p>
+Second callout.
+</p>
+</li>
+</ol></div>
+</div>
+</div>
+</div>
+</div>
+<h2>脚注</h2>
+<div id='footnotes'></div>
+<hr>
+<p>last update 2017-07-03 15:37:23 (UTC)</p>
+<p>this page is generated by <a href='https://github.com/monman53/monsta'>monsta</a></p>
+<script src='/js/asciidoc.js'></script>
+<script>asciidoc.install(1);</script>
+<script src='/js/LaTeXMathML.js'></script>
+<script src='/js/ASCIIMathML.js'></script>

@@ -1,0 +1,190 @@
+Rendering Test
+==============
+
+asciidoc source from link:http://asciidoc.org/[asciidoc.org]
+
+
+== CSS 
+
+== h2
+
+=== h3
+ 
+==== h4
+
+
+== Math Formulae
+
+=== ASCIIMathML
+
+http://www1.chapman.edu/~jipsen/mathml/asciimath.html[ASCIIMathML] is
+a clever JavaScript written by Peter Jipsen that dynamically
+transforms mathematical formulae written in a wiki-like plain text
+markup to http://www.w3.org/Math/[MathML] markup which is displayed as
+standard mathematical notation by the Web Browser.  See 'Appendix E'
+in the AsciiDoc User Guide for more details.
+
+The AsciiDoc `xhtml11` backend supports ASCIIMathML -- it links the
+ASCIIMathML script and escapes ASCIIMathML delimiters and special
+characters to yield valid XHTML. To use ASCIIMathML:
+
+1. Include the `-a asciimath` command-line option when you run
+   `asciidoc(1)`.
+2. Enclose ASCIIMathML formulas inside math or double-dollar
+   passthroughs or in math passthrough blocks.
+
+.NOTE
+- When you use the `asciimath:[]` inline macro you need to escape `]`
+  characters in the formulas with a backslash, escaping is unnecessary
+  if you use the double-dollar macro (for examples see the second
+  formula below).
+- See the
+  http://www1.chapman.edu/~jipsen/mathml/asciimath.html[ASCIIMathML]
+  website for ASCIIMathML documentation and the latest version.
+- If the formulas don't appear to be correct you probably need to
+  install the correct math fonts (see the
+  http://www1.chapman.edu/~jipsen/mathml/asciimath.html[ASCIIMathML]
+  website for details).
+- See the link:latexmathml.html[LaTeXMathML page] if you prefer to use
+  LaTeX math formulas.
+
+A list of example formulas:
+
+- $$`[[a,b],[c,d]]((n),(k))`$$
+- asciimath:[x/x={(1,if x!=0),(text{undefined},if x=0):}]
+- asciimath:[d/dxf(x)=lim_(h->0)(f(x+h)-f(x))/h]
+- +++`sum_(i=1)\^n i=(n(n+1))/2`$+++ and *bold
+  asciimath:[int_0\^(pi/2) sinx\ dx=1]*
+- asciimath:[(a,b\]={x in RR : a < x <= b}]
+- asciimath:[x^2+y_1+z_12^34]
+
+*********************************************************************
+The first three terms factor to give
+asciimath:[(x+b/(2a))^2=(b^2)/(4a^2)-c/a].
+
+asciimath:[x+b/(2a)=+-sqrt((b^2)/(4a^2)-c/a)].
+
+Now we take square roots on both sides and get
+asciimath:[x+b/(2a)=+-sqrt((b^2)/(4a^2)-c/a)].
+Finally we move the asciimath:[b/(2a)] to the right and simplify to
+get the two solutions:
+*asciimath:[x_(1,2)=(-b+-sqrt(b^2-4ac))/(2a)]*.
+
+*********************************************************************
+
+
+=== LaTeXMathML
+
+http://www.maths.nottingham.ac.uk/personal/drw/lm.html[LaTeXMathML]
+capability has been added to AsciiDoc for users who are more familar
+with or prefer LaTeX math formulas to the
+http://asciidoc.org/asciimathml.html[ASCIIMathML]
+notation.
+
+'LaTeXMathML' is a derivative of
+http://asciidoc.org/asciimathml.html[ASCIIMathML] -- in
+terms of usage the only difference it that you use the `latexmath`
+attribute instead of the `asciimath` attribute.
+
+'LaTeXMathML' processes LaTeX math formulas not arbitrary LaTeX (as
+`dblatex(1)` does). See the
+http://www.maths.nottingham.ac.uk/personal/drw/lm.html[LaTeXMathML]
+website for details.
+
+Here's the link:latexmathml.txt[AsciiDoc source] that generated this
+page.
+
+Some example 'LaTeXMathML' formulas:
+
+- latexmath:[$R_x = 10.0 \times \sin(R_\phi)$]
+
+- latexmath:[$\sum_{n=1}^\infty \frac{1}{2^n}$]
+
+- latexmath:[$\lim_{x\to\infty} f(x) = k \choose r + \frac ab
+  \sum_{n=1}^\infty a_n + \displaystyle{ \left\{ \frac{1}{13}
+  \sum_{n=1}^\infty b_n \right\} }$]
+
+- latexmath:[$\$\alpha + \$\beta = \$(\alpha + \beta)$]
+
+- latexmath:[$\begin{eqnarray} x & = & \frac{-7 \pm
+  \sqrt{49 - 24}}{6} \\ & = & -2 \textrm{ or } -\frac13.
+  \end{eqnarray}$]
+
+- latexmath:[$\displaystyle{ V_i = C_0 - C_3
+  \frac{C_1\cos(\theta_i+C_3)}{C_4+C_1\cos(\theta_i+C_2)} }$]
+
+
+
+== Syntax Highlighting
+
+=== Source code paragraphs
+
+[source,python]
+if n < 0: print 'Hello World!'
+
+:language: python
+
+[source]
+if n < 0: print 'Hello World!'
+
+[source,ruby,numbered]
+[true, false].cycle([0, 1, 2, 3, 4]) do |a, b|
+    puts "#{a.inspect} => #{b.inspect}"
+
+
+=== Unnumbered source code listing
+
+[source,python]
+---------------------------------------------------------------------
+''' A multi-line
+    comment.'''
+def sub_word(mo):
+    ''' Single line comment.'''
+    word = mo.group('word')   # Inline comment
+    if word in keywords[language]:
+        return quote + word + quote
+    else:
+        return word
+---------------------------------------------------------------------
+
+
+=== Numbered source code listing with callouts
+
+[source,ruby,numbered]
+---------------------------------------------------------------------
+#
+# Useful Ruby base class extensions.
+#
+
+class Array
+
+  # Execute a block passing it corresponding items in
+  # +self+ and +other_array+.
+  # If self has less items than other_array it is repeated.
+
+  def cycle(other_array)  # :yields: item, other_item
+    other_array.each_with_index do |item, index|
+      yield(self[index % self.length], item)
+    end
+  end
+
+end
+
+if $0 == __FILE__                                 # <1>
+  # Array#cycle test
+  # true => 0
+  # false => 1
+  # true => 2
+  # false => 3
+  # true => 4
+  puts 'Array#cycle test'                         # <2>
+  [true, false].cycle([0, 1, 2, 3, 4]) do |a, b|
+    puts "#{a.inspect} => #{b.inspect}"
+  end
+end
+---------------------------------------------------------------------
+
+<1> First callout.
+<2> Second callout.
+
+

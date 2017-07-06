@@ -1,0 +1,531 @@
+contest
+=======
+
+コンテストのお供．
+
+== C++
+// {{{
+
+断りがない限りC++14を想定しています．
+
+link:https://cpprefjp.github.io/[cpprefjp]
+
+=== 言語機能
+
+
+==== range-based for statement
+
+link:https://cpprefjp.github.io/lang/cpp11/range_based_for.html[range based for]
+
+[source, cpp]
+----
+// 非破壊，eを変更可
+for(auto e : es){
+    ...
+}
+
+// 破壊，eを変更可
+for(auto &e : es){
+    ...
+}
+
+// 非破壊，eを変更不可
+for(const auto &e : es){
+    ...
+}
+----
+
+// ==== uniform initialization
+//
+// `{ }` でコンストラクタ呼び出しする．型推論してくれる．
+// [source, cpp]
+// ----
+// ----
+
+=== リファレンス
+
+==== algorithm
+
+[source, cpp]
+----
+#include <algorithm>
+
+// 要素の最大値を指す最初のイテレータを取得
+cout << *max_element(v.begin(), v.end()) << endl;
+----
+
+==== map
+
+[source, cpp]
+----
+#include <map>
+
+// 検索
+if(mmap.find(key) != mmap.end()){
+    ...
+}
+
+// range based loop
+for(auto kv : mmap){
+    auto key    = kv.fist;
+    auto value  = kv.second;
+    ...
+}
+----
+
+==== queue
+
+[source, cpp]
+----
+#include <queue>
+
+// queue
+q.push(v);
+auto v = q.front();
+q.pop();
+
+// priority queue
+pq.push(v);
+auto v = pq.top();
+pq.pop();
+
+// priority queue は標準で降順なので，ダイクストラで使うときは次のようにする
+priority_queue<T, vector<T>, greater<T>> pq;
+----
+
+==== stack
+
+[source, cpp]
+----
+#include <stack>
+
+s.push(v);
+auto v = s.top();
+s.pop();
+----
+
+==== string
+
+[source, cpp]
+----
+#include <string>
+
+// 行読み込み
+getline(cin, str);
+
+// 文字を結合するときは+=かpush_back等を使う
+str += 'c';
+
+// range based for ももちろん可
+for(auto c : str){
+    cout << c << endl;
+}
+
+// 文字列部分比較
+if(str.compare(offset, 4, "hoge") == 0){
+    ...
+}
+
+// 文字列反転
+// algorithm の reverse を用いる
+reverse(str.begin(), str.end());
+----
+
+==== utility
+
+[source, cpp]
+----
+#include <utility>
+
+// swap
+swap(v[4], v[5]);
+----
+
+==== vector
+
+[source, cpp]
+----
+#include <vector>
+
+// 100個の0で初期化
+vector<int> vec(100, 0);
+----
+
+// }}}
+
+== 知識
+// {{{
+
+=== グラフ
+
+* 任意のトーナメントグラフにはハミルトンパスが存在する(AOJ2386 Sightseeing Tour)
+
+==== 定義
+
+単純グラフ::
+多重辺，ループのないグラフ
+
+2部グラフ::
+頂点集合を2つの部分集合に分割して，各集合内の頂点同士の間には辺が無いようなグラフ
+
+完全グラフ::
+任意の2頂点間に枝があるグラフ
+
+DAG (Directed Acyclic Graph)::
+閉路のない有向グラフ
+* 全ての辺が左から右に向くように，各頂点を一直線上に並べることができる．これをトポロジカル順序という．
+
+トーナメントグラフ::
+任意の2頂点が1つの有向辺で結ばれているグラフ
+
+ハミルトン(閉)路::
+全頂点を一度だけ通る(閉)路
+
+オイラー(閉)路::
+全辺を一度だけ通る(閉)路
+
+ハミルトングラフ::
+ハミルトン閉路を含むグラフ
+
+準ハミルトングラフ::
+ハミルトン閉路は含まないが，ハミルトン路は含むグラフ
+
+オイラーグラフ::
+オイラー閉路を含むグラフ
+
+準オイラーグラフ::
+オイラー閉路は含まないが，オイラー路は含むグラフ
+
+(強)連結::
+無(有)向グラフにおいて，任意の2頂点間に路が存在すること
+
+(強)連結成分::
+(強)連結な頂点集合に分解した際の各集合
+
+//}}}
+
+== ライブラリ
+//{{{
+
+link:https://raw.githubusercontent.com/monman53/online_judge/master/lib/header.h[->header]
+
+
+link:https://raw.githubusercontent.com/monman53/online_judge/master/lib/geometry.h[->geometry]
+link:https://raw.githubusercontent.com/monman53/online_judge/master/lib/datastructure.h[->datastructure]
+link:https://raw.githubusercontent.com/monman53/online_judge/master/lib/number.h[->number]
+
+=== header
+
+[source, cpp]
+----
+// header {{{
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <complex>
+#include <utility>
+#include <string>
+#include <sstream>
+#include <queue>
+#include <map>
+#include <list>
+#include <stack>
+#include <tuple>
+#include <cstdio>
+#include <cmath>
+using namespace std;
+
+#define ALPHABET    26
+#define EPS         (1e-10)
+#define EQ(a, b)    (abs((a)-(b)) < EPS)
+
+typedef long long ll;
+typedef unsigned long long ull;
+// }}}
+----
+
+=== 数
+
+[source, cpp]
+----
+// number {{{
+#define SIZE      100005
+#define MOD 1000000007LL
+
+ll pow(ll a, ll b) {
+    if(b == 0) return 1;
+    ll aa = pow(a, b/2);
+    return aa*aa%MOD*(b%2 == 1 ? a : 1)%MOD;
+}
+
+ll fact[SIZE] = {1, 1};
+ll finv[SIZE] = {1, 1};
+
+void fact_init() {
+    // fact
+    for(ll i=2;i<SIZE;i++){
+        fact[i] = fact[i-1]*i%MOD;
+    }
+
+    // finv
+    finv[SIZE-1] = pow(fact[SIZE-1], MOD-2);
+    for(ll i=SIZE-1;i>=3;i--){
+        finv[i-1] = finv[i]*i%MOD;
+    }
+}
+
+ll comb(int n, int r) {
+    if(r > n) return 0;
+    return fact[n]*(finv[r]*finv[n-r]%MOD)%MOD;
+}
+
+ll gcd(ll x, ll y) {
+    return y ? gcd(y, x%y) : x;
+}
+}}}
+----
+
+=== データ構造
+
+[source, cpp]
+----
+// data structure {{{
+
+// Union-Find
+// verified AOJ DSL_1_A
+struct UF {
+    vector<int> p;  // parent
+    vector<int> r;  // rank
+
+    UF(int n) {
+        p.resize(n);
+        r.resize(n);
+        for(int i=0;i<n;i++){
+            p[i] = i;
+            r[i] = 1;
+        }
+    }
+
+    int find(int x) {
+        if(x == p[x]){
+            return x;
+        }else{
+            return p[x] = find(p[x]);
+        }
+    }
+
+    void unite(int x, int y) {
+        x = find(x);
+        y = find(y);
+        if(x == y) return;
+        if(r[x] < r[y]){
+            p[x] = y;
+        }else{
+            p[y] = x;
+            if(r[x] == r[y]){
+                r[x]++;
+            }
+        }
+    }
+};
+
+// 最小全域木 (Minimum spanning tree)
+// ARC076D
+struct MST {
+    // クラスカル法
+    static vector<E> solve(int n, vector<E> e) {
+        UF uf(n);
+        vector<E> ret;
+        sort(e.begin(), e.end(), [](E e1, E e2){
+                return e1.w < e2.w;
+                });
+        for(auto ee : e){
+            if(uf.find(ee.s) != uf.find(ee.t)){
+                uf.unite(ee.s, ee.t);
+                ret.push_back({ee.w, ee.s, ee.t});
+            }
+        }
+        return ret;
+    }
+};
+//}}}
+----
+
+=== 平面幾何
+
+[source, cpp]
+----
+// 2d geometry {{{
+
+typedef complex<double> P;
+typedef vector<P> PL;
+
+namespace std {
+    bool  operator < (P a, P b) {
+        // return real(a) != real(b) ? real(a) < real(b) : imag(a) < imag(b);
+        return imag(a) != imag(b) ? imag(a) < imag(b) : real(a) < real(b);
+    }
+}
+
+// 長さ
+// double length = abs(a);
+
+// 単位ベクトル
+// P n = a/abs(a);
+
+// 法線ベクトル
+// P n1 = a*P(0, 1);
+// P n2 = a*P(0, -1);
+
+// 内積
+double dot(P a, P b) {
+    return a.real()*b.real() + a.imag()*b.imag();
+}
+
+// 外積
+double cross(P a, P b) {
+    return a.real()*b.imag() - a.imag()*b.real();
+}
+
+// 点の直線への射影
+// verified AOJ CGL_1_A
+P projectionLP(P a, P b, P p) {
+    double l = dot(p-a, b-a) / norm(b-a);
+    return a + l*(b-a);
+}
+
+// 点の直線に対する対称点
+// verified AOJ CGL_1_B
+P reflectionLP(P a, P b, P p) {
+    return 2.0*projectionLP(a, b, p) - p;
+}
+
+// verified AOJ CGL_1_C
+int ccw(P a, P b, P c) {
+    b = b - a;
+    c = c - a;
+    if(cross(b, c) > EPS) return +1; // counter clockwise
+    if(cross(b, c) <-EPS) return -1; // clockwise
+    if(dot(b, c) < 0)     return +2; // cab (back)
+    if(abs(b) < abs(c))   return -2; // abc (front)
+    return 0;                        // acb (on segment)
+}
+
+// 直交判定
+// verified AOJ CGL_2_A
+bool isOrthogonalLL(P a1, P a2, P b1, P b2) {
+    return EQ(dot(a1-a2, b1-b2), 0.0);
+}
+
+// 平行判定
+// verified AOJ CGL_2_A
+bool isParallelLL(P a1, P a2, P b1, P b2) {
+    return EQ(cross(a1-a2, b1-b2), 0.0);
+}
+
+// 線分と線分の交差判定
+// verified AOJ CGL_2_B
+bool isIntersectedSS(P a1, P a2, P b1, P b2) {
+    return ccw(a1, a2, b1)*ccw(a1, a2, b2) <= 0 &&
+           ccw(b1, b2, a1)*ccw(b1, b2, a2) <= 0;
+}
+
+// 直線と直線の交点
+// verified AOJ CGL_2_C
+P intersectionLL(P a1, P a2, P b1, P b2) {
+    P a = a2 - a1;
+    P b = b2 - b1;
+    return a1 + a*cross(b, b1-a1)/cross(b, a);
+}
+
+// 直線と点の距離
+double distLP(P a, P b, P p) {
+    return abs(cross(b-a, p-a)) / abs(b-a);
+}
+
+// 線分と点の距離
+double distSP(P a, P b, P p) {
+    if(dot(b-a, p-a) < EPS) return abs(p-a);
+    if(dot(a-b, p-b) < EPS) return abs(p-b);
+    return distLP(a, b, p);
+}
+
+// 線分と線分の距離
+// verified AOJ CGL_2_D
+double distSS(P a1, P a2, P b1, P b2) {
+    if(isIntersectedSS(a1, a2, b1, b2)){
+        return 0;
+    }
+    return min({
+            distSP(a1, a2, b1),
+            distSP(a1, a2, b2),
+            distSP(b1, b2, a1),
+            distSP(b1, b2, a2),
+            });
+}
+
+// 多角形の面積 (点は半時計回り)
+// verified AOJ CGL_3_A
+double area(PL pl) {
+    double ret = 0;
+    int n = pl.size();
+    for(int i=0;i<n;i++){
+        ret += cross(pl[i], pl[(i+1)%n]);
+    }
+    return ret / 2.0;
+}
+
+// 凸多角形判定 (点は半時計回り)
+// verified AOJ CGL_3_B
+bool isConvex(PL pl) {
+    int n = pl.size();
+    for(int i=0;i<n;i++){
+        if(ccw(pl[i], pl[(i+1)%n], pl[(i+2)%n]) == -1){
+            return false;
+        }
+    }
+    return true;
+}
+
+// 点の多角形内外判定 (点は半時計回り)
+// verified AOJ CGL_3_C
+int isContain(PL pl, P p) {
+    bool flag = false;
+    int n = pl.size();
+    for(int i=0;i<n;i++){
+        P a = pl[i] - p;
+        P b = pl[(i+1)%n] - p;
+        if(imag(a) > imag(b)) swap(a, b);
+        if(imag(a) <= 0 && 0 < imag(b)){
+            if(cross(a, b) < 0) flag = !flag;
+        }
+        if(cross(a, b) == 0 && dot(a, b) <= 0){
+            return 1;       // on segment
+        }
+    }
+    return flag ? 2 : 0;    // in or out
+}
+
+// 凸包 (plは点集合)
+// verified AOJ CGL_4_A
+PL convexHull(PL pl){
+    int n = pl.size();
+    int k = 0;
+    PL ch(2*n); // results
+    sort(pl.begin(), pl.end()); // この順序は問題に依る
+    for(int i=0;i<n;ch[k++]=pl[i++]){
+        while(k >= 2 && (ccw(ch[k-2], ch[k-1], pl[i]) == 0 ||
+                         ccw(ch[k-2], ch[k-1], pl[i]) == -1)) k--;
+    }
+    for(int i=n-2,t=k+1;i>=0;ch[k++]=pl[i--]){
+        while(k >= t && (ccw(ch[k-2], ch[k-1], pl[i]) == 0 ||
+                         ccw(ch[k-2], ch[k-1], pl[i]) == -1)) k--;
+    }
+    ch.resize(k-1);
+    return ch;
+}
+
+// }}}
+----
+
+//}}}

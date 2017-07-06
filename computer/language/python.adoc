@@ -1,0 +1,91 @@
+Python
+======
+
+== python講座
+
+=== 2017-05-25
+
+[source, python]
+----
+# 関数の定義
+def func(x, a, b, c):
+    output = a + b*x + c*x*X2
+    return output
+----
+
+.numpy
+[source, python]
+----
+# ndarray をリストとして使う
+numpy.array([0, 1, 2])  # 普通のリストから変換
+numpy.arange(0, 1, 0.1) # 普通のrangeと違って，float刻みができる
+----
+
+=== 2017-05-18
+
+[source, python]
+----
+# comment
+a = 10
+b = 30
+print("a = {0}, b = {1}".format(a, b))
+print("Epock %i/%i" % (a, b))
+print("a = " + str(a))  # srtがないと怒られる
+l  = ['a', 1, 2, 3, 4, ['a', 3]]
+a_int_list = 'a' in l   # True
+l[2:4]                  # [2, 3]
+l[0:4:2]                # ['a', 2]
+l[::-1]                 # 逆順に出力
+len(l)                  # 6
+(1, 'a', 3)             # 
+{'a': 1, 'b': 2}        # ディクショナリ
+----
+
+[source, python]
+----
+if True:
+    print(True)
+else:
+    print("never come here")
+
+# 論理演算子はand or not
+
+for i in range(4):
+    print(i)
+
+for i in xrange(4):     # 
+    print(i)
+
+for i, v in enumerate(list):
+    print(i, v)
+----
+
+== 文法
+
+=== loop
+
+[source, python]
+----
+for i in range(0, N):
+----
+
+== input
+
+.一行を文字列で入力
+[source, python]
+----
+parameter = raw_input()
+----
+
+.一行に複数の数値がある場合
+[source, python]
+----
+parameter = raw_input().split
+
+N = int(parameter[0])
+R = float(parameter[1])
+r = float(parameter[2])
+----
+
+要は，文字列はintとかfloatで数値に変換できる．
+

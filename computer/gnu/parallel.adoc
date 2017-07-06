@@ -1,0 +1,50 @@
+parallel
+========
+
+== はじめに
+
+GNU Parallel は便利．
+
+link:https://www.gnu.org/software/parallel/parallel_tutorial.html[本家 tutorial]
+
+
+== 基本
+
+=== 引数
+
+==== ヘッダ付き引数
+
+`--header` オプションを指定する．
+
+引数が複数種類ある場合は，ヘッダ（ラベル）をつけたほうが参照の意味がわかりやすくてよい．
+あるいはヘッダ付きのファイルを読むとき．
+
+----
+$ parallel --header : echo "{name}.{suffix}" ::: name hoge huga ::: suffix png jpg
+hoge.jpg
+hoge.png
+huga.jpg
+huga.png
+----
+
+`:` は何もしないコマンド．bashのSHELL BUILTIN COMMANDSを参照．
+
+== Examples
+
+並列処理に限らず， parallelの便利な機能．
+
+=== 直積
+
+順番が大事な場合は `--keep-order/-k` オプションを付ける．
+
+----
+$ parallel -k echo "{1} {2} {3}." ::: I You ::: like hate ::: me you
+I like me.
+I like you.
+I hate me.
+I hate you.
+You like me.
+You like you.
+You hate me.
+You hate you.
+----

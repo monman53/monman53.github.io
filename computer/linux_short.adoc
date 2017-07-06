@@ -1,0 +1,9 @@
+Use GNU/Linux!
+==============
+
+== Use GNU/Linux!
+
+Use GNU/Linux! footnote:[Use GNU/Linux!]
+
+[NOTE]
+Use GNU/Linux!

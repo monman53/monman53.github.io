@@ -1,0 +1,6 @@
+Programming
+===========
+
+// == getopt (引数を簡単にあつかう)
+//
+// link:https://www.gnu.org/software/libc/manual/html_node/Example-of-Getopt.html#Example-of-Getopt[->使用例]

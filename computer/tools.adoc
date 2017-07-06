@@ -1,0 +1,37 @@
+Tools
+=====
+
+便利なソフトウェアたち
+
+== convert, mogrify, ... (ImageMagic command-line utiles)
+
+* link:http://www.imagemagick.org/script/command-line-tools.php[本家] +
+* link:http://pen.agbi.tsukuba.ac.jp/~torarimon/?Imagemagick[例がいっぱいあるとこ] +
+相当色々なことができそうだが，ほとんど使い切れないでいる．
+
+.hoge.png を hoge.jpg に変換する．
+----
+$ convert hoge.png hoge.jpg
+----
+
+pdfを画像にするときに便利． +-density+ オプションとかで画質を調整できる．
+
+=== options
+
+-ressize::
+    縦横の大きさを変更する．
+
+.縦横比を維持したまま横を500pxにする
+----
+$ mogrify -resize 500x hoge.jpg
+----
+
+-density::
+    解像度を変更する．
+
+-rotate::
+
+.画像を時計回りに90度回転する
+----
+$ mogrify -rotate +90 hoge.jpg 
+----

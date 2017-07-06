@@ -1,0 +1,209 @@
+<!doctype html>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta charset='utf-8'>
+<link rel='stylesheet' href='/css/main.css'>
+<title>Lambda</title>
+<h1>Lambda</h1>
+<a href='/'>[Top]</a>
+<hr>
+<h3>Table of Contents</h3>
+<div id='toc'></div>
+<div id='content'>
+<div class="sect1">
+<h2 id="_untyped_lambda_calculus_programming">Untyped Lambda Calculus Programming</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>In this page, we use De Bruijn index <span class="footnote"><br>[<a href="https://en.wikipedia.org/wiki/De_Bruijn_index">https://en.wikipedia.org/wiki/De_Bruijn_index</a>]<br></span> in lambda term, and use Church encoding <span class="footnote"><br>[<a href="https://en.wikipedia.org/wiki/Church_encoding#Church_numerals">https://en.wikipedia.org/wiki/Church_encoding#Church_numerals</a>]<br></span>.</p></div>
+<div class="sect2">
+<h3 id="_definition_of_lambda_term">Definition of Lambda Term</h3>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>&lt;term&gt; ::= n
+&lt;term&gt; ::= (λ &lt;term&gt;)
+&lt;term&gt; ::= (&lt;term&gt; &lt;term&gt;)</pre>
+</div></div>
+<div class="paragraph"><p><span class="monospaced">n</span> is natural number.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_numbers_booleans">Numbers, Booleans</h3>
+<div class="paragraph"><p>In this page, <span class="monospaced">[cn]</span> means natural number <span class="monospaced">n</span> in church encoding.</p></div>
+<div class="listingblock">
+<div class="title">Natural Numbers</div>
+<div class="content monospaced">
+<pre>[c0] = (λ(λ1))
+[c1] = (λ(λ(2 1)))
+[c2] = (λ(λ(2(2 1))))
+[c3] = (λ(λ(2(2(2 1)))))
+[c4] = (λ(λ(2(2(2(2 1))))))</pre>
+</div></div>
+<div class="listingblock">
+<div class="title">Booleans</div>
+<div class="content monospaced">
+<pre>TRUE  = (λ(λ2))
+FALSE = (λ(λ1))
+      = [c0]</pre>
+</div></div>
+</div>
+<div class="sect2">
+<h3 id="_numeric_functions_1">Numeric Functions (1)</h3>
+<div class="listingblock">
+<div class="title">自然数に1加える関数</div>
+<div class="content monospaced">
+<pre>SUCC = (λ(λ(λ(2((3 2)1)))))</pre>
+</div></div>
+<div class="listingblock">
+<div class="title">加算</div>
+<div class="content monospaced">
+<pre>ADD = (λ(λ((2 SUCC)1)))
+    = (λ(λ((2(λ(λ(λ(2((3 2)1))))))1)))</pre>
+</div></div>
+<div class="listingblock">
+<div class="title">乗算</div>
+<div class="content monospaced">
+<pre>MULT = (λ(λ(λ(3(2 1)))))</pre>
+</div></div>
+<div class="listingblock">
+<div class="title">べき演算</div>
+<div class="content monospaced">
+<pre>POW = (λ(λ(1 2)))</pre>
+</div></div>
+<div class="listingblock">
+<div class="title">自然数から1引く関数</div>
+<div class="content monospaced">
+<pre>PRED = (λ(λ(λ(((3(λ(λ(1(2 4)))))(λ2))(λ1)))))</pre>
+</div></div>
+<div class="listingblock">
+<div class="title">減算 (負の差は0として返されます)</div>
+<div class="content monospaced">
+<pre>SUB = (λ(λ((1 PRED)2)))
+    = (λ(λ((1(λ(λ(λ(((3(λ(λ(1(2 4)))))(λ2))(λ1))))))2)))</pre>
+</div></div>
+</div>
+<div class="sect2">
+<h3 id="_boolean_operators">Boolean Operators</h3>
+<div class="listingblock">
+<div class="title">論理積</div>
+<div class="content monospaced">
+<pre>AND = (λ(λ((2 1)2)))</pre>
+</div></div>
+<div class="listingblock">
+<div class="title">論理和</div>
+<div class="content monospaced">
+<pre>OR = (λ(λ((2 2)1)))</pre>
+</div></div>
+<div class="listingblock">
+<div class="title">否定</div>
+<div class="content monospaced">
+<pre>NOT = (λ((1 FALSE) TRUE))
+    = (λ((1(λ(λ1)))(λ(λ2))))</pre>
+</div></div>
+<div class="listingblock">
+<div class="title">排他的論理和</div>
+<div class="content monospaced">
+<pre>XOR = (λ(λ((2(NOT 1))1)))
+    = (λ(λ((2((λ((1(λ(λ1)))(λ(λ2))))1))1)))</pre>
+</div></div>
+<div class="listingblock">
+<div class="title">条件分岐</div>
+<div class="content monospaced">
+<pre>IFTHENELSE = (λ(λ(λ((3 2)1))))</pre>
+</div></div>
+<div class="listingblock">
+<div class="title">0判定</div>
+<div class="content monospaced">
+<pre>ISZERO = (λ((1(λ FALSE)) TRUE))
+       = (λ((1(λ(λ(λ1))))(λ(λ2))))</pre>
+</div></div>
+<div class="listingblock">
+<div class="title">less than or equal to (以下)</div>
+<div class="content monospaced">
+<pre>LEQ = (λ(λ(ISZERO ((SUB 2)1))))
+    = (λ(λ((λ((1(λ(λ(λ1))))(λ(λ2))))(((λ(λ((1(λ(λ(λ(((3(λ(λ(1(2 4)))))(λ2))(λ1))))))2)))2)1))))</pre>
+</div></div>
+<div class="listingblock">
+<div class="title">less than (未満)</div>
+<div class="content monospaced">
+<pre>LT = (λ(λ(NOT ((LEQ 1)2))))
+   = (λ(λ((λ((1(λ(λ1)))(λ(λ2))))(((λ(λ((λ((1(λ(λ(λ1))))(λ(λ2))))(((λ(λ((1(λ(λ(λ(((3(λ(λ(1(2 4)))))(λ2))(λ1))))))2)))2)1))))1)2))))</pre>
+</div></div>
+<div class="listingblock">
+<div class="title">equal to (等しい)</div>
+<div class="content monospaced">
+<pre>EQ = (λ(λ((AND ((LEQ 1)2))((LEQ 2)1))))
+   = (λ(λ(((λ(λ((2 1)2)))(((λ(λ((λ((1(λ(λ(λ1))))(λ(λ2))))(((λ(λ((1(λ(λ(λ(((3(λ(λ(1(2 4)))))(λ2))(λ1))))))2)))2)1))))1)2))(((λ(λ((λ((1(λ(λ(λ1))))(λ(λ2))))(((λ(λ((1(λ(λ(λ(((3(λ(λ(1(2 4)))))(λ2))(λ1))))))2)))2)1))))2)1))))</pre>
+</div></div>
+</div>
+<div class="sect2">
+<h3 id="_list">List</h3>
+<div class="listingblock">
+<div class="title">CONS (PAIR)</div>
+<div class="content monospaced">
+<pre>CONS = (λ(λ(λ((1 3)2))))</pre>
+</div></div>
+<div class="listingblock">
+<div class="title">CAR (FIRST)</div>
+<div class="content monospaced">
+<pre>CAR = (λ(1 TRUE))
+    = (λ(1(λ(λ2))))</pre>
+</div></div>
+<div class="listingblock">
+<div class="title">CDR (SECOND)</div>
+<div class="content monospaced">
+<pre>CDR = (λ(1 FALSE))
+    = (λ(1(λ(λ1))))</pre>
+</div></div>
+<div class="listingblock">
+<div class="title">NIL</div>
+<div class="content monospaced">
+<pre>NIL = (λ TRUE)
+    = (λ(λ(λ2)))</pre>
+</div></div>
+</div>
+<div class="sect2">
+<h3 id="_numeric_functions_2">Numeric Functions (2)</h3>
+<div class="listingblock">
+<div class="title">除と剰余がPairで返ってくる関数</div>
+<div class="content monospaced">
+<pre>DIV = ((Y (λ(λ(λ(λ((((LT 2)1)((PAIR 3)2))(((4(SUCC 3))((SUB 2)1))1)))))))[c0])
+    = (((λ((λ(2(1 1)))(λ(2(1 1)))))(λ(λ(λ(λ(((((λ(λ((λ((1(λ(λ1)))(λ(λ2))))(((λ(λ((λ((1(λ(λ(λ1))))(λ(λ2))))(((λ(λ((1(λ(λ(λ(((3(λ(λ(1(2 4)))))(λ2))(λ1))))))2)))2)1))))1)2))))2)1)(((λ(λ(λ((1 3)2))))3)2))(((4((λ(λ(λ(2((3 2)1)))))3))(((λ(λ((1(λ(λ(λ(((3(λ(λ(1(2 4)))))(λ2))(λ1))))))2)))2)1))1)))))))(λ(λ1)))</pre>
+</div></div>
+<div class="listingblock">
+<div class="title">除算</div>
+<div class="content monospaced">
+<pre>IDIV = (λ(λ(CAR ((DIV 2)1))))
+     = (λ(λ((λ(1(λ(λ2))))(((((λ((λ(2(1 1)))(λ(2(1 1)))))(λ(λ(λ(λ(((((λ(λ((λ((1(λ(λ1)))(λ(λ2))))(((λ(λ((λ((1(λ(λ(λ1))))(λ(λ2))))(((λ(λ((1(λ(λ(λ(((3(λ(λ(1(2 4)))))(λ2))(λ1))))))2)))2)1))))1)2))))2)1)(((λ(λ(λ((1 3)2))))3)2))(((4((λ(λ(λ(2((3 2)1)))))3))(((λ(λ((1(λ(λ(λ(((3(λ(λ(1(2 4)))))(λ2))(λ1))))))2)))2)1))1)))))))(λ(λ1)))2)1))))</pre>
+</div></div>
+<div class="listingblock">
+<div class="title">剰余算</div>
+<div class="content monospaced">
+<pre>MOD = (λ(λ(CDR ((DIV 2)1))))
+    = (λ(λ((λ(1(λ(λ1))))(((((λ((λ(2(1 1)))(λ(2(1 1)))))(λ(λ(λ(λ(((((λ(λ((λ((1(λ(λ1)))(λ(λ2))))(((λ(λ((λ((1(λ(λ(λ1))))(λ(λ2))))(((λ(λ((1(λ(λ(λ(((3(λ(λ(1(2 4)))))(λ2))(λ1))))))2)))2)1))))1)2))))2)1)(((λ(λ(λ((1 3)2))))3)2))(((4((λ(λ(λ(2((3 2)1)))))3))(((λ(λ((1(λ(λ(λ(((3(λ(λ(1(2 4)))))(λ2))(λ1))))))2)))2)1))1)))))))(λ(λ1)))2)1))))</pre>
+</div></div>
+</div>
+<div class="sect2">
+<h3 id="_advanced_functions">Advanced Functions</h3>
+<div class="listingblock">
+<div class="title">素数判定関数</div>
+<div class="content monospaced">
+<pre>ISPRIME = (λ((λ(((IFTHENELSE ((LT 2)[c2])) FALSE)(((IFTHENELSE ((EQ 2)[c2])) TRUE)(1[c2]))))(Y (λ(λ(((IFTHENELSE ((EQ 1)3)) TRUE)((AND (NOT (ISZERO ((MOD 3)1))))(2(SUCC 1)))))))))
+        = (λ((λ((((λ(λ(λ((3 2)1))))(((λ(λ((λ((1(λ(λ1)))(λ(λ2))))(((λ(λ((λ((1(λ(λ(λ1))))(λ(λ2))))(((λ(λ((1(λ(λ(λ(((3(λ(λ(1(2 4)))))(λ2))(λ1))))))2)))2)1))))1)2))))2)(λ(λ(2(2 1))))))(λ(λ1)))((((λ(λ(λ((3 2)1))))(((λ(λ(((λ(λ((2 1)2)))(((λ(λ((λ((1(λ(λ(λ1))))(λ(λ2))))(((λ(λ((1(λ(λ(λ(((3(λ(λ(1(2 4)))))(λ2))(λ1))))))2)))2)1))))1)2))(((λ(λ((λ((1(λ(λ(λ1))))(λ(λ2))))(((λ(λ((1(λ(λ(λ(((3(λ(λ(1(2 4)))))(λ2))(λ1))))))2)))2)1))))2)1))))2)(λ(λ(2(2 1))))))(λ(λ2)))(1(λ(λ(2(2 1))))))))((λ((λ(2(1 1)))(λ(2(1 1)))))(λ(λ((((λ(λ(λ((3 2)1))))(((λ(λ(((λ(λ((2 1)2)))(((λ(λ((λ((1(λ(λ(λ1))))(λ(λ2))))(((λ(λ((1(λ(λ(λ(((3(λ(λ(1(2 4)))))(λ2))(λ1))))))2)))2)1))))1)2))(((λ(λ((λ((1(λ(λ(λ1))))(λ(λ2))))(((λ(λ((1(λ(λ(λ(((3(λ(λ(1(2 4)))))(λ2))(λ1))))))2)))2)1))))2)1))))1)3))(λ(λ2)))(((λ(λ((2 1)2)))((λ((1(λ(λ1)))(λ(λ2))))((λ((1(λ(λ(λ1))))(λ(λ2))))(((λ(λ((λ(1(λ(λ1))))(((((λ((λ(2(1 1)))(λ(2(1 1)))))(λ(λ(λ(λ(((((λ(λ((λ((1(λ(λ1)))(λ(λ2))))(((λ(λ((λ((1(λ(λ(λ1))))(λ(λ2))))(((λ(λ((1(λ(λ(λ(((3(λ(λ(1(2 4)))))(λ2))(λ1))))))2)))2)1))))1)2))))2)1)(((λ(λ(λ((1 3)2))))3)2))(((4((λ(λ(λ(2((3 2)1)))))3))(((λ(λ((1(λ(λ(λ(((3(λ(λ(1(2 4)))))(λ2))(λ1))))))2)))2)1))1)))))))(λ(λ1)))2)1))))3)1))))(2((λ(λ(λ(2((3 2)1)))))1)))))))))</pre>
+</div></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_mt_lambda">Mt.Lambda</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>別に僕は関係ないです．</p></div>
+<div class="paragraph"><p><a href="http://wwwfun.kurims.kyoto-u.ac.jp/MtLambda.html">&#8594; Mt.Lambda</a></p></div>
+</div>
+</div>
+</div>
+<h2>脚注</h2>
+<div id='footnotes'></div>
+<hr>
+<p>last update 2017-06-27 08:55:00 (UTC)</p>
+<p>this page is generated by <a href='https://github.com/monman53/monsta'>monsta</a></p>
+<script src='/js/asciidoc.js'></script>
+<script>asciidoc.install(1);</script>
+<script src='/js/LaTeXMathML.js'></script>
+<script src='/js/ASCIIMathML.js'></script>
