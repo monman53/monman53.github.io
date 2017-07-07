@@ -50,6 +50,20 @@ for(const auto &e : es){
 ----
 #include <algorithm>
 
+// 積集合
+// 2つのソート済み範囲の積集合
+sort(a.begin(), a.end());
+sort(b.begin(), b.end());
+vector<T> ab; // ab は必要分の長さを取らなくても良い
+set_intersection(a.begin(), a.end(),
+                 b.begin(), b.end(),
+                 inserter(ab, ab.end()));
+
+// 和集合 set_union
+// 差集合 set_difference
+// 互いに素な集合(同じ要素を除く) set_symmetric_difference
+
+
 // 要素の最大値を指す最初のイテレータを取得
 cout << *max_element(v.begin(), v.end()) << endl;
 ----
@@ -249,15 +263,19 @@ typedef unsigned long long ull;
 [source, cpp]
 ----
 // number {{{
-#define SIZE      100005
-#define MOD 1000000007LL
+#define SIZE 100005
+#define MOD  1000000007LL
 
+// べき乗
+// verified AOJ NTL_1_B
 ll pow(ll a, ll b) {
     if(b == 0) return 1;
     ll aa = pow(a, b/2);
     return aa*aa%MOD*(b%2 == 1 ? a : 1)%MOD;
 }
 
+// 階乗と階乗の逆元
+// ARC077D
 ll fact[SIZE] = {1, 1};
 ll finv[SIZE] = {1, 1};
 
@@ -274,15 +292,57 @@ void fact_init() {
     }
 }
 
+// 組み合わせの数
+// ARC077D
 ll comb(int n, int r) {
     if(r > n) return 0;
     return fact[n]*(finv[r]*finv[n-r]%MOD)%MOD;
 }
 
+// 最小公約数
 ll gcd(ll x, ll y) {
     return y ? gcd(y, x%y) : x;
 }
-}}}
+
+// 素数判定 (エラトステネスのふるい)
+bool isPrime[SIZE];
+void initIsPrime() {
+    for(int i=0;i<SIZE;i++){
+        isPrime[i] = true;
+    }
+    isPrime[0] = false;
+    isPrime[1] = false;
+    for(int i=2;i*i<=SIZE;i++){
+        if(isPrime[i]){
+            for(int j=i*i;j*j<=SIZE;j+=i){
+                isPrime[j] = false;
+            }
+        }
+    }
+}
+
+// 素因数分解
+// verified AOJ NTL_1_A
+vector<pair<int, int>> factor(int n) {
+    vector<pair<int, int>> ret;
+    for(int i=2;i*i<=n;i++){
+        if(isPrime[i]){
+            int count = 0;
+            while(n%i == 0){
+                count++;
+                n /= i;
+            }
+            if(count > 0){
+                ret.push_back({i, count});
+            }
+        }
+    }
+    if(n != 1){
+        ret.push_back({n, 1});
+    }
+    return ret;
+}
+//}}}
 ----
 
 === データ構造

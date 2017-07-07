@@ -51,6 +51,20 @@
 <div class="content">
 <pre><code><span style="color:#008200">#include &lt;algorithm&gt;</span>
 
+<span style="color:#838183; font-style:italic">// 積集合</span>
+<span style="color:#838183; font-style:italic">// 2つのソート済み範囲の積集合</span>
+<span style="color:#010181">sort</span><span style="color:#000000">(</span>a<span style="color:#000000">.</span><span style="color:#010181">begin</span><span style="color:#000000">(),</span> a<span style="color:#000000">.</span><span style="color:#010181">end</span><span style="color:#000000">());</span>
+<span style="color:#010181">sort</span><span style="color:#000000">(</span>b<span style="color:#000000">.</span><span style="color:#010181">begin</span><span style="color:#000000">(),</span> b<span style="color:#000000">.</span><span style="color:#010181">end</span><span style="color:#000000">());</span>
+vector<span style="color:#000000">&lt;</span>T<span style="color:#000000">&gt;</span> ab<span style="color:#000000">;</span> <span style="color:#838183; font-style:italic">// ab は必要分の長さを取らなくても良い</span>
+<span style="color:#010181">set_intersection</span><span style="color:#000000">(</span>a<span style="color:#000000">.</span><span style="color:#010181">begin</span><span style="color:#000000">(),</span> a<span style="color:#000000">.</span><span style="color:#010181">end</span><span style="color:#000000">(),</span>
+                 b<span style="color:#000000">.</span><span style="color:#010181">begin</span><span style="color:#000000">(),</span> b<span style="color:#000000">.</span><span style="color:#010181">end</span><span style="color:#000000">(),</span>
+                 <span style="color:#010181">inserter</span><span style="color:#000000">(</span>ab<span style="color:#000000">,</span> ab<span style="color:#000000">.</span><span style="color:#010181">end</span><span style="color:#000000">()));</span>
+
+<span style="color:#838183; font-style:italic">// 和集合 set_union</span>
+<span style="color:#838183; font-style:italic">// 差集合 set_difference</span>
+<span style="color:#838183; font-style:italic">// 互いに素な集合(同じ要素を除く) set_symmetric_difference</span>
+
+
 <span style="color:#838183; font-style:italic">// 要素の最大値を指す最初のイテレータを取得</span>
 cout <span style="color:#000000">&lt;&lt; *</span><span style="color:#010181">max_element</span><span style="color:#000000">(</span>v<span style="color:#000000">.</span><span style="color:#010181">begin</span><span style="color:#000000">(),</span> v<span style="color:#000000">.</span><span style="color:#010181">end</span><span style="color:#000000">()) &lt;&lt;</span> endl<span style="color:#000000">;</span></code></pre>
 </div></div>
@@ -328,15 +342,19 @@ DAG (Directed Acyclic Graph)
 <div class="listingblock">
 <div class="content">
 <pre><code><span style="color:#838183; font-style:italic">// number {{{</span>
-<span style="color:#008200">#define SIZE      100005</span>
-<span style="color:#008200">#define MOD 1000000007LL</span>
+<span style="color:#008200">#define SIZE 100005</span>
+<span style="color:#008200">#define MOD  1000000007LL</span>
 
+<span style="color:#838183; font-style:italic">// べき乗</span>
+<span style="color:#838183; font-style:italic">// verified AOJ NTL_1_B</span>
 ll <span style="color:#010181">pow</span><span style="color:#000000">(</span>ll a<span style="color:#000000">,</span> ll b<span style="color:#000000">) {</span>
     <span style="color:#000000; font-weight:bold">if</span><span style="color:#000000">(</span>b <span style="color:#000000">==</span> <span style="color:#b07e00">0</span><span style="color:#000000">)</span> <span style="color:#000000; font-weight:bold">return</span> <span style="color:#b07e00">1</span><span style="color:#000000">;</span>
     ll aa <span style="color:#000000">=</span> <span style="color:#010181">pow</span><span style="color:#000000">(</span>a<span style="color:#000000">,</span> b<span style="color:#000000">/</span><span style="color:#b07e00">2</span><span style="color:#000000">);</span>
     <span style="color:#000000; font-weight:bold">return</span> aa<span style="color:#000000">*</span>aa<span style="color:#000000">%</span>MOD<span style="color:#000000">*(</span>b<span style="color:#000000">%</span><span style="color:#b07e00">2</span> <span style="color:#000000">==</span> <span style="color:#b07e00">1</span> ? a <span style="color:#000000">:</span> <span style="color:#b07e00">1</span><span style="color:#000000">)%</span>MOD<span style="color:#000000">;</span>
 <span style="color:#000000">}</span>
 
+<span style="color:#838183; font-style:italic">// 階乗と階乗の逆元</span>
+<span style="color:#838183; font-style:italic">// ARC077D</span>
 ll fact<span style="color:#000000">[</span>SIZE<span style="color:#000000">] = {</span><span style="color:#b07e00">1</span><span style="color:#000000">,</span> <span style="color:#b07e00">1</span><span style="color:#000000">};</span>
 ll finv<span style="color:#000000">[</span>SIZE<span style="color:#000000">] = {</span><span style="color:#b07e00">1</span><span style="color:#000000">,</span> <span style="color:#b07e00">1</span><span style="color:#000000">};</span>
 
@@ -353,15 +371,57 @@ ll finv<span style="color:#000000">[</span>SIZE<span style="color:#000000">] = {
     <span style="color:#000000">}</span>
 <span style="color:#000000">}</span>
 
+<span style="color:#838183; font-style:italic">// 組み合わせの数</span>
+<span style="color:#838183; font-style:italic">// ARC077D</span>
 ll <span style="color:#010181">comb</span><span style="color:#000000">(</span><span style="color:#0057ae">int</span> n<span style="color:#000000">,</span> <span style="color:#0057ae">int</span> r<span style="color:#000000">) {</span>
     <span style="color:#000000; font-weight:bold">if</span><span style="color:#000000">(</span>r <span style="color:#000000">&gt;</span> n<span style="color:#000000">)</span> <span style="color:#000000; font-weight:bold">return</span> <span style="color:#b07e00">0</span><span style="color:#000000">;</span>
     <span style="color:#000000; font-weight:bold">return</span> fact<span style="color:#000000">[</span>n<span style="color:#000000">]*(</span>finv<span style="color:#000000">[</span>r<span style="color:#000000">]*</span>finv<span style="color:#000000">[</span>n<span style="color:#000000">-</span>r<span style="color:#000000">]%</span>MOD<span style="color:#000000">)%</span>MOD<span style="color:#000000">;</span>
 <span style="color:#000000">}</span>
 
+<span style="color:#838183; font-style:italic">// 最小公約数</span>
 ll <span style="color:#010181">gcd</span><span style="color:#000000">(</span>ll x<span style="color:#000000">,</span> ll y<span style="color:#000000">) {</span>
     <span style="color:#000000; font-weight:bold">return</span> y ? <span style="color:#010181">gcd</span><span style="color:#000000">(</span>y<span style="color:#000000">,</span> x<span style="color:#000000">%</span>y<span style="color:#000000">) :</span> x<span style="color:#000000">;</span>
 <span style="color:#000000">}</span>
-<span style="color:#000000">}}}</span></code></pre>
+
+<span style="color:#838183; font-style:italic">// 素数判定 (エラトステネスのふるい)</span>
+<span style="color:#0057ae">bool</span> isPrime<span style="color:#000000">[</span>SIZE<span style="color:#000000">];</span>
+<span style="color:#0057ae">void</span> <span style="color:#010181">initIsPrime</span><span style="color:#000000">() {</span>
+    <span style="color:#000000; font-weight:bold">for</span><span style="color:#000000">(</span><span style="color:#0057ae">int</span> i<span style="color:#000000">=</span><span style="color:#b07e00">0</span><span style="color:#000000">;</span>i<span style="color:#000000">&lt;</span>SIZE<span style="color:#000000">;</span>i<span style="color:#000000">++){</span>
+        isPrime<span style="color:#000000">[</span>i<span style="color:#000000">] =</span> <span style="color:#000000; font-weight:bold">true</span><span style="color:#000000">;</span>
+    <span style="color:#000000">}</span>
+    isPrime<span style="color:#000000">[</span><span style="color:#b07e00">0</span><span style="color:#000000">] =</span> <span style="color:#000000; font-weight:bold">false</span><span style="color:#000000">;</span>
+    isPrime<span style="color:#000000">[</span><span style="color:#b07e00">1</span><span style="color:#000000">] =</span> <span style="color:#000000; font-weight:bold">false</span><span style="color:#000000">;</span>
+    <span style="color:#000000; font-weight:bold">for</span><span style="color:#000000">(</span><span style="color:#0057ae">int</span> i<span style="color:#000000">=</span><span style="color:#b07e00">2</span><span style="color:#000000">;</span>i<span style="color:#000000">*</span>i<span style="color:#000000">&lt;=</span>SIZE<span style="color:#000000">;</span>i<span style="color:#000000">++){</span>
+        <span style="color:#000000; font-weight:bold">if</span><span style="color:#000000">(</span>isPrime<span style="color:#000000">[</span>i<span style="color:#000000">]){</span>
+            <span style="color:#000000; font-weight:bold">for</span><span style="color:#000000">(</span><span style="color:#0057ae">int</span> j<span style="color:#000000">=</span>i<span style="color:#000000">*</span>i<span style="color:#000000">;</span>j<span style="color:#000000">*</span>j<span style="color:#000000">&lt;=</span>SIZE<span style="color:#000000">;</span>j<span style="color:#000000">+=</span>i<span style="color:#000000">){</span>
+                isPrime<span style="color:#000000">[</span>j<span style="color:#000000">] =</span> <span style="color:#000000; font-weight:bold">false</span><span style="color:#000000">;</span>
+            <span style="color:#000000">}</span>
+        <span style="color:#000000">}</span>
+    <span style="color:#000000">}</span>
+<span style="color:#000000">}</span>
+
+<span style="color:#838183; font-style:italic">// 素因数分解</span>
+<span style="color:#838183; font-style:italic">// verified AOJ NTL_1_A</span>
+vector<span style="color:#000000">&lt;</span>pair<span style="color:#000000">&lt;</span><span style="color:#0057ae">int</span><span style="color:#000000">,</span> <span style="color:#0057ae">int</span><span style="color:#000000">&gt;&gt;</span> <span style="color:#010181">factor</span><span style="color:#000000">(</span><span style="color:#0057ae">int</span> n<span style="color:#000000">) {</span>
+    vector<span style="color:#000000">&lt;</span>pair<span style="color:#000000">&lt;</span><span style="color:#0057ae">int</span><span style="color:#000000">,</span> <span style="color:#0057ae">int</span><span style="color:#000000">&gt;&gt;</span> ret<span style="color:#000000">;</span>
+    <span style="color:#000000; font-weight:bold">for</span><span style="color:#000000">(</span><span style="color:#0057ae">int</span> i<span style="color:#000000">=</span><span style="color:#b07e00">2</span><span style="color:#000000">;</span>i<span style="color:#000000">*</span>i<span style="color:#000000">&lt;=</span>n<span style="color:#000000">;</span>i<span style="color:#000000">++){</span>
+        <span style="color:#000000; font-weight:bold">if</span><span style="color:#000000">(</span>isPrime<span style="color:#000000">[</span>i<span style="color:#000000">]){</span>
+            <span style="color:#0057ae">int</span> count <span style="color:#000000">=</span> <span style="color:#b07e00">0</span><span style="color:#000000">;</span>
+            <span style="color:#000000; font-weight:bold">while</span><span style="color:#000000">(</span>n<span style="color:#000000">%</span>i <span style="color:#000000">==</span> <span style="color:#b07e00">0</span><span style="color:#000000">){</span>
+                count<span style="color:#000000">++;</span>
+                n <span style="color:#000000">/=</span> i<span style="color:#000000">;</span>
+            <span style="color:#000000">}</span>
+            <span style="color:#000000; font-weight:bold">if</span><span style="color:#000000">(</span>count <span style="color:#000000">&gt;</span> <span style="color:#b07e00">0</span><span style="color:#000000">){</span>
+                ret<span style="color:#000000">.</span><span style="color:#010181">push_back</span><span style="color:#000000">({</span>i<span style="color:#000000">,</span> count<span style="color:#000000">});</span>
+            <span style="color:#000000">}</span>
+        <span style="color:#000000">}</span>
+    <span style="color:#000000">}</span>
+    <span style="color:#000000; font-weight:bold">if</span><span style="color:#000000">(</span>n <span style="color:#000000">!=</span> <span style="color:#b07e00">1</span><span style="color:#000000">){</span>
+        ret<span style="color:#000000">.</span><span style="color:#010181">push_back</span><span style="color:#000000">({</span>n<span style="color:#000000">,</span> <span style="color:#b07e00">1</span><span style="color:#000000">});</span>
+    <span style="color:#000000">}</span>
+    <span style="color:#000000; font-weight:bold">return</span> ret<span style="color:#000000">;</span>
+<span style="color:#000000">}</span>
+<span style="color:#838183; font-style:italic">//}}}</span></code></pre>
 </div></div>
 </div>
 <div class="sect2">
@@ -613,7 +673,7 @@ PL <span style="color:#010181">convexHull</span><span style="color:#000000">(</s
 <h2>脚注</h2>
 <div id='footnotes'></div>
 <hr>
-<p>last update 2017-07-06 21:38:34 (UTC)</p>
+<p>last update 2017-07-07 08:49:33 (UTC)</p>
 <p>this page is generated by <a href='https://github.com/monman53/monsta'>monsta</a></p>
 <script src='/js/asciidoc.js'></script>
 <script>asciidoc.install(1);</script>
