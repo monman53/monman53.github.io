@@ -21,10 +21,10 @@ GNU/Linuxで自由になる方法が書かれています．コンピュータ�
 // しかし，その優位性は自由であることの副産物にすぎません．footnote:[https://www.gnu.org/philosophy/free-software-even-more-important.ja.html]
 
 
-[quote, 筆者]
-____
-今すぐ窓と全角英数字を捨てて自由になろう!
-____
+// [quote, 筆者]
+// ____
+// 今すぐ窓と全角英数字を捨てて自由になろう!
+// ____
 
 
 

@@ -107,6 +107,16 @@ pq.pop();
 priority_queue<T, vector<T>, greater<T>> pq;
 ----
 
+==== set
+
+[source, cpp]
+----
+#include <set>
+
+s.insert(v);
+s.erase(v); // O(N)
+----
+
 ==== stack
 
 [source, cpp]
