@@ -35,7 +35,7 @@ huga.png
 
 === 直積
 
-順番が大事な場合は `--keep-order/-k` オプションを付ける．
+順番が大事な場合は `--keep-order/-k` オプションを付ける．bashのブレース展開よりもいろいろできると思う．
 
 ----
 $ parallel -k echo "{1} {2} {3}." ::: I You ::: like hate ::: me you
