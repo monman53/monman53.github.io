@@ -66,6 +66,10 @@ set_intersection(a.begin(), a.end(),
 
 // 要素の最大値を指す最初のイテレータを取得
 cout << *max_element(v.begin(), v.end()) << endl;
+
+// 指定された要素以上の値が現れる最初の位置のイテレータを取得
+// ない場合はend()などのlastが返る
+cout << *lower_bound(v.begin(), v.end(), a) << endl;
 ----
 
 ==== map
@@ -149,6 +153,9 @@ for(auto c : str){
 if(str.compare(offset, 4, "hoge") == 0){
     ...
 }
+
+// 末尾位置文字を取り除く
+s.pop_back();
 
 // 文字列反転
 // algorithm の reverse を用いる
