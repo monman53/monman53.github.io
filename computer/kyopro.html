@@ -15,175 +15,12 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_c">C++</h2>
+<h2 id="_ライブラリ">ライブラリ</h2>
 <div class="sectionbody">
-<div class="paragraph"><p>断りがない限りC++14を想定しています．</p></div>
-<div class="paragraph"><p><a href="https://cpprefjp.github.io/">cpprefjp</a></p></div>
-<div class="sect2">
-<h3 id="_言語機能">言語機能</h3>
-<div class="sect3">
-<h4 id="_range_based_for_statement">range-based for statement</h4>
-<div class="paragraph"><p><a href="https://cpprefjp.github.io/lang/cpp11/range_based_for.html">range based for</a></p></div>
-<div class="listingblock">
-<div class="content">
-<pre><code><span style="color:#838183; font-style:italic">// 非破壊，eを変更可</span>
-<span style="color:#000000; font-weight:bold">for</span><span style="color:#000000">(</span><span style="color:#000000; font-weight:bold">auto</span> e <span style="color:#000000">:</span> es<span style="color:#000000">){</span>
-    <span style="color:#000000">...</span>
-<span style="color:#000000">}</span>
-
-<span style="color:#838183; font-style:italic">// 破壊，eを変更可</span>
-<span style="color:#000000; font-weight:bold">for</span><span style="color:#000000">(</span><span style="color:#000000; font-weight:bold">auto</span> <span style="color:#000000">&amp;</span>e <span style="color:#000000">:</span> es<span style="color:#000000">){</span>
-    <span style="color:#000000">...</span>
-<span style="color:#000000">}</span>
-
-<span style="color:#838183; font-style:italic">// 非破壊，eを変更不可</span>
-<span style="color:#000000; font-weight:bold">for</span><span style="color:#000000">(</span><span style="color:#0057ae">const</span> <span style="color:#000000; font-weight:bold">auto</span> <span style="color:#000000">&amp;</span>e <span style="color:#000000">:</span> es<span style="color:#000000">){</span>
-    <span style="color:#000000">...</span>
-<span style="color:#000000">}</span></code></pre>
-</div></div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_リファレンス">リファレンス</h3>
-<div class="sect3">
-<h4 id="_algorithm">algorithm</h4>
-<div class="listingblock">
-<div class="content">
-<pre><code><span style="color:#008200">#include &lt;algorithm&gt;</span>
-
-<span style="color:#838183; font-style:italic">// 積集合</span>
-<span style="color:#838183; font-style:italic">// 2つのソート済み範囲の積集合</span>
-<span style="color:#010181">sort</span><span style="color:#000000">(</span>a<span style="color:#000000">.</span><span style="color:#010181">begin</span><span style="color:#000000">(),</span> a<span style="color:#000000">.</span><span style="color:#010181">end</span><span style="color:#000000">());</span>
-<span style="color:#010181">sort</span><span style="color:#000000">(</span>b<span style="color:#000000">.</span><span style="color:#010181">begin</span><span style="color:#000000">(),</span> b<span style="color:#000000">.</span><span style="color:#010181">end</span><span style="color:#000000">());</span>
-vector<span style="color:#000000">&lt;</span>T<span style="color:#000000">&gt;</span> ab<span style="color:#000000">;</span> <span style="color:#838183; font-style:italic">// ab は必要分の長さを取らなくても良い</span>
-<span style="color:#010181">set_intersection</span><span style="color:#000000">(</span>a<span style="color:#000000">.</span><span style="color:#010181">begin</span><span style="color:#000000">(),</span> a<span style="color:#000000">.</span><span style="color:#010181">end</span><span style="color:#000000">(),</span>
-                 b<span style="color:#000000">.</span><span style="color:#010181">begin</span><span style="color:#000000">(),</span> b<span style="color:#000000">.</span><span style="color:#010181">end</span><span style="color:#000000">(),</span>
-                 <span style="color:#010181">inserter</span><span style="color:#000000">(</span>ab<span style="color:#000000">,</span> ab<span style="color:#000000">.</span><span style="color:#010181">end</span><span style="color:#000000">()));</span>
-
-<span style="color:#838183; font-style:italic">// 和集合 set_union</span>
-<span style="color:#838183; font-style:italic">// 差集合 set_difference</span>
-<span style="color:#838183; font-style:italic">// 互いに素な集合(同じ要素を除く) set_symmetric_difference</span>
-
-
-<span style="color:#838183; font-style:italic">// 要素の最大値を指す最初のイテレータを取得</span>
-cout <span style="color:#000000">&lt;&lt; *</span><span style="color:#010181">max_element</span><span style="color:#000000">(</span>v<span style="color:#000000">.</span><span style="color:#010181">begin</span><span style="color:#000000">(),</span> v<span style="color:#000000">.</span><span style="color:#010181">end</span><span style="color:#000000">()) &lt;&lt;</span> endl<span style="color:#000000">;</span>
-
-<span style="color:#838183; font-style:italic">// 指定された要素以上の値が現れる最初の位置のイテレータを取得</span>
-<span style="color:#838183; font-style:italic">// ない場合はend()などのlastが返る</span>
-cout <span style="color:#000000">&lt;&lt; *</span><span style="color:#010181">lower_bound</span><span style="color:#000000">(</span>v<span style="color:#000000">.</span><span style="color:#010181">begin</span><span style="color:#000000">(),</span> v<span style="color:#000000">.</span><span style="color:#010181">end</span><span style="color:#000000">(),</span> a<span style="color:#000000">) &lt;&lt;</span> endl<span style="color:#000000">;</span></code></pre>
-</div></div>
-</div>
-<div class="sect3">
-<h4 id="_map">map</h4>
-<div class="listingblock">
-<div class="content">
-<pre><code><span style="color:#008200">#include &lt;map&gt;</span>
-
-<span style="color:#838183; font-style:italic">// 検索</span>
-<span style="color:#000000; font-weight:bold">if</span><span style="color:#000000">(</span>mmap<span style="color:#000000">.</span><span style="color:#010181">find</span><span style="color:#000000">(</span>key<span style="color:#000000">) !=</span> mmap<span style="color:#000000">.</span><span style="color:#010181">end</span><span style="color:#000000">()){</span>
-    <span style="color:#000000">...</span>
-<span style="color:#000000">}</span>
-
-<span style="color:#838183; font-style:italic">// range based loop</span>
-<span style="color:#000000; font-weight:bold">for</span><span style="color:#000000">(</span><span style="color:#000000; font-weight:bold">auto</span> kv <span style="color:#000000">:</span> mmap<span style="color:#000000">){</span>
-    <span style="color:#000000; font-weight:bold">auto</span> key    <span style="color:#000000">=</span> kv<span style="color:#000000">.</span>fist<span style="color:#000000">;</span>
-    <span style="color:#000000; font-weight:bold">auto</span> value  <span style="color:#000000">=</span> kv<span style="color:#000000">.</span>second<span style="color:#000000">;</span>
-    <span style="color:#000000">...</span>
-<span style="color:#000000">}</span></code></pre>
-</div></div>
-</div>
-<div class="sect3">
-<h4 id="_queue">queue</h4>
-<div class="listingblock">
-<div class="content">
-<pre><code><span style="color:#008200">#include &lt;queue&gt;</span>
-
-<span style="color:#838183; font-style:italic">// queue</span>
-q<span style="color:#000000">.</span><span style="color:#010181">push</span><span style="color:#000000">(</span>v<span style="color:#000000">);</span>
-<span style="color:#000000; font-weight:bold">auto</span> v <span style="color:#000000">=</span> q<span style="color:#000000">.</span><span style="color:#010181">front</span><span style="color:#000000">();</span>
-q<span style="color:#000000">.</span><span style="color:#010181">pop</span><span style="color:#000000">();</span>
-
-<span style="color:#838183; font-style:italic">// priority queue</span>
-pq<span style="color:#000000">.</span><span style="color:#010181">push</span><span style="color:#000000">(</span>v<span style="color:#000000">);</span>
-<span style="color:#000000; font-weight:bold">auto</span> v <span style="color:#000000">=</span> pq<span style="color:#000000">.</span><span style="color:#010181">top</span><span style="color:#000000">();</span>
-pq<span style="color:#000000">.</span><span style="color:#010181">pop</span><span style="color:#000000">();</span>
-
-<span style="color:#838183; font-style:italic">// priority queue は標準で降順なので，ダイクストラで使うときは次のようにする</span>
-priority_queue<span style="color:#000000">&lt;</span>T<span style="color:#000000">,</span> vector<span style="color:#000000">&lt;</span>T<span style="color:#000000">&gt;,</span> greater<span style="color:#000000">&lt;</span>T<span style="color:#000000">&gt;&gt;</span> pq<span style="color:#000000">;</span></code></pre>
-</div></div>
-</div>
-<div class="sect3">
-<h4 id="_set">set</h4>
-<div class="listingblock">
-<div class="content">
-<pre><code><span style="color:#008200">#include &lt;set&gt;</span>
-
-s<span style="color:#000000">.</span><span style="color:#010181">insert</span><span style="color:#000000">(</span>v<span style="color:#000000">);</span>
-s<span style="color:#000000">.</span><span style="color:#010181">erase</span><span style="color:#000000">(</span>v<span style="color:#000000">);</span> <span style="color:#838183; font-style:italic">// O(N)</span></code></pre>
-</div></div>
-</div>
-<div class="sect3">
-<h4 id="_stack">stack</h4>
-<div class="listingblock">
-<div class="content">
-<pre><code><span style="color:#008200">#include &lt;stack&gt;</span>
-
-s<span style="color:#000000">.</span><span style="color:#010181">push</span><span style="color:#000000">(</span>v<span style="color:#000000">);</span>
-<span style="color:#000000; font-weight:bold">auto</span> v <span style="color:#000000">=</span> s<span style="color:#000000">.</span><span style="color:#010181">top</span><span style="color:#000000">();</span>
-s<span style="color:#000000">.</span><span style="color:#010181">pop</span><span style="color:#000000">();</span></code></pre>
-</div></div>
-</div>
-<div class="sect3">
-<h4 id="_string">string</h4>
-<div class="listingblock">
-<div class="content">
-<pre><code><span style="color:#008200">#include &lt;string&gt;</span>
-
-<span style="color:#838183; font-style:italic">// 行読み込み</span>
-<span style="color:#010181">getline</span><span style="color:#000000">(</span>cin<span style="color:#000000">,</span> str<span style="color:#000000">);</span>
-
-<span style="color:#838183; font-style:italic">// 文字を結合するときは+=かpush_back等を使う</span>
-str <span style="color:#000000">+=</span> <span style="color:#bf0303">'c'</span><span style="color:#000000">;</span>
-
-<span style="color:#838183; font-style:italic">// range based for ももちろん可</span>
-<span style="color:#000000; font-weight:bold">for</span><span style="color:#000000">(</span><span style="color:#000000; font-weight:bold">auto</span> c <span style="color:#000000">:</span> str<span style="color:#000000">){</span>
-    cout <span style="color:#000000">&lt;&lt;</span> c <span style="color:#000000">&lt;&lt;</span> endl<span style="color:#000000">;</span>
-<span style="color:#000000">}</span>
-
-<span style="color:#838183; font-style:italic">// 文字列部分比較</span>
-<span style="color:#000000; font-weight:bold">if</span><span style="color:#000000">(</span>str<span style="color:#000000">.</span><span style="color:#010181">compare</span><span style="color:#000000">(</span>offset<span style="color:#000000">,</span> <span style="color:#b07e00">4</span><span style="color:#000000">,</span> <span style="color:#bf0303">&quot;hoge&quot;</span><span style="color:#000000">) ==</span> <span style="color:#b07e00">0</span><span style="color:#000000">){</span>
-    <span style="color:#000000">...</span>
-<span style="color:#000000">}</span>
-
-<span style="color:#838183; font-style:italic">// 末尾位置文字を取り除く</span>
-s<span style="color:#000000">.</span><span style="color:#010181">pop_back</span><span style="color:#000000">();</span>
-
-<span style="color:#838183; font-style:italic">// 文字列反転</span>
-<span style="color:#838183; font-style:italic">// algorithm の reverse を用いる</span>
-<span style="color:#010181">reverse</span><span style="color:#000000">(</span>str<span style="color:#000000">.</span><span style="color:#010181">begin</span><span style="color:#000000">(),</span> str<span style="color:#000000">.</span><span style="color:#010181">end</span><span style="color:#000000">());</span></code></pre>
-</div></div>
-</div>
-<div class="sect3">
-<h4 id="_utility">utility</h4>
-<div class="listingblock">
-<div class="content">
-<pre><code><span style="color:#008200">#include &lt;utility&gt;</span>
-
-<span style="color:#838183; font-style:italic">// swap</span>
-<span style="color:#010181">swap</span><span style="color:#000000">(</span>v<span style="color:#000000">[</span><span style="color:#b07e00">4</span><span style="color:#000000">],</span> v<span style="color:#000000">[</span><span style="color:#b07e00">5</span><span style="color:#000000">]);</span></code></pre>
-</div></div>
-</div>
-<div class="sect3">
-<h4 id="_vector">vector</h4>
-<div class="listingblock">
-<div class="content">
-<pre><code><span style="color:#008200">#include &lt;vector&gt;</span>
-
-<span style="color:#838183; font-style:italic">// 100個の0で初期化</span>
-vector<span style="color:#000000">&lt;</span><span style="color:#0057ae">int</span><span style="color:#000000">&gt;</span> <span style="color:#010181">vec</span><span style="color:#000000">(</span><span style="color:#b07e00">100</span><span style="color:#000000">,</span> <span style="color:#b07e00">0</span><span style="color:#000000">);</span></code></pre>
-</div></div>
-</div>
-</div>
+<div class="paragraph"><p><a href="https://raw.githubusercontent.com/monman53/online_judge/master/lib/header.h">&#8594;header</a></p></div>
+<div class="paragraph"><p><a href="https://raw.githubusercontent.com/monman53/online_judge/master/lib/geometry.h">&#8594;geometry</a>
+<a href="https://raw.githubusercontent.com/monman53/online_judge/master/lib/datastructure.h">&#8594;datastructure</a>
+<a href="https://raw.githubusercontent.com/monman53/online_judge/master/lib/number.h">&#8594;number</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -318,19 +155,202 @@ DAG (Directed Acyclic Graph)
 </div>
 </div>
 <div class="sect1">
-<h2 id="_ライブラリ">ライブラリ</h2>
+<h2 id="_c">C++</h2>
 <div class="sectionbody">
-<div class="paragraph"><p><a href="https://raw.githubusercontent.com/monman53/online_judge/master/lib/header.h">&#8594;header</a></p></div>
-<div class="paragraph"><p><a href="https://raw.githubusercontent.com/monman53/online_judge/master/lib/geometry.h">&#8594;geometry</a>
-<a href="https://raw.githubusercontent.com/monman53/online_judge/master/lib/datastructure.h">&#8594;datastructure</a>
-<a href="https://raw.githubusercontent.com/monman53/online_judge/master/lib/number.h">&#8594;number</a></p></div>
+<div class="paragraph"><p>断りがない限りC++11を想定しています．</p></div>
+<div class="paragraph"><p><a href="https://cpprefjp.github.io/">cpprefjp</a></p></div>
+<div class="sect2">
+<h3 id="_リファレンス">リファレンス</h3>
+<div class="sect3">
+<h4 id="_algorithm">algorithm</h4>
+<div class="listingblock">
+<div class="content">
+<pre><code><span style="color:#008200">#include &lt;algorithm&gt;</span>
+
+<span style="color:#838183; font-style:italic">// 集合演算</span>
+<span style="color:#010181">sort</span><span style="color:#000000">(</span>a<span style="color:#000000">.</span><span style="color:#010181">begin</span><span style="color:#000000">(),</span> a<span style="color:#000000">.</span><span style="color:#010181">end</span><span style="color:#000000">());</span> <span style="color:#838183; font-style:italic">// ソートしておく</span>
+<span style="color:#010181">sort</span><span style="color:#000000">(</span>b<span style="color:#000000">.</span><span style="color:#010181">begin</span><span style="color:#000000">(),</span> b<span style="color:#000000">.</span><span style="color:#010181">end</span><span style="color:#000000">());</span> <span style="color:#838183; font-style:italic">// ソートしておく</span>
+vector<span style="color:#000000">&lt;</span>T<span style="color:#000000">&gt;</span> ab<span style="color:#000000">;</span> <span style="color:#838183; font-style:italic">// ab は必要分の長さを取らなくても良い</span>
+<span style="color:#838183; font-style:italic">// 積集合</span>
+<span style="color:#010181">set_intersection</span><span style="color:#000000">(</span>a<span style="color:#000000">.</span><span style="color:#010181">begin</span><span style="color:#000000">(),</span> a<span style="color:#000000">.</span><span style="color:#010181">end</span><span style="color:#000000">(),</span>
+                 b<span style="color:#000000">.</span><span style="color:#010181">begin</span><span style="color:#000000">(),</span> b<span style="color:#000000">.</span><span style="color:#010181">end</span><span style="color:#000000">(),</span>
+                 <span style="color:#010181">inserter</span><span style="color:#000000">(</span>ab<span style="color:#000000">,</span> ab<span style="color:#000000">.</span><span style="color:#010181">end</span><span style="color:#000000">()));</span>
+<span style="color:#838183; font-style:italic">// 和集合           set_union</span>
+<span style="color:#838183; font-style:italic">// 差集合           set_difference</span>
+<span style="color:#838183; font-style:italic">// 互いに素な集合   set_symmetric_difference</span>
+
+<span style="color:#838183; font-style:italic">// 要素の最大値を指す最初のイテレータを取得</span>
+cout <span style="color:#000000">&lt;&lt; *</span><span style="color:#010181">max_element</span><span style="color:#000000">(</span>v<span style="color:#000000">.</span><span style="color:#010181">begin</span><span style="color:#000000">(),</span> v<span style="color:#000000">.</span><span style="color:#010181">end</span><span style="color:#000000">()) &lt;&lt;</span> endl<span style="color:#000000">;</span>
+
+<span style="color:#838183; font-style:italic">// 指定された要素以上の値が現れる最初の位置のイテレータを取得</span>
+<span style="color:#838183; font-style:italic">// ない場合はend()などのlastが返る</span>
+cout <span style="color:#000000">&lt;&lt; *</span><span style="color:#010181">lower_bound</span><span style="color:#000000">(</span>v<span style="color:#000000">.</span><span style="color:#010181">begin</span><span style="color:#000000">(),</span> v<span style="color:#000000">.</span><span style="color:#010181">end</span><span style="color:#000000">(),</span> a<span style="color:#000000">) &lt;&lt;</span> endl<span style="color:#000000">;</span>
+
+<span style="color:#838183; font-style:italic">// lower_boundとupper_boundで要素のカウント</span>
+vector<span style="color:#000000">&lt;</span><span style="color:#0057ae">int</span><span style="color:#000000">&gt;</span> v <span style="color:#000000">= {</span><span style="color:#b07e00">0</span><span style="color:#000000">,</span> <span style="color:#b07e00">5</span><span style="color:#000000">,</span> <span style="color:#b07e00">4</span><span style="color:#000000">,</span> <span style="color:#b07e00">3</span><span style="color:#000000">,</span> <span style="color:#b07e00">6</span><span style="color:#000000">,</span> <span style="color:#b07e00">4</span><span style="color:#000000">,</span> <span style="color:#b07e00">5</span><span style="color:#000000">,</span> <span style="color:#b07e00">3</span><span style="color:#000000">,</span> <span style="color:#b07e00">3</span><span style="color:#000000">};</span>
+<span style="color:#010181">sort</span><span style="color:#000000">(</span>v<span style="color:#000000">.</span><span style="color:#010181">begin</span><span style="color:#000000">(),</span> v<span style="color:#000000">.</span><span style="color:#010181">end</span><span style="color:#000000">());</span>
+<span style="color:#0057ae">int</span> n <span style="color:#000000">=</span> <span style="color:#010181">upper_bound</span><span style="color:#000000">(</span>v<span style="color:#000000">.</span><span style="color:#010181">begin</span><span style="color:#000000">(),</span> v<span style="color:#000000">.</span><span style="color:#010181">end</span><span style="color:#000000">(),</span> <span style="color:#b07e00">3</span><span style="color:#000000">) -</span>
+        <span style="color:#010181">lower_bound</span><span style="color:#000000">(</span>v<span style="color:#000000">.</span><span style="color:#010181">begin</span><span style="color:#000000">(),</span> v<span style="color:#000000">.</span><span style="color:#010181">end</span><span style="color:#000000">(),</span> <span style="color:#b07e00">3</span><span style="color:#000000">);</span>
+cout <span style="color:#000000">&lt;&lt;</span> n <span style="color:#000000">&lt;&lt;</span> endl<span style="color:#000000">;</span> <span style="color:#838183; font-style:italic">// 3</span>
+
+<span style="color:#838183; font-style:italic">// next_permutation</span>
+<span style="color:#838183; font-style:italic">// vはソートしておく</span>
+<span style="color:#000000; font-weight:bold">do</span><span style="color:#000000">{</span>
+    <span style="color:#000000">...</span>
+<span style="color:#000000">}</span><span style="color:#000000; font-weight:bold">while</span><span style="color:#000000">(</span><span style="color:#010181">next_permutation</span><span style="color:#000000">(</span>v<span style="color:#000000">.</span><span style="color:#010181">begin</span><span style="color:#000000">(),</span> v<span style="color:#000000">.</span><span style="color:#010181">end</span><span style="color:#000000">()));</span></code></pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="_map">map</h4>
+<div class="listingblock">
+<div class="content">
+<pre><code><span style="color:#008200">#include &lt;map&gt;</span>
+
+<span style="color:#838183; font-style:italic">// 検索</span>
+<span style="color:#000000; font-weight:bold">if</span><span style="color:#000000">(</span>m<span style="color:#000000">.</span><span style="color:#010181">find</span><span style="color:#000000">(</span>key<span style="color:#000000">) !=</span> m<span style="color:#000000">.</span><span style="color:#010181">end</span><span style="color:#000000">()){</span>
+    <span style="color:#000000">...</span>
+<span style="color:#000000">}</span>
+
+<span style="color:#838183; font-style:italic">// range based for</span>
+<span style="color:#000000; font-weight:bold">for</span><span style="color:#000000">(</span><span style="color:#000000; font-weight:bold">auto</span> kv <span style="color:#000000">:</span> m<span style="color:#000000">){</span>
+    <span style="color:#000000; font-weight:bold">auto</span> key    <span style="color:#000000">=</span> kv<span style="color:#000000">.</span>fist<span style="color:#000000">;</span>
+    <span style="color:#000000; font-weight:bold">auto</span> value  <span style="color:#000000">=</span> kv<span style="color:#000000">.</span>second<span style="color:#000000">;</span>
+    <span style="color:#000000">...</span>
+<span style="color:#000000">}</span></code></pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="_queue">queue</h4>
+<div class="listingblock">
+<div class="content">
+<pre><code><span style="color:#008200">#include &lt;queue&gt;</span>
+
+<span style="color:#838183; font-style:italic">// queue</span>
+q<span style="color:#000000">.</span><span style="color:#010181">push</span><span style="color:#000000">(</span>v<span style="color:#000000">);</span>
+<span style="color:#000000; font-weight:bold">auto</span> v <span style="color:#000000">=</span> q<span style="color:#000000">.</span><span style="color:#010181">front</span><span style="color:#000000">();</span>
+q<span style="color:#000000">.</span><span style="color:#010181">pop</span><span style="color:#000000">();</span>
+
+<span style="color:#838183; font-style:italic">// priority queue</span>
+pq<span style="color:#000000">.</span><span style="color:#010181">push</span><span style="color:#000000">(</span>v<span style="color:#000000">);</span>
+<span style="color:#000000; font-weight:bold">auto</span> v <span style="color:#000000">=</span> pq<span style="color:#000000">.</span><span style="color:#010181">top</span><span style="color:#000000">();</span>
+pq<span style="color:#000000">.</span><span style="color:#010181">pop</span><span style="color:#000000">();</span>
+
+<span style="color:#838183; font-style:italic">// priority queue は標準で降順なので，ダイクストラで使うときは次のようにする</span>
+priority_queue<span style="color:#000000">&lt;</span>T<span style="color:#000000">,</span> vector<span style="color:#000000">&lt;</span>T<span style="color:#000000">&gt;,</span> greater<span style="color:#000000">&lt;</span>T<span style="color:#000000">&gt;&gt;</span> pq<span style="color:#000000">;</span></code></pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="_set">set</h4>
+<div class="listingblock">
+<div class="content">
+<pre><code><span style="color:#008200">#include &lt;set&gt;</span>
+
+s<span style="color:#000000">.</span><span style="color:#010181">insert</span><span style="color:#000000">(</span>v<span style="color:#000000">);</span>
+s<span style="color:#000000">.</span><span style="color:#010181">erase</span><span style="color:#000000">(</span>v<span style="color:#000000">);</span> <span style="color:#838183; font-style:italic">// O(N)</span></code></pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="_stack">stack</h4>
+<div class="listingblock">
+<div class="content">
+<pre><code><span style="color:#008200">#include &lt;stack&gt;</span>
+
+s<span style="color:#000000">.</span><span style="color:#010181">push</span><span style="color:#000000">(</span>v<span style="color:#000000">);</span>
+<span style="color:#000000; font-weight:bold">auto</span> v <span style="color:#000000">=</span> s<span style="color:#000000">.</span><span style="color:#010181">top</span><span style="color:#000000">();</span>
+s<span style="color:#000000">.</span><span style="color:#010181">pop</span><span style="color:#000000">();</span></code></pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="_string">string</h4>
+<div class="listingblock">
+<div class="content">
+<pre><code><span style="color:#008200">#include &lt;string&gt;</span>
+
+<span style="color:#838183; font-style:italic">// 行読み込み</span>
+<span style="color:#010181">getline</span><span style="color:#000000">(</span>cin<span style="color:#000000">,</span> str<span style="color:#000000">);</span>
+
+<span style="color:#838183; font-style:italic">// 文字を結合するときは+=かpush_back等を使う</span>
+str <span style="color:#000000">+=</span> <span style="color:#bf0303">'c'</span><span style="color:#000000">;</span>
+
+<span style="color:#838183; font-style:italic">// range based for ももちろん可</span>
+<span style="color:#000000; font-weight:bold">for</span><span style="color:#000000">(</span><span style="color:#000000; font-weight:bold">auto</span> c <span style="color:#000000">:</span> str<span style="color:#000000">){</span>
+    cout <span style="color:#000000">&lt;&lt;</span> c <span style="color:#000000">&lt;&lt;</span> endl<span style="color:#000000">;</span>
+<span style="color:#000000">}</span>
+
+<span style="color:#838183; font-style:italic">// 文字列部分比較</span>
+<span style="color:#000000; font-weight:bold">if</span><span style="color:#000000">(</span>str<span style="color:#000000">.</span><span style="color:#010181">compare</span><span style="color:#000000">(</span>offset<span style="color:#000000">,</span> <span style="color:#b07e00">4</span><span style="color:#000000">,</span> <span style="color:#bf0303">&quot;hoge&quot;</span><span style="color:#000000">) ==</span> <span style="color:#b07e00">0</span><span style="color:#000000">){</span>
+    <span style="color:#000000">...</span>
+<span style="color:#000000">}</span>
+
+<span style="color:#838183; font-style:italic">// 末尾位置文字を取り除く</span>
+s<span style="color:#000000">.</span><span style="color:#010181">pop_back</span><span style="color:#000000">();</span>
+
+<span style="color:#838183; font-style:italic">// 文字列反転</span>
+<span style="color:#838183; font-style:italic">// algorithm の reverse を用いる</span>
+<span style="color:#010181">reverse</span><span style="color:#000000">(</span>str<span style="color:#000000">.</span><span style="color:#010181">begin</span><span style="color:#000000">(),</span> str<span style="color:#000000">.</span><span style="color:#010181">end</span><span style="color:#000000">());</span></code></pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="_utility">utility</h4>
+<div class="listingblock">
+<div class="content">
+<pre><code><span style="color:#008200">#include &lt;utility&gt;</span>
+
+<span style="color:#838183; font-style:italic">// swap</span>
+<span style="color:#010181">swap</span><span style="color:#000000">(</span>v<span style="color:#000000">[</span><span style="color:#b07e00">4</span><span style="color:#000000">],</span> v<span style="color:#000000">[</span><span style="color:#b07e00">5</span><span style="color:#000000">]);</span></code></pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="_vector">vector</h4>
+<div class="listingblock">
+<div class="content">
+<pre><code><span style="color:#008200">#include &lt;vector&gt;</span>
+
+<span style="color:#838183; font-style:italic">// 100個の0で初期化</span>
+vector<span style="color:#000000">&lt;</span><span style="color:#0057ae">int</span><span style="color:#000000">&gt;</span> <span style="color:#010181">vec</span><span style="color:#000000">(</span><span style="color:#b07e00">100</span><span style="color:#000000">,</span> <span style="color:#b07e00">0</span><span style="color:#000000">);</span></code></pre>
+</div></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_言語機能">言語機能</h3>
+<div class="sect3">
+<h4 id="_debug">Debug</h4>
+<div class="listingblock">
+<div class="content">
+<pre><code><span style="color:#838183; font-style:italic">// uncomment to disable assert()</span>
+<span style="color:#838183; font-style:italic">//#define NDEBUG</span>
+<span style="color:#008200">#include &lt;cassert&gt;</span></code></pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="_range_based_for_statement">range-based for statement</h4>
+<div class="paragraph"><p><a href="https://cpprefjp.github.io/lang/cpp11/range_based_for.html">range based for</a></p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code><span style="color:#838183; font-style:italic">// 非破壊，eを変更可</span>
+<span style="color:#000000; font-weight:bold">for</span><span style="color:#000000">(</span><span style="color:#000000; font-weight:bold">auto</span> e <span style="color:#000000">:</span> es<span style="color:#000000">){</span>
+    <span style="color:#000000">...</span>
+<span style="color:#000000">}</span>
+
+<span style="color:#838183; font-style:italic">// 破壊，eを変更可</span>
+<span style="color:#000000; font-weight:bold">for</span><span style="color:#000000">(</span><span style="color:#000000; font-weight:bold">auto</span> <span style="color:#000000">&amp;</span>e <span style="color:#000000">:</span> es<span style="color:#000000">){</span>
+    <span style="color:#000000">...</span>
+<span style="color:#000000">}</span>
+
+<span style="color:#838183; font-style:italic">// 非破壊，eを変更不可</span>
+<span style="color:#000000; font-weight:bold">for</span><span style="color:#000000">(</span><span style="color:#0057ae">const</span> <span style="color:#000000; font-weight:bold">auto</span> <span style="color:#000000">&amp;</span>e <span style="color:#000000">:</span> es<span style="color:#000000">){</span>
+    <span style="color:#000000">...</span>
+<span style="color:#000000">}</span></code></pre>
+</div></div>
+</div>
+</div>
 </div>
 </div>
 </div>
 <h2>脚注</h2>
 <div id='footnotes'></div>
 <hr>
-<p>last update 2017-07-11 09:42:11 (UTC)</p>
+<p>last update 2017-07-13 07:48:31 (UTC)</p>
 <p>this page is generated by <a href='https://github.com/monman53/monsta'>monsta</a></p>
 <script src='/js/asciidoc.js'></script>
 <script>asciidoc.install(1);</script>

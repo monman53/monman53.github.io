@@ -3,238 +3,6 @@
 
 競プロのお供．
 
-== C++
-// {{{
-
-断りがない限りC++14を想定しています．
-
-link:https://cpprefjp.github.io/[cpprefjp]
-
-=== 言語機能
-
-
-==== range-based for statement
-
-link:https://cpprefjp.github.io/lang/cpp11/range_based_for.html[range based for]
-
-[source, cpp]
-----
-// 非破壊，eを変更可
-for(auto e : es){
-    ...
-}
-
-// 破壊，eを変更可
-for(auto &e : es){
-    ...
-}
-
-// 非破壊，eを変更不可
-for(const auto &e : es){
-    ...
-}
-----
-
-// ==== uniform initialization
-//
-// `{ }` でコンストラクタ呼び出しする．型推論してくれる．
-// [source, cpp]
-// ----
-// ----
-
-=== リファレンス
-
-==== algorithm
-
-[source, cpp]
-----
-#include <algorithm>
-
-// 積集合
-// 2つのソート済み範囲の積集合
-sort(a.begin(), a.end());
-sort(b.begin(), b.end());
-vector<T> ab; // ab は必要分の長さを取らなくても良い
-set_intersection(a.begin(), a.end(),
-                 b.begin(), b.end(),
-                 inserter(ab, ab.end()));
-
-// 和集合 set_union
-// 差集合 set_difference
-// 互いに素な集合(同じ要素を除く) set_symmetric_difference
-
-
-// 要素の最大値を指す最初のイテレータを取得
-cout << *max_element(v.begin(), v.end()) << endl;
-
-// 指定された要素以上の値が現れる最初の位置のイテレータを取得
-// ない場合はend()などのlastが返る
-cout << *lower_bound(v.begin(), v.end(), a) << endl;
-----
-
-==== map
-
-[source, cpp]
-----
-#include <map>
-
-// 検索
-if(mmap.find(key) != mmap.end()){
-    ...
-}
-
-// range based loop
-for(auto kv : mmap){
-    auto key    = kv.fist;
-    auto value  = kv.second;
-    ...
-}
-----
-
-==== queue
-
-[source, cpp]
-----
-#include <queue>
-
-// queue
-q.push(v);
-auto v = q.front();
-q.pop();
-
-// priority queue
-pq.push(v);
-auto v = pq.top();
-pq.pop();
-
-// priority queue は標準で降順なので，ダイクストラで使うときは次のようにする
-priority_queue<T, vector<T>, greater<T>> pq;
-----
-
-==== set
-
-[source, cpp]
-----
-#include <set>
-
-s.insert(v);
-s.erase(v); // O(N)
-----
-
-==== stack
-
-[source, cpp]
-----
-#include <stack>
-
-s.push(v);
-auto v = s.top();
-s.pop();
-----
-
-==== string
-
-[source, cpp]
-----
-#include <string>
-
-// 行読み込み
-getline(cin, str);
-
-// 文字を結合するときは+=かpush_back等を使う
-str += 'c';
-
-// range based for ももちろん可
-for(auto c : str){
-    cout << c << endl;
-}
-
-// 文字列部分比較
-if(str.compare(offset, 4, "hoge") == 0){
-    ...
-}
-
-// 末尾位置文字を取り除く
-s.pop_back();
-
-// 文字列反転
-// algorithm の reverse を用いる
-reverse(str.begin(), str.end());
-----
-
-==== utility
-
-[source, cpp]
-----
-#include <utility>
-
-// swap
-swap(v[4], v[5]);
-----
-
-==== vector
-
-[source, cpp]
-----
-#include <vector>
-
-// 100個の0で初期化
-vector<int> vec(100, 0);
-----
-
-// }}}
-
-== 知識
-// {{{
-
-=== グラフ
-
-* 任意のトーナメントグラフにはハミルトンパスが存在する(AOJ2386 Sightseeing Tour)
-
-==== 定義
-
-単純グラフ::
-多重辺，ループのないグラフ
-
-2部グラフ::
-頂点集合を2つの部分集合に分割して，各集合内の頂点同士の間には辺が無いようなグラフ
-
-完全グラフ::
-任意の2頂点間に枝があるグラフ
-
-DAG (Directed Acyclic Graph)::
-閉路のない有向グラフ
-* 全ての辺が左から右に向くように，各頂点を一直線上に並べることができる．これをトポロジカル順序という．
-
-トーナメントグラフ::
-任意の2頂点が1つの有向辺で結ばれているグラフ
-
-ハミルトン(閉)路::
-全頂点を一度だけ通る(閉)路
-
-オイラー(閉)路::
-全辺を一度だけ通る(閉)路
-
-ハミルトングラフ::
-ハミルトン閉路を含むグラフ
-
-準ハミルトングラフ::
-ハミルトン閉路は含まないが，ハミルトン路は含むグラフ
-
-オイラーグラフ::
-オイラー閉路を含むグラフ
-
-準オイラーグラフ::
-オイラー閉路は含まないが，オイラー路は含むグラフ
-
-(強)連結::
-無(有)向グラフにおいて，任意の2頂点間に路が存在すること
-
-(強)連結成分::
-(強)連結な頂点集合に分解した際の各集合
-
-//}}}
-
 == ライブラリ
 //{{{
 
@@ -606,3 +374,255 @@ link:https://raw.githubusercontent.com/monman53/online_judge/master/lib/number.h
 // ----
 
 //}}}
+
+== 知識
+// {{{
+
+=== グラフ
+
+* 任意のトーナメントグラフにはハミルトンパスが存在する(AOJ2386 Sightseeing Tour)
+
+==== 定義
+
+単純グラフ::
+多重辺，ループのないグラフ
+
+2部グラフ::
+頂点集合を2つの部分集合に分割して，各集合内の頂点同士の間には辺が無いようなグラフ
+
+完全グラフ::
+任意の2頂点間に枝があるグラフ
+
+DAG (Directed Acyclic Graph)::
+閉路のない有向グラフ
+* 全ての辺が左から右に向くように，各頂点を一直線上に並べることができる．これをトポロジカル順序という．
+
+トーナメントグラフ::
+任意の2頂点が1つの有向辺で結ばれているグラフ
+
+ハミルトン(閉)路::
+全頂点を一度だけ通る(閉)路
+
+オイラー(閉)路::
+全辺を一度だけ通る(閉)路
+
+ハミルトングラフ::
+ハミルトン閉路を含むグラフ
+
+準ハミルトングラフ::
+ハミルトン閉路は含まないが，ハミルトン路は含むグラフ
+
+オイラーグラフ::
+オイラー閉路を含むグラフ
+
+準オイラーグラフ::
+オイラー閉路は含まないが，オイラー路は含むグラフ
+
+(強)連結::
+無(有)向グラフにおいて，任意の2頂点間に路が存在すること
+
+(強)連結成分::
+(強)連結な頂点集合に分解した際の各集合
+
+//}}}
+
+== C++
+// {{{
+
+断りがない限りC++11を想定しています．
+
+link:https://cpprefjp.github.io/[cpprefjp]
+
+=== リファレンス
+
+==== algorithm
+
+[source, cpp]
+----
+#include <algorithm>
+
+// 集合演算
+sort(a.begin(), a.end()); // ソートしておく
+sort(b.begin(), b.end()); // ソートしておく
+vector<T> ab; // ab は必要分の長さを取らなくても良い
+// 積集合
+set_intersection(a.begin(), a.end(),
+                 b.begin(), b.end(),
+                 inserter(ab, ab.end()));
+// 和集合           set_union
+// 差集合           set_difference
+// 互いに素な集合   set_symmetric_difference
+
+// 要素の最大値を指す最初のイテレータを取得
+cout << *max_element(v.begin(), v.end()) << endl;
+
+// 指定された要素以上の値が現れる最初の位置のイテレータを取得
+// ない場合はend()などのlastが返る
+cout << *lower_bound(v.begin(), v.end(), a) << endl;
+
+// lower_boundとupper_boundで要素のカウント
+vector<int> v = {0, 5, 4, 3, 6, 4, 5, 3, 3};
+sort(v.begin(), v.end());
+int n = upper_bound(v.begin(), v.end(), 3) -
+        lower_bound(v.begin(), v.end(), 3);
+cout << n << endl; // 3
+
+// next_permutation
+// vはソートしておく
+do{
+    ...
+}while(next_permutation(v.begin(), v.end()));
+----
+
+==== map
+
+[source, cpp]
+----
+#include <map>
+
+// 検索
+if(m.find(key) != m.end()){
+    ...
+}
+
+// range based for
+for(auto kv : m){
+    auto key    = kv.fist;
+    auto value  = kv.second;
+    ...
+}
+----
+
+==== queue
+
+[source, cpp]
+----
+#include <queue>
+
+// queue
+q.push(v);
+auto v = q.front();
+q.pop();
+
+// priority queue
+pq.push(v);
+auto v = pq.top();
+pq.pop();
+
+// priority queue は標準で降順なので，ダイクストラで使うときは次のようにする
+priority_queue<T, vector<T>, greater<T>> pq;
+----
+
+==== set
+
+[source, cpp]
+----
+#include <set>
+
+s.insert(v);
+s.erase(v); // O(N)
+----
+
+==== stack
+
+[source, cpp]
+----
+#include <stack>
+
+s.push(v);
+auto v = s.top();
+s.pop();
+----
+
+==== string
+
+[source, cpp]
+----
+#include <string>
+
+// 行読み込み
+getline(cin, str);
+
+// 文字を結合するときは+=かpush_back等を使う
+str += 'c';
+
+// range based for ももちろん可
+for(auto c : str){
+    cout << c << endl;
+}
+
+// 文字列部分比較
+if(str.compare(offset, 4, "hoge") == 0){
+    ...
+}
+
+// 末尾位置文字を取り除く
+s.pop_back();
+
+// 文字列反転
+// algorithm の reverse を用いる
+reverse(str.begin(), str.end());
+----
+
+==== utility
+
+[source, cpp]
+----
+#include <utility>
+
+// swap
+swap(v[4], v[5]);
+----
+
+==== vector
+
+[source, cpp]
+----
+#include <vector>
+
+// 100個の0で初期化
+vector<int> vec(100, 0);
+----
+
+
+=== 言語機能
+
+==== Debug
+
+[source, cpp]
+----
+// uncomment to disable assert()
+//#define NDEBUG
+#include <cassert>
+----
+
+==== range-based for statement
+
+link:https://cpprefjp.github.io/lang/cpp11/range_based_for.html[range based for]
+
+[source, cpp]
+----
+// 非破壊，eを変更可
+for(auto e : es){
+    ...
+}
+
+// 破壊，eを変更可
+for(auto &e : es){
+    ...
+}
+
+// 非破壊，eを変更不可
+for(const auto &e : es){
+    ...
+}
+----
+
+// ==== uniform initialization
+//
+// `{ }` でコンストラクタ呼び出しする．型推論してくれる．
+// [source, cpp]
+// ----
+// ----
+
+// }}}
