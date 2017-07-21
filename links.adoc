@@ -1,0 +1,39 @@
+リンク集
+========
+
+
+== 芸術
+
+* 音楽
+** link:http://imslp.org/[IMSLP]
+クラシック音楽のPD楽譜
+* 写真
+** link:http://www.kmine.sakura.ne.jp/[東京写真紀行]
+* デザイン
+** link:https://material.io/guidelines/[Google Material design]
+*** link:https://material.io/guidelines/style/color.html[Color]
+どの色を使うべきか迷ったらここ
+** link:http://www.nozomistudio.com/callipara/[カリグラフィーパラダイス]
+カリグラフィーのお手本がたくさん
+
+
+== 自然科学
+
+* コンピュータ
+** link:https://heavywatal.github.io/[Heavy watal]
+いろいろ有益な情報がある
+** link:http://powerman.name/doc/asciidoc[asciidoc cheatsheet]
+** link:https://www.gnu.org/software/coreutils/manual/html_node/Opening-the-software-toolbox.html#Opening-the-software-toolbox[Coreutils Tool Box]
+GNU/Linuxを人に勧めるときに見せたいページ
+** link:https://ja.wikipedia.org/wiki/XPM[Wikipedia: XPM]
+テキストの画像ファイルフォーマット
+** link:http://www.mathematik.uni-dortmund.de/~goeddeke/gpgpu/tutorial.html[OpenGL GPGPU]
+** link:https://cpplover.blogspot.jp/2013/10/blog-post_20.html[本の虫: うっかりチューリング完全になっちゃったもの]
+** link:http://jwodder.freeshell.org/lambda.html[Collected Lambda Calculus Functions]
+** link:https://en.wikipedia.org/wiki/Von_Neumann_universal_constructor[Wikipedia: Von Neumann universal constructor]
+** link:https://en.wikipedia.org/wiki/Wireworld[Wireworld]
+** link:http://conwaylife.com/wiki/Main_Page[LifeWiki]
+*** link:http://conwaylife.com/wiki/OTCA_meta-pixel[OTCA metapixel]
+* その他
+** link:http://mrob.com/pub/comp/xmorphia/ogl/index.html[WebGL Gray-Scott Explorer]
+反応拡散系Gray-Scottモデルのパラメータ空間をいじって遊べる
