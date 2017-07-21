@@ -1,0 +1,35 @@
+ばとる
+=====
+
+++++
+<div id='battle'></div>
+++++
+
+== sources
+
+=== AtCoder
+
+link:https://atcoder.jp/user/riantkb[riantkb]
+link:https://atcoder.jp/user/ashurnasirpal[ashurnasirpal]
+link:https://atcoder.jp/user/monman53[monman53]
+
+link:http://kenkoooo.com/atcoder/?name=monman53&rivals=riantkb&kind=index[AtCoder Problems]
+
+=== SRM
+
+link:https://www.topcoder.com/members/rian/details/?track=DATA_SCIENCE&subTrack=SRM&tab=statistics[rian]
+link:https://www.topcoder.com/members/Ashurnasirpal/details/?track=DATA_SCIENCE&subTrack=SRM&tab=statistics[Ashurnasirpal]
+link:https://www.topcoder.com/members/monman53/details/?track=DATA_SCIENCE&subTrack=SRM&tab=statistics[monman53]
+
+=== CodeForces
+
+link:http://codeforces.com/profile/riantkb[riantkb]
+// link:http://codeforces.com/profile/[]
+link:http://codeforces.com/profile/monman53[monman53]
+
+link:http://codeforces.com/ratings/organization/100[TokyoTech]
+//
+// ++++
+// <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+// <script src="https://rawgit.com/padolsey-archive/jquery.fn/master/cross-domain-ajax/jquery.xdomainajax.js"></script>
+// ++++
