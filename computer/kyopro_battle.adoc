@@ -28,6 +28,11 @@ link:http://codeforces.com/profile/riantkb[riantkb]
 link:http://codeforces.com/profile/monman53[monman53]
 
 link:http://codeforces.com/ratings/organization/100[TokyoTech]
+
+=== AOJ-ICPC
+
+link:http://aoj-icpc.ichyo.jp/?aoj_rivals=rian_tkb+ashurnasirpal&sort2_order=desc&year_max=&source4=1&aoj_username=monman53&point_max=1200&sort1_order=asc&source2=1&source3=1&source1=1&point_min=100&sort2_by=num_aoj_acceptances&year_min=&sort1_by=point[AOJ-ICPC]
+
 //
 // ++++
 // <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
