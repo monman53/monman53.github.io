@@ -23,6 +23,7 @@
 ** link:https://heavywatal.github.io/[Heavy watal]
 いろいろ有益な情報がある
 ** link:http://powerman.name/doc/asciidoc[asciidoc cheatsheet]
+** link:http://qiita.com/mpyw/items/c0312271819baee09132#xpath%E5%BC%8F[XPath式]
 ** link:https://www.gnu.org/software/coreutils/manual/html_node/Opening-the-software-toolbox.html#Opening-the-software-toolbox[Coreutils Tool Box]
 GNU/Linuxを人に勧めるときに見せたいページ
 ** link:https://ja.wikipedia.org/wiki/XPM[Wikipedia: XPM]
