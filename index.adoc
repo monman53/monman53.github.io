@@ -25,6 +25,7 @@ Top
 // **** link:/computer/language/python.html[Python]
 ** Science
 *** link:/science/statistics.html[統計学]
+*** link:/science/information.html[情報科学]
 // *** link:/science/math/[数学]
 ** link:/articles/[Articles]
 ** link:/links.html[リンク集]
