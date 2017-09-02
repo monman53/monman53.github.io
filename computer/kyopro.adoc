@@ -22,6 +22,7 @@ link:https://raw.githubusercontent.com/monman53/online_judge/master/lib/number.h
 ハマった時にチェックすべきこと
 
 * 最大（小）値での初期化に用いている値は，十分大きい（小さい）か
+* 特殊な入力(0とか)でのWAであるだけではないか(特にCodeForces)
 // }}}
 
 == 知識
