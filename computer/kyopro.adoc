@@ -25,6 +25,28 @@ link:https://raw.githubusercontent.com/monman53/online_judge/master/lib/number.h
 * 特殊な入力(0とか)でのWAであるだけではないか(特にCodeForces)
 // }}}
 
+
+== テクニック
+
+[source, cpp]
+----
+// 二分探索(半開区間)
+int l = 0;
+int r = n;
+while(l != r){
+    int c = (l+r)/2;
+    if(v[c] == value){
+        flag = true;
+        break;
+    }
+    if(v[c] < value){
+        l = c+1;
+    }else{
+        r = c;
+    }
+}
+----
+
 == 知識
 // {{{
 
