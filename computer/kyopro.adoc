@@ -16,6 +16,24 @@ link:https://raw.githubusercontent.com/monman53/online_judge/master/lib/graph_fl
 link:https://raw.githubusercontent.com/monman53/online_judge/master/lib/number.h[->number]
 //}}}
 
+== 英語（笑）
+// {{{
+
+at most:: 高々
+at least:: 少なくとも
+acute angle:: 鋭角
+ascending order:: 小さい順に，昇順，A-Z，1-9
+coincide:: 一致する
+* No two points coincide. 2点は異なる． (CF432div2C)
+
+descending order:: 大きい順に，降順，Z-A，9-1
+distinct:: 互いに異なる，同様でない
+obtuse angle:: 鈍角
+respectively:: それぞれ，おのおの
+strictly less than ...:: ...より小さい
+
+// }}}
+
 == 教訓
 // {{{
 
@@ -28,8 +46,8 @@ link:https://raw.githubusercontent.com/monman53/online_judge/master/lib/number.h
 === その他
 
 * Hackはプログラムをよく見て慎重に行う
+* 再提出は慎重に．そのままでも正解かもしれないから，本当になおすべきか見極める．
 // }}}
-
 
 == テクニック
 // {{{
