@@ -16,17 +16,23 @@ link:https://raw.githubusercontent.com/monman53/online_judge/master/lib/graph_fl
 link:https://raw.githubusercontent.com/monman53/online_judge/master/lib/number.h[->number]
 //}}}
 
-== でばっぐ
+== 教訓
 // {{{
 
-ハマった時にチェックすべきこと
+=== ハマった時にチェックすべきこと
 
 * 最大（小）値での初期化に用いている値は，十分大きい（小さい）か
 * 特殊な入力(0とか)でのWAであるだけではないか(特にCodeForces)
+* どうしても計算量を落とせない時は，鳩の巣原理で打ち切りを考える．(CF 432 div2 C)
+
+=== その他
+
+* Hackはプログラムをよく見て慎重に行う
 // }}}
 
 
 == テクニック
+// {{{
 
 [source, cpp]
 ----
@@ -46,6 +52,7 @@ while(l != r){
     }
 }
 ----
+//}}}
 
 == 知識
 // {{{
