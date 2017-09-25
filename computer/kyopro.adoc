@@ -73,6 +73,9 @@ while(l != r){
 
 // 天井関数( a/b )
 (a+b-1)/b
+
+// λ関数でソート
+sort(v.begin(), v.end(), [](struct E &e1, struct E &e2){return e1.v < e2.v;});
 ----
 //}}}
 
