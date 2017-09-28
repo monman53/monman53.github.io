@@ -20,7 +20,8 @@ Top
 **** link:/computer/gnu/parallel.html[parallel]
 *** non-GNU
 **** link:/computer/nongnu/imagemagick.html[ImageMagick]
-// *** Language
+*** Language
+**** link:/computer/language/rust.html[Rust]
 // **** link:/computer/language/cpp.html[C++]
 // **** link:/computer/language/python.html[Python]
 ** Science
