@@ -10,6 +10,7 @@ In this page, we use De Bruijn index footnote:[https://en.wikipedia.org/wiki/De_
 
 === Definition of Lambda Term
 
+[source, text]
 ----
 <term> ::= n
 <term> ::= (λ <term>)

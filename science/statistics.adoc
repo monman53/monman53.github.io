@@ -1,5 +1,4 @@
-統計学
-======
+= 統計学
 
 NUMERICAL RECIPES in C での勉強．
 

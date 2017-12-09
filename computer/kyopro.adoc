@@ -1,5 +1,4 @@
-競技プログラミング
-==================
+= 競技プログラミング
 
 競プロのお供．
 
@@ -13,7 +12,7 @@ link:https://raw.githubusercontent.com/monman53/online_judge/master/lib/geometry
 link:https://raw.githubusercontent.com/monman53/online_judge/master/lib/datastructure.h[->datastructure]
 link:https://raw.githubusercontent.com/monman53/online_judge/master/lib/graph.h[->graph]
 link:https://raw.githubusercontent.com/monman53/online_judge/master/lib/graph_flow.h[->graph_flow]
-link:https://raw.githubusercontent.com/monman53/online_judge/master/lib/number.h[->number]
+link:https://raw.githubusercontent.com/monman53/online_judge/master/lib/math.h[->math]
 //}}}
 
 == 英語（笑）
