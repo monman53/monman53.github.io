@@ -1,11 +1,13 @@
 <!doctype html>
 <meta charset='UTF-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
-<link rel='stylesheet' href='/css/main.css'>
 <title>Rendering Test : monman53</title>
-<link rel='stylesheet' href='/css/github.css'>
-<script src='/js/highlight.pack.js'></script>
+<link rel='stylesheet' href='/css/main.css'>
+<link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css'>
+<script src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/rust.min.js'></script>
 <script>hljs.initHighlightingOnLoad();</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script>
 <h1>Rendering Test</h1>
 <p><a href='/'>monman53.github.io</a></p>
 <hr>
@@ -38,105 +40,7 @@
 <h2 id="_math_formulae">Math Formulae</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_asciimathml">ASCIIMathML</h3>
-<div class="paragraph">
-<p><a href="http://www1.chapman.edu/~jipsen/mathml/asciimath.html">ASCIIMathML</a> is
-a clever JavaScript written by Peter Jipsen that dynamically
-transforms mathematical formulae written in a wiki-like plain text
-markup to <a href="http://www.w3.org/Math/">MathML</a> markup which is displayed as
-standard mathematical notation by the Web Browser.  See <em>Appendix E</em>
-in the AsciiDoc User Guide for more details.</p>
-</div>
-<div class="paragraph">
-<p>The AsciiDoc <code>xhtml11</code> backend supports ASCIIMathML&#8201;&#8212;&#8201;it links the
-ASCIIMathML script and escapes ASCIIMathML delimiters and special
-characters to yield valid XHTML. To use ASCIIMathML:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Include the <code>-a asciimath</code> command-line option when you run
-<code>asciidoc(1)</code>.</p>
-</li>
-<li>
-<p>Enclose ASCIIMathML formulas inside math or double-dollar
-passthroughs or in math passthrough blocks.</p>
-</li>
-</ol>
-</div>
-<div class="ulist">
-<div class="title">NOTE</div>
-<ul>
-<li>
-<p>When you use the <code>asciimath:[]</code> inline macro you need to escape <code>]</code>
-characters in the formulas with a backslash, escaping is unnecessary
-if you use the double-dollar macro (for examples see the second
-formula below).</p>
-</li>
-<li>
-<p>See the
-<a href="http://www1.chapman.edu/~jipsen/mathml/asciimath.html">ASCIIMathML</a>
-website for ASCIIMathML documentation and the latest version.</p>
-</li>
-<li>
-<p>If the formulas don&#8217;t appear to be correct you probably need to
-install the correct math fonts (see the
-<a href="http://www1.chapman.edu/~jipsen/mathml/asciimath.html">ASCIIMathML</a>
-website for details).</p>
-</li>
-<li>
-<p>See the <a href="latexmathml.html">LaTeXMathML page</a> if you prefer to use
-LaTeX math formulas.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>A list of example formulas:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>`[[a,b],[c,d]]((n),(k))`</p>
-</li>
-<li>
-<p>\$x/x={(1,if x!=0),(text{undefined},if x=0):}\$</p>
-</li>
-<li>
-<p>\$d/dxf(x)=lim_(h-&gt;0)(f(x+h)-f(x))/h\$</p>
-</li>
-<li>
-<p>`sum_(i=1)\^n i=(n(n+1))/2`$ and <strong>bold
-\$int_0\^(pi/2) sinx\ dx=1\$</strong></p>
-</li>
-<li>
-<p>\$(a,b]={x in RR : a &lt; x &lt;= b}\$</p>
-</li>
-<li>
-<p>\$x^2+y_1+z_12^34\$</p>
-</li>
-</ul>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="paragraph">
-<p>The first three terms factor to give
-\$(x+b/(2a))^2=(b^2)/(4a^2)-c/a\$.</p>
-</div>
-<div class="paragraph">
-<p>\$x+b/(2a)=+-sqrt((b^2)/(4a^2)-c/a)\$.</p>
-</div>
-<div class="paragraph">
-<p>Now we take square roots on both sides and get
-\$x+b/(2a)=+-sqrt((b^2)/(4a^2)-c/a)\$.
-Finally we move the \$b/(2a)\$ to the right and simplify to
-get the two solutions:
-<strong>\$x_(1,2)=(-b+-sqrt(b^2-4ac))/(2a)\$</strong>.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_latexmathml">LaTeXMathML</h3>
+<h3 id="_latexmathml_mathjax">LaTeXMathML (MathJax)</h3>
 <div class="paragraph">
 <p><a href="http://www.maths.nottingham.ac.uk/personal/drw/lm.html">LaTeXMathML</a>
 capability has been added to AsciiDoc for users who are more familar
@@ -145,13 +49,13 @@ with or prefer LaTeX math formulas to the
 notation.</p>
 </div>
 <div class="paragraph">
-<p><em>LaTeXMathML</em> is a derivative of
+<p>'LaTeXMathML' is a derivative of
 <a href="http://asciidoc.org/asciimathml.html">ASCIIMathML</a>&#8201;&#8212;&#8201;in
 terms of usage the only difference it that you use the <code>latexmath</code>
 attribute instead of the <code>asciimath</code> attribute.</p>
 </div>
 <div class="paragraph">
-<p><em>LaTeXMathML</em> processes LaTeX math formulas not arbitrary LaTeX (as
+<p>'LaTeXMathML' processes LaTeX math formulas not arbitrary LaTeX (as
 <code>dblatex(1)</code> does). See the
 <a href="http://www.maths.nottingham.ac.uk/personal/drw/lm.html">LaTeXMathML</a>
 website for details.</p>
@@ -161,34 +65,12 @@ website for details.</p>
 page.</p>
 </div>
 <div class="paragraph">
-<p>Some example <em>LaTeXMathML</em> formulas:</p>
+<p>Some example 'LaTeXMathML' formulas:</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>\($R_x = 10.0 \times \sin(R_\phi)$\)</p>
-</li>
-<li>
-<p>\($\sum_{n=1}^\infty \frac{1}{2^n}$\)</p>
-</li>
-<li>
-<p>\($\lim_{x\to\infty} f(x) = k \choose r + \frac ab
-\sum_{n=1}^\infty a_n + \displaystyle{ \left\{ \frac{1}{13}
-\sum_{n=1}^\infty b_n \right\} }$\)</p>
-</li>
-<li>
-<p>\($\$\alpha + \$\beta = \$(\alpha + \beta)$\)</p>
-</li>
-<li>
-<p>\($\begin{eqnarray} x &amp; = &amp; \frac{-7 \pm
-\sqrt{49 - 24}}{6} \\ &amp; = &amp; -2 \textrm{ or } -\frac13.
-\end{eqnarray}$\)</p>
-</li>
-<li>
-<p>\($\displaystyle{ V_i = C_0 - C_3
-\frac{C_1\cos(\theta_i+C_3)}{C_4+C_1\cos(\theta_i+C_2)} }$\)</p>
-</li>
-</ul>
+<div class="stemblock">
+<div class="content">
+\[R_x = 10.0 \times \sin(R_\phi)\]
+</div>
 </div>
 </div>
 </div>
@@ -281,8 +163,6 @@ end</code></pre>
 </div>
 </div>
 <hr>
-<p><tt>last update : 2017-12-10 06:38:50 (+09:00)</tt></p>
+<p>last update : 2017-12-10 17:12:47 (+09:00)</p>
 <p><a href='/'>monman53.github.io</a></p>
 <p>this page is generated by <a href='https://github.com/monman53/monsta'>monsta</a></p>
-<script src='/js/LaTeXMathML.js'></script>
-<script src='/js/ASCIIMathML.js'></script>
