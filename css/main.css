@@ -62,15 +62,15 @@ h2 {
 }
 h3 {
     border-left: 0.5em solid gray;
-    border-top: 2px solid gray;
+    /*border-top: 2px solid gray;*/
     /* border-bottom: 2px solid silver; */
     padding-left: 0.5em;
     /* border-bottom: 2px solid black; */
     /*float: left;*/
 }
 h4 {
-    border-left: 0.5em solid;
-    padding-left: 0.5em;
+    /*border-left: 0.5em solid;*/
+    /*padding-left: 0.5em;*/
     /* border-bottom: 2px solid silver; */
 }
 h3 + * {
@@ -164,6 +164,7 @@ div.admonitionblock {
 
 div.content { /* Block element content. */
     padding: 0;
+    overflow: scroll;
 }
 
 /* Block element titles. */
@@ -257,13 +258,13 @@ dl {
 }
 dt {
     margin-top: 0.5em;
-    margin-bottom: 0;
+    /*margin-bottom: 0;*/
     font-style: normal;
     font-weight: bold;
     color: #000;
 }
 dd > *:first-child {
-    margin-top: 0.1em;
+    /*margin-top: 0.1em;*/
 }
 
 ul, ol {

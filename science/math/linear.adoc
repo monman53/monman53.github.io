@@ -32,7 +32,7 @@ a_{n, 1} & a_{n, 2} & \cdots & a_{n, m} \\
 {}^t\!A = A^{\mathrm{T}} =
 \begin{bmatrix}
 a_{1, 1} & a_{2, 1} & \cdots & a_{n, 1} \\
-a_{1, 1} & a_{2, 2} & \cdots & a_{n, 2} \\
+a_{1, 2} & a_{2, 2} & \cdots & a_{n, 2} \\
 \vdots   & \vdots   & \ddots & \vdots   \\
 a_{1, m} & a_{2, m} & \cdots & a_{n, m} \\
 \end{bmatrix}
