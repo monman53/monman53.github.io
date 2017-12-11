@@ -1,9 +1,9 @@
 = Top
 
 // いままで色々な方法でホームページを作ろうと試みてきましたが，静的サイトジェネレータ自作という形で落ち着きました．
+CSSが読み込めていない訳ではないです．
 
 == Site Map
-
 
 * link:/[Top]
 ** link:/profile/[Profile]
@@ -26,7 +26,9 @@
 ** Science
 *** link:/science/statistics.html[統計学]
 *** link:/science/information.html[情報科学]
+*** link:/science/nonlinear.html[非線形]
 *** link:/science/math/[数学]
+** link:/cooking.html[料理]
 ** link:/articles/[Articles]
-** link:/links.html[リンク集]
+* link:/links.html[リンク集]
 * link:/test.html[test page]

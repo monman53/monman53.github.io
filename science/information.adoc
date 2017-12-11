@@ -141,15 +141,15 @@ NP困難な問題::
 === 有限差分法
 
 ==== 差分形式
+// {{{
 
 [latexmath]
 ++++
-f'(x) \simeq \frac{f(x+h) - f(x-h)}{2} \\
-f''(x) \simeq \frac{f(x+h) + f(x-h) - 2f(x)}{2}
+f'(x) \simeq \frac{f(x+h) - f(x-h)}{2h} \\
+f''(x) \simeq \frac{f(x+h) + f(x-h) - 2f(x)}{h^2}
 ++++
 
 ==== 差分形式の導出
-// {{{
 
 テイラー展開は次の通り．
 
@@ -178,15 +178,15 @@ f(x+h) = \sum_{n=0}^{\infty}\frac{f^{(n)}(x)}{n!}h^n
 
 [latexmath]
 ++++
-f(x+h) \simeq f(x) + f'(x)h + \frac{1}{2!}f''(x)h^2 \\
-f(x-h) \simeq f(x) - f'(x)h + \frac{1}{2!}f''(x)h^2
+f(x+h) \simeq f(x) + f'(x)h + \frac{1}{2}f''(x)h^2 \\
+f(x-h) \simeq f(x) - f'(x)h + \frac{1}{2}f''(x)h^2
 ++++
 
 上2式を足したり引いたりすることにより，次の差分形式が得られる．
 
 [latexmath]
 ++++
-f'(x) \simeq \frac{f(x+h) - f(x-h)}{2} \\
-f''(x) \simeq \frac{f(x+h) + f(x-h) - 2f(x)}{2}
+f'(x) \simeq \frac{f(x+h) - f(x-h)}{2h} \\
+f''(x) \simeq \frac{f(x+h) + f(x-h) - 2f(x)}{h^2}
 ++++
 // }}}
