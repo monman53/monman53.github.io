@@ -145,8 +145,10 @@ NP困難な問題::
 
 [latexmath]
 ++++
-f'(x) \simeq \frac{f(x+h) - f(x-h)}{2h} \\
-f''(x) \simeq \frac{f(x+h) + f(x-h) - 2f(x)}{h^2}
+\begin{align}
+f'(x) &\simeq \frac{f(x+h) - f(x-h)}{2h} \\
+f''(x) &\simeq \frac{f(x+h) + f(x-h) - 2f(x)}{h^2}
+\end{align}
 ++++
 
 ==== 差分形式の導出
@@ -186,7 +188,9 @@ f(x-h) \simeq f(x) - f'(x)h + \frac{1}{2}f''(x)h^2
 
 [latexmath]
 ++++
-f'(x) \simeq \frac{f(x+h) - f(x-h)}{2h} \\
-f''(x) \simeq \frac{f(x+h) + f(x-h) - 2f(x)}{h^2}
+\begin{align}
+f'(x) &\simeq \frac{f(x+h) - f(x-h)}{2h} \\
+f''(x) &\simeq \frac{f(x+h) + f(x-h) - 2f(x)}{h^2}
+\end{align}
 ++++
 // }}}

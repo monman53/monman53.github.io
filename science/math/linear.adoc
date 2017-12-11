@@ -1,0 +1,88 @@
+= 線形代数
+
+== 行列
+
+[latexmath]
+++++
+A = 
+\begin{bmatrix}
+a_{1, 1} & a_{1, 2} & \cdots & a_{1, m} \\
+a_{2, 1} & a_{2, 2} & \cdots & a_{2, m} \\
+\vdots   & \vdots   & \ddots & \vdots   \\
+a_{n, 1} & a_{n, 2} & \cdots & a_{n, m} \\
+\end{bmatrix}
+++++
+
+と書いたものを， \( n \times m \) 行列という．
+
+上から \(i\) 番目の行を第 \(i\) 行，左から \(j\) 番目の列を第 \(j\) 列という．
+
+\(A\) の \((i, j)\) 成分は \(a_{i, j}\) である．
+
+=== 対角和
+
+[latexmath]
+++++
+\mathrm{Tr} A = \sum_{i=1}^{n} a_{i, i}
+++++
+
+=== 転置行列
+
+\[
+{}^t\!A = A^{\mathrm{T}} =
+\begin{bmatrix}
+a_{1, 1} & a_{2, 1} & \cdots & a_{n, 1} \\
+a_{1, 1} & a_{2, 2} & \cdots & a_{n, 2} \\
+\vdots   & \vdots   & \ddots & \vdots   \\
+a_{1, m} & a_{2, m} & \cdots & a_{n, m} \\
+\end{bmatrix}
+\]
+
+==== 転置行列の性質
+
+[latexmath]
+++++
+\newcommand{\inversion}[1]{{}^t\!#1}
+
+\inversion{(\inversion{A})} = A \\
+\inversion{(A+B)} = \inversion{A} + \inversion{B} \\ 
+\inversion{(cA)} = c\inversion{A} \\
+\inversion{(AB)} = \inversion{B}\inversion{A}
+++++
+
+=== 正則行列，逆行列
+
+\(n\) 次正方行列 \(A\) に対して，
+
+\[
+AB = BA = I
+\]
+
+なる \(B\) が存在するとき，\(A\) は **正則行列** ，あるいは **正則** であると言う．このとき， \(B\) は \(A\) に対して一意に定まり，この \(B\) を \(A^{-1}\) と表し，\(A\) の **逆行列** という．．
+
+\[
+AA^{-1} = A^{-1}A = I
+\]
+
+==== 逆行列の性質
+
+* 正則行列の積は正則行列である．
+** \(A\) ，\(B\) を正則行列とするとき， \(C=AB\) の逆行列は \(B^{-1} A^{-1}\) となる．
+* 正則行列には必ず逆行列が存在し，その逆行列も正則行列である．
+
+//=== エルミート行列
+
+//=== ユニタリ行列
+
+//=== 正規行列
+
+== 行列式
+
+=== 定義
+
+行列式は正方行列に対して定義される．
+
+[latexmath]
+++++
+\det (A) = |A| = \sum_{\sigma \in S_n} \left( \mathrm{sgn} (\sigma)\prod_{i=1}^{n} a_{i, \sigma_i}\right)
+++++

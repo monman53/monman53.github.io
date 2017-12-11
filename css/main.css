@@ -51,18 +51,22 @@ h1, h2, h3, h4, h5, h6 {
 h2 {
     /*background-color: #c5e1a5;*/
     /*border: 1px solid black;*/
-    border-left: 0.5em solid black;
+    border-left: 0.5em solid;
+    background-color: #dddddd;
+    /*border-top: 2px solid;*/
+    /*border-bottom: 2px solid;*/
     /* border-bottom: 2px solid black; */
     padding-left: 0.5em;
     /* color: white; */
     /* padding-top: 0.5em; */
 }
 h3 {
-    border-left: 0.5em solid;
+    border-left: 0.5em solid gray;
+    border-top: 2px solid gray;
     /* border-bottom: 2px solid silver; */
     padding-left: 0.5em;
     /* border-bottom: 2px solid black; */
-    float: left;
+    /*float: left;*/
 }
 h4 {
     border-left: 0.5em solid;

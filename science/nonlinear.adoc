@@ -45,7 +45,7 @@ latexmath:[u] に関して，特に2次元平面上においては，
 ++++
 \begin{align}
 \frac{\partial^2 u_{x, y}}{\partial x^2} &\simeq \frac{u_{x+h, y}+u_{x-h, y}-2u_{x, y}}{h^2} \\
-\frac{\partial^2 u_{x, y}}{\partial y^2} &\simeq \frac{u_{x, y+h}+u_{x, y-h}-2u_{x, y}}{h^2} \\
+\frac{\partial^2 u_{x, y}}{\partial y^2} &\simeq \frac{u_{x, y+h}+u_{x, y-h}-2u_{x, y}}{h^2}
 \end{align}
 ++++
 
