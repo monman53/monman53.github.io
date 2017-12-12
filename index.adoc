@@ -26,9 +26,10 @@ CSSが読み込めていない訳ではないです．
 ** Science
 *** link:/science/statistics.html[統計学]
 *** link:/science/information.html[情報科学]
-*** link:/science/nonlinear.html[非線形]
+*** link:/science/nonlinear.html[非線形科学]
 *** link:/science/math/[数学]
 **** link:/science/math/linear.html[線形代数]
+** link:/music/[クラシック音楽]
 ** link:/cooking.html[料理]
 ** link:/articles/[Articles]
 * link:/links.html[リンク集]

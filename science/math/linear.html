@@ -12,47 +12,47 @@
 <h1>線形代数</h1>
 <p><a href='/'>monman53.github.io</a></p>
 <hr>
-<div class="sect1">
-<h2 id="_行列">行列</h2>
+<div id="preamble">
 <div class="sectionbody">
-<div class="stemblock">
-<div class="content">
-\[A =
-\begin{bmatrix}
-a_{1, 1} &amp; a_{1, 2} &amp; \cdots &amp; a_{1, m} \\
-a_{2, 1} &amp; a_{2, 2} &amp; \cdots &amp; a_{2, m} \\
-\vdots   &amp; \vdots   &amp; \ddots &amp; \vdots   \\
-a_{n, 1} &amp; a_{n, 2} &amp; \cdots &amp; a_{n, m} \\
-\end{bmatrix}\]
-</div>
-</div>
 <div class="paragraph">
-<p>と書いたものを， \( n \times m \) 行列という．</p>
-</div>
-<div class="paragraph">
-<p>上から \(i\) 番目の行を第 \(i\) 行，左から \(j\) 番目の列を第 \(j\) 列という．</p>
-</div>
-<div class="paragraph">
-<p>\(A\) の \((i, j)\) 成分は \(a_{i, j}\) である．</p>
-</div>
-<div class="sect2">
-<h3 id="_対角和">対角和</h3>
-<div class="stemblock">
-<div class="content">
-\[\mathrm{Tr} A = \sum_{i=1}^{n} a_{i, i}\]
+<p>線形代数ができなくてやばすぎるので復習しています．余裕があれば証明も載せたいです．</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_転置行列">転置行列</h3>
+<div class="sect1">
+<h2 id="_行列_matrix">行列 matrix</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>\[
-{}^t\!A = A^{\mathrm{T}} =
+A =
 \begin{bmatrix}
-a_{1, 1} &amp; a_{2, 1} &amp; \cdots &amp; a_{n, 1} \\
-a_{1, 2} &amp; a_{2, 2} &amp; \cdots &amp; a_{n, 2} \\
+a_{1, 1} &amp; a_{1, 2} &amp; \cdots &amp; a_{1, n} \\
+a_{2, 1} &amp; a_{2, 2} &amp; \cdots &amp; a_{2, n} \\
 \vdots   &amp; \vdots   &amp; \ddots &amp; \vdots   \\
-a_{1, m} &amp; a_{2, m} &amp; \cdots &amp; a_{n, m} \\
+a_{m, 1} &amp; a_{m, 2} &amp; \cdots &amp; a_{m, n} \\
+\end{bmatrix}
+\]</p>
+</div>
+<div class="paragraph">
+<p>と書いたものを， \( m \times n \) 行列という．</p>
+</div>
+<div class="paragraph">
+<p>上から \(i\) 番目の行を第 \(i\) 行(row)，左から \(j\) 番目の列を第 \(j\) 列(column)という．</p>
+</div>
+<div class="paragraph">
+<p>\(A\) の \((i, j)\) 成分(entry)は \(a_{i, j}\) である．</p>
+</div>
+<div class="sect2">
+<h3 id="_転置行列_transpose_matrix">転置行列 transpose matrix</h3>
+<div class="paragraph">
+<p>\[
+\newcommand{\tr}[1]{{}^t\!#1}
+\tr{A} = A^{\mathrm{T}} =
+\begin{bmatrix}
+a_{1, 1} &amp; a_{2, 1} &amp; \cdots &amp; a_{m, 1} \\
+a_{1, 2} &amp; a_{2, 2} &amp; \cdots &amp; a_{m, 2} \\
+\vdots   &amp; \vdots   &amp; \ddots &amp; \vdots   \\
+a_{1, n} &amp; a_{2, n} &amp; \cdots &amp; a_{m, n} \\
 \end{bmatrix}
 \]</p>
 </div>
@@ -60,12 +60,11 @@ a_{1, m} &amp; a_{2, m} &amp; \cdots &amp; a_{n, m} \\
 <h4 id="_転置行列の性質">転置行列の性質</h4>
 <div class="stemblock">
 <div class="content">
-\[\newcommand{\inversion}[1]{{}^t\!#1}
-
-\inversion{(\inversion{A})} = A \\
-\inversion{(A+B)} = \inversion{A} + \inversion{B} \\
-\inversion{(cA)} = c\inversion{A} \\
-\inversion{(AB)} = \inversion{B}\inversion{A}\]
+\[\newcommand{\inv}[1]{#1^{-1}}
+\tr{(\tr{A})} = A \\
+\tr{(A+B)} = \tr{A} + \tr{B} \\
+\tr{(cA)} = c\tr{A} \\
+\tr{(AB)} = \tr{B}\tr{A}\]
 </div>
 </div>
 </div>
@@ -81,38 +80,120 @@ AB = BA = I
 \]</p>
 </div>
 <div class="paragraph">
-<p>なる \(B\) が存在するとき，\(A\) は <strong>正則行列</strong> ，あるいは <strong>正則</strong> であると言う．このとき， \(B\) は \(A\) に対して一意に定まり，この \(B\) を \(A^{-1}\) と表し，\(A\) の <strong>逆行列</strong> という．．</p>
+<p>なる \(B\) が存在するとき，\(A\) は <strong>正則行列</strong> ，あるいは <strong>正則</strong> であると言う．このとき， \(B\) は \(A\) に対して一意に定まり，この \(B\) を \(\inv{A}\) と表し，\(A\) の <strong>逆行列</strong> という．</p>
 </div>
 <div class="paragraph">
 <p>\[
-AA^{-1} = A^{-1}A = I
+A\inv{A} = \inv{A}A = I
 \]</p>
 </div>
 <div class="sect3">
+<h4 id="_正則性の判定">正則性の判定</h4>
+<div class="paragraph">
+<p>\(A\) を \(n\) 次正方行列とすると，次の3つは同値である．</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[A が正則 \\
+\mathrm{rank} A=n \\
+A の階段行列が単位行列 I_n \\
+|A| \neq 0\]
+</div>
+</div>
+</div>
+<div class="sect3">
 <h4 id="_逆行列の性質">逆行列の性質</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>正則行列の積は正則行列である．</p>
-<div class="ulist">
-<ul>
-<li>
-<p>\(A\) ，\(B\) を正則行列とするとき， \(C=AB\) の逆行列は \(B^{-1} A^{-1}\) となる．</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>\(A\)，\(B\) が正則であれば， \(\inv{A}\)，\(AB\)，\(\tr{A}\) はいずれも正則で，</p>
 </div>
-</li>
-<li>
-<p>正則行列には必ず逆行列が存在し，その逆行列も正則行列である．</p>
-</li>
-</ul>
+<div class="stemblock">
+<div class="content">
+\[\inv{(\inv{A})} = A \\
+\inv{AB} = \inv{B}\inv{A} \\
+\inv{(\tr{A})} = \tr{(\inv{A})}\]
 </div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ユニモジュラ行列">ユニモジュラ行列</h3>
+<div class="paragraph">
+<p>各要素が整数で行列式が \(+1\) あるいは \(-1\) の行列をユニモジュラ行列という．</p>
+</div>
+<div class="sect3">
+<h4 id="_性質">性質</h4>
+<div class="paragraph">
+<p>\(b\) を全ての要素が整数のベクトルとするとき， \(Mx=b\) には整数解が存在する．</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_対角和">対角和</h3>
+<div class="paragraph">
+<p>\[
+\mathrm{Tr} A = \sum_{i=1}^{n} a_{i, i}
+\]</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_行列式">行列式</h2>
+<h2 id="_連立一次方程式_system_of_linear_equations">連立一次方程式 system of linear equations</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_階数">階数</h3>
+<div class="paragraph">
+<p>行列 \(A\) の階段行列における零ベクトルでない行の数 \(k\) を <strong>階数</strong> と言い， \(\newcommand{\rank}[0]{\mathrm{rank}}\rank A\) で表す．</p>
+</div>
+<div class="sect3">
+<h4 id="_階数の性質">階数の性質</h4>
+<div class="paragraph">
+<p>\(P\)，\(Q\) を正則行列とする．</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\rank(PA) = \rank A \\
+\rank(AQ) = \rank A \\
+\rank(PAQ) = \rank A \\
+\rank\tr{A} = \rank A\]
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_連立一次方程式の解">連立一次方程式の解</h3>
+<div class="paragraph">
+<p>連立一次方程式 \(\newcommand{\bold}[1]{\boldsymbol{#1}} A\bold{x}=\bold{b}\) が解を持つための必要十分条件は，</p>
+</div>
+<div class="paragraph">
+<p>\[
+\rank[A, \bold{b}]=\rank A
+\]</p>
+</div>
+<div class="paragraph">
+<p>が成り立つこと．</p>
+</div>
+<div class="paragraph">
+<p><em>どんなときこれが成り立たないの?</em></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_連立方程式の解の自由度">連立方程式の解の自由度</h3>
+<div class="paragraph">
+<p>未知数 \(n\) の連立一次方程式 \(A\bold{x}=\bold{b}\) が解を持つとき，ただ1組の解を持つための必要十分条件は
+\(\rank A = n\)
+であり，無数の解を持つための必要十分条件は，
+\(\rank A &lt; n\)
+である．</p>
+</div>
+<div class="paragraph">
+<p>無数の解を持つ時の解の自由度は \(n-\rank A\) である．実際に解を求めるときには，「段の1の無い列」に対応する未知数を全て任意定数とおくと良い．(これがよくわからん)</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_行列式_determinant">行列式 determinant</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_定義">定義</h3>
@@ -124,10 +205,136 @@ AA^{-1} = A^{-1}A = I
 \[\det (A) = |A| = \sum_{\sigma \in S_n} \left( \mathrm{sgn} (\sigma)\prod_{i=1}^{n} a_{i, \sigma_i}\right)\]
 </div>
 </div>
+<div class="paragraph">
+<p>実際に行列式を用いるときは定義通りには計算せず，行列式の性質をうまく利用して求める．</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_行列式の性質">行列式の性質</h3>
+<div class="sect3">
+<h4 id="_多重線形性">多重線形性</h4>
+<div class="stemblock">
+<div class="content">
+\[\left|\begin{array}{cccc}
+\vdots                 &amp; \vdots                 &amp; \cdots &amp; \vdots \\
+b_{i, 1}+c_{i, 1} &amp; b_{i, 2}+c_{i, 2} &amp; \cdots &amp; b_{i, n}+c_{i, n} \\
+\vdots                 &amp; \vdots                 &amp; \cdots &amp; \vdots \\
+\end{array}\right|
+=
+\left|\begin{array}{cccc}
+\vdots        &amp; \vdots        &amp; \cdots &amp; \vdots \\
+b_{i, 1} &amp; b_{i, 2} &amp; \cdots &amp; b_{i, n} \\
+\vdots        &amp; \vdots        &amp; \cdots &amp; \vdots \\
+\end{array}\right|
++
+\left|\begin{array}{cccc}
+\vdots        &amp; \vdots        &amp; \cdots &amp; \vdots \\
+c_{i, 1} &amp; c_{i, 2} &amp; \cdots &amp; c_{i, n} \\
+\vdots        &amp; \vdots        &amp; \cdots &amp; \vdots \\
+\end{array}\right|
+\\
+
+\left|\begin{array}{cccc}
+\vdots        &amp; \vdots        &amp; \cdots &amp; \vdots \\
+cb_{i, 1} &amp; cb_{i, 2} &amp; \cdots &amp; cb_{i, n} \\
+\vdots        &amp; \vdots        &amp; \cdots &amp; \vdots \\
+\end{array}\right|
+=
+c
+\left|\begin{array}{cccc}
+\vdots        &amp; \vdots        &amp; \cdots &amp; \vdots \\
+b_{i, 1} &amp; b_{i, 2} &amp; \cdots &amp; b_{i, n} \\
+\vdots        &amp; \vdots        &amp; \cdots &amp; \vdots \\
+\end{array}\right|\]
+</div>
+</div>
+<div class="paragraph">
+<p>「多重」とは，どの行においても上の2つが成り立つということ．</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_交代性">交代性</h4>
+<div class="stemblock">
+<div class="content">
+\[\left|\begin{array}{cccc}
+\vdots        &amp; \vdots        &amp; \cdots &amp; \vdots \\
+a_{i, 1} &amp; a_{i, 2} &amp; \cdots &amp; a_{i, n} \\
+\vdots        &amp; \vdots        &amp; \cdots &amp; \vdots \\
+a_{j, 1} &amp; a_{j, 2} &amp; \cdots &amp; a_{j, n} \\
+\vdots        &amp; \vdots        &amp; \cdots &amp; \vdots \\
+\end{array}\right|
+=
+-
+\left|\begin{array}{cccc}
+\vdots        &amp; \vdots        &amp; \cdots &amp; \vdots \\
+a_{j, 1} &amp; a_{j, 2} &amp; \cdots &amp; a_{j, n} \\
+\vdots        &amp; \vdots        &amp; \cdots &amp; \vdots \\
+a_{i, 1} &amp; a_{i, 2} &amp; \cdots &amp; a_{i, n} \\
+\vdots        &amp; \vdots        &amp; \cdots &amp; \vdots \\
+\end{array}\right|\]
+</div>
+</div>
+<div class="paragraph">
+<p>行を入れ替えると符号が変わる．</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_値が0になる行列式">値が0になる行列式</h4>
+<div class="paragraph">
+<p>2つの行が比例している場合は，行列式の値が0になる．これの特殊な場合として，ある行が零ベクトルがある．</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_次数を下げる">次数を下げる</h4>
+<div class="stemblock">
+<div class="content">
+\[\left|\begin{array}{cccc}
+a_{1, 1} &amp; a_{1, 2} &amp; \cdots &amp; a_{1, n} \\
+0        &amp; a_{2, 2} &amp; \cdots &amp; a_{2, n} \\
+0        &amp; \vdots   &amp; \ddots &amp; \vdots   \\
+0        &amp; a_{n, 2} &amp; \cdots &amp; a_{n, n} \\
+\end{array}\right|
+=
+a_{1, 1}
+\left|\begin{array}{ccc}
+a_{2, 2} &amp; \cdots &amp; a_{2, n} \\
+\vdots   &amp; \ddots &amp; \vdots   \\
+a_{n, 2} &amp; \cdots &amp; a_{n, n} \\
+\end{array}\right|\]
+</div>
+</div>
+<div class="paragraph">
+<p>これは行列式の定義を考えるとわかる．</p>
+</div>
+<div class="paragraph">
+<p><strong>以上の性質は列に対しても同様である．</strong></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_その他の性質">その他の性質</h4>
+<div class="paragraph">
+<p>\(A\)，\(B\) を同じ次数の正方行列とするとき，</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[|AB| = |A||B| \\
+|\tr{A}| = |A|\]
+</div>
+</div>
+<div class="paragraph">
+<p>が成り立つ．</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_行列式の図形的意味">行列式の図形的意味</h3>
+<div class="paragraph">
+<p>行列式は各列ベクトルからなる平行多面体の符号付(半時計回り，右手系が正)体積になる．</p>
+</div>
 </div>
 </div>
 </div>
 <hr>
-<p>last modified : 2017-12-12 04:24:54 +0900</p>
+<p>last modified : 2017-12-13 03:13:45 +0900</p>
 <p><a href='/'>monman53.github.io</a></p>
 <p>this page is generated by <a href='https://github.com/monman53/monsta'>monsta</a></p>

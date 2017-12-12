@@ -19,6 +19,10 @@
 == 自然科学
 
 * コンピュータ
+** \(\TeX\)
+*** link:https://wtsnjp.com/documents[Documents - Watson's Lab.] 良質なチートシート
+*** link:http://www.latex-cmd.com/[コマンド集] よくお世話になります
+*** link:https://texwiki.texjp.org/?LaTeX%E5%85%A5%E9%96%80[TEX Wiki]
 ** link:https://heavywatal.github.io/[Heavy watal]
 いろいろ有益な情報がある
 ** link:http://powerman.name/doc/asciidoc[asciidoc cheatsheet]

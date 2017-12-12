@@ -20,7 +20,7 @@ body {
 }
 
 a {
-     /*color: blue; */
+    color: black; 
     /*color: #558b2f;*/
     text-decoration: underline;
 }
@@ -61,7 +61,7 @@ h2 {
     /* padding-top: 0.5em; */
 }
 h3 {
-    border-left: 0.5em solid gray;
+    border-left: 0.5em solid #dddddd;
     /*border-top: 2px solid gray;*/
     /* border-bottom: 2px solid silver; */
     padding-left: 0.5em;
@@ -164,7 +164,7 @@ div.admonitionblock {
 
 div.content { /* Block element content. */
     padding: 0;
-    overflow: scroll;
+    /*overflow: scroll;*/
 }
 
 /* Block element titles. */
