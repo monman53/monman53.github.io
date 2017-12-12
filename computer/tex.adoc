@@ -1,0 +1,21 @@
+= LaTeX
+
+== レポート
+
+自分が使っている雛形です．
+
+[source, tex]
+----
+\documentclass{jsarticle}
+\begin{document}
+
+\title{Report example}
+\author{monman53}
+\maketitle
+
+\section{hoge}
+
+hogehoge
+
+\end{document}
+----

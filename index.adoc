@@ -12,6 +12,7 @@ CSSが読み込めていない訳ではないです．
 // *** link:/computer/tools.html[Tools]
 // *** link:/computer/programming.html[Programming]
 *** link:/computer/kyopro.html[競技プログラミング]
+*** link:/computer/tex.html[LaTeX]
 *** link:/computer/lambda.html[λ]
 *** link:/computer/linux.html[GNU/Linux]
 // *** link:/computer/coreutils.html[coreutils]
