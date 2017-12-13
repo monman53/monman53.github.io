@@ -37,14 +37,15 @@ a_{1, n} & a_{2, n} & \cdots & a_{m, n} \\
 
 ==== 転置行列の性質
 
-[latexmath]
-++++
+\[
 \newcommand{\inv}[1]{#1^{-1}}
-\tr{(\tr{A})} = A \\
-\tr{(A+B)} = \tr{A} + \tr{B} \\ 
-\tr{(cA)} = c\tr{A} \\
-\tr{(AB)} = \tr{B}\tr{A}
-++++
+\begin{align}
+\tr{(\tr{A})} &= A \\
+\tr{(A+B)} &= \tr{A} + \tr{B} \\ 
+\tr{(cA)} &= c\tr{A} \\
+\tr{(AB)} &= \tr{B}\tr{A} \\
+\end{align}
+\]
 
 === 正則行列，逆行列
 
@@ -64,32 +65,32 @@ A\inv{A} = \inv{A}A = I
 
 \(A\) を \(n\) 次正方行列とすると，次の4つは同値である．
 
-[latexmath]
-++++
+\[
 A が正則 \\
 \mathrm{rank} A=n \\
 A の階段行列が単位行列 I_n \\
 |A| \neq 0
-++++
+\]
 
 ==== 逆行列の性質
 
 \(A\)，\(B\) が正則であれば， \(\inv{A}\)，\(AB\)，\(\tr{A}\) はいずれも正則で，
 
-[latexmath]
-++++
-\inv{(\inv{A})} = A \\
-\inv{AB} = \inv{B}\inv{A} \\
-\inv{(\tr{A})} = \tr{(\inv{A})}
-++++
+\[
+\begin{align}
+\inv{(\inv{A})} &= A \\
+\inv{AB} &= \inv{B}\inv{A} \\
+\inv{(\tr{A})} &= \tr{(\inv{A})}
+\end{align}
+\]
 
-=== ユニモジュラ行列
+//=== ユニモジュラ行列
 
-各要素が整数で行列式が \(+1\) あるいは \(-1\) の行列をユニモジュラ行列という．
+//各要素が整数で行列式が \(+1\) あるいは \(-1\) の行列をユニモジュラ行列という．
 
-==== 性質
+//==== 性質
 
-\(b\) を全ての要素が整数のベクトルとするとき， \(Mx=b\) には整数解が存在する．
+//\(b\) を全ての要素が整数のベクトルとするとき， \(Mx=b\) には整数解が存在する．
 
 //=== エルミート行列
 
@@ -116,13 +117,12 @@ A の階段行列が単位行列 I_n \\
 
 \(P\)，\(Q\) を正則行列とする．
 
-[latexmath]
-++++
+\[
 \rank(PA) = \rank A \\
 \rank(AQ) = \rank A \\
 \rank(PAQ) = \rank A \\
 \rank\tr{A} = \rank A
-++++
+\]
 
 
 === 連立一次方程式の解
@@ -156,10 +156,9 @@ _どんなときこれが成り立たないの?_
 
 行列式は正方行列に対して定義される．
 
-[latexmath]
-++++
+\[
 \det (A) = |A| = \sum_{\sigma \in S_n} \left( \mathrm{sgn} (\sigma)\prod_{i=1}^{n} a_{i, \sigma_i}\right)
-++++
+\]
 
 実際に行列式を求めるときは定義通りには計算せず，行列式の性質をうまく利用して求める．
 
@@ -167,8 +166,7 @@ _どんなときこれが成り立たないの?_
 
 ==== 多重線形性
 
-[latexmath]
-++++
+\[
 \left|\begin{array}{cccc}
 \vdots                 & \vdots                 & \cdots & \vdots \\
 b_{i, 1}+c_{i, 1} & b_{i, 2}+c_{i, 2} & \cdots & b_{i, n}+c_{i, n} \\
@@ -179,15 +177,12 @@ b_{i, 1}+c_{i, 1} & b_{i, 2}+c_{i, 2} & \cdots & b_{i, n}+c_{i, n} \\
 \vdots        & \vdots        & \cdots & \vdots \\
 b_{i, 1} & b_{i, 2} & \cdots & b_{i, n} \\
 \vdots        & \vdots        & \cdots & \vdots \\
-\end{array}\right|
-+
+\end{array}\right| +
 \left|\begin{array}{cccc}
 \vdots        & \vdots        & \cdots & \vdots \\
 c_{i, 1} & c_{i, 2} & \cdots & c_{i, n} \\
 \vdots        & \vdots        & \cdots & \vdots \\
-\end{array}\right|
-\\
-
+\end{array}\right| \\
 \left|\begin{array}{cccc}
 \vdots        & \vdots        & \cdots & \vdots \\
 cb_{i, 1} & cb_{i, 2} & \cdots & cb_{i, n} \\
@@ -200,14 +195,13 @@ c
 b_{i, 1} & b_{i, 2} & \cdots & b_{i, n} \\
 \vdots        & \vdots        & \cdots & \vdots \\
 \end{array}\right|
-++++
+\]
 
 「多重」とは，どの行においても上の2つが成り立つということ．
 
 ==== 交代性
 
-[latexmath]
-++++
+\[
 \left|\begin{array}{cccc}
 \vdots        & \vdots        & \cdots & \vdots \\
 a_{i, 1} & a_{i, 2} & \cdots & a_{i, n} \\
@@ -224,7 +218,7 @@ a_{j, 1} & a_{j, 2} & \cdots & a_{j, n} \\
 a_{i, 1} & a_{i, 2} & \cdots & a_{i, n} \\
 \vdots        & \vdots        & \cdots & \vdots \\
 \end{array}\right|
-++++
+\]
 
 行を入れ替えると符号が変わる．
 
@@ -234,8 +228,7 @@ a_{i, 1} & a_{i, 2} & \cdots & a_{i, n} \\
 
 ==== 次数を下げる
 
-[latexmath]
-++++
+\[
 \left|\begin{array}{cccc}
 a_{1, 1} & a_{1, 2} & \cdots & a_{1, n} \\
 0        & a_{2, 2} & \cdots & a_{2, n} \\
@@ -249,7 +242,7 @@ a_{2, 2} & \cdots & a_{2, n} \\
 \vdots   & \ddots & \vdots   \\
 a_{n, 2} & \cdots & a_{n, n} \\
 \end{array}\right|
-++++
+\]
 
 これは行列式の定義を考えるとわかる．
 
@@ -259,11 +252,10 @@ a_{n, 2} & \cdots & a_{n, n} \\
 
 \(A\)，\(B\) を同じ次数の正方行列とするとき，
 
-[latexmath]
-++++
+\[
 |AB| = |A||B| \\
 |\tr{A}| = |A|
-++++
+\]
 が成り立つ．
 
 === 行列式の図形的意味
@@ -273,11 +265,11 @@ a_{n, 2} & \cdots & a_{n, n} \\
 // }}}
 
 == (実)ベクトル空間 vector space
+// {{{
 
 以下の集合 \(\mathbb{R}^n\) に，加法とスカラー倍の演算を導入するとき， \(\mathbb{R}^n\) を実数上の **\(n\) 次元数ベクトル空間** と言う．
 
-[latexmath]
-++++
+\[
 \mathbb{R}^n = \left\{
 \left.
 \begin{bmatrix}
@@ -289,7 +281,7 @@ x_n \\
 \right|
 x_1, x_2, \cdots, x_n \in \mathbb{R}
 \right\}
-++++
+\]
 
 === 1次(線形)独立・1次(線形)従属
 
@@ -301,9 +293,57 @@ x_1, x_2, \cdots, x_n \in \mathbb{R}
 
 \(\mathbb{R}^n\) の部分集合 \(W\) が以下を満たすとき， \(W\) を \(\mathbb{R}^n\) の部分空間という．
 
-[latexmath]
-++++
+\[
 \bold{0} \in W \\
 \bold{a}, \bold{b} \in W \Longrightarrow \bold{a}+\bold{b} \in W \\
 \bold{a} \in W, k \in \mathbb{R} \Longrightarrow k\bold{a} \in W \\
-++++
+\]
+
+=== 基底・次元
+
+\(W\) を \(\mathbb{R}^n\) の部分空間とする． \(W\) のベクトルの組 \(\{\bold{a}_1, \bold{a}_2, \cdots, \bold{a}_r\}\) が以下を満たすとき， \(\{\bold{a}_1, \bold{a}_2, \cdots, \bold{a}_r\}\) を \(W\) の **基底** という．
+
+\[
+\{\bold{a}_1, \bold{a}_2, \cdots, \bold{a}_r\} は1次独立である \\
+\{\bold{a}_1, \bold{a}_2, \cdots, \bold{a}_r\} は W の生成系である \\
+\]
+
+部分空間 \(W(\neq {\bold{0}})\) の基底を構成するベクトルの個数を \(W\) の **次元** といい， \(\newcommand{\dim}[1]{\mathrm{dim}#1} \dim{W}\) で表す．
+
+==== 部分空間の次元定理
+
+\[
+\dim{W_1} + \dim{W_2} = \dim{(W_1 + W_2)} + \dim{(W_1 \cap W_2)}
+\]
+
+// }}}
+
+== 固有値・固有ベクトル
+// {{{
+
+\(n\) 次正方行列 \(A\) に対して，
+
+\[
+A\bold{x}=\lambda\bold{x} (\bold{x}\neq\bold{0})
+\]
+
+を満たすベクトル \(\bold{x}\) と，スカラー \(\lambda\) が存在するとき， \(\lambda\) を \(A\) の **固有値** ， \(\bold{x}\) を固有値 \(\lambda\) に対する \(A\) の **固有ベクトル** という．
+
+=== 固有方程式
+
+\(|A-\lambda I|=0\) を \(A\) の **固有方程式** という． 固有方程式の解が固有値である．
+
+=== 対角化
+
+\(n\) 次正方行列 \(A\) の異なる固有値 \(\lambda_1, \lambda_2, \cdots, \lambda_r\) ，その重複度をそれぞれ \(n_1, n_2, \cdots, n_r\) とする．このとき， \(A\) が適当な正則行列で対角化可能である．
+
+\[
+P^{-1}AP =
+\begin{bmatrix}
+\lambda_1 I_{n_1} & & & O \\
+& \lambda_2 I_{n_2} & & \\
+& & \ddots & \\
+O & & & \lambda_r I_{n_r} \\
+\end{bmatrix}
+\]
+// }}}

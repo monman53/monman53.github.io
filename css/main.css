@@ -164,7 +164,7 @@ div.admonitionblock {
 
 div.content { /* Block element content. */
     padding: 0;
-    /*overflow: scroll;*/
+    overflow-x: scroll;
 }
 
 /* Block element titles. */

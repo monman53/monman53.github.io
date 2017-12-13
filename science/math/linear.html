@@ -60,14 +60,16 @@ a_{1, n} &amp; a_{2, n} &amp; \cdots &amp; a_{m, n} \\
 </div>
 <div class="sect3">
 <h4 id="_転置行列の性質">転置行列の性質</h4>
-<div class="stemblock">
-<div class="content">
-\[\newcommand{\inv}[1]{#1^{-1}}
-\tr{(\tr{A})} = A \\
-\tr{(A+B)} = \tr{A} + \tr{B} \\
-\tr{(cA)} = c\tr{A} \\
-\tr{(AB)} = \tr{B}\tr{A}\]
-</div>
+<div class="paragraph">
+<p>\[
+\newcommand{\inv}[1]{#1^{-1}}
+\begin{align}
+\tr{(\tr{A})} &amp;= A \\
+\tr{(A+B)} &amp;= \tr{A} + \tr{B} \\
+\tr{(cA)} &amp;= c\tr{A} \\
+\tr{(AB)} &amp;= \tr{B}\tr{A} \\
+\end{align}
+\]</p>
 </div>
 </div>
 </div>
@@ -94,13 +96,13 @@ A\inv{A} = \inv{A}A = I
 <div class="paragraph">
 <p>\(A\) を \(n\) 次正方行列とすると，次の4つは同値である．</p>
 </div>
-<div class="stemblock">
-<div class="content">
-\[A が正則 \\
+<div class="paragraph">
+<p>\[
+A が正則 \\
 \mathrm{rank} A=n \\
 A の階段行列が単位行列 I_n \\
-|A| \neq 0\]
-</div>
+|A| \neq 0
+\]</p>
 </div>
 </div>
 <div class="sect3">
@@ -108,24 +110,14 @@ A の階段行列が単位行列 I_n \\
 <div class="paragraph">
 <p>\(A\)，\(B\) が正則であれば， \(\inv{A}\)，\(AB\)，\(\tr{A}\) はいずれも正則で，</p>
 </div>
-<div class="stemblock">
-<div class="content">
-\[\inv{(\inv{A})} = A \\
-\inv{AB} = \inv{B}\inv{A} \\
-\inv{(\tr{A})} = \tr{(\inv{A})}\]
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_ユニモジュラ行列">ユニモジュラ行列</h3>
 <div class="paragraph">
-<p>各要素が整数で行列式が \(+1\) あるいは \(-1\) の行列をユニモジュラ行列という．</p>
-</div>
-<div class="sect3">
-<h4 id="_性質">性質</h4>
-<div class="paragraph">
-<p>\(b\) を全ての要素が整数のベクトルとするとき， \(Mx=b\) には整数解が存在する．</p>
+<p>\[
+\begin{align}
+\inv{(\inv{A})} &amp;= A \\
+\inv{AB} &amp;= \inv{B}\inv{A} \\
+\inv{(\tr{A})} &amp;= \tr{(\inv{A})}
+\end{align}
+\]</p>
 </div>
 </div>
 </div>
@@ -152,13 +144,13 @@ A の階段行列が単位行列 I_n \\
 <div class="paragraph">
 <p>\(P\)，\(Q\) を正則行列とする．</p>
 </div>
-<div class="stemblock">
-<div class="content">
-\[\rank(PA) = \rank A \\
+<div class="paragraph">
+<p>\[
+\rank(PA) = \rank A \\
 \rank(AQ) = \rank A \\
 \rank(PAQ) = \rank A \\
-\rank\tr{A} = \rank A\]
-</div>
+\rank\tr{A} = \rank A
+\]</p>
 </div>
 </div>
 </div>
@@ -202,10 +194,10 @@ A の階段行列が単位行列 I_n \\
 <div class="paragraph">
 <p>行列式は正方行列に対して定義される．</p>
 </div>
-<div class="stemblock">
-<div class="content">
-\[\det (A) = |A| = \sum_{\sigma \in S_n} \left( \mathrm{sgn} (\sigma)\prod_{i=1}^{n} a_{i, \sigma_i}\right)\]
-</div>
+<div class="paragraph">
+<p>\[
+\det (A) = |A| = \sum_{\sigma \in S_n} \left( \mathrm{sgn} (\sigma)\prod_{i=1}^{n} a_{i, \sigma_i}\right)
+\]</p>
 </div>
 <div class="paragraph">
 <p>実際に行列式を求めるときは定義通りには計算せず，行列式の性質をうまく利用して求める．</p>
@@ -215,9 +207,9 @@ A の階段行列が単位行列 I_n \\
 <h3 id="_行列式の性質">行列式の性質</h3>
 <div class="sect3">
 <h4 id="_多重線形性">多重線形性</h4>
-<div class="stemblock">
-<div class="content">
-\[\left|\begin{array}{cccc}
+<div class="paragraph">
+<p>\[
+\left|\begin{array}{cccc}
 \vdots                 &amp; \vdots                 &amp; \cdots &amp; \vdots \\
 b_{i, 1}+c_{i, 1} &amp; b_{i, 2}+c_{i, 2} &amp; \cdots &amp; b_{i, n}+c_{i, n} \\
 \vdots                 &amp; \vdots                 &amp; \cdots &amp; \vdots \\
@@ -227,15 +219,12 @@ b_{i, 1}+c_{i, 1} &amp; b_{i, 2}+c_{i, 2} &amp; \cdots &amp; b_{i, n}+c_{i, n} \
 \vdots        &amp; \vdots        &amp; \cdots &amp; \vdots \\
 b_{i, 1} &amp; b_{i, 2} &amp; \cdots &amp; b_{i, n} \\
 \vdots        &amp; \vdots        &amp; \cdots &amp; \vdots \\
-\end{array}\right|
-+
+\end{array}\right|<br>
 \left|\begin{array}{cccc}
 \vdots        &amp; \vdots        &amp; \cdots &amp; \vdots \\
 c_{i, 1} &amp; c_{i, 2} &amp; \cdots &amp; c_{i, n} \\
 \vdots        &amp; \vdots        &amp; \cdots &amp; \vdots \\
-\end{array}\right|
-\\
-
+\end{array}\right| \\
 \left|\begin{array}{cccc}
 \vdots        &amp; \vdots        &amp; \cdots &amp; \vdots \\
 cb_{i, 1} &amp; cb_{i, 2} &amp; \cdots &amp; cb_{i, n} \\
@@ -247,8 +236,8 @@ c
 \vdots        &amp; \vdots        &amp; \cdots &amp; \vdots \\
 b_{i, 1} &amp; b_{i, 2} &amp; \cdots &amp; b_{i, n} \\
 \vdots        &amp; \vdots        &amp; \cdots &amp; \vdots \\
-\end{array}\right|\]
-</div>
+\end{array}\right|
+\]</p>
 </div>
 <div class="paragraph">
 <p>「多重」とは，どの行においても上の2つが成り立つということ．</p>
@@ -256,9 +245,9 @@ b_{i, 1} &amp; b_{i, 2} &amp; \cdots &amp; b_{i, n} \\
 </div>
 <div class="sect3">
 <h4 id="_交代性">交代性</h4>
-<div class="stemblock">
-<div class="content">
-\[\left|\begin{array}{cccc}
+<div class="paragraph">
+<p>\[
+\left|\begin{array}{cccc}
 \vdots        &amp; \vdots        &amp; \cdots &amp; \vdots \\
 a_{i, 1} &amp; a_{i, 2} &amp; \cdots &amp; a_{i, n} \\
 \vdots        &amp; \vdots        &amp; \cdots &amp; \vdots \\
@@ -273,8 +262,8 @@ a_{j, 1} &amp; a_{j, 2} &amp; \cdots &amp; a_{j, n} \\
 \vdots        &amp; \vdots        &amp; \cdots &amp; \vdots \\
 a_{i, 1} &amp; a_{i, 2} &amp; \cdots &amp; a_{i, n} \\
 \vdots        &amp; \vdots        &amp; \cdots &amp; \vdots \\
-\end{array}\right|\]
-</div>
+\end{array}\right|
+\]</p>
 </div>
 <div class="paragraph">
 <p>行を入れ替えると符号が変わる．</p>
@@ -288,9 +277,9 @@ a_{i, 1} &amp; a_{i, 2} &amp; \cdots &amp; a_{i, n} \\
 </div>
 <div class="sect3">
 <h4 id="_次数を下げる">次数を下げる</h4>
-<div class="stemblock">
-<div class="content">
-\[\left|\begin{array}{cccc}
+<div class="paragraph">
+<p>\[
+\left|\begin{array}{cccc}
 a_{1, 1} &amp; a_{1, 2} &amp; \cdots &amp; a_{1, n} \\
 0        &amp; a_{2, 2} &amp; \cdots &amp; a_{2, n} \\
 0        &amp; \vdots   &amp; \ddots &amp; \vdots   \\
@@ -302,8 +291,8 @@ a_{1, 1}
 a_{2, 2} &amp; \cdots &amp; a_{2, n} \\
 \vdots   &amp; \ddots &amp; \vdots   \\
 a_{n, 2} &amp; \cdots &amp; a_{n, n} \\
-\end{array}\right|\]
-</div>
+\end{array}\right|
+\]</p>
 </div>
 <div class="paragraph">
 <p>これは行列式の定義を考えるとわかる．</p>
@@ -317,14 +306,12 @@ a_{n, 2} &amp; \cdots &amp; a_{n, n} \\
 <div class="paragraph">
 <p>\(A\)，\(B\) を同じ次数の正方行列とするとき，</p>
 </div>
-<div class="stemblock">
-<div class="content">
-\[|AB| = |A||B| \\
-|\tr{A}| = |A|\]
-</div>
-</div>
 <div class="paragraph">
-<p>が成り立つ．</p>
+<p>\[
+|AB| = |A||B| \\
+|\tr{A}| = |A|
+\]
+が成り立つ．</p>
 </div>
 </div>
 </div>
@@ -342,9 +329,9 @@ a_{n, 2} &amp; \cdots &amp; a_{n, n} \\
 <div class="paragraph">
 <p>以下の集合 \(\mathbb{R}^n\) に，加法とスカラー倍の演算を導入するとき， \(\mathbb{R}^n\) を実数上の <strong>\(n\) 次元数ベクトル空間</strong> と言う．</p>
 </div>
-<div class="stemblock">
-<div class="content">
-\[\mathbb{R}^n = \left\{
+<div class="paragraph">
+<p>\[
+\mathbb{R}^n = \left\{
 \left.
 \begin{bmatrix}
 x_1 \\
@@ -354,8 +341,8 @@ x_n \\
 \end{bmatrix}
 \right|
 x_1, x_2, \cdots, x_n \in \mathbb{R}
-\right\}\]
-</div>
+\right\}
+\]</p>
 </div>
 <div class="sect2">
 <h3 id="_1次_線形_独立_1次_線形_従属">1次(線形)独立・1次(線形)従属</h3>
@@ -371,17 +358,79 @@ x_1, x_2, \cdots, x_n \in \mathbb{R}
 <div class="paragraph">
 <p>\(\mathbb{R}^n\) の部分集合 \(W\) が以下を満たすとき， \(W\) を \(\mathbb{R}^n\) の部分空間という．</p>
 </div>
-<div class="stemblock">
-<div class="content">
-\[\bold{0} \in W \\
+<div class="paragraph">
+<p>\[
+\bold{0} \in W \\
 \bold{a}, \bold{b} \in W \Longrightarrow \bold{a}+\bold{b} \in W \\
-\bold{a} \in W, k \in \mathbb{R} \Longrightarrow k\bold{a} \in W \\\]
+\bold{a} \in W, k \in \mathbb{R} \Longrightarrow k\bold{a} \in W \\
+\]</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_基底_次元">基底・次元</h3>
+<div class="paragraph">
+<p>\(W\) を \(\mathbb{R}^n\) の部分空間とする． \(W\) のベクトルの組 \(\{\bold{a}_1, \bold{a}_2, \cdots, \bold{a}_r\}\) が以下を満たすとき， \(\{\bold{a}_1, \bold{a}_2, \cdots, \bold{a}_r\}\) を \(W\) の <strong>基底</strong> という．</p>
+</div>
+<div class="paragraph">
+<p>\[
+\{\bold{a}_1, \bold{a}_2, \cdots, \bold{a}_r\} は1次独立である \\
+\{\bold{a}_1, \bold{a}_2, \cdots, \bold{a}_r\} は W の生成系である \\
+\]</p>
+</div>
+<div class="paragraph">
+<p>部分空間 \(W(\neq {\bold{0}})\) の基底を構成するベクトルの個数を \(W\) の <strong>次元</strong> といい， \(\newcommand{\dim}[1]{\mathrm{dim}#1} \dim{W}\) で表す．</p>
+</div>
+<div class="sect3">
+<h4 id="_部分空間の次元定理">部分空間の次元定理</h4>
+<div class="paragraph">
+<p>\[
+\dim{W_1} + \dim{W_2} = \dim{(W_1 + W_2)} + \dim{(W_1 \cap W_2)}
+\]</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_固有値_固有ベクトル">固有値・固有ベクトル</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>\(n\) 次正方行列 \(A\) に対して，</p>
+</div>
+<div class="paragraph">
+<p>\[
+A\bold{x}=\lambda\bold{x} (\bold{x}\neq\bold{0})
+\]</p>
+</div>
+<div class="paragraph">
+<p>を満たすベクトル \(\bold{x}\) と，スカラー \(\lambda\) が存在するとき， \(\lambda\) を \(A\) の <strong>固有値</strong> ， \(\bold{x}\) を固有値 \(\lambda\) に対する \(A\) の <strong>固有ベクトル</strong> という．</p>
+</div>
+<div class="sect2">
+<h3 id="_固有方程式">固有方程式</h3>
+<div class="paragraph">
+<p>\(|A-\lambda I|=0\) を \(A\) の <strong>固有方程式</strong> という． 固有方程式の解が固有値である．</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_対角化">対角化</h3>
+<div class="paragraph">
+<p>\(n\) 次正方行列 \(A\) の異なる固有値 \(\lambda_1, \lambda_2, \cdots, \lambda_r\) ，その重複度をそれぞれ \(n_1, n_2, \cdots, n_r\) とする．このとき， \(A\) が適当な正則行列で対角化可能である．</p>
+</div>
+<div class="paragraph">
+<p>\[
+P^{-1}AP =
+\begin{bmatrix}
+\lambda_1 I_{n_1} &amp; &amp; &amp; O \\
+&amp; \lambda_2 I_{n_2} &amp; &amp; \\
+&amp; &amp; \ddots &amp; \\
+O &amp; &amp; &amp; \lambda_r I_{n_r} \\
+\end{bmatrix}
+\]</p>
 </div>
 </div>
 </div>
 </div>
 <hr>
-<p>last modified : 2017-12-13 05:58:30 +0900</p>
+<p>last modified : 2017-12-13 12:24:50 +0900</p>
 <p><a href='/'>monman53.github.io</a></p>
 <p>this page is generated by <a href='https://github.com/monman53/monsta'>monsta</a></p>
