@@ -13,6 +13,7 @@ link:https://raw.githubusercontent.com/monman53/online_judge/master/lib/datastru
 link:https://raw.githubusercontent.com/monman53/online_judge/master/lib/graph.h[->graph]
 link:https://raw.githubusercontent.com/monman53/online_judge/master/lib/graph_flow.h[->graph_flow]
 link:https://raw.githubusercontent.com/monman53/online_judge/master/lib/math.h[->math]
+link:https://raw.githubusercontent.com/monman53/online_judge/master/lib/string.h[->string]
 //}}}
 
 == 英語（笑）
@@ -76,8 +77,33 @@ while(l != r){
 
 // λ関数でソート
 sort(v.begin(), v.end(), [](struct E &e1, struct E &e2){return e1.v < e2.v;});
+
+// ビット演算
+i & -i; // iの最後の1のビット
+
+// パスカルの三角形
+LL comb[n+1][n+1];
+for(int i=0;i<=n;i++){
+    for(int j=0;j<=n;j++){
+        if(j > i){
+            comb[i][j] = 0LL;
+        }else if(j == 0 || j == i){
+            comb[i][j] = 1LL;
+        }else{
+            comb[i][j] = comb[i-1][j-1]+comb[i-1][j];
+        }
+    }
+}
 ----
 //}}}
+
+== 問題
+// {{{
+=== グラフ
+* ベルマンフォード
+** 最短路，負閉路検出(到達可能な負閉路(全ての負閉路を検出してはだめ))
+*** link:https://beta.atcoder.jp/contests/abc061/tasks/abc061_d[ABC061D]
+// }}}
 
 == 知識
 // {{{
@@ -178,6 +204,23 @@ do{
 }while(next_permutation(v.begin(), v.end()));
 ----
 
+==== bitset
+
+[source, cpp]
+----
+#include <bitset>
+
+bitset<8> bit(131uL);
+
+cout << bit << endl;             // 10000011
+cout << bit.to_string() << endl; // 10000011
+cout << bit.to_ullong() << endl; // 131
+
+// 1になっているビットの数
+bitset<4> bs("1011");
+cout << bs.count() << endl; // 3
+----
+
 ==== map
 
 [source, cpp]
@@ -243,6 +286,11 @@ s.pop();
 [source, cpp]
 ----
 #include <string>
+
+// substr
+s.substr(2, 3)  // 2番目(0-index)から3要素
+s.substr(2);    // 2番目(0-index)以降全て
+
 
 // 行読み込み
 getline(cin, str);
