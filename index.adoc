@@ -1,37 +1,62 @@
-= Top
+= Biography
 
-// いままで色々な方法でホームページを作ろうと試みてきましたが，静的サイトジェネレータ自作という形で落ち着きました．
-CSSが読み込めていない訳ではないです．
+* monman53
+* 誕生日 1994-05-03
+* 2018-04 東京工業大学 情報理工学院 入学
+* 2018-03 東京工業大学 工学部 情報工学科 卒業
 
-== Site Map
+=== 大学での研究内容
 
-* link:/[Top]
-** link:/profile/[Profile]
+* DNAコンピューティング
+
+=== 競技プログラミング
+
+* 2009-12 https://www.ioi-jp.org/joi/2009/[第09回日本情報オリンピック] 予選参加
+* 2012-02 *https://www.ioi-jp.org/joi/2011/[第11回日本情報オリンピック] 本戦出場*
+* 2016-12 https://atcoder.jp/contests/ddcc2016-final[DDCC2016] 本戦出場
+* 2017-12 https://atcoder.jp/contests/code-thanks-festival-2017[CODE THANKS FESTIVAL 2017] 出場
+* 2017-12 *https://icpc.iisf.or.jp/2017-tsukuba/[ACM-ICPCアジアつくば大会2017] 出場* (kurukuru-sushiのみんなのおかげ)
+* 2018-03 https://atcoder.jp/contests/future-contest-2018-final[HACK TO THE FUTURE 2018] 本戦出場
+* 2018-06 https://atcoder.jp/contests/bitflyer2018-final[codeFlyer 2018] 本戦出場
+* 2019-01 https://atcoder.jp/contests/ddcc2019-final[DDCC2019] 本戦出場
+
+=== 陸上競技
+
+* 2012-08 *http://www.jaaf.or.jp/taikai/995/[第65回全国高校総体] 出場* 三段跳
+* 2012-10 *http://www.gifukokutai2012.jp/kokutai/[第67回国民体育大会(岐阜)] 出場* 群馬県代表 少年男子A 三段跳 http://www.gifukokutai2012.jp/kokutai/result/[記録]
+
+//== Site Map
+//
+//* link:/[Top]
+//** link:/profile/[Profile]
 // ** link:/computer/[Computer]
-** Computer 
+//** hobby
+//*** link:/computer/lambda.html[λ]
+//*** link:/computer/kyopro.html[競技プログラミング]
+//*** link:/computer/linux.html[GNU/Linux]
+//** Cookbook
 // *** link:/computer/tools.html[Tools]
 // *** link:/computer/programming.html[Programming]
-*** link:/computer/kyopro.html[競技プログラミング]
-*** link:/computer/tex.html[LaTeX]
-*** link:/computer/lambda.html[λ]
-*** link:/computer/linux.html[GNU/Linux]
+//*** link:/computer/docker.html[Docker]
 // *** link:/computer/coreutils.html[coreutils]
-*** GNU
-**** link:/computer/gnu/parallel.html[parallel]
-*** non-GNU
-**** link:/computer/nongnu/imagemagick.html[ImageMagick]
-*** Language
-**** link:/computer/language/rust.html[Rust]
+//*** link:/computer/parallel.html[GNU Parallel]
+//*** link:/computer/imagemagick.html[ImageMagick]
+//*** link:/computer/zsh.html[Zsh]
+//*** Language
+//**** link:/computer/language/rust.html[Rust]
+//**** link:/computer/tex.html[LaTeX]
 // **** link:/computer/language/cpp.html[C++]
 // **** link:/computer/language/python.html[Python]
-** Science
-*** link:/science/statistics.html[統計学]
-*** link:/science/information.html[情報科学]
-*** link:/science/nonlinear.html[非線形科学]
-*** link:/science/math/[数学]
-**** link:/science/math/linear.html[線形代数]
-** link:/music/[クラシック音楽]
-** link:/cooking.html[料理]
-** link:/articles/[Articles]
-* link:/links.html[リンク集]
-* link:/test.html[test page]
+//** Science
+//*** link:/science/statistics.html[統計学]
+//*** link:/science/information.html[情報科学]
+//*** link:/science/nonlinear.html[非線形科学]
+//*** 数値計算
+//**** link:/science/sparse_matrix.html[疎行列]
+//*** link:/science/math/[数学]
+//**** link:/science/math/linear.html[線形代数]
+//** link:/music/[クラシック音楽]
+//** link:/cooking.html[料理]
+//** link:/articles/[Articles]
+//* link:/links.html[リンク集]
+//* link:/test.html[test page]

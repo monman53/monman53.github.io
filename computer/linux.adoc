@@ -1,5 +1,4 @@
-GNU/Linux
-=========
+= GNU/Linux
 
 
 [WARNING]
@@ -160,8 +159,9 @@ footnote:[普通のテキストエディタであれば，ファイルを開く�
 
 ==== 標準出力，標準入力
 
+[source, bash]
 ----
-$ echo 'hello world'
+echo 'hello world'
 ----
 
 たとえば上のコマンドを実行すると，
@@ -191,16 +191,18 @@ footnote:[実際にはもっとありますが，ここでは標準入出力に�
 
 例えば次の例では `echo` というソフトウェアの標準出力を， `output.txt` というファイルに繋げています．
 
+[source, bash]
 ----
-$ echo 'hello world' > output.txt
+echo 'hello world' > output.txt
 ----
 
 上を実行すれば， `output.txt` には `hello world` が出力されているでしょう．
 
 逆に，下の例では，今さっき作成したばかりの `output.txt` の内容を `wc` というソフトウェアの標準入力に繋げています．
 
+[source, bash]
 ----
-$ wc < output.txt
+wc < output.txt
 ----
 
 ==== パイプ
@@ -209,9 +211,10 @@ $ wc < output.txt
 その名の通り，2つのソフトウェアをパイプで繋げているイメージです．
 
 例えば次の例では `echo` というソフトウェアと `wc` というソフトウェアをパイプでつなげています．
-
+ 
+[source, bash]
 ----
-$ echo 'hello world' | wc
+echo 'hello world' | wc
 ----
 
 .標準入出力を用いるソフトウェア
