@@ -25,6 +25,10 @@
 * 2012-08 *http://www.jaaf.or.jp/taikai/995/[第65回全国高校総体] 出場* 三段跳
 * 2012-10 *http://www.gifukokutai2012.jp/kokutai/[第67回国民体育大会(岐阜)] 出場* 群馬県代表 少年男子A 三段跳 http://www.gifukokutai2012.jp/kokutai/result/[記録]
 
+=== その他
+
+* link:/tools.html[どうぐ一覧]
+
 //== Site Map
 //
 //* link:/[Top]
