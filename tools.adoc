@@ -5,6 +5,7 @@
 * ノートPC
 * メインデスクトップ
 ** ケース
+*** Sharkoon SHA-S25-VBK
 ** マザーボード
 *** ASRock AB350 Pro4
 ** CPU
@@ -15,11 +16,14 @@
 *** Samsung MZ-V6E250B/IT
 ** 電源
 *** 玄人志向 KRPW-GT500W/90+ 
-* スキャナ
-** EPSON GT-X980
 * マウス
 ** BUFFALO BSMBU505MRD
 * スピーカー
+** CREATIVE GigaWorks T20 Series II
+* ディスプレイ
+** Acer S271HL 27-inch
+* スキャナ
+** EPSON GT-X980
 
 == 撮影機材
 
@@ -55,22 +59,56 @@
 == 文房具，画材
 
 * 万年筆
-** PLATINUM #3776 センチュリー ロジウムフィニッシュ SF ブラックダイヤモンド
+** PLATINUM #3776 センチュリー SF ロジウムフィニッシュ ブラックダイヤモンド
 * 水彩色鉛筆
+** LYRA REMBRANDT aquarell pencils hi-quality 12 colors
 * 透明水彩絵の具
+** holbein HWC 12 Colors Set
 * 不透明水彩絵具
+** VANGOGH Acrylic Gouache 12ml 12色
 * 筆
+** VANGOGH VISUAL GWVR 5/0
+** holbein RESABLE 31R 6 mini
+** holbein RESABLE 31H 0 mini
+** SAKURA ネオセブロン 彩色 中
+** SAKURA ネオセブロン 面相 中
+** SAKURA ネオセブロン 平筆四号
+* 紙
+** maruman Sketch Book MPS D01 S225
+** muse モンバルキャンソン紙 PMC-007
+* 定規
+** kutsuwa サイズカッター定規41cm KB017
+* カッター
+** OLFA リサイクルL型 155K
+* デザインナイフ
+** NT Cutter D-1000P
+* ホッチキス
+** MAX HD-10FS PAT.B
+* シャープペンシル
+** STAEDTLER 923 35-05
 
 == 家電
 
 * 冷蔵庫
+** SHARP SJ-D14C-W
 * 電子レンジ
+** Panasonic NE-EH229-W
 * トースター
-** Panasonic NE-EH229
+** ニトリ MG08BLQ
 * 洗濯機
+** Panasonic NA-F60PB10
 * 加湿器
 ** アイリスオーヤマ SHM-120D-A
 * 電気ストーブ
 ** アイリスオーヤマ EHT-800W
 * アイロン
 ** Panasonic NI-R36-S
+* 照明
+** オーム アームライト AS-N10AW-K
+
+== その他
+
+* 腕時計
+** CASIO MQ-24-7B2LLJF
+** CASIO F-91W-1JF
+* 自転車
