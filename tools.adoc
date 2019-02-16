@@ -3,13 +3,22 @@
 == PC，周辺機器
 
 * ノートPC
-* ケース
-* マザーボード
-* ファン
-* CPU
+* メインデスクトップ
+** ケース
+** マザーボード
+*** ASRock AB350 Pro4
+** CPU
+*** AMD CPU Ryzen5 1600X AM4 YD160XBCAEWOF  
+** ファン
+*** ENERMAX ETS-N31-02
+** SSD
+*** Samsung MZ-V6E250B/IT
+** 電源
+*** 玄人志向 KRPW-GT500W/90+ 
 * スキャナ
 ** EPSON GT-X980
 * マウス
+** BUFFALO BSMBU505MRD
 * スピーカー
 
 == 撮影機材
@@ -17,15 +26,31 @@
 * カメラ
 ** OLYMPUS OM-D E-M5 Mark II
 * レンズ
+** M.ZUIKO DIGITAL ED 14-150mm F4.0-5.6 II ブラック
+** M.ZUIKO DIGITAL 45mm F1.8 ブラック 
 * レンズ(オールド)
+** G.ZUIKO AUTO-S 50mm F1.4
+** G.ZUIKO AUTO-W 28mm F3.5
+** E.ZUIKO AUTO-T 200mm F4
+** ZUIKO MC AUTO-MACRO 50mm F3.5
+** OM-SYSTEM TELECONVERTER 2X-A
 * フィールドスコープ
+** Vixen GEOMA II ED 67-S
+** 接眼レンズ
+*** GLH20D
+*** GL20
+** アクセサリ
+*** CAMERA ADAPTER G
+*** T-ring for Micro Four Thirds
 * 三脚
-** MT190XPRO4
+** Manfrotto MT190XPRO4
+** Velbon Light D25 D
 * 雲台
 ** NEEWER ジンバル雲台
 * その他アクセサリ
 ** INPON クイックリリースプレート アルカスイス互換 300mm
 ** Newmowa BLN-1 互換バッテリー 2個+充電器
+** KIPON マウントアダプタ OM-m4/3
 
 == 文房具，画材
 

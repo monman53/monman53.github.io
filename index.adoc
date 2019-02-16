@@ -1,31 +1,42 @@
 = Biography
 
-* monman53
+* *monman53*
 * 誕生日 1994-05-03
 * 2018-04 東京工業大学 情報理工学院 入学
 * 2018-03 東京工業大学 工学部 情報工学科 卒業
 
-=== 大学での研究内容
+== 興味があるもの
+
+* 情報
+* 計算
+* ナチュラルコンピューティング
+
+== 研究
 
 * DNAコンピューティング
 
-=== 競技プログラミング
+== 競技プログラミング
 
-* 2009-12 https://www.ioi-jp.org/joi/2009/[第09回日本情報オリンピック] 予選参加
-* 2012-02 *https://www.ioi-jp.org/joi/2011/[第11回日本情報オリンピック] 本戦出場*
-* 2016-12 https://atcoder.jp/contests/ddcc2016-final[DDCC2016] 本戦出場
-* 2017-12 https://atcoder.jp/contests/code-thanks-festival-2017[CODE THANKS FESTIVAL 2017] 出場
-* 2017-12 *https://icpc.iisf.or.jp/2017-tsukuba/[ACM-ICPCアジアつくば大会2017] 出場* (kurukuru-sushiのみんなのおかげ)
-* 2018-03 https://atcoder.jp/contests/future-contest-2018-final[HACK TO THE FUTURE 2018] 本戦出場
-* 2018-06 https://atcoder.jp/contests/bitflyer2018-final[codeFlyer 2018] 本戦出場
+* AtCoder 青  http://codeforces.com/profile/monman53[monman53]
+* CodeForces 青 https://atcoder.jp/users/monman53[monman53]
+
+=== コンテスト出場歴
+
 * 2019-01 https://atcoder.jp/contests/ddcc2019-final[DDCC2019] 本戦出場
+* 2018-06 https://atcoder.jp/contests/bitflyer2018-final[codeFlyer 2018] 本戦出場
+* 2018-03 https://atcoder.jp/contests/future-contest-2018-final[HACK TO THE FUTURE 2018] 本戦出場
+* 2017-12 *https://icpc.iisf.or.jp/2017-tsukuba/[ACM-ICPCアジアつくば大会2017] 出場* (kurukuru-sushiのみんなのおかげ)
+* 2017-12 https://atcoder.jp/contests/code-thanks-festival-2017[CODE THANKS FESTIVAL 2017] 出場
+* 2016-12 https://atcoder.jp/contests/ddcc2016-final[DDCC2016] 本戦出場
+* 2012-02 *https://www.ioi-jp.org/joi/2011/[第11回日本情報オリンピック] 本戦出場*
+* 2009-12 https://www.ioi-jp.org/joi/2009/[第09回日本情報オリンピック] 予選参加
 
-=== 陸上競技
+== 陸上競技歴
 
-* 2012-08 *http://www.jaaf.or.jp/taikai/995/[第65回全国高校総体] 出場* 三段跳
 * 2012-10 *http://www.gifukokutai2012.jp/kokutai/[第67回国民体育大会(岐阜)] 出場* 群馬県代表 少年男子A 三段跳 http://www.gifukokutai2012.jp/kokutai/result/[記録]
+* 2012-08 *http://www.jaaf.or.jp/taikai/995/[第65回全国高校総体] 出場* 三段跳
 
-=== その他
+== その他
 
 * link:/tools.html[どうぐ一覧]
 
