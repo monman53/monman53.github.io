@@ -1,6 +1,9 @@
 = Biography
 
 * *monman53*
+* Twitter link:https://twitter.com/[monman53]
+* GitHub link:https://github.com/monman53[monman53]
+* blog https://monman53.hateblo.jp/[monman53のぶろぐ]
 * 誕生日 1994-05-03
 * 2018-04 東京工業大学 情報理工学院 入学
 * 2018-03 東京工業大学 工学部 情報工学科 卒業
@@ -31,10 +34,42 @@
 * 2012-02 *https://www.ioi-jp.org/joi/2011/[第11回日本情報オリンピック] 本戦出場*
 * 2009-12 https://www.ioi-jp.org/joi/2009/[第09回日本情報オリンピック] 予選参加
 
-== 陸上競技歴
+== 制作物
+
+* link:https://monman53.github.io/plasmidraw/[plasmidraw]
+** プラスミドの図を楽に作れるやつ
+* link:https://monman53.github.io/halftone/[Halftone]
+** 印刷技術の網点(Halftone)の単色エミュレータ
+* link:https://monman53.github.io/chimera.js/[chimera.js]
+** 量子アニーラのエミュレータ(キメラグラフ)
+
+== 陸上競技
+
+=== 出場歴
 
 * 2012-10 *http://www.gifukokutai2012.jp/kokutai/[第67回国民体育大会(岐阜)] 出場* 群馬県代表 少年男子A 三段跳 http://www.gifukokutai2012.jp/kokutai/result/[記録]
 * 2012-08 *http://www.jaaf.or.jp/taikai/995/[第65回全国高校総体] 出場* 三段跳
+
+=== 自己ベスト公認記録一覧
+
+* 三段跳 14m76 (風速 +1.4) (追風参考 14m81 (風速 +2.2))
+** link:http://gold.jaic.org/gunma/menu/results/r_12/r120908/REL153.HTM[第65回群馬県高等学校対抗陸上競技大会]
+* 走幅跳 6m84 (風速 +0.1)
+** link:http://gold.jaic.org/gunma/menu/results/r_12/r120908/REL152.HTM[第65回群馬県高等学校対抗陸上競技大会]
+* 走高跳 1m90
+** link:http://gold.jaic.org/gunma/menu/results/r_11/r111015/REL111.HTM[平成23年度群馬県高等学校陸上競技強化大会]
+* 100m 11"83 (風速 -0.7)
+** link:http://gold.jaic.org/gunma/menu/results/r_11/r111112/REL050.HTM[平成23年度群馬県高等学校陸上競技強化大会混成競技会]
+* 400m 54"44
+** link:http://gold.jaic.org/gunma/menu/results/r_11/r111112/REL057.HTM[平成23年度群馬県高等学校陸上競技強化大会混成競技会]
+* 1500m 5'04"08
+** link:http://gold.jaic.org/gunma/menu/results/r_11/r111112/REL178.HTM[平成23年度群馬県高等学校陸上競技強化大会混成競技会]
+* 110mH 17"86 (1067mm)
+** link:http://gold.jaic.org/gunma/menu/results/r_11/r111112/REL077.HTM[平成23年度群馬県高等学校陸上競技強化大会混成競技会]
+* 砲丸投 9m43 (6kg)
+** link:http://gold.jaic.org/gunma/menu/results/r_11/r111112/REL129.HTM[平成23年度群馬県高等学校陸上競技強化大会混成競技会]
+* やり投 30m45
+** link:http://gold.jaic.org/gunma/menu/results/r_11/r111112/REL134.HTM[平成23年度群馬県高等学校陸上競技強化大会混成競技会]
 
 == その他
 

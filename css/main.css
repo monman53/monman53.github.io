@@ -10,3 +10,7 @@ code {
 li > p {
     margin: 0;
 }
+
+td > p {
+    margin: 0;
+}
