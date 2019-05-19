@@ -1,0 +1,226 @@
+<!doctype html>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<link rel='shortcut icon' type='image/png' href='/img/favicon.png'/>
+<title>Docker : monman53</title>
+<link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css'>
+<script src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/rust.min.js'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/tex.min.js'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/vim.min.js'></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+<script type='text/x-mathjax-config'>MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$']]}});</script>
+<link rel='stylesheet' href='/css/main.css'>
+<p><a href='/'>monman53.github.io</a></p>
+<hr>
+<h1>Docker</h1>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111264044-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-111264044-1');
+</script>
+<div id="preamble">
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Docker基礎</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.docker.com/" class="bare">https://docs.docker.com/</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_cheat_sheet">cheat sheet</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">## List Docker CLI commands
+docker
+docker container --help
+
+## Display Docker version and info
+docker --version
+docker version
+docker info
+
+## Execute Docker image
+docker run hello-world
+
+## List Docker images
+docker image ls
+
+## List Docker containers (running, all, all in quiet mode)
+docker container ls
+docker container ls --all
+docker container ls -aq
+
+docker build -t friendlyhello .  # Create image using this directory's Dockerfile
+docker run -p 4000:80 friendlyhello  # Run "friendlyname" mapping port 4000 to 80
+docker run -d -p 4000:80 friendlyhello         # Same thing, but in detached mode
+docker container ls                                # List all running containers
+docker container ls -a             # List all containers, even those not running
+docker container stop &lt;hash&gt;           # Gracefully stop the specified container
+docker container kill &lt;hash&gt;         # Force shutdown of the specified container
+docker container rm &lt;hash&gt;        # Remove specified container from this machine
+docker container rm $(docker container ls -a -q)         # Remove all containers
+docker image ls -a                             # List all images on this machine
+docker image rm &lt;image id&gt;            # Remove specified image from this machine
+docker image rm $(docker image ls -a -q)   # Remove all images from this machine
+docker login             # Log in this CLI session using your Docker credentials
+docker tag &lt;image&gt; username/repository:tag  # Tag &lt;image&gt; for upload to registry
+docker push username/repository:tag            # Upload tagged image to registry
+docker run username/repository:tag                   # Run image from a registry
+
+docker stack ls                                            # List stacks or apps
+docker stack deploy -c &lt;composefile&gt; &lt;appname&gt;  # Run the specified Compose file
+docker service ls                 # List running services associated with an app
+docker service ps &lt;service&gt;                  # List tasks associated with an app
+docker inspect &lt;task or container&gt;                   # Inspect task or container
+docker container ls -q                                      # List container IDs
+docker stack rm &lt;appname&gt;                             # Tear down an application
+docker swarm leave --force      # Take down a single node swarm from the manager
+
+docker-machine create --driver virtualbox myvm1 # Create a VM (Mac, Win7, Linux)
+docker-machine create -d hyperv --hyperv-virtual-switch "myswitch" myvm1 # Win10
+docker-machine env myvm1                # View basic information about your node
+docker-machine ssh myvm1 "docker node ls"         # List the nodes in your swarm
+docker-machine ssh myvm1 "docker node inspect &lt;node ID&gt;"        # Inspect a node
+docker-machine ssh myvm1 "docker swarm join-token -q worker"   # View join token
+docker-machine ssh myvm1   # Open an SSH session with the VM; type "exit" to end
+docker node ls                # View nodes in swarm (while logged on to manager)
+docker-machine ssh myvm2 "docker swarm leave"  # Make the worker leave the swarm
+docker-machine ssh myvm1 "docker swarm leave -f" # Make master leave, kill swarm
+docker-machine ls # list VMs, asterisk shows which VM this shell is talking to
+docker-machine start myvm1            # Start a VM that is currently not running
+docker-machine env myvm1      # show environment variables and command for myvm1
+eval $(docker-machine env myvm1)         # Mac command to connect shell to myvm1
+&amp; "C:\Program Files\Docker\Docker\Resources\bin\docker-machine.exe" env myvm1 | Invoke-Expression   # Windows command to connect shell to myvm1
+docker stack deploy -c &lt;file&gt; &lt;app&gt;  # Deploy an app; command shell must be set to talk to manager (myvm1), uses local Compose file
+docker-machine scp docker-compose.yml myvm1:~ # Copy file to node's home dir (only required if you use ssh to connect to manager and deploy the app)
+docker-machine ssh myvm1 "docker stack deploy -c &lt;file&gt; &lt;app&gt;"   # Deploy an app using ssh (you must have first copied the Compose file to myvm1)
+eval $(docker-machine env -u)     # Disconnect shell from VMs, use native docker
+docker-machine stop $(docker-machine ls -q)               # Stop all running VMs
+docker-machine rm $(docker-machine ls -q) # Delete all VMs and their disk images</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_installation">Installation</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><code>docker</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/" class="bare">https://docs.docker.com/install/linux/docker-ce/ubuntu/</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>docker-machine</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.docker.com/machine/install-machine/" class="bare">https://docs.docker.com/machine/install-machine/</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_permission">permission</h3>
+<div class="paragraph">
+<p><a href="https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user" class="bare">https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user</a></p>
+</div>
+<div class="paragraph">
+<p>non-root ユーザーに <code>docker</code> コマンドを使えるようにする．</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo usermod -aG docker $USER</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>ログアウトして</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">docker run hello-world</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_nginxコンテナ">nginxコンテナ</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_イメージ入手">イメージ入手</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">docker pull nginx:latest</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_コンテナ作成">コンテナ作成</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">docker run --name nginx-test -d -p 8080:80 nginx:latest</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>これで <code><a href="http://localhost:8080/" class="bare">http://localhost:8080/</a></code> にアクセスするとnginxのテストページが表示される．</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_停止">停止</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">docker stop nginx-test</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_再開">再開</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">docker start nginx-test</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>もちろん以前のデータが引き継がれる．</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_コンテナの削除">コンテナの削除</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">docker rm nginx-test</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+<p>last modified : 2018-06-20 04:07:00 +0900</p>
+<p><a href='/'>monman53.github.io</a></p>
+<p>this page is generated by <a href='https://github.com/monman53/monsta'>monsta</a></p>

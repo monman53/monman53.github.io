@@ -2,7 +2,7 @@
 <meta charset='UTF-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <link rel='shortcut icon' type='image/png' href='/img/favicon.png'/>
-<title>Tools : monman53</title>
+<title>parallel : monman53</title>
 <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css'>
 <script src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js'></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/rust.min.js'></script>
@@ -14,7 +14,7 @@
 <link rel='stylesheet' href='/css/main.css'>
 <p><a href='/'>monman53.github.io</a></p>
 <hr>
-<h1>Tools</h1>
+<h1>parallel</h1>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111264044-1"></script>
 <script>
@@ -24,67 +24,69 @@
 
   gtag('config', 'UA-111264044-1');
 </script>
-<div id="preamble">
+<div class="sect1">
+<h2 id="_はじめに">はじめに</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>便利なソフトウェアたち</p>
+<p>GNU Parallel は便利．</p>
+</div>
+<div class="paragraph">
+<p><a href="https://www.gnu.org/software/parallel/parallel_tutorial.html">本家 tutorial</a></p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_convert_mogrify_imagemagic_command_line_utiles">convert, mogrify, &#8230;&#8203; (ImageMagic command-line utiles)</h2>
+<h2 id="_基本">基本</h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p><a href="http://www.imagemagick.org/script/command-line-tools.php">本家</a><br></p>
-</li>
-<li>
-<p><a href="http://pen.agbi.tsukuba.ac.jp/~torarimon/?Imagemagick">例がいっぱいあるとこ</a><br>
-相当色々なことができそうだが，ほとんど使い切れないでいる．</p>
-</li>
-</ul>
+<div class="sect2">
+<h3 id="_引数">引数</h3>
+<div class="sect3">
+<h4 id="_ヘッダ付き引数">ヘッダ付き引数</h4>
+<div class="paragraph">
+<p><code>--header</code> オプションを指定する．</p>
+</div>
+<div class="paragraph">
+<p>引数が複数種類ある場合は，ヘッダ（ラベル）をつけたほうが参照の意味がわかりやすくてよい．
+あるいはヘッダ付きのファイルを読むとき．</p>
 </div>
 <div class="listingblock">
-<div class="title">hoge.png を hoge.jpg に変換する．</div>
 <div class="content">
-<pre>$ convert hoge.png hoge.jpg</pre>
+<pre>$ parallel --header : echo "{name}.{suffix}" ::: name hoge huga ::: suffix png jpg
+hoge.jpg
+hoge.png
+huga.jpg
+huga.png</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>pdfを画像にするときに便利． <code>-density</code> オプションとかで画質を調整できる．</p>
+<p><code>:</code> は何もしないコマンド．bashのSHELL BUILTIN COMMANDSを参照．</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_examples">Examples</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>並列処理に限らず， parallelの便利な機能．</p>
 </div>
 <div class="sect2">
-<h3 id="_options">options</h3>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">-ressize</dt>
-<dd>
-<p>縦横の大きさを変更する．</p>
-</dd>
-</dl>
-</div>
-<div class="listingblock">
-<div class="title">縦横比を維持したまま横を500pxにする</div>
-<div class="content">
-<pre>$ mogrify -resize 500x hoge.jpg</pre>
-</div>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">-density</dt>
-<dd>
-<p>解像度を変更する．</p>
-</dd>
-<dt class="hdlist1">-rotate</dt>
-<dd>
-<p>.画像を時計回りに90度回転する</p>
-</dd>
-</dl>
+<h3 id="_直積">直積</h3>
+<div class="paragraph">
+<p>順番が大事な場合は <code>--keep-order/-k</code> オプションを付ける．bashのブレース展開よりもいろいろできると思う．</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>$ mogrify -rotate +90 hoge.jpg</pre>
+<pre>$ parallel -k echo "{1} {2} {3}." ::: I You ::: like hate ::: me you
+I like me.
+I like you.
+I hate me.
+I hate you.
+You like me.
+You like you.
+You hate me.
+You hate you.</pre>
 </div>
 </div>
 </div>

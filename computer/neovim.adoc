@@ -1,0 +1,16 @@
+neovim
+======
+
+== 準備
+
+インストールして，実行は `nvim` ．
+
+== 設定
+
+設定ファイルは `~/.config/nvim/init.vim` に置く．
+
+== プラグイン
+
+link:https://github.com/Shougo/dein.vim[dein]で管理する．
+
+init.vimに何を追記すればよいかは，本家のインストール手順を踏めば自然にわかる．

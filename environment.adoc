@@ -1,0 +1,124 @@
+= 環境構築
+
+== dotfiles
+
+=== `~/.zshrc`
+
+[source, zsh]
+----
+# general
+autoload -Uz compinit promptinit
+compinit
+promptinit
+
+setopt histignoredups
+
+# prompt
+export PROMPT='
+%F{whilte}%K{black} %D{%Y-%m-%d %H:%M:%S} %F{black}%K{white} %/ 
+%F{clear}%K{clear}%n@%M $ '
+export RPROMPT=''
+
+# aliases
+alias rm="rm -iv"
+
+alias l="ls -F --color"
+alias la="ls -Fa --color"
+alias ll="ls -lhF --color"
+alias lla="ls -lhFa --color"
+alias l.="ls -lhFad --color .*"
+
+alias tree="tree -aC"
+
+alias ping8="ping 8.8.8.8"
+alias pingg="ping google.com"
+
+alias g++11="g++ -std=c++11 -Wall -O2"
+alias g++14="g++ -std=c++14 -Wall -O2"
+
+alias tmux="TERM=screen-256color-bce tmux"
+----
+
+=== `~/.config/nvim/init.vim`
+
+[source, vim]
+----
+" show line number
+set number
+
+" spaces will be used to fill the amount of whitespace of the tab
+set expandtab
+
+" number of spaces that a <Tab> in the file counts for
+set tabstop=4
+
+" indent width
+set shiftwidth=4
+
+" use colors that look good on a dark background
+set background=dark     
+
+" <C-x> <C-k>
+set dictionary=/usr/share/dict/words	
+
+set foldmethod=marker
+
+set clipboard=unnamedplus
+
+inoremap {<Enter> {<Enter>}<ESC><S-o>
+inoremap , ,<Space>
+
+"---------------------------
+" plugins
+"---------------------------
+"
+" clone into ~/.local/share/nvim/site/pack/git-plugins/
+
+" https://github.com/w0rp/ale.git   lint engine
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_enter = 0             " when file opend
+----
+
+=== `~/.gitconfig`
+
+[source]
+----
+[alias]
+    br      = branch
+    ci      = commit
+    co      = checkout
+    st      = status
+
+[color]
+    status  = auto
+
+[core]
+    editor  = nvim
+
+[user]
+    name    = hoge
+    email   = piyo@fuga.com
+----
+
+=== `~/.tmux.conf`
+
+[source]
+----
+set -g default-terminal "xterm"
+set -g escape-time 10
+----
+
+=== `~/.ssh/config`
+
+[source]
+----
+Host hostname
+    HostName    hoge.com
+    User        piyo
+----
+
+== Mozc keymap
+
+* link:keymap-jis.txt[JIS-keyboard]
+* keymap-us.txt
