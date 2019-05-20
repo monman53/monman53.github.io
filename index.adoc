@@ -1,5 +1,10 @@
 = Top
 
+== ぺーじ
+
+* link:/canvas.html[Canvasのきほん]
+* link:/kyopro.html[競プロのお供]
+
 == 制作物
 
 * link:https://monman53.github.io/plasmidraw/[plasmidraw]

@@ -1,0 +1,218 @@
+= Canvasのきほん
+
+
+
+https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial
+
+== 1. Canvasの配置
+
+[source, html]
+----
+<canvas height='256px' width='256px'></canvas>
+----
+
+256x256のまっさらな `<canvas>` を設置してみます．何も見えないと思いますが，この下に256x256の大きさの `<canvas>` があります．
+
+++++
+<canvas height='256px' width='256px'></canvas>
+++++
+
+== 2. 図形の描画
+
+[source, html]
+----
+<canvas id='demo' height='256px' width='256px'></canvas>
+
+<script>
+// get context
+var canvas = document.getElementById('demo');
+var ctx    = canvas.getContext('2d');
+
+// draw rectangles
+ctx.fillStyle = 'rgb(200, 0, 0)';
+ctx.fillRect(10, 10, 50, 50);
+
+ctx.fillStyle = 'rgba(0, 0, 200, 0.5)';
+ctx.fillRect(30, 30, 50, 50);
+</script>
+----
+
+四角形を2つ描画します．描画の命令はJavaScriptから行います．
+
+++++
+<canvas id='demo_02' height='256px' width='256px'></canvas>
+
+<script>
+// get context
+var canvas = document.getElementById('demo_02');
+var ctx    = canvas.getContext('2d');
+
+// draw rectangles
+ctx.fillStyle = 'rgb(200, 0, 0)';
+ctx.fillRect(10, 10, 50, 50);
+
+ctx.fillStyle = 'rgb(0, 0, 200, 0.5)';
+ctx.fillRect(30, 30, 50, 50);
+</script>
+++++
+
+== 3. アニメーション
+
+[source, html]
+----
+<canvas id='demo' height='256px' width='256px'></canvas>
+
+<script>
+// get context
+var canvas = document.getElementById('demo');
+var ctx    = canvas.getContext('2d');
+
+var time = 0;
+
+function draw() {
+    // clear canvas
+    ctx.clearRect(0, 0, 256, 256);
+
+    // draw rectangles
+    ctx.fillStyle = 'rgb(200, 0, 0)';
+    ctx.fillRect(10, 10, 50, 50);
+
+    ctx.fillStyle = 'rgb(0, 0, 200, 0.5)';
+    ctx.fillRect(30+Math.sin(time/10)*20, 30, 50, 50);
+
+    time += 1;
+
+    window.setTimeout(function(){
+        window.requestAnimationFrame(draw);
+    }, 10);
+}
+
+draw();
+</script>
+----
+
+10ms毎に `canvas` をまっさらにして，その度に四角形を再描画します．青い四角形のx座標を時間の関数にすることで，人間の目には青い四角形が動いているように見えます．
+
+++++
+<canvas id='demo_03' height='256px' width='256px'></canvas>
+
+<script>
+(function(){
+// get context
+var canvas = document.getElementById('demo_03');
+var ctx    = canvas.getContext('2d');
+
+var time = 0;
+
+function draw() {
+    // clear canvas
+    ctx.clearRect(0, 0, 256, 256);
+
+    // draw rectangles
+    ctx.fillStyle = 'rgb(200, 0, 0)';
+    ctx.fillRect(10, 10, 50, 50);
+
+    ctx.fillStyle = 'rgb(0, 0, 200, 0.5)';
+    ctx.fillRect(30+Math.sin(time/10)*20, 30, 50, 50);
+
+    time += 1;
+
+    window.setTimeout(function(){
+        window.requestAnimationFrame(draw);
+    }, 10);
+}
+
+draw();
+})();
+</script>
+++++
+
+== 4. マウス
+
+[source, html]
+----
+<canvas id='demo_04' height='256px' width='256px'></canvas>
+
+<script>
+// get context
+var canvas = document.getElementById('demo_04');
+var ctx    = canvas.getContext('2d');
+
+var mouseX = 0;
+var mouseY = 0;
+
+function updateMousePosition(event) {
+    mouseX = event.offsetX;
+    mouseY = event.offsetY;
+}
+
+canvas.addEventListener("mousemove", updateMousePosition, false);
+
+var time = 0;
+
+function draw() {
+    // clear canvas
+    ctx.clearRect(0, 0, 256, 256);
+
+    // draw rectangles
+    ctx.fillStyle = 'rgb(200, 0, 0)';
+    ctx.fillRect(10, 10, 50, 50);
+
+    ctx.fillStyle = 'rgb(0, 0, 200, 0.5)';
+    ctx.fillRect(mouseX, mouseY, 50, 50);
+
+    time += 1;
+
+    window.setTimeout(function(){
+        window.requestAnimationFrame(draw);
+    }, 10);
+}
+
+draw();
+----
+
+下の `<canvas>` 上でマウスを動かしてみて下さい．この例では `mousemove` をlistenしていますが，他にも色々なマウスイベントがあります．
+
+++++
+<canvas id='demo_04' height='256px' width='256px'></canvas>
+
+<script>
+(function(){
+// get context
+var canvas = document.getElementById('demo_04');
+var ctx    = canvas.getContext('2d');
+
+var mouseX = 0;
+var mouseY = 0;
+
+function updateMousePosition(event) {
+    mouseX = event.offsetX;
+    mouseY = event.offsetY;
+}
+
+canvas.addEventListener("mousemove", updateMousePosition, false);
+
+var time = 0;
+
+function draw() {
+    // clear canvas
+    ctx.clearRect(0, 0, 256, 256);
+
+    // draw rectangles
+    ctx.fillStyle = 'rgb(200, 0, 0)';
+    ctx.fillRect(10, 10, 50, 50);
+
+    ctx.fillStyle = 'rgb(0, 0, 200, 0.5)';
+    ctx.fillRect(mouseX, mouseY, 50, 50);
+
+    time += 1;
+
+    window.setTimeout(function(){
+        window.requestAnimationFrame(draw);
+    }, 10);
+}
+
+draw();
+})();
+</script>
+++++

@@ -3,7 +3,7 @@ body {
 }
 
 code {
-    font-family: monospace;
+    /*font-family: monospace;*/
     font-size: 12pt;
 }
 
@@ -13,4 +13,10 @@ li > p {
 
 td > p {
     margin: 0;
+}
+
+h2 {
+    padding-left: 0.5em;
+    border-left: 0.4em solid;
+    border-bottom: 2px solid;
 }

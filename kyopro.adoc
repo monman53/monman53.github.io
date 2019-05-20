@@ -6,3 +6,5 @@
 
 * $n\oplus n = 0$
 * 任意の偶数$n$について，$n\oplus(n+1)=1$
+* $0\oplus1\oplus\cdots\oplus(2^n-1)=0$
+** ただし$n>1$

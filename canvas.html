@@ -1,0 +1,254 @@
+<!doctype html>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<link rel='shortcut icon' type='image/png' href='/img/favicon.png'/>
+<title>Canvasのきほん : monman53</title>
+<link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css'>
+<script src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/rust.min.js'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/tex.min.js'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/vim.min.js'></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+<script type='text/x-mathjax-config'>MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$']]}});</script>
+<link rel='stylesheet' href='/css/main.css'>
+<p><a href='/'>monman53.github.io</a></p>
+<hr>
+<h1>Canvasのきほん</h1>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111264044-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-111264044-1');
+</script>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial" class="bare">https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_1_canvasの配置">1. Canvasの配置</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;canvas height='256px' width='256px'&gt;&lt;/canvas&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>256x256のまっさらな <code>&lt;canvas&gt;</code> を設置してみます．何も見えないと思いますが，この下に256x256の大きさの <code>&lt;canvas&gt;</code> があります．</p>
+</div>
+<canvas height='256px' width='256px'></canvas>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_2_図形の描画">2. 図形の描画</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;canvas id='demo' height='256px' width='256px'&gt;&lt;/canvas&gt;
+
+&lt;script&gt;
+// get context
+var canvas = document.getElementById('demo');
+var ctx    = canvas.getContext('2d');
+
+// draw rectangles
+ctx.fillStyle = 'rgb(200, 0, 0)';
+ctx.fillRect(10, 10, 50, 50);
+
+ctx.fillStyle = 'rgba(0, 0, 200, 0.5)';
+ctx.fillRect(30, 30, 50, 50);
+&lt;/script&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>四角形を2つ描画します．描画の命令はJavaScriptから行います．</p>
+</div>
+<canvas id='demo_02' height='256px' width='256px'></canvas>
+
+<script>
+// get context
+var canvas = document.getElementById('demo_02');
+var ctx    = canvas.getContext('2d');
+
+// draw rectangles
+ctx.fillStyle = 'rgb(200, 0, 0)';
+ctx.fillRect(10, 10, 50, 50);
+
+ctx.fillStyle = 'rgb(0, 0, 200, 0.5)';
+ctx.fillRect(30, 30, 50, 50);
+</script>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_3_アニメーション">3. アニメーション</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;canvas id='demo' height='256px' width='256px'&gt;&lt;/canvas&gt;
+
+&lt;script&gt;
+// get context
+var canvas = document.getElementById('demo');
+var ctx    = canvas.getContext('2d');
+
+var time = 0;
+
+function draw() {
+    // clear canvas
+    ctx.clearRect(0, 0, 256, 256);
+
+    // draw rectangles
+    ctx.fillStyle = 'rgb(200, 0, 0)';
+    ctx.fillRect(10, 10, 50, 50);
+
+    ctx.fillStyle = 'rgb(0, 0, 200, 0.5)';
+    ctx.fillRect(30+Math.sin(time/10)*20, 30, 50, 50);
+
+    time += 1;
+
+    window.setTimeout(function(){
+        window.requestAnimationFrame(draw);
+    }, 10);
+}
+
+draw();
+&lt;/script&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>10ms毎に <code>canvas</code> をまっさらにして，その度に四角形を再描画します．青い四角形のx座標を時間の関数にすることで，人間の目には青い四角形が動いているように見えます．</p>
+</div>
+<canvas id='demo_03' height='256px' width='256px'></canvas>
+
+<script>
+(function(){
+// get context
+var canvas = document.getElementById('demo_03');
+var ctx    = canvas.getContext('2d');
+
+var time = 0;
+
+function draw() {
+    // clear canvas
+    ctx.clearRect(0, 0, 256, 256);
+
+    // draw rectangles
+    ctx.fillStyle = 'rgb(200, 0, 0)';
+    ctx.fillRect(10, 10, 50, 50);
+
+    ctx.fillStyle = 'rgb(0, 0, 200, 0.5)';
+    ctx.fillRect(30+Math.sin(time/10)*20, 30, 50, 50);
+
+    time += 1;
+
+    window.setTimeout(function(){
+        window.requestAnimationFrame(draw);
+    }, 10);
+}
+
+draw();
+})();
+</script>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_4_マウス">4. マウス</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;canvas id='demo_04' height='256px' width='256px'&gt;&lt;/canvas&gt;
+
+&lt;script&gt;
+// get context
+var canvas = document.getElementById('demo_04');
+var ctx    = canvas.getContext('2d');
+
+var mouseX = 0;
+var mouseY = 0;
+
+function updateMousePosition(event) {
+    mouseX = event.offsetX;
+    mouseY = event.offsetY;
+}
+
+canvas.addEventListener("mousemove", updateMousePosition, false);
+
+var time = 0;
+
+function draw() {
+    // clear canvas
+    ctx.clearRect(0, 0, 256, 256);
+
+    // draw rectangles
+    ctx.fillStyle = 'rgb(200, 0, 0)';
+    ctx.fillRect(10, 10, 50, 50);
+
+    ctx.fillStyle = 'rgb(0, 0, 200, 0.5)';
+    ctx.fillRect(mouseX, mouseY, 50, 50);
+
+    time += 1;
+
+    window.setTimeout(function(){
+        window.requestAnimationFrame(draw);
+    }, 10);
+}
+
+draw();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>下の <code>&lt;canvas&gt;</code> 上でマウスを動かしてみて下さい．この例では <code>mousemove</code> をlistenしていますが，他にも色々なマウスイベントがあります．</p>
+</div>
+<canvas id='demo_04' height='256px' width='256px'></canvas>
+
+<script>
+(function(){
+// get context
+var canvas = document.getElementById('demo_04');
+var ctx    = canvas.getContext('2d');
+
+var mouseX = 0;
+var mouseY = 0;
+
+function updateMousePosition(event) {
+    mouseX = event.offsetX;
+    mouseY = event.offsetY;
+}
+
+canvas.addEventListener("mousemove", updateMousePosition, false);
+
+var time = 0;
+
+function draw() {
+    // clear canvas
+    ctx.clearRect(0, 0, 256, 256);
+
+    // draw rectangles
+    ctx.fillStyle = 'rgb(200, 0, 0)';
+    ctx.fillRect(10, 10, 50, 50);
+
+    ctx.fillStyle = 'rgb(0, 0, 200, 0.5)';
+    ctx.fillRect(mouseX, mouseY, 50, 50);
+
+    time += 1;
+
+    window.setTimeout(function(){
+        window.requestAnimationFrame(draw);
+    }, 10);
+}
+
+draw();
+})();
+</script>
+</div>
+</div>
+<hr>
+<p>last modified : 2019-05-21 04:31:23 +0900</p>
+<p><a href='/'>monman53.github.io</a></p>
+<p>this page is generated by <a href='https://github.com/monman53/monsta'>monsta</a></p>
