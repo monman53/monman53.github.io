@@ -1,5 +1,12 @@
+:root{
+    --theme-back:  #fff;
+    --theme-front: #000;
+}
+
 body {
     font-family: sans-serif;
+    background-color: var(--theme-back);
+    color: var(--theme-front);
 }
 
 code {

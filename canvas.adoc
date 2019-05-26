@@ -37,7 +37,7 @@ ctx.fillRect(30, 30, 50, 50);
 </script>
 ----
 
-四角形を2つ描画します．描画の命令はJavaScriptから行います．
+四角形を2つ描画します．描画の命令はJavaScriptから行います．原点は左上で，x軸は右向きに，y軸は下向きに伸びてるので注意が必要です．
 
 ++++
 <canvas id='demo_02' height='256px' width='256px'></canvas>
@@ -169,6 +169,7 @@ function draw() {
 }
 
 draw();
+</script>
 ----
 
 下の `<canvas>` 上でマウスを動かしてみて下さい．この例では `mousemove` をlistenしていますが，他にも色々なマウスイベントがあります．

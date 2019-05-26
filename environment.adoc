@@ -11,7 +11,8 @@ autoload -Uz compinit promptinit
 compinit
 promptinit
 
-setopt histignoredups
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
 
 # prompt
 export PROMPT='
