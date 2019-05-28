@@ -1,0 +1,240 @@
+<!doctype html>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<link rel='shortcut icon' type='image/png' href='/img/favicon.png'/>
+<title>CanvasとWebGLで例のやつをしたいときのメモ : monman53</title>
+<link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css'>
+<script src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/rust.min.js'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/tex.min.js'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/vim.min.js'></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+<script type='text/x-mathjax-config'>MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$']]}});</script>
+<link rel='stylesheet' href='/css/main.css'>
+<p><a href='/'>monman53.github.io</a></p>
+<hr>
+<h1>CanvasとWebGLで例のやつをしたいときのメモ</h1>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111264044-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-111264044-1');
+</script>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Three.jsを使わないと割と大変．</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_雛形">雛形</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>シェーダは fragment shader だけをいじっていく．</p>
+</div>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/104/three.min.js'></script>
+<script type="x-shader/x-fragment" id="fragmentShader">
+void main() {
+    if(mod(float(gl_FragCoord.x + gl_FragCoord.y), 2.) == 0. ||
+       gl_FragCoord.x > 128. || gl_FragCoord.y > 64.){
+        gl_FragColor = vec4(0, 0, 0, 1);
+    }else{
+        gl_FragColor = vec4(1, 1, 1, 1);
+    }
+}
+</script>
+<canvas id='canvas1'></canvas>
+
+<script>
+{
+var canvas  = document.getElementById('canvas1');
+canvas.width  = 256;
+canvas.height = 128;
+
+gl_renderer = new THREE.WebGLRenderer({canvas: canvas});
+gl_scene    = new THREE.Scene();
+gl_camera   = new THREE.OrthographicCamera(-0.5, 0.5, 0.5, -0.5, -1, 1);
+
+gl_camera.position.z = 1;
+gl_scene.add(gl_camera)
+
+gl_shaderMaterial_flagment = new THREE.ShaderMaterial({
+    fragmentShader: document.getElementById('fragmentShader').textContent,
+});
+
+var gl_plane = new THREE.PlaneGeometry(1.0, 1.0);
+gl_screenQ = new THREE.Mesh(gl_plane, gl_shaderMaterial_flagment);
+gl_scene.add(gl_screenQ);
+
+gl_renderer.render(gl_scene, gl_camera);
+}
+</script>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/104/three.min.js'&gt;&lt;/script&gt;
+
+&lt;script type="x-shader/x-fragment" id="fragmentShader"&gt;
+void main() {
+    if(mod(float(gl_FragCoord.x + gl_FragCoord.y), 2.) == 0. ||
+       gl_FragCoord.x &gt; 128. || gl_FragCoord.y &gt; 64.){
+        gl_FragColor = vec4(0, 0, 0, 1);
+    }else{
+        gl_FragColor = vec4(1, 1, 1, 1);
+    }
+}
+&lt;/script&gt;
+
+&lt;canvas id='my_canvas'&gt;&lt;/canvas&gt;
+
+&lt;script&gt;
+{
+var canvas  = document.getElementById('my_canvas');
+canvas.width  = 256;
+canvas.height = 128;
+
+gl_renderer = new THREE.WebGLRenderer({canvas: canvas});
+gl_scene    = new THREE.Scene();
+gl_camera   = new THREE.OrthographicCamera(-0.5, 0.5, 0.5, -0.5, -1, 1);
+
+gl_camera.position.z = 1;
+gl_scene.add(gl_camera)
+
+gl_shaderMaterial_flagment = new THREE.ShaderMaterial({
+    fragmentShader: document.getElementById('fragmentShader').textContent,
+});
+
+var gl_plane = new THREE.PlaneGeometry(1.0, 1.0);
+gl_screenQ = new THREE.Mesh(gl_plane, gl_shaderMaterial_flagment);
+gl_scene.add(gl_screenQ);
+
+gl_renderer.render(gl_scene, gl_camera);
+}
+&lt;/script&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_スケーリングについて">スケーリングについて</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>上の例だと128x256の粒度で fragment shader がお仕事することになるが，仕事の量をそのままにして拡大して表示したいときがある．
+その場合は <code>&lt;canvas&gt;</code> の <code>style</code> で <code>height</code> と <code>width</code> を指定してあげればよいが，デフォルトで色の補完が施されるため，ぼやけた感じになる．</p>
+</div>
+<div class="paragraph">
+<p>例えば単に3倍拡大すると次のようになる．</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-css" data-lang="css">canvas {
+    height: 384px;
+    width:  768px;
+}</code></pre>
+</div>
+</div>
+<canvas id='canvas2' style='height: 384px; width: 768px;'></canvas>
+
+<script>
+{
+var canvas  = document.getElementById('canvas2');
+canvas.width  = 256;
+canvas.height = 128;
+
+gl_renderer = new THREE.WebGLRenderer({canvas: canvas});
+gl_scene    = new THREE.Scene();
+gl_camera   = new THREE.OrthographicCamera(-0.5, 0.5, 0.5, -0.5, -1, 1);
+
+gl_camera.position.z = 1;
+gl_scene.add(gl_camera)
+
+gl_shaderMaterial_flagment = new THREE.ShaderMaterial({
+    fragmentShader: document.getElementById('fragmentShader').textContent,
+});
+
+var gl_plane = new THREE.PlaneGeometry(1.0, 1.0);
+gl_screenQ = new THREE.Mesh(gl_plane, gl_shaderMaterial_flagment);
+gl_scene.add(gl_screenQ);
+
+gl_renderer.render(gl_scene, gl_camera);
+}
+</script>
+<div class="paragraph">
+<p>これを避けるためには現状では <code>image-rendering</code> プロパティを指定するのが良さげである．</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-css" data-lang="css">canvas {
+    height: 256px;
+    width:  512px;
+    image-rendering:optimizeSpeed;             /* Legal fallback */
+    image-rendering:-moz-crisp-edges;          /* Firefox        */
+    image-rendering:-o-crisp-edges;            /* Opera          */
+    image-rendering:-webkit-optimize-contrast; /* Safari         */
+    image-rendering:optimize-contrast;         /* CSS3 Proposed  */
+    image-rendering:crisp-edges;               /* CSS4 Proposed  */
+    image-rendering:pixelated;                 /* CSS4 Proposed  */
+    -ms-interpolation-mode:nearest-neighbor;   /* IE8+           */
+}</code></pre>
+</div>
+</div>
+<canvas id='canvas3' style='
+    height: 384px;
+    width:  768px;
+    image-rendering:optimizeSpeed;             /* Legal fallback */
+    image-rendering:-moz-crisp-edges;          /* Firefox        */
+    image-rendering:-o-crisp-edges;            /* Opera          */
+    image-rendering:-webkit-optimize-contrast; /* Safari         */
+    image-rendering:optimize-contrast;         /* CSS3 Proposed  */
+    image-rendering:crisp-edges;               /* CSS4 Proposed  */
+    image-rendering:pixelated;                 /* CSS4 Proposed  */
+    -ms-interpolation-mode:nearest-neighbor;   /* IE8+           */
+'></canvas>
+
+<script>
+{
+var canvas  = document.getElementById('canvas3');
+canvas.width  = 256;
+canvas.height = 128;
+
+gl_renderer = new THREE.WebGLRenderer({canvas: canvas});
+gl_scene    = new THREE.Scene();
+gl_camera   = new THREE.OrthographicCamera(-0.5, 0.5, 0.5, -0.5, -1, 1);
+
+gl_camera.position.z = 1;
+gl_scene.add(gl_camera)
+
+gl_shaderMaterial_flagment = new THREE.ShaderMaterial({
+    fragmentShader: document.getElementById('fragmentShader').textContent,
+});
+
+var gl_plane = new THREE.PlaneGeometry(1.0, 1.0);
+gl_screenQ = new THREE.Mesh(gl_plane, gl_shaderMaterial_flagment);
+gl_scene.add(gl_screenQ);
+
+gl_renderer.render(gl_scene, gl_camera);
+}
+</script>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/image-rendering" class="bare">https://developer.mozilla.org/en-US/docs/Web/CSS/image-rendering</a></p>
+</li>
+<li>
+<p><a href="https://caniuse.com/#search=image-rendering" class="bare">https://caniuse.com/#search=image-rendering</a></p>
+</li>
+<li>
+<p><a href="http://phrogz.net/tmp/canvas_image_zoom.html" class="bare">http://phrogz.net/tmp/canvas_image_zoom.html</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<hr>
+<p>last modified : 2019-05-28 10:13:18 +0900</p>
+<p><a href='/'>monman53.github.io</a></p>
+<p>this page is generated by <a href='https://github.com/monman53/monsta'>monsta</a></p>

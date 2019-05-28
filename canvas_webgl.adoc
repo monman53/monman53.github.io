@@ -1,0 +1,203 @@
+= CanvasとWebGLで例のやつをしたいときのメモ
+
+Three.jsを使わないと割と大変．
+
+== 雛形
+
+シェーダは fragment shader だけをいじっていく．
+
+++++
+<script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/104/three.min.js'></script>
+++++
+
+++++
+<script type="x-shader/x-fragment" id="fragmentShader">
+void main() {
+    if(mod(float(gl_FragCoord.x + gl_FragCoord.y), 2.) == 0. ||
+       gl_FragCoord.x > 128. || gl_FragCoord.y > 64.){
+        gl_FragColor = vec4(0, 0, 0, 1);
+    }else{
+        gl_FragColor = vec4(1, 1, 1, 1);
+    }
+}
+</script>
+++++
+
+++++
+<canvas id='canvas1'></canvas>
+
+<script>
+{
+var canvas  = document.getElementById('canvas1');
+canvas.width  = 256;
+canvas.height = 128;
+
+gl_renderer = new THREE.WebGLRenderer({canvas: canvas});
+gl_scene    = new THREE.Scene();
+gl_camera   = new THREE.OrthographicCamera(-0.5, 0.5, 0.5, -0.5, -1, 1);
+
+gl_camera.position.z = 1;
+gl_scene.add(gl_camera)
+
+gl_shaderMaterial_flagment = new THREE.ShaderMaterial({
+    fragmentShader: document.getElementById('fragmentShader').textContent, 
+});
+
+var gl_plane = new THREE.PlaneGeometry(1.0, 1.0);
+gl_screenQ = new THREE.Mesh(gl_plane, gl_shaderMaterial_flagment);
+gl_scene.add(gl_screenQ);
+
+gl_renderer.render(gl_scene, gl_camera);
+}
+</script>
+++++
+
+[source, html]
+----
+<script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/104/three.min.js'></script>
+
+<script type="x-shader/x-fragment" id="fragmentShader">
+void main() {
+    if(mod(float(gl_FragCoord.x + gl_FragCoord.y), 2.) == 0. ||
+       gl_FragCoord.x > 128. || gl_FragCoord.y > 64.){
+        gl_FragColor = vec4(0, 0, 0, 1);
+    }else{
+        gl_FragColor = vec4(1, 1, 1, 1);
+    }
+}
+</script>
+
+<canvas id='my_canvas'></canvas>
+
+<script>
+{
+var canvas  = document.getElementById('my_canvas');
+canvas.width  = 256;
+canvas.height = 128;
+
+gl_renderer = new THREE.WebGLRenderer({canvas: canvas});
+gl_scene    = new THREE.Scene();
+gl_camera   = new THREE.OrthographicCamera(-0.5, 0.5, 0.5, -0.5, -1, 1);
+
+gl_camera.position.z = 1;
+gl_scene.add(gl_camera)
+
+gl_shaderMaterial_flagment = new THREE.ShaderMaterial({
+    fragmentShader: document.getElementById('fragmentShader').textContent, 
+});
+
+var gl_plane = new THREE.PlaneGeometry(1.0, 1.0);
+gl_screenQ = new THREE.Mesh(gl_plane, gl_shaderMaterial_flagment);
+gl_scene.add(gl_screenQ);
+
+gl_renderer.render(gl_scene, gl_camera);
+}
+</script>
+----
+
+== スケーリングについて
+
+上の例だと128x256の粒度で fragment shader がお仕事することになるが，仕事の量をそのままにして拡大して表示したいときがある．
+その場合は `<canvas>` の `style` で `height` と `width` を指定してあげればよいが，デフォルトで色の補完が施されるため，ぼやけた感じになる．
+
+
+例えば単に3倍拡大すると次のようになる．
+
+[source, css]
+----
+canvas {
+    height: 384px;
+    width:  768px;
+}
+----
+
+++++
+<canvas id='canvas2' style='height: 384px; width: 768px;'></canvas>
+
+<script>
+{
+var canvas  = document.getElementById('canvas2');
+canvas.width  = 256;
+canvas.height = 128;
+
+gl_renderer = new THREE.WebGLRenderer({canvas: canvas});
+gl_scene    = new THREE.Scene();
+gl_camera   = new THREE.OrthographicCamera(-0.5, 0.5, 0.5, -0.5, -1, 1);
+
+gl_camera.position.z = 1;
+gl_scene.add(gl_camera)
+
+gl_shaderMaterial_flagment = new THREE.ShaderMaterial({
+    fragmentShader: document.getElementById('fragmentShader').textContent, 
+});
+
+var gl_plane = new THREE.PlaneGeometry(1.0, 1.0);
+gl_screenQ = new THREE.Mesh(gl_plane, gl_shaderMaterial_flagment);
+gl_scene.add(gl_screenQ);
+
+gl_renderer.render(gl_scene, gl_camera);
+}
+</script>
+++++
+
+これを避けるためには現状では `image-rendering` プロパティを指定するのが良さげである．
+
+[source, css]
+----
+canvas {
+    height: 256px;
+    width:  512px;
+    image-rendering:optimizeSpeed;             /* Legal fallback */
+    image-rendering:-moz-crisp-edges;          /* Firefox        */
+    image-rendering:-o-crisp-edges;            /* Opera          */
+    image-rendering:-webkit-optimize-contrast; /* Safari         */
+    image-rendering:optimize-contrast;         /* CSS3 Proposed  */
+    image-rendering:crisp-edges;               /* CSS4 Proposed  */
+    image-rendering:pixelated;                 /* CSS4 Proposed  */
+    -ms-interpolation-mode:nearest-neighbor;   /* IE8+           */
+}
+----
+
+++++
+<canvas id='canvas3' style='
+    height: 384px;
+    width:  768px;
+    image-rendering:optimizeSpeed;             /* Legal fallback */
+    image-rendering:-moz-crisp-edges;          /* Firefox        */
+    image-rendering:-o-crisp-edges;            /* Opera          */
+    image-rendering:-webkit-optimize-contrast; /* Safari         */
+    image-rendering:optimize-contrast;         /* CSS3 Proposed  */
+    image-rendering:crisp-edges;               /* CSS4 Proposed  */
+    image-rendering:pixelated;                 /* CSS4 Proposed  */
+    -ms-interpolation-mode:nearest-neighbor;   /* IE8+           */
+'></canvas>
+
+<script>
+{
+var canvas  = document.getElementById('canvas3');
+canvas.width  = 256;
+canvas.height = 128;
+
+gl_renderer = new THREE.WebGLRenderer({canvas: canvas});
+gl_scene    = new THREE.Scene();
+gl_camera   = new THREE.OrthographicCamera(-0.5, 0.5, 0.5, -0.5, -1, 1);
+
+gl_camera.position.z = 1;
+gl_scene.add(gl_camera)
+
+gl_shaderMaterial_flagment = new THREE.ShaderMaterial({
+    fragmentShader: document.getElementById('fragmentShader').textContent, 
+});
+
+var gl_plane = new THREE.PlaneGeometry(1.0, 1.0);
+gl_screenQ = new THREE.Mesh(gl_plane, gl_shaderMaterial_flagment);
+gl_scene.add(gl_screenQ);
+
+gl_renderer.render(gl_scene, gl_camera);
+}
+</script>
+++++
+
+* https://developer.mozilla.org/en-US/docs/Web/CSS/image-rendering
+* https://caniuse.com/#search=image-rendering
+* http://phrogz.net/tmp/canvas_image_zoom.html
