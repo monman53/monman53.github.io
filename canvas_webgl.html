@@ -2,8 +2,8 @@
 <meta charset='UTF-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <link rel='shortcut icon' type='image/png' href='/img/favicon.png'/>
-<title>CanvasとWebGLで例のやつをしたいときのメモ : monman53</title>
-<link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css'>
+<title>CanvasとWebGLでライフゲームをやるやつのメモ : monman53</title>
+<link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai.min.css'>
 <script src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js'></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/rust.min.js'></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/tex.min.js'></script>
@@ -14,7 +14,7 @@
 <link rel='stylesheet' href='/css/main.css'>
 <p><a href='/'>monman53.github.io</a></p>
 <hr>
-<h1>CanvasとWebGLで例のやつをしたいときのメモ</h1>
+<h1>CanvasとWebGLでライフゲームをやるやつのメモ</h1>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111264044-1"></script>
 <script>
@@ -27,150 +27,655 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Three.jsを使わないと割と大変．</p>
+<p>WebGLでテクスチャレンダリングを利用して状態遷移するやつです．
+めちゃくちゃデカくても処理速度が爆速．</p>
+</div>
+<div class="paragraph">
+<p>この手のやつはn番煎じになるのですが先人のプログラムを参考に自分でも書いてみます．</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://qiita.com/aa_debdeb/items/b414746139f0c1972fe4">WebGLでライフゲームを作る</a> by @aa_debdeb</p>
+</li>
+<li>
+<p><a href="http://mrob.com/pub/comp/xmorphia/ogl/index.html">WebGL Gray-Scott Explorer</a> by P.M.Neila</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_雛形">雛形</h2>
+<h2 id="_できたもの">できたもの</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>シェーダは fragment shader だけをいじっていく．</p>
-</div>
+<canvas id='lifegame'></canvas>
+
 <script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/104/three.min.js'></script>
-<script type="x-shader/x-fragment" id="fragmentShader">
+
+<script type="x-shader/x-fragment" id="initialShader">
+float random(vec2 p) {
+   return fract(sin(dot(p.xy, vec2(12.9898,78.233)))* 43758.5453123);
+}
 void main() {
-    if(mod(float(gl_FragCoord.x + gl_FragCoord.y), 2.) == 0. ||
-       gl_FragCoord.x > 128. || gl_FragCoord.y > 64.){
-        gl_FragColor = vec4(0, 0, 0, 1);
+    if(random(gl_FragCoord.xy) < 0.5){
+        gl_FragColor = vec4(0, 0, 0, 0);    // dead
     }else{
-        gl_FragColor = vec4(1, 1, 1, 1);
+        gl_FragColor = vec4(1, 0, 0, 0);    // alive
     }
 }
 </script>
-<canvas id='canvas1'></canvas>
 
-<script>
-{
-var canvas  = document.getElementById('canvas1');
-canvas.width  = 256;
-canvas.height = 128;
+<script type="x-shader/x-fragment" id="computeShader">
+uniform vec2 d;
+uniform sampler2D texture;
+void main() {
+    vec2 p = gl_FragCoord.xy*d;
 
-gl_renderer = new THREE.WebGLRenderer({canvas: canvas});
-gl_scene    = new THREE.Scene();
-gl_camera   = new THREE.OrthographicCamera(-0.5, 0.5, 0.5, -0.5, -1, 1);
+    float xm = p.x - d.x; xm = xm <  0. ? xm + 1. : xm;
+    float xp = p.x + d.x; xp = xp >= 1. ? xp - 1. : xp;
+    float ym = p.y - d.y; ym = ym <  0. ? ym + 1. : ym;
+    float yp = p.y + d.y; yp = yp >= 1. ? yp - 1. : yp;
 
-gl_camera.position.z = 1;
-gl_scene.add(gl_camera)
+    int count = 0;
+    if(texture2D(texture, vec2(xp,  p.y)).r > 0.5) count++;
+    if(texture2D(texture, vec2(xp,  yp )).r > 0.5) count++;
+    if(texture2D(texture, vec2(p.x, yp )).r > 0.5) count++;
+    if(texture2D(texture, vec2(xm,  yp )).r > 0.5) count++;
+    if(texture2D(texture, vec2(xm,  p.y)).r > 0.5) count++;
+    if(texture2D(texture, vec2(xm,  ym )).r > 0.5) count++;
+    if(texture2D(texture, vec2(p.x, ym )).r > 0.5) count++;
+    if(texture2D(texture, vec2(xp,  ym )).r > 0.5) count++;
 
-gl_shaderMaterial_flagment = new THREE.ShaderMaterial({
-    fragmentShader: document.getElementById('fragmentShader').textContent,
-});
-
-var gl_plane = new THREE.PlaneGeometry(1.0, 1.0);
-gl_screenQ = new THREE.Mesh(gl_plane, gl_shaderMaterial_flagment);
-gl_scene.add(gl_screenQ);
-
-gl_renderer.render(gl_scene, gl_camera);
+    if(count < 2 || count > 3){
+        gl_FragColor = vec4(0, 0, 0, 0);
+    }else{
+        if(texture2D(texture, p).r < 0.5){
+            if(count == 3){
+                gl_FragColor = vec4(1, 0, 0, 0);
+            }else{
+                gl_FragColor = vec4(0, 0, 0, 0);
+            }
+        }else{
+            gl_FragColor = vec4(1, 0, 0, 0);
+        }
+    }
 }
 </script>
+
+<script type="x-shader/x-fragment" id="screenShader">
+uniform vec2 d;
+uniform sampler2D texture;
+void main() {
+    if(texture2D(texture, gl_FragCoord.xy*d).r < 0.5){
+        gl_FragColor = vec4(0, 0, 0, 1);    // dead
+    }else{
+        gl_FragColor = vec4(1, 1, 1, 1);    // alive
+    }
+}
+</script>
+
+<script>
+(function(){
+var canvas  = document.getElementById('lifegame');
+canvas.width  = 256;
+canvas.height = 256;
+
+var renderer = new THREE.WebGLRenderer({canvas: canvas});
+var scene    = new THREE.Scene();
+var camera   = new THREE.OrthographicCamera(-0.5, 0.5, 0.5, -0.5, -1, 1);
+
+camera.position.z = 1;
+scene.add(camera)
+
+var uniforms = {
+    d:          {type: 'v2', value: new THREE.Vector2(1.0/canvas.width, 1.0/canvas.height)},
+    texture:    {type: 't',  value: undefined},
+};
+
+// prepare shaders
+var initialShaderMaterial = new THREE.ShaderMaterial({
+    fragmentShader: document.getElementById('initialShader').textContent,
+    uniforms: uniforms,
+});
+var computeShaderMaterial = new THREE.ShaderMaterial({
+    fragmentShader: document.getElementById('computeShader').textContent,
+    uniforms: uniforms,
+});
+var screenShaderMaterial = new THREE.ShaderMaterial({
+    fragmentShader: document.getElementById('screenShader').textContent,
+    uniforms: uniforms,
+});
+
+// set plane
+var plane = new THREE.PlaneGeometry(1.0, 1.0);
+var mesh = new THREE.Mesh(plane, screenShaderMaterial);
+scene.add(mesh);
+
+// prepare two texture
+var texture = [];
+for(var i=0;i<2;i++){
+    texture.push(new THREE.WebGLRenderTarget(
+        canvas.width,
+        canvas.height,
+    ));
+}
+
+// initial rendering
+mesh.material = initialShaderMaterial;
+renderer.setRenderTarget(texture[0]);
+renderer.render(scene, camera);
+
+// using ping-pong buffering
+uniforms.texture.value = texture[0].texture;
+var pingpong = 0;
+
+var draw = function() {
+    // texture rendering
+    mesh.material = computeShaderMaterial;
+    renderer.setRenderTarget(texture[1-pingpong]);
+    renderer.render(scene, camera);
+    uniforms.texture.value = texture[1-pingpong].texture;
+    pingpong = 1 - pingpong;
+
+    // screen rendering
+    mesh.material = screenShaderMaterial;
+    renderer.setRenderTarget(null);
+    renderer.render(scene, camera);
+
+    // wait 20ms
+    window.setTimeout(function() {
+        window.requestAnimationFrame(draw);
+    }, 20);
+}
+
+// start animation
+draw();
+
+})();
+</script>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ソースコード">ソースコード</h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-html" data-lang="html">&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/104/three.min.js'&gt;&lt;/script&gt;
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;canvas id='lifegame'&gt;&lt;/canvas&gt;
 
-&lt;script type="x-shader/x-fragment" id="fragmentShader"&gt;
+&lt;script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/104/three.min.js'&gt;&lt;/script&gt;
+
+&lt;script type="x-shader/x-fragment" id="initialShader"&gt;
+float random(vec2 p) {
+   return fract(sin(dot(p.xy, vec2(12.9898,78.233)))* 43758.5453123);
+}
 void main() {
-    if(mod(float(gl_FragCoord.x + gl_FragCoord.y), 2.) == 0. ||
-       gl_FragCoord.x &gt; 128. || gl_FragCoord.y &gt; 64.){
-        gl_FragColor = vec4(0, 0, 0, 1);
+    if(random(gl_FragCoord.xy) &lt; 0.5){
+        gl_FragColor = vec4(0, 0, 0, 0);    // dead
     }else{
-        gl_FragColor = vec4(1, 1, 1, 1);
+        gl_FragColor = vec4(1, 0, 0, 0);    // alive
     }
 }
 &lt;/script&gt;
 
-&lt;canvas id='my_canvas'&gt;&lt;/canvas&gt;
+&lt;script type="x-shader/x-fragment" id="computeShader"&gt;
+uniform vec2 d;
+uniform sampler2D texture;
+void main() {
+    vec2 p = gl_FragCoord.xy*d;
+
+    float xm = p.x - d.x; xm = xm &lt;  0. ? xm + 1. : xm;
+    float xp = p.x + d.x; xp = xp &gt;= 1. ? xp - 1. : xp;
+    float ym = p.y - d.y; ym = ym &lt;  0. ? ym + 1. : ym;
+    float yp = p.y + d.y; yp = yp &gt;= 1. ? yp - 1. : yp;
+
+    int count = 0;
+    if(texture2D(texture, vec2(xp,  p.y)).r &gt; 0.5) count++;
+    if(texture2D(texture, vec2(xp,  yp )).r &gt; 0.5) count++;
+    if(texture2D(texture, vec2(p.x, yp )).r &gt; 0.5) count++;
+    if(texture2D(texture, vec2(xm,  yp )).r &gt; 0.5) count++;
+    if(texture2D(texture, vec2(xm,  p.y)).r &gt; 0.5) count++;
+    if(texture2D(texture, vec2(xm,  ym )).r &gt; 0.5) count++;
+    if(texture2D(texture, vec2(p.x, ym )).r &gt; 0.5) count++;
+    if(texture2D(texture, vec2(xp,  ym )).r &gt; 0.5) count++;
+
+    if(count &lt; 2 || count &gt; 3){
+        gl_FragColor = vec4(0, 0, 0, 0);
+    }else{
+        if(texture2D(texture, p).r &lt; 0.5){
+            if(count == 3){
+                gl_FragColor = vec4(1, 0, 0, 0);
+            }else{
+                gl_FragColor = vec4(0, 0, 0, 0);
+            }
+        }else{
+            gl_FragColor = vec4(1, 0, 0, 0);
+        }
+    }
+}
+&lt;/script&gt;
+
+&lt;script type="x-shader/x-fragment" id="screenShader"&gt;
+uniform vec2 d;
+uniform sampler2D texture;
+void main() {
+    if(texture2D(texture, gl_FragCoord.xy*d).r &lt; 0.5){
+        gl_FragColor = vec4(0, 0, 0, 1);    // dead
+    }else{
+        gl_FragColor = vec4(1, 1, 1, 1);    // alive
+    }
+}
+&lt;/script&gt;
 
 &lt;script&gt;
-{
-var canvas  = document.getElementById('my_canvas');
+var canvas  = document.getElementById('lifegame');
 canvas.width  = 256;
-canvas.height = 128;
+canvas.height = 256;
 
-gl_renderer = new THREE.WebGLRenderer({canvas: canvas});
-gl_scene    = new THREE.Scene();
-gl_camera   = new THREE.OrthographicCamera(-0.5, 0.5, 0.5, -0.5, -1, 1);
+var renderer = new THREE.WebGLRenderer({canvas: canvas});
+var scene    = new THREE.Scene();
+var camera   = new THREE.OrthographicCamera(-0.5, 0.5, 0.5, -0.5, -1, 1);
 
-gl_camera.position.z = 1;
-gl_scene.add(gl_camera)
+camera.position.z = 1;
+scene.add(camera)
 
-gl_shaderMaterial_flagment = new THREE.ShaderMaterial({
-    fragmentShader: document.getElementById('fragmentShader').textContent,
+var uniforms = {
+    d:          {type: 'v2', value: new THREE.Vector2(1.0/canvas.width, 1.0/canvas.height)},
+    texture:    {type: 't',  value: undefined},
+};
+
+// prepare shaders
+var initialShaderMaterial = new THREE.ShaderMaterial({
+    fragmentShader: document.getElementById('initialShader').textContent,
+    uniforms: uniforms,
+});
+var computeShaderMaterial = new THREE.ShaderMaterial({
+    fragmentShader: document.getElementById('computeShader').textContent,
+    uniforms: uniforms,
+});
+var screenShaderMaterial = new THREE.ShaderMaterial({
+    fragmentShader: document.getElementById('screenShader').textContent,
+    uniforms: uniforms,
 });
 
-var gl_plane = new THREE.PlaneGeometry(1.0, 1.0);
-gl_screenQ = new THREE.Mesh(gl_plane, gl_shaderMaterial_flagment);
-gl_scene.add(gl_screenQ);
+// set plane
+var plane = new THREE.PlaneGeometry(1.0, 1.0);
+var mesh = new THREE.Mesh(plane, screenShaderMaterial);
+scene.add(mesh);
 
-gl_renderer.render(gl_scene, gl_camera);
+// prepare two texture
+var texture = [];
+for(var i=0;i&lt;2;i++){
+    texture.push(new THREE.WebGLRenderTarget(
+        canvas.width,
+        canvas.height,
+    ));
 }
+
+// initial rendering
+mesh.material = initialShaderMaterial;
+renderer.setRenderTarget(texture[0]);
+renderer.render(scene, camera);
+
+// using ping-pong buffering
+uniforms.texture.value = texture[0].texture;
+var pingpong = 0;
+
+var draw = function() {
+    // texture rendering
+    mesh.material = computeShaderMaterial;
+    renderer.setRenderTarget(texture[1-pingpong]);
+    renderer.render(scene, camera);
+    uniforms.texture.value = texture[1-pingpong].texture;
+    pingpong = 1 - pingpong;
+
+    // screen rendering
+    mesh.material = screenShaderMaterial;
+    renderer.setRenderTarget(null);
+    renderer.render(scene, camera);
+
+    // wait 20ms
+    window.setTimeout(function() {
+        window.requestAnimationFrame(draw);
+    }, 20);
+}
+
+// start animation
+draw();
 &lt;/script&gt;</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_スケーリングについて">スケーリングについて</h2>
+<h2 id="_解説">解説</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>上の例だと128x256の粒度で fragment shader がお仕事することになるが，仕事の量をそのままにして拡大して表示したいときがある．
-その場合は <code>&lt;canvas&gt;</code> の <code>style</code> で <code>height</code> と <code>width</code> を指定してあげればよいが，デフォルトで色の補完が施されるため，ぼやけた感じになる．</p>
+<p>2枚のテクスチャを用意して，一方のテクスチャに描かれた情報を元に演算を行い，その結果をもう一方のテクスチャにオフスクリーンレンダリングすることを繰り返すことで状態遷移を実現します．
+そして，最新のテクスチャをスクリーン(canvas)にも描画することで人間の目に結果が届きます．</p>
+</div>
+<div class="sect2">
+<h3 id="_フラグメントシェーダ">フラグメントシェーダ</h3>
+<div class="paragraph">
+<p>ここでは3つのフラグメントシェーダを利用します．
+それぞれ，初期状態生成用，オフスクリーンレンダリング用，canvas描画用です．
+それぞれ <code>initialShader</code>, <code>computeShader</code>, <code>screenShader</code> としておきましょう．</p>
+</div>
+<div class="sect3">
+<h4 id="_initialshader">initialShader</h4>
+<div class="paragraph">
+<p><code>initialShader</code> ではそれぞれのマスに生死をランダムで設定します．
+生きているセルを <code>rgba(1.0, 0.0, 0.0, 0.0)</code> ，死んでいるセルを <code>rgba(0.0, 0.0, 0.0, 0.0)</code> で表現することにします．
+ここでは座標の値を利用した疑似ノイズ(<code>random</code>)を用います．(名前がわからない．広く使われているやつを使用．)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;script type="x-shader/x-fragment" id="initialShader"&gt;
+float random(vec2 p) {
+   return fract(sin(dot(p.xy, vec2(12.9898,78.233)))* 43758.5453123);
+}
+void main() {
+    if(random(gl_FragCoord.xy) &lt; 0.5){
+        gl_FragColor = vec4(0, 0, 0, 0);    // dead
+    }else{
+        gl_FragColor = vec4(1, 0, 0, 0);    // alive
+    }
+}
+&lt;/script&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_computeshader">computeShader</h4>
+<div class="paragraph">
+<p><code>computeShader</code> では一つ前のテクスチャ上での近傍セルを調べて，自分の次の生死を決定します．</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;script type="x-shader/x-fragment" id="computeShader"&gt;
+uniform vec2 d;
+uniform sampler2D texture;
+void main() {
+    vec2 p = gl_FragCoord.xy*d;
+
+    // periodic boundary condition
+    float xm = p.x - d.x; xm = xm &lt;  0. ? xm + 1. : xm;
+    float xp = p.x + d.x; xp = xp &gt;= 1. ? xp - 1. : xp;
+    float ym = p.y - d.y; ym = ym &lt;  0. ? ym + 1. : ym;
+    float yp = p.y + d.y; yp = yp &gt;= 1. ? yp - 1. : yp;
+
+    // count neighbour alive cells
+    int count = 0;
+    if(texture2D(texture, vec2(xp,  p.y)).r &gt; 0.5) count++;
+    if(texture2D(texture, vec2(xp,  yp )).r &gt; 0.5) count++;
+    if(texture2D(texture, vec2(p.x, yp )).r &gt; 0.5) count++;
+    if(texture2D(texture, vec2(xm,  yp )).r &gt; 0.5) count++;
+    if(texture2D(texture, vec2(xm,  p.y)).r &gt; 0.5) count++;
+    if(texture2D(texture, vec2(xm,  ym )).r &gt; 0.5) count++;
+    if(texture2D(texture, vec2(p.x, ym )).r &gt; 0.5) count++;
+    if(texture2D(texture, vec2(xp,  ym )).r &gt; 0.5) count++;
+
+    // rule of Conway's game of life
+    if(count &lt; 2 || count &gt; 3){
+        gl_FragColor = vec4(0, 0, 0, 0);
+    }else{
+        if(texture2D(texture, p).r &lt; 0.5){
+            if(count == 3){
+                gl_FragColor = vec4(1, 0, 0, 0);
+            }else{
+                gl_FragColor = vec4(0, 0, 0, 0);
+            }
+        }else{
+            gl_FragColor = vec4(1, 0, 0, 0);
+        }
+    }
+}
+&lt;/script&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_screenshader">screenShader</h4>
+<div class="paragraph">
+<p><code>screenShader</code> では現在のテクスチャを参照して，生死に応じて表示する色を決定しています．</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;script type="x-shader/x-fragment" id="screenShader"&gt;
+uniform vec2 d;
+uniform sampler2D texture;
+void main() {
+    if(texture2D(texture, gl_FragCoord.xy*d).r &lt; 0.5){
+        gl_FragColor = vec4(0, 0, 0, 1);    // dead
+    }else{
+        gl_FragColor = vec4(1, 1, 1, 1);    // alive
+    }
+}
+&lt;/script&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_制御部分">制御部分</h3>
+<div class="paragraph">
+<p>一番はじめに <code>initialShader</code> を使ってテクスチャ0に初期状態を描画します．
+それ以降は <code>computeShader</code> によるテクスチャx→テクスチャ(1-x)の描画と， <code>screenShader</code> によるテクスチャ(1-x)のcanvasへの描画が20 msおきに行われます．</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-javascript" data-lang="javascript">// initial rendering
+mesh.material = initialShaderMaterial;
+renderer.setRenderTarget(texture[0]);
+renderer.render(scene, camera);
+
+// using ping-pong buffering
+uniforms.texture.value = texture[0].texture;
+var pingpong = 0;
+
+draw = function() {
+    // texture rendering
+    mesh.material = computeShaderMaterial;
+    renderer.setRenderTarget(texture[1-pingpong]);
+    renderer.render(scene, camera);
+    uniforms.texture.value = texture[1-pingpong].texture;
+    pingpong = 1 - pingpong;
+
+    // screen rendering
+    mesh.material = screenShaderMaterial;
+    renderer.setRenderTarget(null);
+    renderer.render(scene, camera);
+
+    // wait 20ms
+    window.setTimeout(function() {
+        window.requestAnimationFrame(draw);
+    }, 20);
+}
+
+// start animation
+draw();</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_拡大したいとき">拡大したいとき</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_単純に拡大してみる">単純に拡大してみる</h3>
+<div class="paragraph">
+<p>仕事の量をそのままにして拡大して表示したいとき <code>&lt;canvas&gt;</code> の <code>style</code> で <code>height</code> と <code>width</code> を指定してしまうと，色の補完によりぼやけた感じになってしまいます．</p>
 </div>
 <div class="paragraph">
-<p>例えば単に3倍拡大すると次のようになる．</p>
+<p>例えば3倍拡大すると次のようになります．</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-css" data-lang="css">canvas {
-    height: 384px;
+    height: 768px;
     width:  768px;
 }</code></pre>
 </div>
 </div>
-<canvas id='canvas2' style='height: 384px; width: 768px;'></canvas>
+<canvas id='canvas1' style='
+    height: 768px;
+    width:  768px;
+'></canvas>
 
-<script>
-{
-var canvas  = document.getElementById('canvas2');
-canvas.width  = 256;
-canvas.height = 128;
+<script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/104/three.min.js'></script>
 
-gl_renderer = new THREE.WebGLRenderer({canvas: canvas});
-gl_scene    = new THREE.Scene();
-gl_camera   = new THREE.OrthographicCamera(-0.5, 0.5, 0.5, -0.5, -1, 1);
-
-gl_camera.position.z = 1;
-gl_scene.add(gl_camera)
-
-gl_shaderMaterial_flagment = new THREE.ShaderMaterial({
-    fragmentShader: document.getElementById('fragmentShader').textContent,
-});
-
-var gl_plane = new THREE.PlaneGeometry(1.0, 1.0);
-gl_screenQ = new THREE.Mesh(gl_plane, gl_shaderMaterial_flagment);
-gl_scene.add(gl_screenQ);
-
-gl_renderer.render(gl_scene, gl_camera);
+<script type="x-shader/x-fragment" id="initialShader">
+float random(vec2 p) {
+   return fract(sin(dot(p.xy, vec2(12.9898,78.233)))* 43758.5453123);
+}
+void main() {
+    if(random(gl_FragCoord.xy) < 0.5){
+        gl_FragColor = vec4(0, 0, 0, 0);    // dead
+    }else{
+        gl_FragColor = vec4(1, 0, 0, 0);    // alive
+    }
 }
 </script>
+
+<script type="x-shader/x-fragment" id="computeShader">
+uniform vec2 d;
+uniform sampler2D texture;
+void main() {
+    vec2 p = gl_FragCoord.xy*d;
+
+    float xm = p.x - d.x; xm = xm <  0. ? xm + 1. : xm;
+    float xp = p.x + d.x; xp = xp >= 1. ? xp - 1. : xp;
+    float ym = p.y - d.y; ym = ym <  0. ? ym + 1. : ym;
+    float yp = p.y + d.y; yp = yp >= 1. ? yp - 1. : yp;
+
+    int count = 0;
+    if(texture2D(texture, vec2(xp,  p.y)).r > 0.5) count++;
+    if(texture2D(texture, vec2(xp,  yp )).r > 0.5) count++;
+    if(texture2D(texture, vec2(p.x, yp )).r > 0.5) count++;
+    if(texture2D(texture, vec2(xm,  yp )).r > 0.5) count++;
+    if(texture2D(texture, vec2(xm,  p.y)).r > 0.5) count++;
+    if(texture2D(texture, vec2(xm,  ym )).r > 0.5) count++;
+    if(texture2D(texture, vec2(p.x, ym )).r > 0.5) count++;
+    if(texture2D(texture, vec2(xp,  ym )).r > 0.5) count++;
+
+    if(count < 2 || count > 3){
+        gl_FragColor = vec4(0, 0, 0, 0);
+    }else{
+        if(texture2D(texture, p).r < 0.5){
+            if(count == 3){
+                gl_FragColor = vec4(1, 0, 0, 0);
+            }else{
+                gl_FragColor = vec4(0, 0, 0, 0);
+            }
+        }else{
+            gl_FragColor = vec4(1, 0, 0, 0);
+        }
+    }
+}
+</script>
+
+<script type="x-shader/x-fragment" id="screenShader">
+uniform vec2 d;
+uniform sampler2D texture;
+void main() {
+    if(texture2D(texture, gl_FragCoord.xy*d).r < 0.5){
+        gl_FragColor = vec4(0, 0, 0, 1);    // dead
+    }else{
+        gl_FragColor = vec4(1, 1, 1, 1);    // alive
+    }
+}
+</script>
+
+<script>
+(function(){
+var canvas  = document.getElementById('canvas1');
+canvas.width  = 256;
+canvas.height = 256;
+
+var renderer = new THREE.WebGLRenderer({canvas: canvas});
+var scene    = new THREE.Scene();
+var camera   = new THREE.OrthographicCamera(-0.5, 0.5, 0.5, -0.5, -1, 1);
+
+camera.position.z = 1;
+scene.add(camera)
+
+var uniforms = {
+    d:          {type: 'v2', value: new THREE.Vector2(1.0/canvas.width, 1.0/canvas.height)},
+    texture:    {type: 't',  value: undefined},
+};
+
+// prepare shaders
+var initialShaderMaterial = new THREE.ShaderMaterial({
+    fragmentShader: document.getElementById('initialShader').textContent,
+    uniforms: uniforms,
+});
+var computeShaderMaterial = new THREE.ShaderMaterial({
+    fragmentShader: document.getElementById('computeShader').textContent,
+    uniforms: uniforms,
+});
+var screenShaderMaterial = new THREE.ShaderMaterial({
+    fragmentShader: document.getElementById('screenShader').textContent,
+    uniforms: uniforms,
+});
+
+// set plane
+var plane = new THREE.PlaneGeometry(1.0, 1.0);
+var mesh = new THREE.Mesh(plane, screenShaderMaterial);
+scene.add(mesh);
+
+// prepare two texture
+var texture = [];
+for(var i=0;i<2;i++){
+    texture.push(new THREE.WebGLRenderTarget(
+        canvas.width,
+        canvas.height,
+    ));
+}
+
+// initial rendering
+mesh.material = initialShaderMaterial;
+renderer.setRenderTarget(texture[0]);
+renderer.render(scene, camera);
+
+// using ping-pong buffering
+uniforms.texture.value = texture[0].texture;
+var pingpong = 0;
+
+var draw = function() {
+    // texture rendering
+    mesh.material = computeShaderMaterial;
+    renderer.setRenderTarget(texture[1-pingpong]);
+    renderer.render(scene, camera);
+    uniforms.texture.value = texture[1-pingpong].texture;
+    pingpong = 1 - pingpong;
+
+    // screen rendering
+    mesh.material = screenShaderMaterial;
+    renderer.setRenderTarget(null);
+    renderer.render(scene, camera);
+
+    // wait 10ms
+    window.setTimeout(function() {
+        window.requestAnimationFrame(draw);
+    }, 20);
+}
+
+// start animation
+draw();
+
+})();
+</script>
+</div>
+<div class="sect2">
+<h3 id="_image_rendering_プロパティを使う"><code>image-rendering</code> プロパティを使う</h3>
 <div class="paragraph">
-<p>これを避けるためには現状では <code>image-rendering</code> プロパティを指定するのが良さげである．</p>
+<p>これを避けるためには <code>image-rendering</code> プロパティを指定するのが良さげです．</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-css" data-lang="css">canvas {
-    height: 256px;
-    width:  512px;
+    height: 768px;
+    width:  768px;
     image-rendering:optimizeSpeed;             /* Legal fallback */
     image-rendering:-moz-crisp-edges;          /* Firefox        */
     image-rendering:-o-crisp-edges;            /* Opera          */
@@ -182,8 +687,8 @@ gl_renderer.render(gl_scene, gl_camera);
 }</code></pre>
 </div>
 </div>
-<canvas id='canvas3' style='
-    height: 384px;
+<canvas id='canvas2' style='
+    height: 768px;
     width:  768px;
     image-rendering:optimizeSpeed;             /* Legal fallback */
     image-rendering:-moz-crisp-edges;          /* Firefox        */
@@ -195,29 +700,148 @@ gl_renderer.render(gl_scene, gl_camera);
     -ms-interpolation-mode:nearest-neighbor;   /* IE8+           */
 '></canvas>
 
+<script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/104/three.min.js'></script>
+
+<script type="x-shader/x-fragment" id="initialShader">
+float random(vec2 p) {
+   return fract(sin(dot(p.xy, vec2(12.9898,78.233)))* 43758.5453123);
+}
+void main() {
+    if(random(gl_FragCoord.xy) < 0.5){
+        gl_FragColor = vec4(0, 0, 0, 0);    // dead
+    }else{
+        gl_FragColor = vec4(1, 0, 0, 0);    // alive
+    }
+}
+</script>
+
+<script type="x-shader/x-fragment" id="computeShader">
+uniform vec2 d;
+uniform sampler2D texture;
+void main() {
+    vec2 p = gl_FragCoord.xy*d;
+
+    float xm = p.x - d.x; xm = xm <  0. ? xm + 1. : xm;
+    float xp = p.x + d.x; xp = xp >= 1. ? xp - 1. : xp;
+    float ym = p.y - d.y; ym = ym <  0. ? ym + 1. : ym;
+    float yp = p.y + d.y; yp = yp >= 1. ? yp - 1. : yp;
+
+    int count = 0;
+    if(texture2D(texture, vec2(xp,  p.y)).r > 0.5) count++;
+    if(texture2D(texture, vec2(xp,  yp )).r > 0.5) count++;
+    if(texture2D(texture, vec2(p.x, yp )).r > 0.5) count++;
+    if(texture2D(texture, vec2(xm,  yp )).r > 0.5) count++;
+    if(texture2D(texture, vec2(xm,  p.y)).r > 0.5) count++;
+    if(texture2D(texture, vec2(xm,  ym )).r > 0.5) count++;
+    if(texture2D(texture, vec2(p.x, ym )).r > 0.5) count++;
+    if(texture2D(texture, vec2(xp,  ym )).r > 0.5) count++;
+
+    if(count < 2 || count > 3){
+        gl_FragColor = vec4(0, 0, 0, 0);
+    }else{
+        if(texture2D(texture, p).r < 0.5){
+            if(count == 3){
+                gl_FragColor = vec4(1, 0, 0, 0);
+            }else{
+                gl_FragColor = vec4(0, 0, 0, 0);
+            }
+        }else{
+            gl_FragColor = vec4(1, 0, 0, 0);
+        }
+    }
+}
+</script>
+
+<script type="x-shader/x-fragment" id="screenShader">
+uniform vec2 d;
+uniform sampler2D texture;
+void main() {
+    if(texture2D(texture, gl_FragCoord.xy*d).r < 0.5){
+        gl_FragColor = vec4(0, 0, 0, 1);    // dead
+    }else{
+        gl_FragColor = vec4(1, 1, 1, 1);    // alive
+    }
+}
+</script>
+
 <script>
-{
-var canvas  = document.getElementById('canvas3');
+(function(){
+var canvas  = document.getElementById('canvas2');
 canvas.width  = 256;
-canvas.height = 128;
+canvas.height = 256;
 
-gl_renderer = new THREE.WebGLRenderer({canvas: canvas});
-gl_scene    = new THREE.Scene();
-gl_camera   = new THREE.OrthographicCamera(-0.5, 0.5, 0.5, -0.5, -1, 1);
+var renderer = new THREE.WebGLRenderer({canvas: canvas});
+var scene    = new THREE.Scene();
+var camera   = new THREE.OrthographicCamera(-0.5, 0.5, 0.5, -0.5, -1, 1);
 
-gl_camera.position.z = 1;
-gl_scene.add(gl_camera)
+camera.position.z = 1;
+scene.add(camera)
 
-gl_shaderMaterial_flagment = new THREE.ShaderMaterial({
-    fragmentShader: document.getElementById('fragmentShader').textContent,
+var uniforms = {
+    d:          {type: 'v2', value: new THREE.Vector2(1.0/canvas.width, 1.0/canvas.height)},
+    texture:    {type: 't',  value: undefined},
+};
+
+// prepare shaders
+var initialShaderMaterial = new THREE.ShaderMaterial({
+    fragmentShader: document.getElementById('initialShader').textContent,
+    uniforms: uniforms,
+});
+var computeShaderMaterial = new THREE.ShaderMaterial({
+    fragmentShader: document.getElementById('computeShader').textContent,
+    uniforms: uniforms,
+});
+var screenShaderMaterial = new THREE.ShaderMaterial({
+    fragmentShader: document.getElementById('screenShader').textContent,
+    uniforms: uniforms,
 });
 
-var gl_plane = new THREE.PlaneGeometry(1.0, 1.0);
-gl_screenQ = new THREE.Mesh(gl_plane, gl_shaderMaterial_flagment);
-gl_scene.add(gl_screenQ);
+// set plane
+var plane = new THREE.PlaneGeometry(1.0, 1.0);
+var mesh = new THREE.Mesh(plane, screenShaderMaterial);
+scene.add(mesh);
 
-gl_renderer.render(gl_scene, gl_camera);
+// prepare two texture
+var texture = [];
+for(var i=0;i<2;i++){
+    texture.push(new THREE.WebGLRenderTarget(
+        canvas.width,
+        canvas.height,
+    ));
 }
+
+// initial rendering
+mesh.material = initialShaderMaterial;
+renderer.setRenderTarget(texture[0]);
+renderer.render(scene, camera);
+
+// using ping-pong buffering
+uniforms.texture.value = texture[0].texture;
+var pingpong = 0;
+
+var draw = function() {
+    // texture rendering
+    mesh.material = computeShaderMaterial;
+    renderer.setRenderTarget(texture[1-pingpong]);
+    renderer.render(scene, camera);
+    uniforms.texture.value = texture[1-pingpong].texture;
+    pingpong = 1 - pingpong;
+
+    // screen rendering
+    mesh.material = screenShaderMaterial;
+    renderer.setRenderTarget(null);
+    renderer.render(scene, camera);
+
+    // wait 10ms
+    window.setTimeout(function() {
+        window.requestAnimationFrame(draw);
+    }, 20);
+}
+
+// start animation
+draw();
+
+})();
 </script>
 <div class="ulist">
 <ul>
@@ -234,7 +858,8 @@ gl_renderer.render(gl_scene, gl_camera);
 </div>
 </div>
 </div>
+</div>
 <hr>
-<p>last modified : 2019-05-28 10:13:18 +0900</p>
+<p>last modified : 2019-05-28 14:56:54 +0900</p>
 <p><a href='/'>monman53.github.io</a></p>
 <p>this page is generated by <a href='https://github.com/monman53/monsta'>monsta</a></p>
