@@ -1,0 +1,337 @@
+= 再帰のきほん
+
+== 再帰とは
+
+関数の再帰呼び出しは，関数fのプログラムの中で自分自身(関数f)を呼び出すことで実現されます．
+
+簡単な再帰呼び出しの例を見てみましょう．
+
+[source, cpp]
+----
+#include <iostream>
+using namespace std;
+
+void f(int n) {
+    cout << n << endl;
+    if(n == 0){
+        return;
+    }else{
+        f(n-1);
+    }
+}
+
+int main() {
+    f(5);
+    return 0;
+}
+----
+
+このプログラムの出力は次のようになります．
+
+[source]
+----
+5
+4
+3
+2
+1
+0
+----
+
+
+== もんだい
+
+それぞれのプログラムの出力結果を答えて下さい．
+
+=== 1
+
+[source, cpp]
+----
+#include <iostream>
+using namespace std;
+
+void f(int n) {
+    cout << n;
+    if(n == 0){
+        return;
+    }else{
+        f(n-1);
+    }
+}
+
+int main() {
+    f(5);
+    cout << endl;
+    return 0;
+}
+----
+
+=== 2
+
+[source, cpp]
+----
+#include <iostream>
+using namespace std;
+
+void f(int n) {
+    if(n > 0){
+        f(n-1);
+    }
+    cout << n;
+    return;
+}
+
+int main() {
+    f(5);
+    cout << endl;
+    return 0;
+}
+----
+
+=== 3
+
+[source, cpp]
+----
+#include <iostream>
+using namespace std;
+
+void f(int n) {
+    cout << n;
+    if(n > 0){
+        f(n-1);
+    }
+    cout << n;
+    return;
+}
+
+int main() {
+    f(5);
+    cout << endl;
+    return 0;
+}
+----
+
+=== 4
+
+[source, cpp]
+----
+#include <iostream>
+using namespace std;
+
+void f(int n) {
+    if(n > 0){
+        f(n-1);
+        cout << n;
+        f(n-1);
+    }
+    return;
+}
+
+int main() {
+    f(3);
+    cout << endl;
+    return 0;
+}
+----
+
+== こたえ
+
+=== 1
+
+[source]
+----
+543210
+----
+
+=== 2
+
+[source]
+----
+012345
+----
+
+=== 3
+
+[source]
+----
+543210012345
+----
+
+=== 4
+
+[source]
+----
+1213121
+----
+
+
+== 再帰の結果を文字列として返す
+
+`cout` ではなく `string` で結果を返してみます．
+
+[source, cpp]
+----
+#include <iostream>
+using namespace std;
+
+string f(int n) {
+    if(n < 0){
+        return "";
+    }else{
+        return to_string(n) + f(n-1);
+    }
+}
+
+int main() {
+    cout << f(5) << endl;
+    return 0;
+}
+----
+
+このプログラムの出力は，先の例と同じです．
+
+[source]
+----
+543210
+----
+
+`cout` の場合は， 実行される `cout` の順にその出力が表示されますが， `string` であればその制約がないのでより柔軟なプログラムが書けます．
+
+たとえば逆順に出力したければ， `string` の足し算の順番を変えるだけで実現できます．
+
+[source, cpp]
+----
+#include <iostream>
+using namespace std;
+
+string f(int n) {
+    if(n < 0){
+        return "";
+    }else{
+        return f(n-1) + to_string(n);
+    }
+}
+
+int main() {
+    cout << f(5) << endl;
+    return 0;
+}
+----
+
+[source]
+----
+012345
+----
+
+さて， `return "";` の `""` のことを， +再帰の基底+ と呼びます．
+
+たとえば，階乗を求めるプログラムを再帰を使って次のように書けますが，ここでの基底は `1` になります．
+
+基底は，その再帰の一番深い部分に対応する値です．再帰のプログラムを書く時は，まずはじめに基底を書くと良いかもしれません．
+
+[source, cpp]
+----
+#include <iostream>
+using namespace std;
+
+int f(int n) {
+    if(n <= 1){
+        return 1;
+    }else{
+        return n*f(n-1);
+    }
+}
+
+int main() {
+    cout << f(6) << endl;
+    return 0;
+}
+----
+
+[source]
+----
+720
+----
+
+== メモ化再帰(これはメモ化再帰ではありませんね)
+
+次のような再帰を考えてみましょう．
+
+[source, cpp]
+----
+#include <iostream>
+using namespace std;
+
+string f(int n) {
+    if(n < 1){
+        return "1";
+    }else{
+        return "(" + f(n-1) + "+" + f(n-1) + ")";
+    }
+}
+
+int main() {
+    cout << f(3) << endl;
+    return 0;
+}
+----
+
+[source]
+----
+(((1+1)+(1+1))+((1+1)+(1+1)))
+----
+
+よく見てみると， `f(n-1)` と `f(n-1)` は全く同じ文字列が返ってくることに気づきます．
+つまり，一方の結果を使い回しできます．
+
+[source, cpp]
+----
+#include <iostream>
+using namespace std;
+
+string f(int n) {
+    if(n < 1){
+        return "1";
+    }else{
+        string memo = f(n-1);
+        return "(" + memo + "+" + memo + ")";
+    }
+}
+
+int main() {
+    cout << f(3) << endl;
+    return 0;
+}
+----
+
+この工夫を加える前は，関数fが呼ばれる回数は $2^n$ に比例しますが，メモ化することにより $n$ に比例するまでに減ります．つまり時間計算量が $O(2^n)$ から $O(n)$ に小さくなります．
+
+メモ化再帰の実用的な例として繰り返し二乗法を紹介します．
+ここでは累乗を繰り返し二乗法で求めています．
+
+[source, cpp]
+----
+#include <iostream>
+using namespace std;
+
+using ll = long long int;
+
+ll mod = 1000000007;
+
+ll pow(ll n, ll m) {
+    if(m == 0){
+        return 1;
+    }
+    ll memo = pow(n, m/2);
+    if(m%2 == 0){
+        return memo*memo%mod;
+    }else{
+        return memo*memo%mod*n%mod;
+    }
+}
+
+int main() {
+    cout << pow(2, 1000000000) << endl;
+    return 0;
+}
+----

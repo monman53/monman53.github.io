@@ -1,0 +1,402 @@
+<!doctype html>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<link rel='shortcut icon' type='image/png' href='/img/favicon.png'/>
+<title>再帰のきほん : monman53</title>
+<link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai.min.css'>
+<script src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/rust.min.js'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/tex.min.js'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/vim.min.js'></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+<script type='text/x-mathjax-config'>MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$']]}});</script>
+<link rel='stylesheet' href='/css/main.css'>
+<p><a href='/'>monman53.github.io</a></p>
+<hr>
+<h1>再帰のきほん</h1>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111264044-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-111264044-1');
+</script>
+<div class="sect1">
+<h2 id="_再帰とは">再帰とは</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>関数の再帰呼び出しは，関数fのプログラムの中で自分自身(関数f)を呼び出すことで実現されます．</p>
+</div>
+<div class="paragraph">
+<p>簡単な再帰呼び出しの例を見てみましょう．</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-cpp" data-lang="cpp">#include &lt;iostream&gt;
+using namespace std;
+
+void f(int n) {
+    cout &lt;&lt; n &lt;&lt; endl;
+    if(n == 0){
+        return;
+    }else{
+        f(n-1);
+    }
+}
+
+int main() {
+    f(5);
+    return 0;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>このプログラムの出力は次のようになります．</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>5
+4
+3
+2
+1
+0</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_もんだい">もんだい</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>それぞれのプログラムの出力結果を答えて下さい．</p>
+</div>
+<div class="sect2">
+<h3 id="_1">1</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-cpp" data-lang="cpp">#include &lt;iostream&gt;
+using namespace std;
+
+void f(int n) {
+    cout &lt;&lt; n;
+    if(n == 0){
+        return;
+    }else{
+        f(n-1);
+    }
+}
+
+int main() {
+    f(5);
+    cout &lt;&lt; endl;
+    return 0;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2">2</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-cpp" data-lang="cpp">#include &lt;iostream&gt;
+using namespace std;
+
+void f(int n) {
+    if(n &gt; 0){
+        f(n-1);
+    }
+    cout &lt;&lt; n;
+    return;
+}
+
+int main() {
+    f(5);
+    cout &lt;&lt; endl;
+    return 0;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3">3</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-cpp" data-lang="cpp">#include &lt;iostream&gt;
+using namespace std;
+
+void f(int n) {
+    cout &lt;&lt; n;
+    if(n &gt; 0){
+        f(n-1);
+    }
+    cout &lt;&lt; n;
+    return;
+}
+
+int main() {
+    f(5);
+    cout &lt;&lt; endl;
+    return 0;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_4">4</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-cpp" data-lang="cpp">#include &lt;iostream&gt;
+using namespace std;
+
+void f(int n) {
+    if(n &gt; 0){
+        f(n-1);
+        cout &lt;&lt; n;
+        f(n-1);
+    }
+    return;
+}
+
+int main() {
+    f(3);
+    cout &lt;&lt; endl;
+    return 0;
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_こたえ">こたえ</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_1_2">1</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>543210</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2_2">2</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>012345</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_2">3</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>543210012345</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_4_2">4</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>1213121</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_再帰の結果を文字列として返す">再帰の結果を文字列として返す</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>cout</code> ではなく <code>string</code> で結果を返してみます．</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-cpp" data-lang="cpp">#include &lt;iostream&gt;
+using namespace std;
+
+string f(int n) {
+    if(n &lt; 0){
+        return "";
+    }else{
+        return to_string(n) + f(n-1);
+    }
+}
+
+int main() {
+    cout &lt;&lt; f(5) &lt;&lt; endl;
+    return 0;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>このプログラムの出力は，先の例と同じです．</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>543210</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>cout</code> の場合は， 実行される <code>cout</code> の順にその出力が表示されますが， <code>string</code> であればその制約がないのでより柔軟なプログラムが書けます．</p>
+</div>
+<div class="paragraph">
+<p>たとえば逆順に出力したければ， <code>string</code> の足し算の順番を変えるだけで実現できます．</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-cpp" data-lang="cpp">#include &lt;iostream&gt;
+using namespace std;
+
+string f(int n) {
+    if(n &lt; 0){
+        return "";
+    }else{
+        return f(n-1) + to_string(n);
+    }
+}
+
+int main() {
+    cout &lt;&lt; f(5) &lt;&lt; endl;
+    return 0;
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>012345</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>さて， <code>return "";</code> の <code>""</code> のことを， 再帰の基底 と呼びます．</p>
+</div>
+<div class="paragraph">
+<p>たとえば，階乗を求めるプログラムを再帰を使って次のように書けますが，ここでの基底は <code>1</code> になります．</p>
+</div>
+<div class="paragraph">
+<p>基底は，その再帰の一番深い部分に対応する値です．再帰のプログラムを書く時は，まずはじめに基底を書くと良いかもしれません．</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-cpp" data-lang="cpp">#include &lt;iostream&gt;
+using namespace std;
+
+int f(int n) {
+    if(n &lt;= 1){
+        return 1;
+    }else{
+        return n*f(n-1);
+    }
+}
+
+int main() {
+    cout &lt;&lt; f(6) &lt;&lt; endl;
+    return 0;
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>720</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_メモ化再帰これはメモ化再帰ではありませんね">メモ化再帰(これはメモ化再帰ではありませんね)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>次のような再帰を考えてみましょう．</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-cpp" data-lang="cpp">#include &lt;iostream&gt;
+using namespace std;
+
+string f(int n) {
+    if(n &lt; 1){
+        return "1";
+    }else{
+        return "(" + f(n-1) + "+" + f(n-1) + ")";
+    }
+}
+
+int main() {
+    cout &lt;&lt; f(3) &lt;&lt; endl;
+    return 0;
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>(((1+1)+(1+1))+((1+1)+(1+1)))</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>よく見てみると， <code>f(n-1)</code> と <code>f(n-1)</code> は全く同じ文字列が返ってくることに気づきます．
+つまり，一方の結果を使い回しできます．</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-cpp" data-lang="cpp">#include &lt;iostream&gt;
+using namespace std;
+
+string f(int n) {
+    if(n &lt; 1){
+        return "1";
+    }else{
+        string memo = f(n-1);
+        return "(" + memo + "+" + memo + ")";
+    }
+}
+
+int main() {
+    cout &lt;&lt; f(3) &lt;&lt; endl;
+    return 0;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>この工夫を加える前は，関数fが呼ばれる回数は $2^n$ に比例しますが，メモ化することにより $n$ に比例するまでに減ります．つまり時間計算量が $O(2^n)$ から $O(n)$ に小さくなります．</p>
+</div>
+<div class="paragraph">
+<p>メモ化再帰の実用的な例として繰り返し二乗法を紹介します．
+ここでは累乗を繰り返し二乗法で求めています．</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-cpp" data-lang="cpp">#include &lt;iostream&gt;
+using namespace std;
+
+using ll = long long int;
+
+ll mod = 1000000007;
+
+ll pow(ll n, ll m) {
+    if(m == 0){
+        return 1;
+    }
+    ll memo = pow(n, m/2);
+    if(m%2 == 0){
+        return memo*memo%mod;
+    }else{
+        return memo*memo%mod*n%mod;
+    }
+}
+
+int main() {
+    cout &lt;&lt; pow(2, 1000000000) &lt;&lt; endl;
+    return 0;
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<hr>
+<p>last modified : 2019-06-02 20:15:24 +0900</p>
+<p><a href='/'>monman53.github.io</a></p>
+<p>this page is generated by <a href='https://github.com/monman53/monsta'>monsta</a></p>
