@@ -32,3 +32,13 @@ h3 {
     padding-left: 0.5em;
     border-left: 0.4em solid;
 }
+
+img {
+    width: 100%;
+    max-width: 400px;
+}
+
+.line-through{
+    font-weight: normal;
+    text-decoration:line-through;
+}

@@ -1,0 +1,36 @@
+= ImageMagick
+
+いつもやるやつのメモ
+
+== convert
+
+=== `-resize`
+
+[source, sh]
+----
+# 画像を半分の大きさにする．
+$ convert -resize 50% in.jpg out.jpg
+
+# ピクセル数を指定する． 高さx幅 (縦横比が同じになるように調整される)
+$ convert -resize 400x300 in.jpg out.jpg
+
+# ピクセル数を指定する． 高さx幅 (縦横比は無視され，強制的に指定した大きさになる)
+$ convert -resize 400x300! in.jpg out.jpg
+----
+
+=== '-auto-orient'
+
+カメラで撮影した向きに画像を回転する．
+
+== mogrify
+
+複数ファイルを同時に編集する場合は `mogrify` をつかう．
+
+=== `-path`
+
+出力ディレクトリのの指定
+
+[source, sh]
+----
+$ mogrify -resize 50% -path ./exported *.jpg
+----

@@ -1,0 +1,25 @@
+= OpenCL入門
+
+Ubuntu18.04上でOpenCLをやります．
+
+== 準備
+
+=== インストール
+
+[source, bash]
+----
+$ sudo apt install ocl-icd-opencl-dev
+----
+
+=== host コード
+
+[source, cpp]
+----
+----
+
+=== Build
+
+[source, cpp]
+----
+$ g++ main.cpp -lOpenCL
+----
