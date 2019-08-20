@@ -42,3 +42,11 @@ img {
     font-weight: normal;
     text-decoration:line-through;
 }
+
+.imageblock > .title {
+    margin-bottom: 1em;
+}
+
+.imageblock > .title::before {
+    content: "↑ ";
+}
