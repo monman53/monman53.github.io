@@ -33,14 +33,18 @@ h3 {
     border-left: 0.4em solid;
 }
 
-img {
-    width: 100%;
-    max-width: 600px;
+a.license {
+    text-decoration:none;
 }
 
 .line-through{
     font-weight: normal;
     text-decoration:line-through;
+}
+
+.imageblock img {
+    width: 100%;
+    max-width: 600px;
 }
 
 .imageblock > .title {
@@ -49,4 +53,41 @@ img {
 
 .imageblock > .title::before {
     content: "↑ ";
+}
+
+body {
+    margin: 0;
+    background: lightgray;
+}
+
+header p {
+    margin: 0.6em;
+    /*margin-left: 0;*/
+}
+
+header a {
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+header a:link,
+header a:visited {
+    color: black;
+}
+
+#logo-img {
+    width: 3em;
+}
+
+main {
+    background: white;
+}
+
+footer {
+    font-size: 0.9em;
+}
+
+div.pad {
+    margin: 0;
+    padding: 8px;
 }

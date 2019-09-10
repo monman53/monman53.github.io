@@ -121,5 +121,5 @@ Host hostname
 
 == Mozc keymap
 
-* link:keymap-jis.txt[JIS-keyboard]
+* link:/keymap-jis.txt[JIS-keyboard]
 * keymap-us.txt
