@@ -1,7 +1,7 @@
 = Biography
 
 * *monman53*
-* Twitter link:https://twitter.com/[monman53]
+* Twitter link:https://twitter.com/monman53[monman53]
 * GitHub link:https://github.com/monman53[monman53]
 * blog https://monman53.hateblo.jp/[monman53のぶろぐ]
 * 誕生日 1994-05-03

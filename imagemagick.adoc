@@ -18,9 +18,13 @@ $ convert -resize 400x300 in.jpg out.jpg
 $ convert -resize 400x300! in.jpg out.jpg
 ----
 
-=== '-auto-orient'
+=== `-auto-orient`
 
 カメラで撮影した向きに画像を回転する．
+
+=== Percent Escape Handling
+
+http://www.imagemagick.org/script/escape.php
 
 == mogrify
 

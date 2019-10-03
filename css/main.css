@@ -1,36 +1,55 @@
 :root{
-    --theme-back:  #fff;
-    --theme-front: #000;
+    --color-background:     #fff;
+    --color-header:         #000;
+    --color-text-default:   #000;
+    --color-base:           #ccc;
+    --color-accent:         #000;
+}
+
+@media (prefers-color-scheme: dark) {
+:root{
+    --color-background:     #111;
+    --color-header:         #853;
+    --color-text-default:   #888;
+    --color-base:           #222;
+    --color-accent:         #000;
+}
 }
 
 body {
-    font-family: sans-serif;
-    background-color: var(--theme-back);
-    color: var(--theme-front);
+    font-family: Arial, sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-text-default);
 }
 
 code {
-    /*font-family: monospace;*/
     font-size: 12pt;
 }
 
-li > p {
-    margin: 0;
-}
-
+li > p,
 td > p {
     margin: 0;
 }
 
 h2 {
-    padding-left: 0.5em;
-    border-left: 0.4em solid;
     border-bottom: 2px solid;
 }
 
+h1 {
+    color: var(--color-header);   
+}
+
+h2,
 h3 {
     padding-left: 0.5em;
     border-left: 0.4em solid;
+    border-color: var(--color-header);
+    color: var(--color-header);
+}
+
+a:link,
+a:visited {
+    color: var(--color-text-default);
 }
 
 a.license {
@@ -42,52 +61,61 @@ a.license {
     text-decoration:line-through;
 }
 
-.imageblock img {
-    width: 100%;
-    max-width: 600px;
-}
-
-.imageblock > .title {
-    margin-bottom: 1em;
-}
-
-.imageblock > .title::before {
-    content: "↑ ";
-}
-
 body {
     margin: 0;
-    background: lightgray;
+    background: var(--color-base);
 }
 
 header p {
     margin: 0.6em;
-    /*margin-left: 0;*/
+    font-weight: bold;
 }
 
 header a {
-    text-decoration: none;
+    /*text-decoration: none;*/
     font-size: 1.2em;
 }
 
 header a:link,
 header a:visited {
-    color: black;
+    color: var(--color-text-default);
 }
 
-#logo-img {
-    width: 3em;
-}
-
-main {
-    background: white;
+article {
+    background: var(--color-background);
 }
 
 footer {
-    font-size: 0.9em;
+    /*font-size: 0.9em;*/
+    font-size: small;
 }
 
 div.pad {
     margin: 0;
     padding: 8px;
+}
+
+.image-grid {
+    display: grid;
+    gap: 0.5em;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.image-cell img {
+    width: 100%;
+}
+
+.image-cell img:hover {
+  opacity: 0.9;
+  transition-duration: 0.3s;
+}
+
+p.image-cell-caption {
+    margin-top: 0;
+}
+
+p.image-cell-exif {
+    margin: 0;
+    font-size: xx-small;
+    font-weight: 100;
 }

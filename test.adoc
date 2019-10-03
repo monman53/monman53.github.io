@@ -18,6 +18,43 @@ asciidoc source from link:http://asciidoc.org/[asciidoc.org]
 ** 2222222222
 ** 2222222222
 
+== Macros
+
+=== image_grid
+
+image_grid::begin[]
+
+.image_cell_1
+image_cell::/plant/2019-08-27/p8273777[]
+.image_cell_2
+image_cell::/plant/2019-08-27/p8273778[]
+
+
+image_grid::end[]
+
+== class attributes
+
+hoge hoge [.hoge]#hoge hoge#.
+
+
+== List continuation
+
+* The header in AsciiDoc must start with a document title.
++
+----
+= Document Title
+----
++
+Keep in mind that the header is optional.
+
+* Optional Author and Revision information immediately follows the header title.
++
+----
+= Document Title
+Doc Writer <doc.writer@asciidoc.org>
+v1.0, 2013-01-01
+----
+
 
 == CSS 
 
