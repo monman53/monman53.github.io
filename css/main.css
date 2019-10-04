@@ -9,8 +9,8 @@
 @media (prefers-color-scheme: dark) {
 :root{
     --color-background:     #111;
-    --color-header:         #853;
-    --color-text-default:   #888;
+    --color-header:         #b73;
+    --color-text-default:   #aaa;
     --color-base:           #222;
     --color-accent:         #000;
 }
@@ -28,23 +28,29 @@ code {
 
 li > p,
 td > p {
-    margin: 0;
+    margin: 0.5em;
 }
 
-h2 {
-    border-bottom: 2px solid;
+ul {
+    padding-left: 1em;
 }
 
-h1 {
+h1,
+h2,
+h3,
+h4 {
     color: var(--color-header);   
+    border-color: var(--color-header);
 }
 
 h2,
 h3 {
     padding-left: 0.5em;
     border-left: 0.4em solid;
-    border-color: var(--color-header);
-    color: var(--color-header);
+}
+
+h2 {
+    border-bottom: 2px solid;
 }
 
 a:link,
@@ -54,6 +60,10 @@ a:visited {
 
 a.license {
     text-decoration:none;
+}
+
+object.icon-cc-by path {
+    fill: var(--color-text-default);
 }
 
 .line-through{
@@ -67,37 +77,31 @@ body {
 }
 
 header p {
-    margin: 0.6em;
+    margin: 0.6rem;
+}
+
+header p.bread {
     font-weight: bold;
-}
-
-header a {
-    /*text-decoration: none;*/
-    font-size: 1.2em;
-}
-
-header a:link,
-header a:visited {
-    color: var(--color-text-default);
+    font-size: 1.2rem;
 }
 
 article {
     background: var(--color-background);
+    padding-bottom: 1rem;
 }
 
 footer {
-    /*font-size: 0.9em;*/
     font-size: small;
 }
 
 div.pad {
     margin: 0;
-    padding: 8px;
+    padding: 0.3rem;
 }
 
 .image-grid {
     display: grid;
-    gap: 0.5em;
+    gap: 0.5rem;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
 
@@ -112,6 +116,9 @@ div.pad {
 
 p.image-cell-caption {
     margin-top: 0;
+    padding-left: 0.5rem;
+    padding-right: 0.5wm;
+    line-height: 125%;
 }
 
 p.image-cell-exif {
