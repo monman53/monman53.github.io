@@ -10,6 +10,8 @@
 *** ASRock AB350 Pro4
 ** CPU
 *** AMD CPU Ryzen5 1600X AM4 YD160XBCAEWOF  
+** メモリ
+*** (追記予定)
 ** ファン
 *** ENERMAX ETS-N31-02
 ** SSD
@@ -20,10 +22,14 @@
 ** BUFFALO BSMBU505MRD
 * スピーカー
 ** CREATIVE GigaWorks T20 Series II
+* イヤホン
+** SONY MDR-EX750
 * ディスプレイ
 ** Acer S271HL 27-inch
 * スキャナ
 ** EPSON GT-X980
+* AVアンプ
+** ONKYO SA-205HDX
 
 == 撮影機材
 
@@ -32,6 +38,7 @@
 * レンズ
 ** M.ZUIKO DIGITAL ED 14-150mm F4.0-5.6 II ブラック
 ** M.ZUIKO DIGITAL 45mm F1.8 ブラック 
+** M.ZUIKO DIGITAL 25mm F1.8 ブラック 
 * レンズ(オールド)
 ** G.ZUIKO AUTO-S 50mm F1.4
 ** G.ZUIKO AUTO-W 28mm F3.5
@@ -105,6 +112,8 @@
 ** Panasonic NI-R36-S
 * 照明
 ** オーム アームライト AS-N10AW-K
+* 掃除機
+** Dyson V7 Trigger
 
 == その他
 
@@ -112,3 +121,4 @@
 ** CASIO MQ-24-7B2LLJF
 ** CASIO F-91W-1JF
 * 自転車
+** Bridgestone ordina S3F

@@ -116,13 +116,14 @@ div.pad {
 
 p.image-cell-caption {
     margin-top: 0;
-    padding-left: 0.5rem;
-    padding-right: 0.5wm;
+    /*padding-left: 0.5rem;*/
+    /*padding-right: 0.5rem;*/
     line-height: 125%;
 }
 
 p.image-cell-exif {
     margin: 0;
+    /*padding-left: 0.5rem;*/
+    /*padding-right: 0.5rem;*/
     font-size: xx-small;
-    font-weight: 100;
 }
