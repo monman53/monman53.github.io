@@ -1,5 +1,18 @@
 = 競プロのお供
 
+== リンク集
+
+* link:https://kenkoooo.com/atcoder/#/user/monman53[AtCoder Problems [monman53]]
+* link:https://github.com/monman53/online_judge/tree/master/lib[monman53 online_judge lib]
+* link:https://cpprefjp.github.io/[cpprefjp]
+* link:https://atcoder.jp/contests/chokudai004/submissions/me[焼きなまし法テンプレ]
+
+== チェックリスト
+
+* ビット演算を使っている?
+** `1 << i` はオーバーフローしない? `1LL << i` に変更
+*** https://atcoder.jp/contests/dwacon5th-prelims/submissions/8092547
+
 == 知識
 
 === XORの性質
@@ -8,3 +21,4 @@
 * 任意の偶数$n$について，$n\oplus(n+1)=1$
 * $0\oplus1\oplus\cdots\oplus(2^n-1)=0$
 ** ただし$n>1$
+

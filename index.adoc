@@ -7,6 +7,7 @@
 * link:/kyopro.html[競プロのお供]
 * link:/imagemagick.html[ImageMagickのメモ]
 * link:/recursive.html[再帰のきほん]
+* link:/pointer.html[C言語のポインタ]
 * link:/canvas.html[Canvasのきほん]
 * link:/canvas_webgl.html[CanvasとWebGLでライフゲームをやるやつのメモ]
 * link:/environment.html[環境構築用]
