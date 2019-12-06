@@ -29,34 +29,34 @@
 image_grid::begin[]
 
 .全体の様子
-image_cell::/plant/2019-08-26/p8263767[]
+image_cell::/images/plant/2019-08-26/p8263767[]
 
 .全体の根本部分
-image_cell::/plant/2019-08-26/p8263771[]
+image_cell::/images/plant/2019-08-26/p8263771[]
 
 .全体の成長具合．土日でかなり変化した．
-image_cell::/plant/2019-08-26/p8263772[]
+image_cell::/images/plant/2019-08-26/p8263772[]
 
 .ビバ号最前線
-image_cell::/plant/2019-08-26/p8263768[]
+image_cell::/images/plant/2019-08-26/p8263768[]
 
 .1号最前線
-image_cell::/plant/2019-08-26/p8263769[]
+image_cell::/images/plant/2019-08-26/p8263769[]
 
 .1号の実その1
-image_cell::/plant/2019-08-26/p8263775[]
+image_cell::/images/plant/2019-08-26/p8263775[]
 
 .1号の実その2
-image_cell::/plant/2019-08-26/p8263776[]
+image_cell::/images/plant/2019-08-26/p8263776[]
 
 .1号の花．ピンぼけだが立派な花が一つ咲いていた．
-image_cell::/plant/2019-08-26/p8263774[]
+image_cell::/images/plant/2019-08-26/p8263774[]
 
 .2号最前線
-image_cell::/plant/2019-08-26/p8263770[]
+image_cell::/images/plant/2019-08-26/p8263770[]
 
 .2号のつぼみたち
-image_cell::/plant/2019-08-26/p8263773[]
+image_cell::/images/plant/2019-08-26/p8263773[]
 
 image_grid::end[]
 
@@ -72,31 +72,31 @@ image_grid::end[]
 image_grid::begin[]
 
 .全体の様子
-image_cell::/plant/2019-08-23/p8233757[]
+image_cell::/images/plant/2019-08-23/p8233757[]
 
 .全体の根本部分
-image_cell::/plant/2019-08-23/p8233761[]
+image_cell::/images/plant/2019-08-23/p8233761[]
 
 .全体の成長具合．近頃やはり成長速度がはやい，
-image_cell::/plant/2019-08-23/p8233762[]
+image_cell::/images/plant/2019-08-23/p8233762[]
 
 .ビバ号最前線
-image_cell::/plant/2019-08-23/p8233758[]
+image_cell::/images/plant/2019-08-23/p8233758[]
 
 .1号最前線
-image_cell::/plant/2019-08-23/p8233759[]
+image_cell::/images/plant/2019-08-23/p8233759[]
 
 .1号の花．今日は割と咲いていた．午前中に多く咲いているのかもしれない．
-image_cell::/plant/2019-08-23/p8233764[]
+image_cell::/images/plant/2019-08-23/p8233764[]
 
 .1号の脇芽の巻きひげがフェンスをとらえた様子．
-image_cell::/plant/2019-08-23/p8233765[]
+image_cell::/images/plant/2019-08-23/p8233765[]
 
 .2号最前線
-image_cell::/plant/2019-08-23/p8233760[]
+image_cell::/images/plant/2019-08-23/p8233760[]
 
 .2号につぼみがついた様子．画像中央の最前線をよく観るとつぼみが見える．
-image_cell::/plant/2019-08-23/p8233766[]
+image_cell::/images/plant/2019-08-23/p8233766[]
 
 image_grid::end[]
 
@@ -113,25 +113,25 @@ image_grid::end[]
 image_grid::begin[]
 
 .全体の様子
-image_cell::/plant/2019-08-22/p8223748[]
+image_cell::/images/plant/2019-08-22/p8223748[]
 
 .全体の根元部分
-image_cell::/plant/2019-08-22/p8223751[]
+image_cell::/images/plant/2019-08-22/p8223751[]
 
 .全体の成長具合．どのくらい伸びたかわかるように，今後このような写真を載せていこうと思う．
-image_cell::/plant/2019-08-22/p8223755[]
+image_cell::/images/plant/2019-08-22/p8223755[]
 
 .ビバ号最前線
-image_cell::/plant/2019-08-22/p8223749[]
+image_cell::/images/plant/2019-08-22/p8223749[]
 
 .1号最前線
-image_cell::/plant/2019-08-22/p8223750[]
+image_cell::/images/plant/2019-08-22/p8223750[]
 
 .1号の花．今日はあまり花が咲いていなかった．
-image_cell::/plant/2019-08-22/p8223753[]
+image_cell::/images/plant/2019-08-22/p8223753[]
 
 .2号最前線
-image_cell::/plant/2019-08-22/p8223752[]
+image_cell::/images/plant/2019-08-22/p8223752[]
 
 image_grid::end[]
 
@@ -149,28 +149,28 @@ image_grid::end[]
 image_grid::begin[]
 
 .全体の様子
-image_cell::/plant/2019-08-21/p8213741[]
+image_cell::/images/plant/2019-08-21/p8213741[]
 
 .全体の根元部分
-image_cell::/plant/2019-08-21/p8213745[]
+image_cell::/images/plant/2019-08-21/p8213745[]
 
 .ビバ号最前線
-image_cell::/plant/2019-08-21/p8213744[]
+image_cell::/images/plant/2019-08-21/p8213744[]
 
 .1号最前線
-image_cell::/plant/2019-08-21/p8213742[]
+image_cell::/images/plant/2019-08-21/p8213742[]
 
 .1号の下の部分．途中から脇芽が出てきて元気な様子．
-image_cell::/plant/2019-08-21/p8213746[]
+image_cell::/images/plant/2019-08-21/p8213746[]
 
 .1号の花．昨日と様子が違う．花の様子は毎日違う気がする．
-image_cell::/plant/2019-08-21/p8213747[]
+image_cell::/images/plant/2019-08-21/p8213747[]
 
 .2号最前線．1日経っただけでも葉っぱが大きくなっていたりと，成長を確認できる．
-image_cell::/plant/2019-08-21/p8213740[]
+image_cell::/images/plant/2019-08-21/p8213740[]
 
 .昨日の2号最前線．
-image_cell::/plant/2019-08-20/p8203738[]
+image_cell::/images/plant/2019-08-20/p8203738[]
 
 image_grid::end[]
 
@@ -186,19 +186,19 @@ image_grid::end[]
 image_grid::begin[]
 
 .全体の様子
-image_cell::/plant/2019-08-20/p8203735[]
+image_cell::/images/plant/2019-08-20/p8203735[]
 
 .ビバ号最前線
-image_cell::/plant/2019-08-20/p8203736[]
+image_cell::/images/plant/2019-08-20/p8203736[]
 
 .1号最前線．風で少し茎が折れ気味だったので，フェンスに絡ませておいた．
-image_cell::/plant/2019-08-20/p8203737[]
+image_cell::/images/plant/2019-08-20/p8203737[]
 
 .1号の花．
-image_cell::/plant/2019-08-20/p8203739[]
+image_cell::/images/plant/2019-08-20/p8203739[]
 
 .2号最前線．昨日はかなり萎れていたが，ここまで回復した．
-image_cell::/plant/2019-08-20/p8203738[]
+image_cell::/images/plant/2019-08-20/p8203738[]
 
 image_grid::end[]
 
@@ -211,22 +211,22 @@ image_grid::end[]
 image_grid::begin[]
 
 .ビバ号．虫がちゃんと花にたかっている．フウセンカズラは自家受粉らしく，花をつつくだけで受粉が完了するかもしれない．
-image_cell::/plant/2019-08-08/p8083643[]
+image_cell::/images/plant/2019-08-08/p8083643[]
 
 .ビバ号最前線．数日前に先端がやられてしまったが，そのおかげ?で横からたくさん芽がでてきてよく茂るようになった気がする．上の方は結構花が咲いている．
-image_cell::/plant/2019-08-08/p8083646[]
+image_cell::/images/plant/2019-08-08/p8083646[]
 
 .ビバ号の花
-image_cell::/plant/2019-08-08/p8083645[]
+image_cell::/images/plant/2019-08-08/p8083645[]
 
 .大岡山1号．ついに実がついた!
-image_cell::/plant/2019-08-08/p8083648[]
+image_cell::/images/plant/2019-08-08/p8083648[]
 
 .大岡山1号の最前線．大岡山1号はあまり花が咲いていない．葉っぱも色が薄いし少し心配ではある．しかし，大岡山1・2号のオリジナルは大岡山で健在であることが本日確認された．
-image_cell::/plant/2019-08-08/p8083642[]
+image_cell::/images/plant/2019-08-08/p8083642[]
 
 .大岡山2号の最前線．必死にフェンスにしがみついている，
-image_cell::/plant/2019-08-08/p8083640[]
+image_cell::/images/plant/2019-08-08/p8083640[]
 
 image_grid::end[]
 
@@ -239,7 +239,7 @@ image_grid::end[]
 急遽植え替えすることに．
 
 image_grid::begin[]
-image_cell::/plant/2019-08-06/p8063615[]
+image_cell::/images/plant/2019-08-06/p8063615[]
 image_grid::end[]
 
 この日は大学のフウセンカズラ戦線の土の入れ替えをした．
@@ -248,8 +248,8 @@ image_grid::end[]
 しかも昨日の所業のせいで，落ち葉が大変なことに!
 
 image_grid::begin[]
-image_cell::/plant/2019-08-06/p8063617[]
-image_cell::/plant/2019-08-06/p8063616[]
+image_cell::/images/plant/2019-08-06/p8063617[]
+image_cell::/images/plant/2019-08-06/p8063616[]
 image_grid::end[]
 
 草刈り部隊にバレぬよう土を掘り返していると，「なにしてるの」とあっけなくばれる．
@@ -273,22 +273,22 @@ image_grid::end[]
 
 image_grid::begin[]
 
-image_cell::/plant/2019-08-05/p8053600[]
+image_cell::/images/plant/2019-08-05/p8053600[]
 
 .before
-image_cell::/plant/2019-08-05/p8053599[]
+image_cell::/images/plant/2019-08-05/p8053599[]
 
 .after
-image_cell::/plant/2019-08-05/p8053606[]
+image_cell::/images/plant/2019-08-05/p8053606[]
 
 .大岡山1号の最前線
-image_cell::/plant/2019-08-05/p8053608[]
+image_cell::/images/plant/2019-08-05/p8053608[]
 
 .大岡山1号の右側の花
-image_cell::/plant/2019-08-05/p8053610[]
+image_cell::/images/plant/2019-08-05/p8053610[]
 
 .ビバ号の最前線
-image_cell::/plant/2019-08-05/p8053612[]
+image_cell::/images/plant/2019-08-05/p8053612[]
 
 image_grid::end[]
 
@@ -300,7 +300,7 @@ image_grid::end[]
 image_grid::begin[]
 
 .室内時代のビバ号
-image_cell::/plant/2019-07-12/p7123553[]
+image_cell::/images/plant/2019-07-12/p7123553[]
 
 image_grid::end[]
 

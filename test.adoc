@@ -25,9 +25,9 @@ asciidoc source from link:http://asciidoc.org/[asciidoc.org]
 image_grid::begin[]
 
 .image_cell_1
-image_cell::/plant/2019-08-27/p8273777[]
+image_cell::/images/plant/2019-08-27/p8273777[]
 .image_cell_2
-image_cell::/plant/2019-08-27/p8273778[]
+image_cell::/images/plant/2019-08-27/p8273778[]
 
 
 image_grid::end[]
