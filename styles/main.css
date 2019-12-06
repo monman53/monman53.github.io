@@ -21,14 +21,14 @@
     --color-text-default:   var(--platanus-dark4);
 }
 
-/* @media (prefers-color-scheme: dark) { */
-/* :root{ */
-/*     --color-background:     var(--platanus-dark3); */
-/*     --color-base:           var(--platanus-dark4); */
-/*     --color-header:         var(--platanus-leaf3); */
-/*     --color-text-default:   var(--platanus-light2); */
-/* } */
-/* } */
+@media (prefers-color-scheme: dark) {
+:root{
+    --color-background:     var(--platanus-dark3);
+    --color-base:           var(--platanus-dark4);
+    --color-header:         var(--platanus-leaf3);
+    --color-text-default:   var(--platanus-light2);
+}
+}
 
 body {
     font-family: Arial, sans-serif;
