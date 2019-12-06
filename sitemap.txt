@@ -9,3 +9,6 @@ https://monman53.github.io/pointer.html
 https://monman53.github.io/canvas.html
 https://monman53.github.io/canvas_webgl.html
 https://monman53.github.io/profile.html
+https://monman53.github.io/demos/juliaset/
+https://monman53.github.io/plasmidraw/
+https://monman53.github.io/chimera.js/
