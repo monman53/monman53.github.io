@@ -1,29 +1,7 @@
 :root{
-    --platanus-dark0:  #646a4dff;
-    --platanus-dark1:  #595f45ff;
-    --platanus-dark2:  #4d533cff;
-    --platanus-dark3:  #3d412fff;
-    --platanus-dark4:  #2c2f22ff;
-
-    --platanus-light0: #f2f4ebff;
-    --platanus-light1: #eef0e5ff;
-    --platanus-light2: #e5e9d8ff;
-
-    --platanus-leaf0:  #99c181ff;
-    --platanus-leaf1:  #acc181ff;
-    --platanus-leaf2:  #c1ba81ff;
-    --platanus-leaf3:  #c1aa81ff;
-
-    --platanus-error:  #c15a64ff;
-    --platanus-caution:#cf826bff;
-    --platanus-warning:#ddba79ff;
-    --platanus-valid:  #acc181ff;
-    --platanus-value:  #ac84a7ff;
-}
-:root{
-    --hljs-background:  var(--platanus-dark3);
+    --hljs-background:  var(--platanus-dark2);
     --hljs-default:     var(--platanus-light2);
-    --hljs-comment:     var(--platanus-dark4);
+    --hljs-comment:     var(--platanus-dark0);
     --hljs-keyword:     var(--platanus-leaf3);
     --hljs-literal:     var(--platanus-caution);
     --hljs-string:      var(--platanus-leaf0);

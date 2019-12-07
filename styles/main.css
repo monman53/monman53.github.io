@@ -13,6 +13,12 @@
     --platanus-leaf1:  #acc181ff;
     --platanus-leaf2:  #c1ba81ff;
     --platanus-leaf3:  #c1aa81ff;
+
+    --platanus-error:  #c15a64ff;
+    --platanus-caution:#cf826bff;
+    --platanus-warning:#ddba79ff;
+    --platanus-valid:  #acc181ff;
+    --platanus-value:  #ac84a7ff;
 }
 :root{
     --color-background:     var(--platanus-light0);
