@@ -1,5 +1,5 @@
 = Canvasのきほん
-
+:description: HTML5のCanvasについて，JavaScriptを用いたアニメーションやマウスによるインタラクティブな描画について説明します．
 
 
 https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial
