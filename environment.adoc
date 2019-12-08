@@ -29,6 +29,8 @@ alias ll="ls -lhF --color"
 alias lla="ls -lhFa --color"
 alias l.="ls -lhFad --color .*"
 
+alias top="top -c -d0.1"
+
 alias tree="tree -aC"
 
 alias ping8="ping 8.8.8.8"
@@ -36,16 +38,25 @@ alias pingg="ping google.com"
 
 alias g++11="g++ -std=c++11 -Wall -O2"
 alias g++14="g++ -std=c++14 -Wall -O2"
+alias g++17="g++ -std=c++1z -Wall -O2"
 
 alias tmux="TERM=screen-256color-bce tmux"
+
+# environment variable
+export PATH=$HOME/.gem/ruby/2.1.0/bin:$HOME/bin:$GOPATH/bin:$HOME/.cargo/bin:$PATH
+
+export LC_ALL="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"
 ----
 
 === `~/.config/nvim/init.vim`
 
 [source, vim]
 ----
+
 " show line number
-set number
+" set number
+set number! relativenumber!
 
 " spaces will be used to fill the amount of whitespace of the tab
 set expandtab
@@ -59,31 +70,74 @@ set shiftwidth=4
 " use colors that look good on a dark background
 set background=dark     
 
-" <C-x> <C-k>
-set dictionary=/usr/share/dict/words	
+set cursorline
 
 set foldmethod=marker
 
 set clipboard=unnamedplus
 
+set guifont=Source\ Code\ Pro\ 11
+
+
 inoremap {<Enter> {<Enter>}<ESC><S-o>
 inoremap , ,<Space>
+
+" buffer move
+nnoremap <silent> <C-j> :bprev<CR>
+nnoremap <silent> <C-k> :bnext<CR>
+
+" format pasted text
+nnoremap p ]p
 
 "---------------------------
 " plugins
 "---------------------------
-"
-" clone into ~/.local/share/nvim/site/pack/git-plugins/
+" plugin manager
+" * using vim-plug(https://github.com/junegunn/vim-plug)
+" * installation
+"       $ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+"           https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+" * usage
+"   * add Plug line
+"   * run :PlugInstall
 
-" https://github.com/w0rp/ale.git   lint engine
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 0
-let g:ale_lint_on_enter = 0             " when file opend
+call plug#begin()
+
+" Coc is an intellisense engine for Vim/Neovim.
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+source ~/.config/nvim/coc.vim
+
+"" Vim plugin for intensely orgasmic commenting 
+"Plug 'scrooloose/nerdcommenter'
+
+" An extensible & universal comment vim-plugin that also handles embedded filetypes
+Plug 'tomtom/tcomment_vim'
+
+Plug 'SirVer/ultisnips'
+let g:UltiSnipsSnippetDirectoried=["ultisnips"]
+
+" snippets
+Plug 'honza/vim-snippets'
+
+" status tabline
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" theme
+Plug 'arcticicestudio/nord-vim'
+
+" git
+" Plug 'airblade/vim-gitgutter'
+
+call plug#end()
+
+colorscheme nord
+let g:airline_powerline_fonts = 1
 ----
 
 === `~/.gitconfig`
 
-[source]
+[source, plaintext]
 ----
 [alias]
     br      = branch
@@ -108,11 +162,25 @@ let g:ale_lint_on_enter = 0             " when file opend
 ----
 set -g default-terminal "xterm"
 set -g escape-time 10
+#set -g mouse on
+
+# continue with current directory
+bind c      new-window   -c  "#{pane_current_path}"
+bind %      split-window -hc "#{pane_current_path}"
+bind '"'    split-window -vc "#{pane_current_path}"
+
+# List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin "arcticicestudio/nord-tmux"      # theme
+
+run -b '~/.tmux/plugins/tpm/tpm'
 ----
 
 === `~/.ssh/config`
 
-[source]
+[source, plaintext]
 ----
 Host hostname
     HostName    hoge.com
