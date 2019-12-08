@@ -13,7 +13,7 @@ NUMERICAL RECIPES in C での勉強．
 
 分散(variance)::
     中心値からの散らばりの度合い． +
-    $$`sigma^2 =1/(N-1) sum_(j=1)^N (x_j-bar x)^2`$$
+    latexmath:[sigma^2 =1/(N-1) sum_(j=1)^N (x_j-bar x)^2]
     
 歪度(わいど，skewness)::
     $$`1/N sum_(j=1)^N ((x_j-bar x)/sigma)^3`$$ +

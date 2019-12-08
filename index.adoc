@@ -6,6 +6,7 @@
 * link:/plant/fusenkazura.html[フウセンカズラ栽培日記]
 * link:/music/[お気に入りのクラシック音楽]
 * link:/kyopro.html[競プロのお供]
+* link:/science/[自然科学の知識]
 * link:/imagemagick.html[ImageMagickのメモ]
 * link:/recursive.html[再帰のきほん]
 * link:/pointer.html[C言語のポインタ]

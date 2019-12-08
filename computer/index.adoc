@@ -1,5 +1,4 @@
-Computer
-========
+= Computer
 //
 //
 // == Shell (GNU Bash) 基礎知識 
