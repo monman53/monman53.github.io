@@ -1,4 +1,4 @@
 User-agent: *
-Disallow:
+Disallow: /404.html
 
 SITEMAP: https://monman.github.io/sitemap.txt
