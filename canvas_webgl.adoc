@@ -465,10 +465,12 @@ canvas {
 ----
 // {{{
 ++++
+<div style='overflow-x: auto;'>
 <canvas id='canvas1' style='
     height: 768px;
     width:  768px;
 '></canvas>
+</div>
 
 <script type="x-shader/x-fragment" id="initialShader">
 float random(vec2 p) { 
@@ -636,6 +638,7 @@ canvas {
 
 // {{{
 ++++
+<div style='overflow-x: auto;'>
 <canvas id='canvas2' style='
     height: 768px;
     width:  768px;
@@ -648,6 +651,7 @@ canvas {
     image-rendering:pixelated;                 /* CSS4 Proposed  */
     -ms-interpolation-mode:nearest-neighbor;   /* IE8+           */
 '></canvas>
+</div>
 
 <script type="x-shader/x-fragment" id="initialShader">
 float random(vec2 p) { 
