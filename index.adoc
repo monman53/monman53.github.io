@@ -14,24 +14,24 @@
 * link:/canvas_webgl.html[CanvasとWebGLでライフゲームをやるやつのメモ]
 * link:/environment.html[環境構築用]
 
-== つくったものなど
+== 主なつくったもの
 
 === 2019
-* https://monman53.github.io/demos/juliaset/index.html[Julia Set]
+* link:/demos/juliaset/[Julia Set]
 ** 充填ジュリア集合のWebGLによるインタラクティブデモ [WebGL, Vue.js]
-* https://monman53.github.io/demos/juliaset-vc/index.html[Julia Set (vc仕様)]
-** 上記のビネクラ仕様
-* https://monman53.github.io/demos/nightsky/index.html[Nightsky (vc仕様)]
-** 一次元セル・オートマトンとライフゲームによる夜空 [WebGL]
-** https://github.com/elliotwaite/rule-30-and-game-of-life[こちら]を参考に作成
+//* https://monman53.github.io/demos/juliaset-vc/index.html[Julia Set (vc仕様)]
+//** 上記のビネクラ仕様
+//* https://monman53.github.io/demos/nightsky/index.html[Nightsky (vc仕様)]
+//** 一次元セル・オートマトンとライフゲームによる夜空 [WebGL]
+//** https://github.com/elliotwaite/rule-30-and-game-of-life[こちら]を参考に作成
 * https://monman53.github.io/demos/kd-tree/index.html[kd-tree]
 ** データ構造のkd木のデモ [SVG, Vue.js]
-* https://monman53.github.io/demos/path-vc/index.html[path (vc仕様)]
-** ベルマンフォード法による最短経路探索．動的探索 [SVG, Vue.js]
-* https://monman53.github.io/demos/lines/index.html[lines (vc仕様)]
-** 線分がパタパタするヘッダー [Canvas, Vue.js]
-* link:https://monman53.github.io/halftone/[Halftone]
-** 印刷技術の網点(Halftone)の単色エミュレータ [WebGL, Vue.js]
+//* https://monman53.github.io/demos/path-vc/index.html[path (vc仕様)]
+//** ベルマンフォード法による最短経路探索．動的探索 [SVG, Vue.js]
+//* https://monman53.github.io/demos/lines/index.html[lines (vc仕様)]
+//** 線分がパタパタするヘッダー [Canvas, Vue.js]
+//* link:https://monman53.github.io/halftone/[Halftone]
+//** 印刷技術の網点(Halftone)の単色エミュレータ [WebGL, Vue.js]
 * link:https://monman53.github.io/chimera.js/[chimera.js]
 ** 量子アニーラ(キメラグラフ)のエミュレータ [SVG, Vue.js]
 
@@ -39,9 +39,8 @@
 * link:https://monman53.github.io/plasmidraw/[plasmidraw]
 ** プラスミドの図を楽に作れるやつ [SVG, Vue.js]
 
-==== vc仕様とは
+==== link:/demos/[一覧]
 
-https://vigne-cla.com/[Vignette & Clarity]
 
 
 

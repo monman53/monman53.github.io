@@ -1,0 +1,379 @@
+<html lang='en'>
+<title>2D Inverse Fourier Transform Playground</title>
+<meta charset="UTF-8">
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='description' content='2D fast Fourier transform interactive live demo using WebGL2.0. 2DFFT'>
+<script async src='https://www.googletagmanager.com/gtag/js?id=UA-111264044-1'></script>
+<script src='/scripts/google.js'></script>
+<script src='/scripts/vue.min.js'></script>
+<script src='/scripts/three.min.js'></script>
+
+<style>
+.wrapper-large {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px
+}
+.wrapper-small {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px
+}
+svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+img, 
+canvas {
+    border: solid 1px black;
+}
+</style>
+
+<div class='app'>
+    <h1>2D Inverse Fourier Transform Playground</h1>
+    Inspired by <a href='http://ohzawa-lab.bpe.es.osaka-u.ac.jp/izumi/'>Prof. Ohzawa</a>'s lecture. 
+    <a href='https://www.youtube.com/watch?v=pCVdNYvORVw'>→video</a>
+    <div class='wrapper-large'>
+        <div>
+            <h2>Original</h2>
+            <canvas id='cv-original'></canvas>
+        </div>
+        <div>
+            <h2>Result</h2>
+            <canvas id='cv-result'></canvas>
+        </div>
+        <div>
+            <h2>Masked spectrum</h2>
+            <div style='position: relative;'>
+                <canvas id='cv-masked'
+                    @mousemove='mouseMove'
+                    @mousedown='mouseDown'
+                    @mouseup='mouseUp'
+                    @wheel='wheel'
+                    style='cursor: crosshair;'
+                    oncontextmenu='return false'
+                ></canvas>
+                <svg :width='styleN' :height='styleN'>
+                    <circle
+                        :cx='uniforms.b_xy.value.x*styleN'
+                        :cy='(1.0-uniforms.b_xy.value.y)*styleN'
+                        :r='uniforms.b_r.value/2*styleN/N'
+                        stroke='red'
+                        fill='none'
+                        stroke-width='2'/>
+                </svg>
+            </div>
+        </div>
+        <div>
+            <h2>Spectrum</h2>
+            <div style='position: relative;'>
+                <canvas id='cv-spectral'
+                    @mousemove='mouseMove'
+                    @mousedown='mouseDown'
+                    @mouseup='mouseUp'
+                    @wheel='wheel'
+                    style='cursor: crosshair;'
+                    oncontextmenu='return false'
+                ></canvas>
+                <svg :width='styleN' :height='styleN'>
+                    <circle
+                        :cx='uniforms.b_xy.value.x*styleN'
+                        :cy='(1.0-uniforms.b_xy.value.y)*styleN'
+                        :r='uniforms.b_r.value/2*styleN/N'
+                        stroke='red'
+                        fill='none'
+                        stroke-width='2'/>
+                </svg>
+            </div>
+        </div>
+        <div>
+            Image URL: 
+            <input v-model='imageURL' size='10' @keyup.enter='loadImage(imageURL)'> 
+            <button @click='loadImage(imageURL)'>Load</button><br>
+            <br>
+            <div class='wrapper-small' :style='{width: styleN}'>
+                <div v-for='image in images' @click='loadImage(image)'>
+                    <img :src='image' width='100%' style='filter: grayscale(1.0); cursor: pointer;'/>
+                </div>
+            </div>
+        </div>
+        <div>
+            <!-- <h2>Wave</h2> -->
+            <canvas id='cv-wave'></canvas>
+        </div>
+        <div>
+            <div style='position: relative;'>
+                <canvas id='cv-mask'
+                    @mousemove='mouseMove'
+                    @mousedown='mouseDown'
+                    @mouseup='mouseUp'
+                    @wheel='wheel'
+                    style='cursor: crosshair;'
+                    oncontextmenu='return false'>
+                </canvas>
+                <svg :width='styleN' :height='styleN'>
+                    <circle
+                        :cx='uniforms.b_xy.value.x*styleN'
+                        :cy='(1.0-uniforms.b_xy.value.y)*styleN'
+                        :r='uniforms.b_r.value/2*styleN/N'
+                        stroke='red'
+                        fill='none'
+                        stroke-width='2'/>
+                </svg>
+            </div>
+        </div>
+        <div>
+            Mask URL: 
+            <input v-model='maskURL' size='10' @keyup.enter='loadMask(maskURL)'> 
+            <button @click='loadMask(maskURL)'>Load</button><br>
+            <br>
+            <div class='wrapper-small' :style='{width: styleN}'>
+                <div v-for='mask in masks' @click='loadMask(mask)'>
+                    <img :src='mask' width='100%' style='filter: grayscale(1.0); cursor: pointer;'/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script type="x-shader/x-vertex" id="vs" >
+    #version 300 es
+    void main() {
+        gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+    }
+</script>
+
+<script type='x-shader/x-fragment' id='fs-header'>
+    #version 300 es
+    precision highp float;
+    precision highp int;
+
+    uniform int N, itr;
+    uniform sampler2D ta, tb;
+
+    // brush variables
+    uniform vec2 d, b_xy, b_s, b_t;
+    uniform int b_active, b_type;
+    uniform float b_r, b_v;
+    
+    out vec4 fragColor;
+
+    vec2 shift(vec2 p) {
+        return vec2((uvec2(p)+(uint(N)>>1))&~uint(N)) + 0.5;
+    }
+
+    vec2 reverse(vec2 p) {
+        uvec2 n = uvec2(p);
+        uvec2 res = uvec2(0u);
+        for(uint i=1u;(i&uint(N))==0u;i<<=1u){
+            res <<= 1u;
+            res |= n & 1u;
+            n >>= 1u;
+        }
+        return vec2(res)+0.5;
+    }
+
+    vec2 mul(const vec2 a, const vec2 b) {
+        return vec2(a.x*b.x - a.y*b.y, a.x*b.y + a.y*b.x);
+    }
+
+    const float pi = acos(-1.0);
+
+    vec2 w(const uint n) {
+        float y  = -2.0*pi/float(itr)*float(n);
+        return vec2(cos(y), sin(y));
+    }
+    
+    vec2 iw(const uint n) {
+        float y  = +2.0*pi/float(itr)*float(n);
+        return vec2(cos(y), sin(y));
+    }
+
+    float distance2_sp(vec2 s, vec2 t, vec2 p) {
+        float l2 = dot(t-s, t-s);
+        if(l2 == 0.0) return dot(p-s, p-s);
+        float a = max(0., min(1., dot(p-s, t-s)/l2));
+        vec2 proj = s+a*(t-s);
+        return dot(p-proj, p-proj);
+    }
+</script>
+
+<script type='x-shader/x-fragment' id='fs-original'>
+    void main() {
+        vec2 pf = reverse(gl_FragCoord.xy);
+        vec4 c = texture(ta, pf*d);
+        float gray = (c.r + c.g + c.b)/3.0;
+        fragColor = vec4(gray/float(N), 0.0, gray/float(N), 0.0);
+    }
+</script>
+
+<script type='x-shader/x-fragment' id='fs-original-cv'>
+    void main() {
+        vec4 c = texture(ta, gl_FragCoord.xy*d);
+        float mmin = texture(tb, gl_FragCoord.xy*d).x*float(N);
+        float mmax = texture(tb, gl_FragCoord.xy*d).z*float(N);
+        float gray = (c.r + c.g + c.b)/3.0;
+        fragColor = vec4((gray-mmin)/(mmax-mmin));
+        if(mmin == mmax){
+            fragColor = vec4(0.5);
+        }
+    }
+</script>
+
+<script type='x-shader/x-fragment' id='fs-fft'>
+    void main() {
+        uint n = uint(N);
+        uint m = uint(itr);
+        uvec2 pi = uvec2(gl_FragCoord.xy);
+        uvec2 pio = pi&~(m>>1);
+    
+        vec2 v0 = texture(ta, vec2(pio                  )*d).xy;
+        vec2 v1 = texture(ta, vec2(pio+uvec2(m>>1, 0u  ))*d).xy;
+        vec2 v2 = texture(ta, vec2(pio+uvec2(0u,   m>>1))*d).xy;
+        vec2 v3 = texture(ta, vec2(pio+uvec2(m>>1, m>>1))*d).xy;
+    
+        //v0 = mul(v0, w(0u       ));
+        v1 = mul(v1, w(pi.x     ));
+        v2 = mul(v2, w(pi.y     ));
+        v3 = mul(v3, w(pi.x+pi.y));
+
+        vec2 res = v0+v1+v2+v3;
+        fragColor = vec4(res, 0.0, 0.0);
+    }
+</script>
+
+<script type='x-shader/x-fragment' id='fs-spectral-cv'>
+    void main() {
+        vec2 pf = shift(gl_FragCoord.xy);
+        float F = log(length(texture(ta, pf*d).rg*float(N)))/8.0; // TODO 8 is magick number
+        fragColor = vec4(F);
+    }
+</script>
+
+<script type='x-shader/x-fragment' id='fs-mask-cv'>
+    void main() {
+        float mask = texture(ta, gl_FragCoord.xy*d).r;
+        fragColor = vec4(mask);
+    }
+</script>
+
+<script type='x-shader/x-fragment' id='fs-masked-cv'>
+    void main() {
+        vec2 pf = shift(gl_FragCoord.xy);
+        float F = log(length(texture(ta, pf*d).rg*float(N)))/8.0; // TODO 8 is magick number
+        vec4 mask = texture(tb, gl_FragCoord.xy*d);
+        fragColor = vec4(F*mask.x);
+    }
+</script>
+
+<script type='x-shader/x-fragment' id='fs-draw'>
+    void main() {
+        fragColor.x = texture(ta, gl_FragCoord.xy*d).x;
+        float dist2 = distance2_sp(b_s, b_t, gl_FragCoord.xy*d);
+        if(b_active > 0){
+            if(dist2 < b_r*0.5*d.x*b_r*0.5*d.x || uvec2(b_xy*float(N)) == uvec2(gl_FragCoord.xy)){
+                switch(b_type){
+                    case 1: fragColor.x = b_v; break;
+                    case 2: fragColor.x = 0.0; break;
+                }
+            }
+        }
+        switch(b_type){
+            case 3: fragColor.x = 0.0; break;
+        }
+    }
+</script>
+
+<script type='x-shader/x-fragment' id='fs-masked'>
+    void main() {
+        vec2 pf = reverse(gl_FragCoord.xy);
+        vec2 mpf = shift(pf);
+        float mask = texture(tb, mpf*d).r;
+        fragColor = texture(ta, pf*d)/float(N)*mask;
+    }
+</script>
+
+<script type='x-shader/x-fragment' id='fs-ifft'>
+    void main() {
+        uint n = uint(N);
+        uint m = uint(itr);
+        uvec2 pi = uvec2(gl_FragCoord.xy);
+        uvec2 pio = pi&~(m>>1);
+    
+        vec2 v0 = texture(ta, vec2(pio                  )*d).xy;
+        vec2 v1 = texture(ta, vec2(pio+uvec2(m>>1, 0u  ))*d).xy;
+        vec2 v2 = texture(ta, vec2(pio+uvec2(0u,   m>>1))*d).xy;
+        vec2 v3 = texture(ta, vec2(pio+uvec2(m>>1, m>>1))*d).xy;
+    
+        //v0 = mul(v0, iw(0u       ));
+        v1 = mul(v1, iw(pi.x     ));
+        v2 = mul(v2, iw(pi.y     ));
+        v3 = mul(v3, iw(pi.x+pi.y));
+    
+        vec2 res = v0+v1+v2+v3;
+        fragColor = vec4(res, res);
+}
+</script>
+
+<script type='x-shader/x-fragment' id='fs-minmax'>
+    void main() {
+        uint n = uint(N);
+        uint m = uint(itr);
+        uvec2 pi = uvec2(gl_FragCoord.xy);
+        uvec2 pio = pi&~(m>>1);
+    
+        vec4 v0 = texture(ta, vec2(pio                  )*d);
+        vec4 v1 = texture(ta, vec2(pio+uvec2(m>>1, 0u  ))*d);
+        vec4 v2 = texture(ta, vec2(pio+uvec2(0u,   m>>1))*d);
+        vec4 v3 = texture(ta, vec2(pio+uvec2(m>>1, m>>1))*d);
+    
+        float mmin = min(v0.x, min(v1.x, min(v2.x, v3.x)));
+        float mmax = max(v0.z, max(v1.z, max(v2.z, v3.z)));
+        fragColor = vec4(mmin, 0.0, mmax, 0.0);
+}
+</script>
+
+<script type='x-shader/x-fragment' id='fs-result-cv'>
+    void main() {
+        float gray = texture(ta, gl_FragCoord.xy*d).x;
+        float mmin = texture(tb, gl_FragCoord.xy*d).x;
+        float mmax = texture(tb, gl_FragCoord.xy*d).z;
+        fragColor = vec4((gray-mmin)/(mmax-mmin));
+        if(mmin == mmax){
+            fragColor = vec4(0.5);
+        }
+    }
+</script>
+
+<script type='x-shader/x-fragment' id='fs-wave'>
+    void main() {
+        uint n = uint(N);
+        uint m = uint(itr);
+        vec2 F = normalize(texture(ta, shift(b_xy*float(N))*d).xy);
+        uvec2 pi = uvec2(gl_FragCoord.xy);
+        uvec2 mouse = uvec2(shift(b_xy*float(N)));
+        vec2 v = mul(iw(pi.x*mouse.x+pi.y*mouse.y), F);
+        fragColor = vec4(v.r*0.5+0.5);
+    }
+</script>
+
+<script type='x-shader/x-fragment' id='fs-gray'>
+    void main() {
+        vec4 c = texture(ta, gl_FragCoord.xy*d);
+        float gray = (c.r + c.g + c.b)/3.0;
+        fragColor = vec4(gray);
+    }
+</script>
+
+<script type='x-shader/x-fragment' id='fs-copy'>
+    void main() {
+        fragColor = texture(ta, gl_FragCoord.xy*d);
+    }
+</script>
+
+
+<script src='main.js'></script>
