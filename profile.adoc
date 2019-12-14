@@ -36,12 +36,16 @@
 
 == 制作物
 
+* link:/demos/juliaset/[Julia Set]
+** 充填ジュリア集合のWebGLによるインタラクティブデモ [WebGL, Vue.js]
+* link:/demos/kd-tree/[kd-tree]
+** データ構造のkd木のデモ [SVG, Vue.js]
+//* link:https://monman53.github.io/halftone/[Halftone]
+//** 印刷技術の網点(Halftone)の単色エミュレータ
+* link:https://monman53.github.io/chimera.js/[chimera.js]
+** 量子アニーラ(キメラグラフ)のエミュレータ [SVG, Vue.js]
 * link:https://monman53.github.io/plasmidraw/[plasmidraw]
 ** プラスミドの図を楽に作れるやつ
-* link:https://monman53.github.io/halftone/[Halftone]
-** 印刷技術の網点(Halftone)の単色エミュレータ
-* link:https://monman53.github.io/chimera.js/[chimera.js]
-** 量子アニーラのエミュレータ(キメラグラフ)
 
 == 陸上競技
 

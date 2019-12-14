@@ -24,7 +24,7 @@
 //* https://monman53.github.io/demos/nightsky/index.html[Nightsky (vc仕様)]
 //** 一次元セル・オートマトンとライフゲームによる夜空 [WebGL]
 //** https://github.com/elliotwaite/rule-30-and-game-of-life[こちら]を参考に作成
-* https://monman53.github.io/demos/kd-tree/index.html[kd-tree]
+* link:/demos/kd-tree/[kd-tree]
 ** データ構造のkd木のデモ [SVG, Vue.js]
 //* https://monman53.github.io/demos/path-vc/index.html[path (vc仕様)]
 //** ベルマンフォード法による最短経路探索．動的探索 [SVG, Vue.js]
