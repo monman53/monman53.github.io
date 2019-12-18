@@ -129,6 +129,8 @@ footer {
 div.pad {
     margin: 0;
     padding: 0.5rem;
+    max-width: 1000px;
+    margin: auto;
 }
 
 .image-grid {

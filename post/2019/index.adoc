@@ -2,4 +2,9 @@
 :description: 2019年に書いた記事の一覧です．
 
 * link:/post/2019/patchy-particles.html[Patchy Particles のプログラムを読む] (12/19)
+* link:/post/2019/recursive.html[再帰のきほん]
+* link:/post/2019/pointer.html[C言語のポインタ]
+* link:/post/2019/canvas.html[Canvasのきほん]
+* link:/post/2019/canvas_webgl.html[CanvasとWebGLでライフゲームをやるやつのメモ]
 // * link:/post/2019/2dfft.html[2次元高速フーリエ変換]
+// * link:/post/2019/refrection.html[反射]

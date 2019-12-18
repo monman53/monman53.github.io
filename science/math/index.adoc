@@ -1,12 +1,14 @@
-Math
-====
+= 数学
+:description: 数学です．
 
-== メモ
+* link:/science/math/linear.html[線形代数]
 
-=== 球面上の一様分布
-
-球面座標系でθとφをそれぞれ一様にとればいい，という単純な話は通用しない．zを-1から1の一様分布，φを0から2πの一様分布にとり，そこからθを得なければならない．
-
--> link:http://apollon.issp.u-tokyo.ac.jp/~watanabe/pdf/prob.pdf[]
+// == メモ
+//
+// === 球面上の一様分布
+//
+// 球面座標系でθとφをそれぞれ一様にとればいい，という単純な話は通用しない．zを-1から1の一様分布，φを0から2πの一様分布にとり，そこからθを得なければならない．
+//
+// -> link:http://apollon.issp.u-tokyo.ac.jp/~watanabe/pdf/prob.pdf[]
 
 // === 四元数

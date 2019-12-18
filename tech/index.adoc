@@ -1,0 +1,13 @@
+= Tech top
+:description: 技術系のページ一覧．
+
+// == 2019
+== ツールの備忘録
+
+* link:/tech/imagemagick.html[ImageMagick]
+
+== 個人用
+
+* link:/tech/kyopro.html[競プロのお供]
+* link:/tech/environment.html[環境構築用]
+

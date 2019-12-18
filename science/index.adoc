@@ -5,7 +5,7 @@
 
 * link:/science/information.html[情報科学]
 ** link:/science/lambda.html[型無しラムダ計算]
+* link:/science/math/[数学]
+** link:/science/math/linear.html[線形代数]
 * link:/science/nonlinear.html[非線形科学]
 // * link:./statistics.html[統計学]
-// * link:./math/[数学]
-// ** link:./math/linear.html[線形代数]

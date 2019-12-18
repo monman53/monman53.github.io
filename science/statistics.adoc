@@ -1,4 +1,5 @@
 = 統計学
+:description: 備忘録用の統計学の用語集です．
 
 NUMERICAL RECIPES in C での勉強．
 
@@ -13,10 +14,10 @@ NUMERICAL RECIPES in C での勉強．
 
 分散(variance)::
     中心値からの散らばりの度合い． +
-    latexmath:[sigma^2 =1/(N-1) sum_(j=1)^N (x_j-bar x)^2]
+    latexmath:[\sigma^2 =\frac{1}{N-1} \sum_(j=1)^N (x_j-\bar x)^2]
     
 歪度(わいど，skewness)::
-    $$`1/N sum_(j=1)^N ((x_j-bar x)/sigma)^3`$$ +
+    $1/N sum_(j=1)^N ((x_j-bar x)/sigma)^3$ +
     平均値のまわりの分布の非対称さ．無次元量．3次のモーメント．
 
 尖度(せんど，kurtosis)::
