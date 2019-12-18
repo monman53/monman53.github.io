@@ -21,6 +21,7 @@
     --platanus-value:  #ac84a7ff;
 }
 :root{
+    --color-background-dark:var(--platanus-light2);
     --color-background:     var(--platanus-light0);
     --color-base:           var(--platanus-light2);
     --color-header:         var(--platanus-dark3);
@@ -29,6 +30,7 @@
 
 @media (prefers-color-scheme: dark) {
 :root{
+    --color-background-dark:var(--platanus-dark4);
     --color-background:     var(--platanus-dark3);
     --color-base:           var(--platanus-dark4);
     --color-header:         var(--platanus-leaf3);
@@ -44,6 +46,24 @@ body {
 
 code {
     font-size: 12pt;
+}
+h1 > code,
+h2 > code,
+h3 > code,
+h4 > code,
+h5 > code,
+p > code {
+    background-color: var(--color-background-dark);
+    /* margin: 0.2rem; */
+    /* padding: 0.2rem; */
+    padding: 0 0.4rem 0.2rem 0.4rem;
+    border-radius: 0.2rem;
+}
+.listingblock > .title {
+    font-style: italic;
+}
+.highlight {
+    margin-top: 0;
 }
 
 li > p,

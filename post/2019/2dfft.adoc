@@ -1,0 +1,149 @@
+= 2次元高速フーリエ変換
+:description: 2次元高速フーリエ変換を解説します．
+
+== 1次元離散フーリエ変換
+
+=== 定義
+
+今回用いる1次元の離散フーリエ変換・逆変換の式です．latexmath:[N] は latexmath:[2] のべきとします．
+
+[latexmath]
+++++
+\begin{eqnarray}
+F[u] &=& \frac{1}{\sqrt{N}}\sum^{N-1}_{x=0}f[x]e^{-j2\pi xu/N},  \\
+f[x] &=& \frac{1}{\sqrt{N}}\sum^{N-1}_{u=0}F[u]e^{ j2\pi ux/N}
+\end{eqnarray}
+++++
+
+=== 略記
+
+定数
+
+[latexmath]
+++++
+W_N = e^{-j2\pi/N}
+++++
+
+を使えば，変換・逆変換の式はそれぞれ，
+
+[latexmath]
+++++
+\begin{eqnarray}
+F[u] &=& \frac{1}{\sqrt{N}}\sum^{N-1}_{x=0}f[x]W^{xu}_N,  \\
+f[x] &=& \frac{1}{\sqrt{N}}\sum^{N-1}_{u=0}F[u]\overline{W^{ux}_N}
+\end{eqnarray}
+++++
+
+のように書きなおせます．
+
+==== W の性質
+
+latexmath:[W_N] には次のような性質があります．
+
+[latexmath]
+++++
+\begin{eqnarray}
+W^{kN}_{N}  &=& 1 , \\
+W^{2k}_{2N} &=& W^{k}_{N}, \\
+W^{N}_{2N}  &=& -1
+\end{eqnarray}
+++++
+
+
+=== 高速フーリエ変換(1次元)
+
+[latexmath]
+++++
+\begin{eqnarray}
+F[u] &=& \frac{1}{\sqrt{N}}\sum^{N-1}_{x=0}f[x]W^{xu}_N  \\
+     &=& \frac{1}{\sqrt{N}}\sum^{N/2-1}_{x=0}\left(
+            f[2x]W^{2xu}_{N} + f[2x+1]W^{(2x+1)u}_{N}
+         \right)  \\
+     &=& \frac{1}{\sqrt{N}}\sum^{N/2-1}_{x=0}\left(
+            f[2x]W^{xu}_{N/2} + f[2x+1]W^{u}_N W^{xu}_{N/2}
+         \right)  \\
+     &=& \frac{1}{\sqrt{N}}\sum^{N/2-1}_{x=0}f[2x]W^{xu}_{N/2} + 
+         W^{u}_N\frac{1}{\sqrt{N}}\sum^{N/2-1}_{x=0}f[2x+1]W^{xu}_{N/2}
+         .  \\
+\end{eqnarray}
+++++
+
+逆変換についても同じようになります．
+
+
+== 2次元離散フーリエ変換
+
+
+=== 定義
+
+今回用いる2次元の離散フーリエ変換・逆変換の式です．latexmath:[N] は latexmath:[2] のべきとします．
+
+[latexmath]
+++++
+\begin{eqnarray}
+F[u, v] &=& \frac{1}{N}\sum^{N-1}_{x=0}\sum^{N-1}_{y=0}f[x, y]e^{-j2\pi(yu+xv)/N},  \\
+f[x, y] &=& \frac{1}{N}\sum^{N-1}_{u=0}\sum^{N-1}_{v=0}F[u, v]e^{j2\pi(vx+uy)/N}  \\
+\end{eqnarray}
+++++
+
+=== 略記
+
+定数
+
+[latexmath]
+++++
+W_N = e^{-j2\pi/N}
+++++
+
+を使えば，変換・逆変換の式はそれぞれ，
+
+[latexmath]
+++++
+\begin{eqnarray}
+F[u, v] &=& \frac{1}{N}\sum^{N-1}_{x=0}\sum^{N-1}_{y=0}f[x, y]W^{yu+xv}_N,  \\
+f[x, y] &=& \frac{1}{N}\sum^{N-1}_{u=0}\sum^{N-1}_{v=0}F[u, v]\overline{W^{vx+uy}_N},  \\
+\end{eqnarray}
+++++
+
+のように書きなおせます．
+
+==== W の性質
+
+latexmath:[W_N] には次のような性質があります．
+
+[latexmath]
+++++
+\begin{eqnarray}
+W^{kN}_{N} &=& 1 , \\
+W^{2k}_{2N} &=& W^{k}_{N}, \\
+W^{N}_{2N} &=& -1
+\end{eqnarray}
+++++
+
+
+=== 高速フーリエ変換(2次元)
+
+[latexmath]
+++++
+\begin{aligned}
+F[u, v] &= \frac{1}{N}\sum^{N-1}_{x=0}\sum^{N-1}_{y=0}f[x, y]W^{yu+xv}_N  \\
+     &\begin{aligned}
+        = \frac{1}{N}\sum^{N-1}_{x=0}\sum^{N-1}_{y=0}
+            &\left(f[2x, 2y]W^{2yu+2xv}_N + f[2x, 2y+1]W^{(2y+1)u+2xv}_N\right. \\
+          &+ \left.f[2x+1, 2y]W^{2yu+(2x+1)v}_N + f[2x+1, 2y+1]W^{(2y+1)u+(2x+1)v}_N\right)
+      \end{aligned}\\
+     &\begin{aligned}
+        = \frac{1}{N}\sum^{N-1}_{x=0}\sum^{N-1}_{y=0}
+            &\left(f[2x, 2y]W^{yu+xv}_{N/2} + f[2x, 2y+1]W^{u}W^{yu+xv}_{N/2}\right. \\
+          &+ \left.f[2x+1, 2y]W^{v}W^{yu+xv}_{N/2} + f[2x+1, 2y+1]W^{u+v}W^{yu+xv}_{N/2}\right)
+      \end{aligned}\\
+     &\begin{aligned}
+        = &\frac{1}{N}\sum^{N-1}_{x=0}\sum^{N-1}_{y=0}f[2x, 2y]W^{yu+xv}_{N/2} +
+          W^{u}\frac{1}{N}\sum^{N-1}_{x=0}\sum^{N-1}_{y=0}f[2x, 2y+1]W^{yu+xv}_{N/2} + \\
+          &W^{v}\frac{1}{N}\sum^{N-1}_{x=0}\sum^{N-1}_{y=0}f[2x+1, 2y]W^{yu+xv}_{N/2} +
+          W^{u+v}\frac{1}{N}\sum^{N-1}_{x=0}\sum^{N-1}_{y=0}f[2x+1, 2y+1]W^{yu+xv}_{N/2} \\
+      \end{aligned}\\
+\end{aligned}
+++++
+
+逆変換についても同じようになります．

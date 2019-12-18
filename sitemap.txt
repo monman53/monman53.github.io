@@ -1,4 +1,5 @@
 https://monman53.github.io/
+https://monman53.github.io/post/2019/
 https://monman53.github.io/plant/fusenkazura.html
 https://monman53.github.io/music/
 https://monman53.github.io/kyopro.html
@@ -14,6 +15,8 @@ https://monman53.github.io/demos/kd-tree/
 https://monman53.github.io/plasmidraw/
 https://monman53.github.io/demos/
 https://monman53.github.io/profile.html
+https://monman53.github.io/post/
+https://monman53.github.io/post/2019/patchy-particles.html
 https://monman53.github.io/plant/
 https://monman53.github.io/science/information.html
 https://monman53.github.io/science/lambda.html

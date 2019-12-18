@@ -1,0 +1,76 @@
+= 2次元高速フーリエ変換をWebGLでがんばる話
+
+今年は「link:https://adventar.org/calendars/4115[IQ1 Advent Calendar 2019]」の1まいめにエントリーできました!
+
+今回は2次元フーリエ変換(2DFFT)の話です． +
+僕はYouTubeにあるlink:https://www.youtube.com/watch?v=qB0cffZpw-A[2次元逆フーリエ変換でアインシュタインが浮かび上がってくるデモ]が大好きです． +
+いつか同じようなものを作ってみたいと思っていたので，この機会に実装しました．(めっちゃ楽しかった!)
+
+* link:https://monman53.github.io/demos/2dfft/index.html[2D Inverse Fourier Transform Playground] (CORSを使用しています．苦手な方はご注意を．)
+* link:https://github.com/monman53/2dfft/[source code]
+
+どうせ作るなら皆に遊んでもらえて高速なものを! ということで，WebGLで高速フーリエ変換します．
+
+以下，制作の補足を書いていきたいと思います．
+
+== 2次元フーリエ変換
+
+//2次元フーリエ変換は1次元フーリエ変換を縦方向と横方向に施すことで可能です．
+//したがって，1次元フーリエ変換ができれば2次元フーリエ変換は簡単です．
+
+次の2次元離散フーリエ変換・逆変換の式を用いました．
+
+[latexmath]
+++++
+\begin{eqnarray}
+F[u, v] &=& \frac{1}{N}\sum^{N-1}_{x=0}\sum^{N-1}_{y=0}f[x, y]e^{-j2\pi(yu+xv)/N},  \\
+f[x, y] &=& \frac{1}{N}\sum^{N-1}_{u=0}\sum^{N-1}_{v=0}F[u, v]e^{j2\pi(vx+uy)/N}  \\
+\end{eqnarray}
+++++
+
+2次元フーリエ変換は1次元フーリエ変換を縦方向と横方向に施すことで行うことが多いようです． +
+今回は板ポリシェーダ芸で2DFFTを実現しようと思ったので，この式を少し変形したものを元に2DFFTについて考えてみます．
+
+1次元の離散フーリエ変換・逆変換の式も一応載せておきます．
+
+[latexmath]
+++++
+\begin{eqnarray}
+F[u] &=& \frac{1}{\sqrt{N}}\sum^{N-1}_{x=0}f[x]e^{-j2\pi xu/N},  \\
+f[x] &=& \frac{1}{\sqrt{N}}\sum^{N-1}_{u=0}F[u]e^{ j2\pi ux/N}
+\end{eqnarray}
+++++
+
+
+== 2次元高速フーリエ変換
+
+高速フーリエ変換では，奇数項と偶数項の2つに式を分けることでうまく動的計画法に持ち込みます．
+2次元の場合は式を4つに分けられます．
+
+これにより4つの部分問題に分けることができ，それぞれの計算結果が他の変換計算に共有される事実から計算量が削減されます． +
+1次元高速フーリエ変換のバタフライ演算の図が有名ですが，2次元の場合はこんなかんじでしょうか．
+//計算量については，1次元の場合ではlatexmath:[O(N^2)]がlatexmath:[O(N\log N)]に削減されます．
+
+
+== 実装
+
+バタフライ演算の1ステップをテクスチャレンダリングで実現します． +
+2枚のテクスチャを交互に使って計算していきます． +
+例えば256x256の画像であれば8ステップのレンダリングで計算が終了します．
+
+FFTの計算以外にもUI用のCanvasをいくつか設置し，
+それぞれをつなぐテクスチャのパイプラインシステムを作るわけなのですが，
+WebGLでは複数のRenderer間でテクスチャを共有できない
+footnote:[Allow access to the same WebGLRenderer texture across multiple WebGLRenderer instances https://github.com/mrdoob/three.js/issues/13745]
+ので，Renderer一本でがんばる必要がありました．
+
+あと，デフォルトでテクスチャのサンプリング方式がLinnerだったので計算が破綻しました． +
+Nearestに変更する必要があります．(いまいちこのあたりよく分かっていない．)
+
+== おわりに
+
+修論とは...
+
+明日はcrskさんが何か添えてくれるみたいですね!
+
+link:https://adventar.org/calendars/4115[IQ1 Advent Calendar 2019]

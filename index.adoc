@@ -1,18 +1,34 @@
 = Top
 :description: monman53のホームページです．パソコンで色々やったり，植物とかの話もあります．
 
-== ぺーじ
+== ぶろぐ
 
-* link:/plant/fusenkazura.html[フウセンカズラ栽培日記]
-* link:/music/[お気に入りのクラシック音楽]
-* link:/kyopro.html[競プロのお供]
-* link:/science/[自然科学の知識]
+* link:/post/2019/[2019]
+
+== ページ
+
+=== 技術
+
 * link:/imagemagick.html[ImageMagickのメモ]
 * link:/recursive.html[再帰のきほん]
 * link:/pointer.html[C言語のポインタ]
 * link:/canvas.html[Canvasのきほん]
 * link:/canvas_webgl.html[CanvasとWebGLでライフゲームをやるやつのメモ]
 * link:/environment.html[環境構築用]
+
+=== 植物
+
+* link:/plant/fusenkazura.html[フウセンカズラ栽培日記]
+
+=== 音楽
+
+* link:/music/[お気に入りのクラシック音楽]
+
+=== その他
+
+* link:/science/[自然科学の知識]
+* link:/kyopro.html[競プロのお供]
+* link:/cooking.html[料理()]
 
 == 主なつくったもの
 
