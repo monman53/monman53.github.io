@@ -8,7 +8,6 @@ https://monman53.github.io/cooking/
 https://monman53.github.io/demos/juliaset/
 https://monman53.github.io/demos/kd-tree/
 https://monman53.github.io/plasmidraw/
-https://monman53.github.io/demos/
 https://monman53.github.io/profile.html
 https://monman53.github.io/post/
 https://monman53.github.io/post/2019/patchy-particles.html
@@ -19,10 +18,13 @@ https://monman53.github.io/post/2019/canvas_webgl.html
 https://monman53.github.io/tech/imagemagick.html
 https://monman53.github.io/tech/kyopro.html
 https://monman53.github.io/tech/environment.html
-https://monman53.github.io/science/information.html
-https://monman53.github.io/science/lambda.html
-https://monman53.github.io/science/math/
+https://monman53.github.io/science/computer/graph.html
+https://monman53.github.io/science/computer/algorithm.html
+https://monman53.github.io/science/computer/numerical.html
+https://monman53.github.io/science/computer/lambda.html
 https://monman53.github.io/science/math/linear.html
 https://monman53.github.io/science/nonlinear.html
 https://monman53.github.io/plant/fusenkazura.html
 https://monman53.github.io/tools.html
+https://monman53.github.io/science/computer/
+https://monman53.github.io/science/math/

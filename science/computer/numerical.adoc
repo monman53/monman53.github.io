@@ -1,0 +1,59 @@
+= 数値計算
+:description: 数値計算の備忘録．
+
+数値計算の備忘録です．
+
+== 有限差分法
+
+=== 差分形式
+
+[latexmath]
+++++
+\begin{align}
+f'(x) &\simeq \frac{f(x+h) - f(x-h)}{2h} \\
+f''(x) &\simeq \frac{f(x+h) + f(x-h) - 2f(x)}{h^2}
+\end{align}
+++++
+
+==== 差分形式の導出
+
+テイラー展開は次の通り．
+
+[latexmath]
+++++
+f(x) = \sum_{n=0}^{\infty}\frac{f^{(n)}(a)}{n!}(x-a)^n
+++++
+
+latexmath:[x-a=h] とすれば，
+
+[latexmath]
+++++
+f(a+h) = \sum_{n=0}^{\infty}\frac{f^{(n)}(a)}{n!}h^n
+++++
+
+となり， latexmath:[a] を latexmath:[x] に戻せば，
+
+[latexmath]
+++++
+f(x+h) = \sum_{n=0}^{\infty}\frac{f^{(n)}(x)}{n!}h^n
+++++
+
+を得る．
+
+これより，次の2つの近似式を得る．
+
+[latexmath]
+++++
+f(x+h) \simeq f(x) + f'(x)h + \frac{1}{2}f''(x)h^2 \\
+f(x-h) \simeq f(x) - f'(x)h + \frac{1}{2}f''(x)h^2
+++++
+
+上2式を足したり引いたりすることにより，次の差分形式が得られる．
+
+[latexmath]
+++++
+\begin{align}
+f'(x) &\simeq \frac{f(x+h) - f(x-h)}{2h} \\
+f''(x) &\simeq \frac{f(x+h) + f(x-h) - 2f(x)}{h^2}
+\end{align}
+++++

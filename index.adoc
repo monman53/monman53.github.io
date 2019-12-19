@@ -57,7 +57,7 @@
 * link:https://monman53.github.io/plasmidraw/[plasmidraw]
 ** プラスミドの図を楽に作れるやつ [SVG, Vue.js]
 
-==== link:/demos/[一覧]
+// ==== link:/demos/[一覧]
 
 
 
