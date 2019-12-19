@@ -3,7 +3,7 @@
 * *monman53*
 * Twitter link:https://twitter.com/monman53[monman53]
 * GitHub link:https://github.com/monman53[monman53]
-* blog https://monman53.hateblo.jp/[monman53のぶろぐ]
+// * blog https://monman53.hateblo.jp/[monman53のぶろぐ]
 * 誕生日 1994-05-03
 * 2018-04 東京工業大学 情報理工学院 入学
 * 2018-03 東京工業大学 工学部 情報工学科 卒業
@@ -16,7 +16,7 @@
 
 == 研究
 
-* DNAコンピューティング
+* DNAナノテクノロジー
 
 == 競技プログラミング
 
