@@ -1,13 +1,21 @@
-= Tech top
+= Tech
 :description: 技術系のページ一覧．
 
-// == 2019
-== ツールの備忘録
+技術系のページ一覧です．
+
+== ツール
 
 * link:/tech/imagemagick.html[ImageMagick]
+* link:/tech/parallel.html[Parallel]
+* link:/tech/docker.html[Docker]
+// * link:/tech/linux.html[Linux]
+// * link:/tech/opencl.html[OpenCL]
+
+== 言語
+
+* link:/tech/tex.html[TeX]
 
 == 個人用
 
 * link:/tech/kyopro.html[競プロのお供]
 * link:/tech/environment.html[環境構築用]
-

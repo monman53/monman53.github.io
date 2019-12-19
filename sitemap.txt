@@ -16,6 +16,9 @@ https://monman53.github.io/post/2019/pointer.html
 https://monman53.github.io/post/2019/canvas.html
 https://monman53.github.io/post/2019/canvas_webgl.html
 https://monman53.github.io/tech/imagemagick.html
+https://monman53.github.io/tech/parallel.html
+https://monman53.github.io/tech/docker.html
+https://monman53.github.io/tech/tex.html
 https://monman53.github.io/tech/kyopro.html
 https://monman53.github.io/tech/environment.html
 https://monman53.github.io/science/computer/graph.html

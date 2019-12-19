@@ -118,7 +118,7 @@ docker pull nginx:latest
 docker run --name nginx-test -d -p 8080:80 nginx:latest
 ----
 
-これで `http://localhost:8080/` にアクセスするとnginxのテストページが表示される．
+これで `\http://localhost:8080/` にアクセスするとnginxのテストページが表示される．
 
 === 停止
 

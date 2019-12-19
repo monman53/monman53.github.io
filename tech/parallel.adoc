@@ -19,6 +19,7 @@ link:https://www.gnu.org/software/parallel/parallel_tutorial.html[本家 tutoria
 引数が複数種類ある場合は，ヘッダ（ラベル）をつけたほうが参照の意味がわかりやすくてよい．
 あるいはヘッダ付きのファイルを読むとき．
 
+[source, bash]
 ----
 $ parallel --header : echo "{name}.{suffix}" ::: name hoge huga ::: suffix png jpg
 hoge.jpg
@@ -37,6 +38,7 @@ huga.png
 
 順番が大事な場合は `--keep-order/-k` オプションを付ける．bashのブレース展開よりもいろいろできると思う．
 
+[source, bash]
 ----
 $ parallel -k echo "{1} {2} {3}." ::: I You ::: like hate ::: me you
 I like me.
