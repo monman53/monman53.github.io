@@ -6,7 +6,7 @@
 僕はYouTubeにあるlink:https://www.youtube.com/watch?v=qB0cffZpw-A[2次元逆フーリエ変換でアインシュタインが浮かび上がってくるデモ]が大好きで
 「いつか自分でも」と思っていたので，この機会にWebGLを使って実装しました．(めっちゃ楽しかった!)
 
-https://monman53.github.io/demos/2dfft/index.html 2D Inverse Fourier Transform Playground
+https://monman53.github.io/demos/2dfft/ 2D Inverse Fourier Transform Playground
 link:https://github.com/monman53/2dfft/[(source code)]
 image:2dfft-iq1.jpg[Screenshot of 2DFFT playground, link='/demos/2dfft/']
 // https://monman53.github.io/demos/2dfft/index.html 2D Inverse Fourier Transform Playground
