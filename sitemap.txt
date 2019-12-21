@@ -10,6 +10,7 @@ https://monman53.github.io/demos/kd-tree/
 https://monman53.github.io/plasmidraw/
 https://monman53.github.io/profile.html
 https://monman53.github.io/post/
+https://monman53.github.io/post/2019/2dfft-iq1.html
 https://monman53.github.io/post/2019/patchy-particles.html
 https://monman53.github.io/post/2019/recursive.html
 https://monman53.github.io/post/2019/pointer.html
@@ -29,5 +30,7 @@ https://monman53.github.io/science/math/linear.html
 https://monman53.github.io/science/nonlinear.html
 https://monman53.github.io/plant/fusenkazura.html
 https://monman53.github.io/tools.html
+https://monman53.github.io/demos/2dfft/
+https://monman53.github.io/demos/2dfft/index.html
 https://monman53.github.io/science/computer/
 https://monman53.github.io/science/math/
