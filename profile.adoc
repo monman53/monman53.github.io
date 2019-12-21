@@ -36,6 +36,8 @@
 
 == 制作物
 
+* link:/demos/2dfft/[2D FFT]
+** 2次元高速フーリエ変換のWebGLによるデモ [WebGL, Vue.js]
 * link:/demos/juliaset/[Julia Set]
 ** 充填ジュリア集合のWebGLによるインタラクティブデモ [WebGL, Vue.js]
 * link:/demos/kd-tree/[kd-tree]
