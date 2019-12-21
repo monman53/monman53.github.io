@@ -59,10 +59,11 @@ f[x, y] &=& \frac{1}{N}\sum^{N-1}_{v=0}\sum^{N-1}_{u=0}F[u, v]e^{j2\pi(ux+vy)/N}
 [latexmath]
 ++++
 \begin{eqnarray}
-F[u, v] &=&                   \frac{1}{N}\sum^{N/2-1}_{y=0}\sum^{N/2-1}_{x=0}f[2x, 2y]    e^{-j2\pi(xu+yv)/(N/2)}  \\
-        &+& e^{-j2\pi u/N}    \frac{1}{N}\sum^{N/2-1}_{y=0}\sum^{N/2-1}_{x=0}f[2x+1, 2y]  e^{-j2\pi(xu+yv)/(N/2)}  \\
-        &+& e^{-j2\pi v/N}    \frac{1}{N}\sum^{N/2-1}_{y=0}\sum^{N/2-1}_{x=0}f[2x, 2y+1]  e^{-j2\pi(xu+yv)/(N/2)}  \\
-        &+& e^{-j2\pi (u+v)/N}\frac{1}{N}\sum^{N/2-1}_{y=0}\sum^{N/2-1}_{x=0}f[2x+1, 2y+1]e^{-j2\pi(xu+yv)/(N/2)}
+\sum^{N-1}_{y=0}\sum^{N-1}_{x=0}f[x, y]e^{-j2\pi(xu+yv)/N}
+        &=&                   \sum^{N/2-1}_{y=0}\sum^{N/2-1}_{x=0}f[2x, 2y]    e^{-j2\pi(xu+yv)/(N/2)}  \\
+        &+& e^{-j2\pi u/N}    \sum^{N/2-1}_{y=0}\sum^{N/2-1}_{x=0}f[2x+1, 2y]  e^{-j2\pi(xu+yv)/(N/2)}  \\
+        &+& e^{-j2\pi v/N}    \sum^{N/2-1}_{y=0}\sum^{N/2-1}_{x=0}f[2x, 2y+1]  e^{-j2\pi(xu+yv)/(N/2)}  \\
+        &+& e^{-j2\pi (u+v)/N}\sum^{N/2-1}_{y=0}\sum^{N/2-1}_{x=0}f[2x+1, 2y+1]e^{-j2\pi(xu+yv)/(N/2)}
 \end{eqnarray}
 ++++
 
