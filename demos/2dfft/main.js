@@ -125,6 +125,7 @@ const app = new Vue({
             mask: false,
         },
         images: [
+            'image/iq1.png',
             'image/lena.png',
             'image/goldhill.png',
             'image/boat.png',
@@ -160,8 +161,8 @@ const app = new Vue({
     methods: {
         loadImage: function(imageURL) {
             this.imageURL = imageURL;  // TODO
-            var loader = new THREE.TextureLoader();
-            var app = this;
+            let loader = new THREE.TextureLoader();
+            let app = this;
             let onLoad = function(texture) {
                 texture.magFilter = THREE.NearestFilter;
                 texture.minFilter = THREE.NearestFilter;
@@ -182,6 +183,16 @@ const app = new Vue({
                     console.error('Load Error');
                 }
             );
+        },
+        loadLoaclImage: function(e) {
+            let file   = e.target.files[0];
+            let reader = new FileReader();
+            let app = this;
+            reader.onload = function() {
+                let url = reader.result;
+                app.loadImage(url);
+            }
+            reader.readAsDataURL(file);
         },
         loadMask: function(maskURL) {
             this.maskURL = maskURL;  // TODO
@@ -209,6 +220,16 @@ const app = new Vue({
                     console.error('Load Error');
                 }
             );
+        },
+        loadLoaclMask: function(e) {
+            let file   = e.target.files[0];
+            let reader = new FileReader();
+            let app = this;
+            reader.onload = function() {
+                let url = reader.result;
+                app.loadMask(url);
+            }
+            reader.readAsDataURL(file);
         },
         init: function() {
             this.flag.init = true;

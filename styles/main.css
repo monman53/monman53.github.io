@@ -137,6 +137,10 @@ div.pad {
     margin: auto;
 }
 
+article img {
+    width: 100%;
+}
+
 .image-grid {
     display: grid;
     gap: 0.5rem;
