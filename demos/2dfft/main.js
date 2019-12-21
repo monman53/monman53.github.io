@@ -126,6 +126,7 @@ const app = new Vue({
         },
         images: [
             'image/iq1.png',
+            'image/free.jpg',
             'image/lena.png',
             'image/goldhill.png',
             'image/boat.png',
