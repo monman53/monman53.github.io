@@ -1,26 +1,52 @@
-<!doctype html><html lang='ja'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1'><link rel='shortcut icon' type='image/png' href='/images/favicon.png'/><meta name='description' content='計算複雑性理論の用語集'><title>計算複雑性理論 : monman53</title><script>MathJax = {tex: {inlineMath: [['$', '$'], ['\\(', '\\)']]}}</script><script id='MathJax-script' async src='/scripts/mathjax/tex-chtml.js'></script><link rel='stylesheet' href='/styles/main.css'><script async src='https://www.googletagmanager.com/gtag/js?id=UA-111264044-1'></script><script src='/scripts/google.js'></script></head><body><header><div class='pad'><p class='bread'><a href='/'>monman53.github.io</a> / <a href='/science/'>science</a> / <a href='/science/computer/'>computer</a> / <a href='/science/computer/algorithm.html'>algorithm.html</a></p><p style='font-size: small;'>Last Modified : 2019-12-19 13:00:38 +0900</p></div></header><article><div class='pad'><h1>計算複雑性理論</h1><div class="paragraph">
+<!doctype html><html lang='ja'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1'><link rel='shortcut icon' type='image/png' href='/images/favicon.png'/><meta name='description' content='計算複雑性理論の用語集'><title>計算複雑性理論 : monman53</title><script>MathJax = {tex: {inlineMath: [['$', '$'], ['\\(', '\\)']]}}</script><script id='MathJax-script' async src='/scripts/mathjax/tex-chtml.js'></script><link rel='stylesheet' href='/styles/main.css'><script async src='https://www.googletagmanager.com/gtag/js?id=UA-111264044-1'></script><script src='/scripts/google.js'></script></head><body><header><div class='pad'><p class='bread'><a href='/'>monman53.github.io</a> / <a href='/science/'>science</a> / <a href='/science/computer/'>computer</a> / <a href='/science/computer/algorithm.html'>algorithm.html</a></p><p style='font-size: small;'>Last Modified : 2019-12-24 12:13:10 +0900</p></div></header><article><div class='pad'><h1>計算複雑性理論</h1><div class="paragraph">
 <p>計算複雑性理論の用語集です．</p>
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">判定問題</dt>
+<dt class="hdlist1">決定問題，判定問題，decision problem</dt>
 <dd>
-<p>答えが「Yes」あるいは「No」である問題</p>
+<p>有限長の入力が与えられ，yesあるいはnoで答える問題．
+<sup class="footnote" id="_footnote_wikipedia_decision_problem">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup></p>
+<div class="ulist">
+<ul>
+<li>
+<p>例) 自然数nが与えられ，それが素数かどうか判定する問題．(素数判定問題)
+<sup class="footnoteref">[<a class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup></p>
+</li>
+</ul>
+</div>
 </dd>
-<dt class="hdlist1">探索問題</dt>
+<dt class="hdlist1">決定不能問題, undecidable problem</dt>
+<dd>
+<p>正しくyesあるいはnoに導くアルゴリズムが構築できないと証明された決定問題．
+<sup class="footnote" id="_footnote_wikipedia_undecidable_problem">[<a id="_footnoteref_2" class="footnote" href="#_footnotedef_2" title="View footnote.">2</a>]</sup></p>
+<div class="ulist">
+<ul>
+<li>
+<p>例) プログラムの停止性問題
+<sup class="footnoteref">[<a class="footnote" href="#_footnotedef_2" title="View footnote.">2</a>]</sup></p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">探索問題, 関数問題, function problems</dt>
 <dd>
 <p>判定問題の答えが「Yes」である証拠を示す問題</p>
 <div class="ulist">
 <ul>
 <li>
-<p>探索問題は判定問題よりも易しくはない</p>
+<p>探索問題は決定問題に変換可能．</p>
+</li>
+<li>
+<p>例) 充足割り当て問題</p>
 </li>
 </ul>
 </div>
 </dd>
-<dt class="hdlist1">最適化問題</dt>
+<dt class="hdlist1">最適化問題, optimization problems</dt>
 <dd>
-<p>判定問題に関連するある値を最適化する問題</p>
+<p>判定問題に関連するある値を最適化する問題
+コストの最小値を求めることができる．</p>
 <div class="ulist">
 <ul>
 <li>
@@ -32,9 +58,34 @@
 </ul>
 </div>
 </dd>
+<dt class="hdlist1">完全問題，complete problems</dt>
+<dd>
+<p>決定問題pが決定問題の集合Sに属しており，
+かつSに属する任意の問題からpに還元可能なときに，pは完全であると言う．
+<sup class="footnoteref">[<a class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Sの完全問題はSの任意の問題よりも簡単ではない．Sの中で最も難しいと考えることができる．
+<sup class="footnote" id="_footnote_wikipedia_complete">[<a id="_footnoteref_3" class="footnote" href="#_footnotedef_3" title="View footnote.">3</a>]</sup></p>
+</li>
+<li>
+<p>例) 決定問題pがNP問題に属し，かる任意のNP問題からの多項式時間還元が可能な時，pはN完全問題という．
+<sup class="footnoteref">[<a class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup></p>
+</li>
+</ul>
+</div>
+</dd>
 <dt class="hdlist1">多項式時間アルゴリズム</dt>
 <dd>
 <p>時間計算量が多項式オーダであるアルゴリズム</p>
+<div class="ulist">
+<ul>
+<li>
+<p>例) 行列の掛け算を3重ループで実装した場合，時間計算量は$O(N^3)$となり，これは多項式時間アルゴリズムである．</p>
+</li>
+</ul>
+</div>
 </dd>
 <dt class="hdlist1">決定性アルゴリズム</dt>
 <dd>
@@ -69,6 +120,12 @@
 </ul>
 </div>
 </dd>
+<dt class="hdlist1">多項式時間還元，多項式時間変換，多項式時間帰着, polynomial-time reduction</dt>
+<dd>
+<p>判定問題Aの判定問題Bへの多項式時間還元とは，
+問題Aの入力Iを問題Bの入力I&#8217;に多項式時間で変換し，かつ
+問題Bの入力I&#8217;に対する答えが対応する問題Aにおける入力Iの答えと常に一致することである．</p>
+</dd>
 <dt class="hdlist1">NP困難な問題</dt>
 <dd>
 <p>任意のNP問題からの多項式時間還元が存在する問題</p>
@@ -93,7 +150,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>SATからの多項式時間還元が存在することは，任意のNP問題からの多項式時間還元が存在することと同値で，つまりその問題はNP困難</p>
+<p>SATからの多項式時間還元が存在することは，任意のNP問題からの多項式時間還元が存在することと同値で，つまりその問題はNP困難である</p>
 </li>
 <li>
 <p>NP問題であればNP完全</p>
@@ -106,19 +163,27 @@
 </li>
 <li>
 <p>P≠NPならば，NP完全である問題を解く多項式アルゴリズムは存在しない</p>
+<div class="ulist">
+<ul>
+<li>
+<p>仮に多項式時間アルゴリズムで解けるNP完全問題が見つかった場合，P=NPということになり，
+その問題に多項式時間還元(他のNP完全問題を経由してもよい)することで任意のNP問題が多項式時間で解けることになる．</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p>NP問題は軒並みNP完全であることが証明されている</p>
 <div class="ulist">
 <ul>
 <li>
-<p>例外) 自明なNP問題や，グラフ同型性判定問題</p>
+<p>例外) 自明なNP問題や，グラフ同型性判定問題(NPであることはわかっている)</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>NP - PのうちNP完全ではない問題は存在する． <sup class="footnote" id="_footnote_gokai">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup></p>
+<p>NP - PのうちNP完全ではない問題は存在する． <sup class="footnote" id="_footnote_gokai">[<a id="_footnoteref_4" class="footnote" href="#_footnotedef_4" title="View footnote.">4</a>]</sup></p>
 </li>
 </ul>
 </div>
@@ -129,16 +194,16 @@
 <div class="ulist">
 <ul>
 <li>
-<p>計算可能であるがEXPではない問題は存在する <sup class="footnote" id="_footnote_pnp">[<a id="_footnoteref_2" class="footnote" href="#_footnotedef_2" title="View footnote.">2</a>]</sup></p>
+<p>計算可能であるがEXPではない問題は存在する <sup class="footnote" id="_footnote_pnp">[<a id="_footnoteref_5" class="footnote" href="#_footnotedef_5" title="View footnote.">5</a>]</sup></p>
 </li>
 <li>
-<p>EXP問題であるがPではない問題は存在する <sup class="footnoteref">[<a class="footnote" href="#_footnotedef_2" title="View footnote.">2</a>]</sup></p>
+<p>EXP問題であるがPではない問題は存在する <sup class="footnoteref">[<a class="footnote" href="#_footnotedef_5" title="View footnote.">5</a>]</sup></p>
 </li>
 <li>
-<p>EPX問題であるがNP問題ではない問題が存在するかどうかは不明 <sup class="footnoteref">[<a class="footnote" href="#_footnotedef_2" title="View footnote.">2</a>]</sup></p>
+<p>EPX問題であるがNP問題ではない問題が存在するかどうかは不明 <sup class="footnoteref">[<a class="footnote" href="#_footnotedef_5" title="View footnote.">5</a>]</sup></p>
 </li>
 </ul>
 </div>
 </dd>
 </dl>
-</div><hr><h4>脚注</h4><p id='_footnotedef_1'><small>1. <a href="http://dopal.cs.uec.ac.jp/okamotoy/PDF/2013/complexity10confusions.pdf" class="bare">http://dopal.cs.uec.ac.jp/okamotoy/PDF/2013/complexity10confusions.pdf</a></small></p><p id='_footnotedef_2'><small>2. <a href="https://www.ics.nara-wu.ac.jp/jp/event/koukai/2013/pnp.pdf" class="bare">https://www.ics.nara-wu.ac.jp/jp/event/koukai/2013/pnp.pdf</a></small></p></div></article><footer><div class='pad'><p>Last Modified : 2019-12-19 13:00:38 +0900</p><p><a href='/'>monman53.github.io</a></p><p>This page is generated by <a href='https://github.com/monman53/monsta'>monsta</a>.</p><p><a rel='license' href='http://creativecommons.org/licenses/by/4.0/'><img alt='Creative Commons License' style='border-width:0' src='/images/cc-by.png' height='30px'/></a><br>This work is licensed under a <a rel='license' href='http://creativecommons.org/licenses/by/4.0/'>Creative Commons Attribution 4.0 International License</a>.</p></div></footer></body></html>
+</div><hr><h4>脚注</h4><p id='_footnotedef_1'><small>1. <a href="https://en.wikipedia.org/wiki/Decision_problem" class="bare">https://en.wikipedia.org/wiki/Decision_problem</a></small></p><p id='_footnotedef_2'><small>2. <a href="https://en.wikipedia.org/wiki/Undecidable_problem" class="bare">https://en.wikipedia.org/wiki/Undecidable_problem</a></small></p><p id='_footnotedef_3'><small>3. <a href="https://en.wikipedia.org/wiki/Complete_(complexity" class="bare">https://en.wikipedia.org/wiki/Complete_(complexity</a>)</small></p><p id='_footnotedef_4'><small>4. <a href="http://dopal.cs.uec.ac.jp/okamotoy/PDF/2013/complexity10confusions.pdf" class="bare">http://dopal.cs.uec.ac.jp/okamotoy/PDF/2013/complexity10confusions.pdf</a></small></p><p id='_footnotedef_5'><small>5. <a href="https://www.ics.nara-wu.ac.jp/jp/event/koukai/2013/pnp.pdf" class="bare">https://www.ics.nara-wu.ac.jp/jp/event/koukai/2013/pnp.pdf</a></small></p></div></article><footer><div class='pad'><p>Last Modified : 2019-12-24 12:13:10 +0900</p><p><a href='/'>monman53.github.io</a></p><p>This page is generated by <a href='https://github.com/monman53/monsta'>monsta</a>.</p><p><a rel='license' href='http://creativecommons.org/licenses/by/4.0/'><img alt='Creative Commons License' style='border-width:0' src='/images/cc-by.png' height='30px'/></a><br>This work is licensed under a <a rel='license' href='http://creativecommons.org/licenses/by/4.0/'>Creative Commons Attribution 4.0 International License</a>.</p></div></footer></body></html>
