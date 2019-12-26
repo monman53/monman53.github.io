@@ -1,0 +1,64 @@
+= 修論用の環境をつくる
+:description: Dockerで修士論文用のTeX環境を構築します．
+
+TeXは個人的に環境構築方法がよくわからないのと，
+一般に修論の時期はPCがこわれる可能性があり，「今すぐ他のPCで代替する必要が!」となることが予想されます．
+
+== 原稿
+
+原稿はGitで管理し，GitHubのプライベートリポジトリをリモートにします．
+
+
+== レンダリング
+
+レンダリングは，Docker上のTeX環境で行います．
+
+まず， `Dockerfile` を作っていきます．
+ベースは `ubuntu:18.04` にします．
+
+[source, plaintext]
+.Dockerfile
+----
+From ubuntu:18.04
+----
+
+この状態で， `docker build -t thesis-tex .` を実行します．
+
+[source, bash]
+----
+$ cat Dockerfile
+From ubuntu:18.04
+$ docker build -t thesis-tex .
+$ docker images
+REPOSITORY  TAG     IMAGE ID        CREATED     SIZE
+thesis-tex  latest  549b9b86cb8d    7 days ago  64.2MB
+----
+
+`docker run -it thesis-tex` でコンテナを起動し，中のシェルに入れます．
+
+=== TeXLiveのインストール
+
+必要そうなTeXLiveをパッケージマネージャから入手します． +
+最新版が欲しい人はTeXLive公式の入手方法を参照して下さい．
+
+[source, plaintext]
+.Dockerfile
+----
+FROM ubuntu:18.04
+
+RUN apt-get update
+RUN apt-get upgrade
+RUN apt-get install -y texlive-lang-japanese
+RUN apt-get install -y texlive-science
+----
+
+[source, bash]
+----
+$ docker build -t thesis-tex .
+$ docker run -it thesis-tex
+# platex -version
+e-pTeX 3.14159265-p3.7.1-161114-2.6 (utf8.euc) (TeX Live 2017/Debian)
+...
+----
+
+上手くインストールできました．
