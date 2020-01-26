@@ -52,7 +52,7 @@ RUN apt-get install -y texlive-lang-japanese
 RUN apt-get install -y texlive-science
 ----
 
-[source, bash]
+[source, plaintext]
 ----
 $ docker build -t thesis-tex .
 $ docker run -it thesis-tex
@@ -62,3 +62,29 @@ e-pTeX 3.14159265-p3.7.1-161114-2.6 (utf8.euc) (TeX Live 2017/Debian)
 ----
 
 上手くインストールできました．
+
+
+=== `.tex` のコンパイル
+
+コンテナ上でファイルを生成しても，exitするとそのファイルは消えてしまします．
+
+[source, plaintext]
+----
+$ docker run -it thesis-tex
+# cd ~
+# touch hoge.txt
+# exit
+$ docker run -it thesis-tex
+# cd ~
+# ls
+# exit
+----
+
+そこで，コンテナ上のディレクトリと，外にあるディレクトリを `docker run -v` オプションで対応させます．
+
+[source, plaintext]
+----
+$ docker run -v $(pwd):/root -it thesis-tex
+----
+
+これでカレントディレクトリがコンテナ上の `/root` がつながります．
