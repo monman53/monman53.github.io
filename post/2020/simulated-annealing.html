@@ -1,0 +1,307 @@
+<!doctype html><html lang='ja'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1'><link rel='shortcut icon' type='image/png' href='/images/favicon.png'/><title>やきなまし法 : monman53</title><link rel='stylesheet' href='/styles/highlight.css'><script src='/scripts/highlight.pack.js'></script><script>hljs.initHighlightingOnLoad();</script><script>MathJax = {tex: {inlineMath: [['$', '$'], ['\\(', '\\)']]}}</script><script id='MathJax-script' async src='/scripts/mathjax/tex-chtml.js'></script><link rel='stylesheet' href='/styles/main.css'><script async src='https://www.googletagmanager.com/gtag/js?id=UA-111264044-1'></script><script src='/scripts/google.js'></script></head><body><header><div class='pad'><p class='bread'><a href='/'>monman53.github.io</a> / <a href='/post/'>post</a> / <a href='/post/2020/'>2020</a> / <a href='/post/2020/simulated-annealing.html'>simulated-annealing.html</a></p><p style='font-size: small;'>Last Modified : 2020-02-13 01:47:49 +0900</p></div></header><article><div class='pad'><h1>やきなまし法</h1><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://atcoder.jp/contests/chokudai004/tasks/chokudai004_a">この最適化問題</a>
+を焼きなまし法でアプローチします．</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Kさんの配列設計プログラムもおそらく焼きなましっぽいことをやっていると思われます．
+少なくとも山登りはしていると思います．</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_step_0とりあえず動くプログラムを書く_解空間を正しくとらえる">Step 0：とりあえず動くプログラムを書く (解空間を正しくとらえる)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>とりあえず条件($l_{ij} \leq a_{ij} \leq r_{ij}$)を満たす適当な解を出力してみよう，
+という気持ちになります．<br>
+配列設計で言えば，ランダムにATGCを選んで設計することに対応します．</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>条件を満たす $a$ を <strong>解</strong> と呼び，今回は9のn^2乗通りくらいの $a$ の選び方があります．
+そのすべての解を集めたものを <strong>解空間</strong> と呼び，
+解空間を <strong>探索</strong> することでより良い解を探していきます．
+すべての解をチェックできれば <strong>最適解</strong> を見つけることができますが，
+それは一般に難しいので，焼きなまし法のような近似解法が用いられます．</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">適当な解を1つ出力するプログラム</div>
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int n;
+int b[3];
+int l[30][30];
+int r[30][30];
+int a[30][30];
+
+int main() {
+    //----------------
+    // 入力
+    //----------------
+    scanf("%d %d %d %d", &amp;n, &amp;b[0], &amp;b[1], &amp;b[2]);
+    for(int i=0;i&lt;n;i++){
+        for(int j=0;j&lt;n;j++){
+            scanf("%d", &amp;l[i][j]);
+        }
+    }
+    for(int i=0;i&lt;n;i++){
+        for(int j=0;j&lt;n;j++){
+            scanf("%d", &amp;r[i][j]);
+        }
+    }
+
+    //----------------
+    // 探索
+    //----------------
+    for(int i=0;i&lt;n;i++){
+        for(int j=0;j&lt;n;j++){
+            // l[i][j]以上r[i][j]以下の値をランダムで選ぶ
+            a[i][j] = l[i][j] + rand()%(r[i][j]-l[i][j]+1);
+        }
+    }
+
+    //----------------
+    // 出力
+    //----------------
+    for(int i=0;i&lt;n;i++){
+        for(int j=0;j&lt;n;j++){
+            printf("%d ", a[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>このプログラムで666,382点を得ることができました．</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_step_1探索をしてみる_ランダム法">Step 1：探索をしてみる (ランダム法)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>今度は，いくつか解を作ってみて一番良かったものを選ぶことを考えます．
+そのためには，解がどのくらい良いかを評価(evaluate)する必要があります．
+今回は幸いにも問題中にスコアの定義が書かれています．
+自由エネルギーを最小化するという見方にならって，
+このスコアに-1を掛けた値を評価値とします．</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>評価関数(エネルギー関数)の設計は非常に重要です．
+今回は与えられた式(評価関数)をそのまま用いましたが，別の評価関数を用いても良く，
+そのほうが探索が上手くいく場合が十分にありえます．
+一般に滑らかな関数にするとよいです．</p>
+</div>
+<div class="paragraph">
+<p>配列設計では，同一塩基の連続，GC含量，2次構造，
+自由エネルギーといった複数の特徴量からなる関数になるはずで，
+その定義にはセンスが求められます．</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">ランダム法のプログラム</div>
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int n;
+int b[3];
+int l[30][30];
+int r[30][30];
+int s[30][30];
+int a[30][30];
+
+// 解sの評価関数(内容は本質的に重要じゃないです)
+int eval() {
+    int count[3] = {0, 0, 0};
+    int sum = 0;
+    int score = 0;
+    // 好きな値b[k=0, 1, 2]
+    for(int k=0;k&lt;3;k++){
+        for(int i=0;i&lt;n;i++){
+            for(int j=0;j&lt;n;j++){
+                // ijから下方向にl伸ばしてみる
+                sum = 0;
+                for(int l=0;l+i&lt;n;l++){
+                    sum += s[i+l][j];
+                    if(sum == b[k]){
+                        count[k]++;
+                    }
+                }
+                // ijから右方向にl伸ばしてみる
+                sum = 0;
+                for(int l=0;l+j&lt;n;l++){
+                    sum += s[i][j+l];
+                    if(sum == b[k]){
+                        count[k]++;
+                    }
+                }
+            }
+        }
+        score += b[k]*count[k];
+    }
+
+    // 小さいほど良くするために符号を反転して返す
+    return -score;
+}
+
+int main() {
+    //----------------
+    // 入力
+    //----------------
+    //...
+
+    //----------------
+    // 探索
+    //----------------
+    int e_best = 0;
+    // 1000個の解を試す
+    for(int k=0;k&lt;1000;k++){
+        // 解sのランダム生成
+        for(int i=0;i&lt;n;i++){
+            for(int j=0;j&lt;n;j++){
+                s[i][j] = l[i][j] + rand()%(r[i][j]-l[i][j]+1);
+            }
+        }
+
+        // 解sのエネルギー
+        int e_now = eval();
+
+        // ベスト解の更新
+        if(e_now &lt; e_best){
+            e_best = e_now;
+            for(int i=0;i&lt;n;i++){
+                for(int j=0;j&lt;n;j++){
+                    a[i][j] = s[i][j];
+                }
+            }
+        }
+    }
+
+    //----------------
+    // 出力
+    //----------------
+    //...
+
+    return 0;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>このプログラムで723,310点を得ることができました．</p>
+</div>
+<div class="paragraph">
+<p>プログラムの流れを見やすくするために，
+解sのランダムな生成とベスト解の更新をそれぞれ <code>generate</code>，<code>update</code> 関数としてまとめておきます．</p>
+</div>
+<div class="listingblock">
+<div class="title">ランダム法のプログラム(改)</div>
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int n;
+int b[3];
+int l[30][30];
+int r[30][30];
+int s[30][30];
+int a[30][30];
+
+// 解sの評価関数(内容は本質的に重要じゃないです)
+int eval() {
+    //...
+}
+
+// 解sのランダム生成
+void generate() {
+    for(int i=0;i&lt;n;i++){
+        for(int j=0;j&lt;n;j++){
+            s[i][j] = l[i][j] + rand()%(r[i][j]-l[i][j]+1);
+        }
+    }
+}
+
+// ベスト解の更新
+void update() {
+    for(int i=0;i&lt;n;i++){
+        for(int j=0;j&lt;n;j++){
+            a[i][j] = s[i][j];
+        }
+    }
+}
+
+
+int main() {
+    //----------------
+    // 入力
+    //----------------
+    //...
+
+    //----------------
+    // 探索
+    //----------------
+    int e_best = 0;
+    // 1000個の解を試す
+    for(int k=0;k&lt;1000;k++){
+        // 解sのランダム生成
+        generate();
+
+        // 解sのエネルギー
+        int e_now = eval();
+
+        // ベスト解の更新
+        if(e_now &lt; e_best){
+            e_best = e_now;
+            update();
+        }
+    }
+
+    //----------------
+    // 出力
+    //----------------
+    //...
+
+    return 0;
+}</code></pre>
+</div>
+</div>
+</div>
+</div></div></article><footer><div class='pad'><p>Last Modified : 2020-02-13 01:47:49 +0900</p><p><a href='/'>monman53.github.io</a></p><p>This page is generated by <a href='https://github.com/monman53/monsta'>monsta</a>.</p><p><a rel='license' href='http://creativecommons.org/licenses/by/4.0/'><img alt='Creative Commons License' style='border-width:0' src='/images/cc-by.png' height='30px'/></a><br>This work is licensed under a <a rel='license' href='http://creativecommons.org/licenses/by/4.0/'>Creative Commons Attribution 4.0 International License</a>.</p></div></footer></body></html>
