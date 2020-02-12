@@ -26,6 +26,7 @@
     --color-base:           var(--platanus-light2);
     --color-header:         var(--platanus-dark3);
     --color-text-default:   var(--platanus-dark4);
+    --color-text-weak:      var(--platanus-dark0);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -35,6 +36,7 @@
     --color-base:           var(--platanus-dark4);
     --color-header:         var(--platanus-leaf3);
     --color-text-default:   var(--platanus-light2);
+    --color-text-weak:      var(--platanus-dark0);
 }
 }
 
@@ -168,4 +170,19 @@ p.image-cell-exif {
 
 .content {
     overflow-x: auto;
+}
+
+.note .icon {
+    visibility: hidden;
+}
+.note .content {
+    border-left: solid 2px var(--color-header);
+    padding-left: 1rem;
+}
+.note {
+    color: var(--color-text-weak);
+    font-size: smaller;
+}
+.note p {
+    /* margin: 0; */
 }
