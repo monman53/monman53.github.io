@@ -181,7 +181,7 @@ p.image-cell-exif {
 }
 .note {
     color: var(--color-text-weak);
-    font-size: smaller;
+    /* font-size: smaller; */
 }
 .note p {
     /* margin: 0; */
