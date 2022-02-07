@@ -27,8 +27,8 @@
 
 == 競技プログラミング
 
-* AtCoder 青  http://codeforces.com/profile/monman53[monman53]
-* CodeForces 青 https://atcoder.jp/users/monman53[monman53]
+* AtCoder 青  https://atcoder.jp/users/monman53[monman53]
+* CodeForces 青 https://codeforces.com/profile/monman53[monman53]
 
 === コンテスト出場歴
 
