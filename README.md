@@ -8,6 +8,9 @@ npm run dev
 
 # Build and export static contents to `out` directory
 npm run build
+
+# Check `out` static files
+npm run serve
 ```
 
 ## Notice
