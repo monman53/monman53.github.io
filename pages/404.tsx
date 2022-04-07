@@ -9,7 +9,7 @@ import { GetStaticProps } from 'next'
 export default function Home() {
   return (
     <Layout>
-      <h1>Top</h1>
+      <h1>404</h1>
     </Layout>
   )
 }

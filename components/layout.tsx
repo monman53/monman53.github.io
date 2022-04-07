@@ -1,6 +1,4 @@
 import Head from 'next/head'
-import styles from './layout.module.css'
-import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
 
 export const siteTitle = 'Next.js Sample Website'
@@ -12,16 +10,25 @@ export default function Layout({
   home?: boolean
 }) {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <link rel="icon" href="/favicon.png" />
       </Head>
-      <header className={styles.header}>
-        <h1>Header</h1>
+      <header>
+        <div className="pad">
+          <p className="bread">monman53.github.io / hoge / piyo</p>
+          <p className="last-modified">Last Modified: </p>
+        </div>
       </header>
-      <main>{children}</main>
-      <footer className={styles.footer}>
-        <h1>Footer</h1>
+      <main>
+        <div className="pad">
+          {children}
+        </div>
+      </main>
+      <footer>
+        <div className="pad">
+          <p className="last-modified">Last Modified: </p>
+        </div>
       </footer>
     </div>
   )
