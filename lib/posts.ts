@@ -1,24 +1,27 @@
 import fs from 'fs'
 import path from 'path'
 import Processor from 'asciidoctor'
-import matter from 'gray-matter'
-import { remark } from 'remark'
-import html from 'remark-html'
+// import matter from 'gray-matter'
+// import { remark } from 'remark'
+// import html from 'remark-html'
+import dateFormat from "dateformat";
 
-var hljs = require('highlight.js'); // https://highlightjs.org/
+// var hljs = require('highlight.js'); // https://highlightjs.org/
 
 // Actual default values
-var md = require('markdown-it')({
-  highlight: function (str:string, lang:string) {
-    if (lang && hljs.getLanguage(lang)) {
-      try {
-        return hljs.highlight(str, { language: lang }).value;
-      } catch (__) {}
-    }
+// var md = require('markdown-it')({
+//   highlight: function (str:string, lang:string) {
+//     if (lang && hljs.getLanguage(lang)) {
+//       try {
+//         return hljs.highlight(str, { language: lang }).value;
+//       } catch (__) {}
+//     }
 
-    return ''; // use external default escaping
-  }
-});
+//     return ''; // use external default escaping
+//   }
+// }).use(require('markdown-it-title'))
+//   .use(require('markdown-it-footnote'))
+//   .use(require('markdown-it-katex'))
 
 const postsDirectory = path.join(process.cwd(), 'posts')
 
@@ -43,12 +46,11 @@ function getAllMarkups() {
 
 export function getAllPostIds() {
   const fileNames = getAllMarkups()
-  console.log(fileNames)
   return fileNames.map(fileName => {
     return {
       params: {
-        id: fileName.replace(/\.md$/, '').split('/')
-        // id: fileName.replace(/\.adoc$/, '').split('/')
+        // id: fileName.replace(/\.md$/, '').split('/')
+        id: fileName.replace(/\.adoc$/, '').split('/')
       }
     }
   })
@@ -64,49 +66,53 @@ export async function getPostData(id: string | string[]) {
   /*
    * Asciidoc
   */
-  // {
-  //   const fullPath = path.join(postsDirectory, `${id}.adoc`)
-  //   const markupContents = fs.readFileSync(fullPath, "utf8")
-
-  //   const contentHtml = Processor().convert(markupContents)
-  //   const date = "2022-04-07"
-  //   const title = "test content title"
-
-  //   return {
-  //     id,
-  //     contentHtml,
-  //     ...({date, title})
-  //   }
-  // }
-
-  /*
-   * Markdown
-  */
   {
-    const fullPath = path.join(postsDirectory, `${id}.md`)
-    const fileContents = fs.readFileSync(fullPath, 'utf8')
+    const fullPath = path.join(postsDirectory, `${id}.adoc`)
+    const stat = fs.statSync(fullPath)
 
-    // Use gray-matter to parse the post metadata section
-    const matterResult = matter(fileContents)
+    let asciidoctor = Processor()
+    let doc = asciidoctor.loadFile(fullPath)
 
-    // Use remark to convert markdown into HTML string
-    // const processedContent = await remark()
-    //   .use(html)
-    //   .process(matterResult.content)
-    // const contentHtml = processedContent.toString()
-    const contentHtml = md.render(fileContents)
-
-    // Combine the data with the id and contentHtml
-
-    // dummy
-    const date = "2022-04-07"
-    const title = "test content title"
+    let contentHtml = doc.getContent()
+    const date = dateFormat(stat.mtime, "yyyy-mm-dd HH:MM:ss o")
+    const title = doc.getDocumentTitle()
 
     return {
       id,
       contentHtml,
-      ...({ date, title})
-      // ...(matterResult.data as { date: string; title: string })
+      ...({date, title})
     }
   }
+
+  /*
+   * Markdown
+  */
+  // {
+  //   const fullPath = path.join(postsDirectory, `${id}.md`)
+  //   const fileContents = fs.readFileSync(fullPath, 'utf8')
+
+  //   // Use gray-matter to parse the post metadata section
+  //   const matterResult = matter(fileContents)
+
+  //   // Use remark to convert markdown into HTML string
+  //   // const processedContent = await remark()
+  //   //   .use(html)
+  //   //   .process(matterResult.content)
+  //   // const contentHtml = processedContent.toString()
+  //   const env:any = {}
+  //   const contentHtml = md.render(fileContents, env)
+
+  //   // Combine the data with the id and contentHtml
+
+  //   // dummy
+  //   const date = "2022-04-07"
+  //   const title = env.title ? env.title : "No title"
+
+  //   return {
+  //     id,
+  //     contentHtml,
+  //     ...({ date, title})
+  //     // ...(matterResult.data as { date: string; title: string })
+  //   }
+  // }
 }
