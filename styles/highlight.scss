@@ -1,0 +1,135 @@
+// :root {
+//   --hljs-background: $platanus-dark2);
+//   --hljs-default: $platanus-light2);
+//   --hljs-comment: $platanus-dark0);
+//   --hljs-keyword: $platanus-leaf3);
+//   --hljs-literal: $platanus-caution);
+//   --hljs-string: $platanus-leaf0);
+//   --hljs-title: $platanus-error);
+//   --hljs-type: $platanus-light2);
+//   --hljs-tag: $platanus-warning);
+//   --hljs-builtin: $platanus-error);
+// }
+
+// @media (prefers-color-scheme: dark) {
+//   :root {
+//     --hljs-background: $platanus-dark4);
+//     --hljs-default: $platanus-light2);
+//     --hljs-comment: $platanus-dark1);
+//     --hljs-keyword: $platanus-leaf3);
+//     --hljs-literal: $platanus-caution);
+//     --hljs-string: $platanus-leaf0);
+//     --hljs-title: $platanus-error);
+//     --hljs-type: $platanus-light2);
+//     --hljs-tag: $platanus-warning);
+//     --hljs-builtin: $platanus-error);
+//   }
+// }
+
+@import "globals.scss";
+
+$hljs-background: $platanus-dark4;
+$hljs-default: $platanus-light2;
+$hljs-comment: $platanus-dark1;
+$hljs-keyword: $platanus-leaf3;
+$hljs-literal: $platanus-caution;
+$hljs-string: $platanus-leaf0;
+$hljs-title: $platanus-error;
+$hljs-type: $platanus-light2;
+$hljs-tag: $platanus-warning;
+$hljs-builtin: $platanus-error;
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: $hljs-default;
+  background: $hljs-background;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: $hljs-comment;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: $hljs-keyword;
+  font-weight: bold;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: $hljs-literal;
+}
+
+.hljs-string,
+.hljs-doctag {
+  color: $hljs-string;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
+  color: $hljs-title;
+  font-weight: bold;
+}
+
+.hljs-subst {
+  font-weight: normal;
+}
+
+.hljs-type,
+.hljs-class {
+  color: $hljs-type;
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-attribute {
+  color: $hljs-tag;
+  font-weight: normal;
+}
+
+/*  */
+/* .hljs-regexp, */
+/* .hljs-link { */
+/*   color: #009926; */
+/* } */
+/*  */
+/* .hljs-symbol, */
+/* .hljs-bullet { */
+/*   color: #990073; */
+/* } */
+
+.hljs-built_in,
+.hljs-builtin-name {
+  color: $hljs-builtin;
+}
+
+.hljs-meta {
+  /* color: #999; */
+  font-weight: bold;
+}
+
+/* .hljs-deletion { */
+/*   background: #fdd; */
+/* } */
+/*  */
+/* .hljs-addition { */
+/*   background: #dfd; */
+/* } */
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
