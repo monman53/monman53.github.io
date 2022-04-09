@@ -1,5 +1,11 @@
 `https://monman53.github.io/` generator written in NextJS.
 
+My web page contents are written in AsciiDoc. This NextJS app exports .html files into `out` directory from .adoc files inside `posts` and deploys to `gh-pages`
+
+* AsciiDoctor backend
+* highlight.js supported
+* MathJax supported
+
 ## Usage
 
 ```bash
@@ -11,6 +17,9 @@ npm run build
 
 # Check `out` static files
 npm run serve
+
+# Deploy static contents inside `out` to GitHub pages
+npm run deploy
 ```
 
 ## Notice
