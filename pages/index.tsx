@@ -1,24 +1,21 @@
-import Head from 'next/head'
-import Layout, { siteTitle } from '../components/layout'
-import utilStyles from '../styles/utils.module.css'
-// import { getSortedPostsData } from '../lib/posts'
+import Layout from '../components/layout'
 import Link from 'next/link'
-import Date from '../components/date'
-import { GetStaticProps } from 'next'
 
 export default function Home() {
   return (
     <Layout>
-      <h1>Top</h1>
+      <article>
+        <p>
+          Welcome to monman53 web site.
+        </p>
+        <ul>
+          <li><p><Link href="/profile"><a>Profile</a></Link></p></li>
+          <li><p><Link href="/tools"><a>My gears</a></Link></p></li>
+          <li><p><Link href="/music"><a>My favorite musics</a></Link></p></li>
+          <li><p><Link href="/cooking"><a>Cooking tips</a></Link></p></li>
+          {/* <li><p><Link href="/links"><a>Favorite sites</a></Link></p></li> */}
+        </ul>
+      </article>
     </Layout>
   )
 }
-
-// export const getStaticProps: GetStaticProps = async () => {
-//   const allPostsData = getSortedPostsData()
-//   return {
-//     props: {
-//       allPostsData
-//     }
-//   }
-// }

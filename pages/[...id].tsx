@@ -17,6 +17,8 @@ export default function Post({
       <Head>
         <title>{postData.title}</title>
       </Head>
+      <p className="last-modified">Last Modified: {postData.date}</p>
+      <h1>{postData.title}</h1>
       <article>
         <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
       </article>

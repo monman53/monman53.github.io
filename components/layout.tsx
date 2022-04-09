@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import Script from 'next/script'
 
 export const siteTitle = 'Next.js Sample Website'
 
@@ -10,17 +11,18 @@ export default function Layout({
 }) {
   return (
     <div>
+      {/* TODO: Workaround for mathjax */}
+      <Script src="/scripts/mathjax-conf.js"></Script>
+      <Script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+      </Script>
+
       <Head>
-        <link rel="icon" href="/favicon.png" />
-        <script src="/mathjax-conf.js"> </script>
-        <script id="MathJax-script" async
-          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-        </script>
+        <link rel="icon" href="/images/favicon.png" />
       </Head>
       <header>
         <div className="pad">
-          <p className="bread">monman53.github.io / hoge / piyo</p>
-          <p className="last-modified">Last Modified: </p>
+          <Link href="/"><a className="bread">monman53.github.io</a></Link>
         </div>
       </header>
       <main>
@@ -30,10 +32,9 @@ export default function Layout({
       </main>
       <footer>
         <div className="pad">
-          <p className="last-modified">Last Modified: </p>
+          {/* <p className="last-modified">Last Modified: </p> */}
+          <Link href="/"><a className="bread">monman53.github.io</a></Link>
         </div>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script>
       </footer>
     </div>
   )

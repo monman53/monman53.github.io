@@ -68,12 +68,17 @@ export async function getPostData(id: string | string[]) {
   */
   {
     const fullPath = path.join(postsDirectory, `${id}.adoc`)
+    const contents = fs.readFileSync(fullPath, 'utf8')
     const stat = fs.statSync(fullPath)
 
     let asciidoctor = Processor()
     let doc = asciidoctor.loadFile(fullPath)
 
-    let contentHtml = doc.getContent()
+    // TODO: Super workaround for hljs
+    const hljsStr = "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js\"></script>"+
+        "<script id=\"hljs-all\">hljs.highlightAll();</script>"
+
+    let contentHtml = asciidoctor.convert(contents) + hljsStr
     const date = dateFormat(stat.mtime, "yyyy-mm-dd HH:MM:ss o")
     const title = doc.getDocumentTitle()
 
