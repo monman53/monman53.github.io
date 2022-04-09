@@ -10,7 +10,7 @@
     "lint": "next lint",
     "serve": "serve out",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d out"
+    "deploy": "gh-pages --dotfiles -d out"
   },
   "dependencies": {
     "asciidoctor": "^2.2.6",
