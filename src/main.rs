@@ -3,6 +3,15 @@ use std::path::Path;
 
 extern crate fs_extra;
 extern crate pulldown_cmark;
+extern crate askama;
+
+use askama::Template;
+
+#[derive(askama::Template)]
+#[template(path = "main.html", escape = "none")]
+struct MainTemplate {
+    contents: String,
+}
 
 fn main() -> Result<(), std::io::Error> {
     // Clean-up `./dist` directory
@@ -51,7 +60,9 @@ fn main() -> Result<(), std::io::Error> {
 
                             // Export to html
                             let dst_path = dst_path.with_extension("html");
-                            fs::write(dst_path, html_output)?;
+                            let html = MainTemplate { contents: html_output };
+                            let html = html.render().unwrap();
+                            fs::write(dst_path, html)?;
                         }
                     }
                     None => {}

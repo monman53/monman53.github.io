@@ -8,3 +8,4 @@ edition = "2021"
 [dependencies]
 fs_extra = "1.2.0"
 pulldown-cmark = "0.9.1"
+askama = "0.10.0"
