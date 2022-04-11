@@ -1,7 +1,6 @@
-= AsciiDoc rendering test
+# Markdown rendering test
 
-[source, cpp]
-----
+```cpp
 #include <iostream>
 
 int main() {
@@ -10,17 +9,12 @@ int main() {
   }
   return 0;
 }
-----
-
+```
 
 * a
-*** b
-*** c
-***** d
-*** e
-**f
-*** g
-
-== H2
-
-=== H3
+  * b
+  * c
+    * d
+  * e
+* f
+  * g
