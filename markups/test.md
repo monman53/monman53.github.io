@@ -11,6 +11,12 @@ int main() {
 }
 ```
 
+$$ e^{i x} = \cos{x} + i \sin{x} $$
+
+<p>Inline HTML</p>
+
+<!-- Comment out test. This paragraph should not be visible. -->
+
 * a
   * b
   * c

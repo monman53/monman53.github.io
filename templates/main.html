@@ -1,11 +1,43 @@
-<header>
-  <h1>Header</h1>
-</header>
+<!DOCTYPE html>
+<html>
 
-<main>
-  {{ contents }}
-</main>
+<head>
+  <meta name="viewport" content="width=device-width">
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/favicon.png">
 
-<footer>
-  <h1>Footer</h1>
-</footer>
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/default.min.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/vs2015.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script>
+
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [["$", "$"] ],
+        displayMath: [["$$","$$"], ["\\[","\\]"]]
+      }
+    });
+  </script>
+
+  <title>{{ title }}</title>
+</head>
+
+<body>
+  <header>
+    <h1>Header</h1>
+  </header>
+
+  <main>
+    {{ contents }}
+  </main>
+
+  <footer>
+    <h1>Footer</h1>
+  </footer>
+
+</body>
+
+<script>hljs.highlightAll();</script>
+
+</html>

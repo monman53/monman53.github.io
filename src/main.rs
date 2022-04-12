@@ -1,15 +1,16 @@
 use std::fs;
 use std::path::Path;
 
+extern crate askama;
 extern crate fs_extra;
 extern crate pulldown_cmark;
-extern crate askama;
 
 use askama::Template;
 
 #[derive(askama::Template)]
 #[template(path = "main.html", escape = "none")]
 struct MainTemplate {
+    title: String,
     contents: String,
 }
 
@@ -36,9 +37,10 @@ fn main() -> Result<(), std::io::Error> {
 
     // Convert markups to html and place them into `./dist`.
     if Path::new("./markups").exists() {
-        use pulldown_cmark::{html, Options, Parser};
+        use pulldown_cmark::{html, Event, Options, Parser};
         let mut options = Options::empty();
         options.insert(Options::ENABLE_STRIKETHROUGH);
+        options.insert(Options::ENABLE_FOOTNOTES);
 
         let paths = fs::read_dir("./markups").unwrap();
         for path in paths {
@@ -54,13 +56,30 @@ fn main() -> Result<(), std::io::Error> {
                             let file_content = fs_extra::file::read_to_string(&src_path).unwrap();
                             let parser = Parser::new_ext(&file_content, options);
 
+                            // TODO: Use first text as a title
+                            let mut cnt = 0;
+                            let mut title = String::new();
+                            let parser = parser.map(|event| match event {
+                                Event::Text(text) => {
+                                    if cnt == 0 {
+                                        title = text.clone().into_string();
+                                    }
+                                    cnt+=1;
+                                    Event::Text(text)
+                                }
+                                _ => event,
+                            });
+
                             // Write to String buffer.
                             let mut html_output = String::new();
                             html::push_html(&mut html_output, parser);
 
                             // Export to html
                             let dst_path = dst_path.with_extension("html");
-                            let html = MainTemplate { contents: html_output };
+                            let html = MainTemplate {
+                                title: title,
+                                contents: html_output,
+                            };
                             let html = html.render().unwrap();
                             fs::write(dst_path, html)?;
                         }
