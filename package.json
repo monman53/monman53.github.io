@@ -1,0 +1,6 @@
+{
+  "homepage": "https://monman53.github.io",
+  "scripts": {
+    "deploy": "gh-pages -d dist"
+  }
+}

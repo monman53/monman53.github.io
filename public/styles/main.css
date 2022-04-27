@@ -35,7 +35,7 @@ body {
   color: var(--color-text-default);
   background-color: var(--color-background);
 
-  font-family: "sans-serif";
+  font-family: 'Noto Sans JP', sans-serif;
 }
 
 header,
@@ -85,4 +85,8 @@ blockquote {
   padding-left: 2em;
   border-left: 0.3em solid;
   color: var(--color-text-weak);
+}
+
+img {
+  max-width: 100%;
 }

@@ -67,6 +67,8 @@
   * アクセサリ
     * CAMERA ADAPTER G
   * T-ring for Micro Four Thirds
+* 双眼鏡
+  * Vixen ASCOT 8x42 WP
 * 三脚
   * Manfrotto MT190XPRO4
   * Velbon Light D25 D
@@ -84,7 +86,7 @@
 ### 音響
 
 * アナログミキサ
-  * MG10XU
+  * YAMAHA MG10XU
 * マイク
   * Shure SM58
 * USB オーディオインターフェース

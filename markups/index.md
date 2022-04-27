@@ -1,10 +1,12 @@
 # Tetsuro Sakamoto
 
+![](/images/top.jpg)
+
 ## Skills / Hobbies
 
 * C++ / CUDA C / Python
-* Piano
-* Photography (Astro, Birds, ...)
+* Piano / Photography (Astro, Birds, ...)
+* 応用情報技術者 / 第二種電気工事士
 
 ## Work Experience
 
@@ -21,11 +23,6 @@
   * School of computing (Bachelor), Tokyo Institute of Technology 
 * 2010-04 - 2013-03
   * Takasaki High School, Gunma
-
-## Certifications & Licenses
-
-* 応用情報技術者
-* 第二種電気工事士
 
 ## Links
 
