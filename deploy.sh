@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 pushd dist
 git init
 git add -A
