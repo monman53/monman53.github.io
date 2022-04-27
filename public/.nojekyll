@@ -1,3 +1,0 @@
-This file is needed for GitHub Pages since this app exports `_next` directory which start with `_` that is conflicting to Jekyll.
-
-See: https://github.blog/2009-12-29-bypassing-jekyll-on-github-pages/

@@ -1,0 +1,88 @@
+:root {
+  --platanus-dark0: #646a4dff;
+  --platanus-dark1: #595f45ff;
+  --platanus-dark2: #4d533cff;
+  --platanus-dark3: #3d412fff;
+  --platanus-dark4: #2c2f22ff;
+
+  --platanus-light0: #f2f4ebff;
+  --platanus-light1: #eef0e5ff;
+  --platanus-light2: #e5e9d8ff;
+  --platanus-light3: #dbe0c7ff;
+
+  --platanus-leaf0: #99c181ff;
+  --platanus-leaf1: #acc181ff;
+  --platanus-leaf2: #c1ba81ff;
+  --platanus-leaf3: #c1aa81ff;
+
+  --platanus-error: #c15a64ff;
+  --platanus-caution: #cf826bff;
+  --platanus-warning: #ddba79ff;
+  --platanus-valid: #acc181ff;
+  --platanus-value: #ac84a7ff;
+}
+
+:root {
+  --color-background: var(--platanus-light2);
+  --color-foreground: var(--platanus-light0);
+  /* --color-header: var(--platanus-dark3); */
+  --color-text-default: var(--platanus-dark4);
+  --color-text-weak: var(--platanus-dark0);
+}
+
+body {
+  margin: 0;
+  color: var(--color-text-default);
+  background-color: var(--color-background);
+
+  font-family: "sans-serif";
+}
+
+header,
+footer {
+  padding-top: 0.9em;
+  padding-bottom: 0.9em;
+}
+
+header span {
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+footer span {
+  font-size: 0.8rem;
+}
+
+main {
+  background-color: var(--color-foreground);
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.pad {
+  max-width: 40em;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 0.8em;
+  padding-right: 0.8em;
+}
+
+a:link,
+a:visited {
+  color: var(--color-text-default);
+}
+
+h1 {
+  font-size: xx-large;
+}
+
+h2 {
+  border-bottom: 0.1em solid;
+}
+
+blockquote {
+  margin-left: 0;
+  padding-left: 2em;
+  border-left: 0.3em solid;
+  color: var(--color-text-weak);
+}
