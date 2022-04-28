@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width">
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/favicon.png">
+  <link href="/styles/main.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400&display=swap" rel="stylesheet">
+
+  <!-- highlight.js -->
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/default.min.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/vs2015.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script>
+
+  <!-- MathJax -->
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [["$", "$"] ],
+        displayMath: [["$$","$$"], ["\\[","\\]"]]
+      }
+    });
+  </script>
+
+  <!-- Font Awesome-->
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-E9ZG1KHTVT"></script>
+  <script src='/scripts/google.js'></script>
+
+  <title>YAMAHA MG10XU を Ubuntu 22.04/20.04 で動作確認 : monman53</title>
+</head>
+
+<body>
+  <header>
+    <div class="pad">
+      <div style="display: flex;">
+        <!-- Left aligned container -->
+        <div style="flex: auto;">
+          <span>
+            <a href="/"><i class="bi bi-house-door-fill"></i>Top</a>
+            /
+            <a href="/blog/"><i class="bi bi-card-text"></i>Blog</a>
+          </span>
+        </div>
+        <!-- Right aligned container -->
+        <div style="flex: auto; text-align: end;">
+          <span><a href="https://github.com/monman53/monman53.github.io"><i class="bi bi-github"></i></a></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="pad">
+      <article>
+        <h1>YAMAHA MG10XU を Ubuntu 22.04/20.04 で動作確認</h1>
+<p>YouTube の配信用やビデオ会議用に MG10XU を入手しました。自分には普通にオーバースペックですw。</p>
+<p>一番不安だったのが、Linux (Ubuntu 22.04/20.04) でもUSB オーディオインターフェースとして認識してくれるかということでした。
+結果、問題なく入出力を認識してくれて OBS などで使えています。
+説明書には Windows などでドライバが必要と書いてあったので、もしかしたら動かないかもと思っていました。
+おそらく他の USB接続対応の MG シリーズも問題なく動作するのではないかと思います。</p>
+<h2>MG10XU を選んだ経緯</h2>
+<p>本当は AG シリーズで良かったのですが、品薄で MG シリーズを買いました。
+製品を選ぶにあたって以下を重視しました。</p>
+<ul>
+<li>PC からの入力を出力にミックスするかどうかを選択できる</li>
+<li>エフェクトをかけられる
+<ul>
+<li>面白そうなので</li>
+</ul>
+</li>
+</ul>
+<p>おそらく AG シリーズの mark 2 もこれらの要件を満たすと思います。</p>
+<p>あと、購入前に構成図を確認するのをおすすめします。めちゃくちゃわかりやすくて、自分がやりたいことができるかどうかを確認できます。
+YAMAHA の MG シリーズの場合は以下のページの仕様書から見ることができます。</p>
+<p><a href="https://jp.yamaha.com/products/proaudio/mixers/mg_series_xu_model/downloads.html#product-tabs">https://jp.yamaha.com/products/proaudio/mixers/mg_series_xu_model/downloads.html#product-tabs</a></p>
+<h2>注意点</h2>
+<h3>プラグインパワー対応入力端子は無い（ファンタム電源を除く）</h3>
+<p>自分はプラグインパワーという概念を知らなかったので、頑張ってヘッドセットのマイクを MG10XU の入力に繋げようとしていました。
+ヘッドセットやイヤホン付属の小型マイクの多くが、エレクトレットコンデンサマイクという方式です。これらのマイクは電源（プラグインパワー）を必要とするので、入力ジャックがプラグインパワーに対応している必要があります。
+MG10XU シリーズにはそのようなジャックは無いため注意が必要です。頑張れば 48V のファンタム電源を降圧して作れるかもしれませんが……。</p>
+<p>AG シリーズにはプラグインパワー対応の入力端子があるので、より配信向けになっている印象です。</p>
+<p>参考文献:</p>
+<ul>
+<li>プラグインパワーについて <a href="https://101010.fun/posts/ctia-ecm-mic.html">https://101010.fun/posts/ctia-ecm-mic.html</a></li>
+</ul>
+<h3>出力（Stereo Out）にアンバランス接続してはいけない</h3>
+<p>Stereo Out 出力はバランス出力になっているため、そこに変換ジャックなどを使用してアンバランス接続をしてしまうと、GND と Cold がショートしてしまうようです。
+自分は <a href="https://jp.yamaha.com/products/proaudio/mixers/mg_series_xu_model/downloads.html#product-tabs">MG10XU の構成図</a>を見て「あれ、これショートする？」と気づいて、調べてみるとやはりそうでした。
+大抵の場合は保護抵抗などが入っているらしいので、直ちに壊れるとかはなさそうです。実際使えてしまいました。</p>
+<p>自分は代わりに Monitor Out に出力をアンバランス接続しています。
+こちらもバランス出力ですが Stereo Out とは異なる Impedance Balanced という方式になっていて、Cold が抵抗を介して接地しています。
+したがって、変換ジャックなどで Cold と GND をショートさせてしまっても問題ないはずです（私は専門家ではないので自己責任でお願いします）。
+これも構成図を見ると明らかです。</p>
+<p>参考文献:</p>
+<ul>
+<li>Impedance Balanced について <a href="https://ameblo.jp/holycater/entry-12530299388.html">https://ameblo.jp/holycater/entry-12530299388.html</a></li>
+<li>バランス出力にアンバランス出力してはいけない話について <a href="http://www.op316.com/tubes/balanced/bal2.htm">http://www.op316.com/tubes/balanced/bal2.htm</a></li>
+</ul>
+<h2>あとがき</h2>
+<p>はじめは MG06X を買おうと思っていたのですが、モニターだけに出力する入力が無いことに購入直前に気づき、サウンドハウスで +3000円だった MG10XU を買いました（破格）。なぜか購入直後に値段が上がりました。
+今思うと MG06X にはモニター出力も無いので、スピーカーとヘッドホン両方繋ぎっぱなしということができなかったはずなので MG10XU を買ってよかったです。少し大きいけど。</p>
+
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    <div class="pad">
+      <div style="display: flex;">
+        <!-- Left aligned container -->
+        <div style="flex: auto;">
+          <span><a href="/">monman53.github.io</a></span>
+        </div>
+        <!-- Right aligned container -->
+        <div style="flex: auto; text-align: end;">
+          <span><a href="https://github.com/monman53/monman53.github.io"><i class="bi bi-github"></i></a></span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+<script>hljs.highlightAll();</script>
+
+</html>
