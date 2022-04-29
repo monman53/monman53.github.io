@@ -49,6 +49,12 @@ header span {
   font-size: 1.4rem;
 }
 
+header a:link,
+header a:visited {
+  color: var(--color-text-default);
+  text-decoration: none;
+}
+
 footer span {
   font-size: 0.8rem;
 }

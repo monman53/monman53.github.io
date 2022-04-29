@@ -13,7 +13,21 @@ use walkdir::WalkDir;
 #[template(path = "main.html", escape = "none")]
 struct MainTemplate {
     title: String,
+    bread: String,
     contents: String,
+}
+
+fn bread_crumb(dst_path: &std::path::PathBuf) -> std::string::String {
+    let mut bread = String::from("/");
+    let mut link = String::from("/");
+    // TODO:
+    let components: Vec<_> = dst_path.components().map(|comp| comp.as_os_str()).collect();
+    for i in 1..components.len()-1 {
+        let dir_name = components[i].to_str().unwrap();
+        link += format!("{}/", dir_name).as_str();
+        bread += format!(" <a href='{}'>{}</a> /", link, dir_name).as_str();
+    }
+    bread
 }
 
 fn main() -> Result<(), std::io::Error> {
@@ -77,10 +91,14 @@ fn main() -> Result<(), std::io::Error> {
                             let mut html_output = String::new();
                             html::push_html(&mut html_output, parser);
 
+                            // Create bread crumb
+                            let bread = bread_crumb(&dst_path);
+
                             // Export to html
                             let dst_path = dst_path.with_extension("html");
                             let html = MainTemplate {
                                 title: title,
+                                bread: bread,
                                 contents: html_output,
                             };
                             let html = html.render().unwrap();
@@ -145,28 +163,19 @@ fn main() -> Result<(), std::io::Error> {
 
             let parser = Parser::new_ext(&file_contents, options);
 
-            // // TODO: Use first text as a title
-            // let mut cnt = 0;
-            // let mut title = String::new();
-            // let parser = parser.map(|event| match event {
-            //     Event::Text(text) => {
-            //         if cnt == 0 {
-            //             title = text.clone().into_string();
-            //         }
-            //         cnt += 1;
-            //         Event::Text(text)
-            //     }
-            //     _ => event,
-            // });
-
             // Write to String buffer.
             let mut html_output = String::new();
             html::push_html(&mut html_output, parser);
 
-            // Export to html
             let dst_path = Path::new("dist/blog/index.html");
+
+            // Create bread crumb
+            let bread = bread_crumb(&dst_path.to_path_buf());
+
+            // Export to html
             let html = MainTemplate {
                 title: "Blog top".to_string(),
+                bread: bread,
                 contents: html_output,
             };
             let html = html.render().unwrap();
