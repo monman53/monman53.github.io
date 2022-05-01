@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width">
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/favicon.png">
+  <link href="/styles/main.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400&display=swap" rel="stylesheet">
+
+  <!-- highlight.js -->
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/default.min.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/vs2015.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script>
+
+  <!-- MathJax -->
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [["$", "$"] ],
+        displayMath: [["$$","$$"], ["\\[","\\]"]]
+      }
+    });
+  </script>
+
+  <!-- Font Awesome-->
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-E9ZG1KHTVT"></script>
+  <script src='/scripts/google.js'></script>
+
+  <title>(解決) Marantz NR1710 が「Please Wait...」となり動作しなくなった : monman53</title>
+</head>
+
+<body>
+  <header>
+    <div class="pad">
+      <div style="display: flex;">
+        <!-- Left aligned container -->
+        <div style="flex: auto;">
+          <span>
+            <a href="/"><i class="bi bi-house-door-fill"></i></a>
+            / <a href='/blog/'>blog</a> /
+          </span>
+        </div>
+        <!-- Right aligned container -->
+        <div style="flex: auto; text-align: end;">
+          <span><a href="https://github.com/monman53/monman53.github.io"><i class="bi bi-github"></i></a></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="pad">
+      <article>
+        <h1>(解決) Marantz NR1710 が「Please Wait...」となり動作しなくなった</h1>
+<p>Marantz の AV アンプ NR1710 を実家に設置していたが、帰省した際に使おうとすると使用できなくなっていた。
+どうやら最近突然使えなくなっていたらしく、親も困っていた模様。
+ネットでも似たような症状と解決方法が少し報告されているが、家のケースとは少し異なったので、どのように解決したかここにメモしておく。</p>
+<h2>症状</h2>
+<p>NR1710 本体に「Please Wait◁◁◁」のような表示がずっと表示されており、初めて確認したときから1日待ったが一向に何も進んでいない様子。
+どうやら、つい最近 2022/04/13 に行われたファームウェアアップデートが悪さをしていた模様。このことが言及されている下の記事は NR1711 （後継機？）についてであるが、<a href="https://www.marantz.jp/ja-jp/support/FirmwareUpdate/nr1710">NR1710 向けのファームウェアアップデート</a>も同時期に行われていた。</p>
+<blockquote>
+<p><a href="https://enjoypclife.net/marantz-nr1711-firmware-update-freezing-please-wait/">マランツ NR1711 にファームウェアアップデートが配信開始、早速適用も「Please wait」のまま固まる不具合に遭遇</a></p>
+</blockquote>
+<p>上記の引用記事では、再起動することにより解決していたが、自分の NR1710 では何度か再起動しても状況は変わらなかった。再起動するたびに1分ほど経つと「Please Wait」になってしまう。</p>
+<p>さすがに工場出荷時に戻せば直るだろうと思い、取扱説明書の「ネットワークの設定をお買い上げ時の設定に戻す」の手順に従って戻しても、残念ながら状況は変わらなかった。</p>
+<h2>解決方法</h2>
+<p>答えは <a href="https://support-uk.marantz.com/app/answers/detail/a_id/7254/%7E/no-network-functionality-anymore">https://support-uk.marantz.com/app/answers/detail/a_id/7254/~/no-network-functionality-anymore</a> にあった。</p>
+<blockquote>
+<ol>
+<li>Please turn off the unit using the Standby button on the front and take care that all Zones are turned off.</li>
+<li>Hold Button A and Button B simultaneously while turning the unit on again until the FL display on the front shows &quot;Restoring FW ...&quot;. Then you can release the buttons. Please see the below table for reference of Button A and B which depends on the model.</li>
+<li>The progress of this process is displayed in % and minutes. Please note that this may take 15-20 minutes to complete. Do not switch off your AVR/AVC during that process.</li>
+<li>If the operation is complete, the AVR/AVC will restart automatically. </li>
+</ol>
+</blockquote>
+<p>どうやらネットワーク周りの問題らしく、FW(ファームウェア？)を戻すことで解決した。
+NR1710 の場合、電源を切ったあと（なんか完全には切れないが、とりあえず電源ボタンを長押ししてカチっとなったあと）、本体前面パネルの「Pure Direct」ボタンと「Status」ボタンを2つ同時に押しながらさらに電源ボタンを押すと、FW のリセットが開始する。</p>
+<p>このリセット作業により状況は一変し、電源を入れたあとに「Please Wait」が表示されてしまうことなく、初期設定を行えるようになった。
+また、悪さをしていたと思われるファームウェアアップデートも手動で行ったが、滞りなく実行が進み、「Please Wait」も途中で表示されることはあったものの、数秒で消えて、アップデートの進捗状況表示に切り替わった。
+基本的に長い処理には進捗状況が％表示されるので、やはり「Please Wait」の状態で数時間待たされる時点でおかしいと思ったほうが良いということがわかった。</p>
+<h2>原因・まとめ</h2>
+<p>結局原因はよくわからなかった。
+出荷時に戻して直らないのも少し謎だし、今後の若干の不安を残す形になった。
+それ以外の点では非常に満足しているので、おすすめの AV アンプであることには変わりない。
+本記事が少しでも誰かの助けになれば幸いである。</p>
+
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    <div class="pad">
+      <div style="display: flex;">
+        <!-- Left aligned container -->
+        <div style="flex: auto;">
+          <span><a href="/">monman53.github.io</a></span>
+        </div>
+        <!-- Right aligned container -->
+        <div style="flex: auto; text-align: end;">
+          <span><a href="https://github.com/monman53/monman53.github.io"><i class="bi bi-github"></i></a></span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+<script>hljs.highlightAll();</script>
+
+</html>
