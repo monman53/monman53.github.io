@@ -1,9 +1,0 @@
-= 計算機科学
-:description: 計算機科学のページ一覧．
-
-計算機科学に関するページ一覧．
-
-* link:/science/computer/graph.html[グラフ理論]
-* link:/science/computer/algorithm.html[計算複雑性理論]
-* link:/science/computer/numerical.html[数値計算]
-* link:/science/computer/lambda.html[型無しラムダ計算]

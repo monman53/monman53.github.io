@@ -96,3 +96,7 @@ blockquote {
 img {
   max-width: 100%;
 }
+
+mjx-container {
+  overflow-x: auto;
+}
