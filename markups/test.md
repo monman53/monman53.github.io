@@ -15,6 +15,8 @@ int main() {
 
 ## MathJax
 
+This is inline $\pi$ math.
+
 $$ e^{i x} = \cos{x} + i \sin{x} $$
 
 ## Inner HTML
