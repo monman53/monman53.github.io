@@ -38,7 +38,7 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-E9ZG1KHTVT"></script>
   <script src='/scripts/google.js'></script>
 
-  <title>404 Page Not Found : monman53</title>
+  <title>非線形科学 : monman53</title>
 </head>
 
 <body>
@@ -49,7 +49,7 @@
         <div style="flex: auto;">
           <span>
             <a href="/"><i class="bi bi-house-door-fill"></i></a>
-            /
+            / <a href='/science/'>science</a> /
           </span>
         </div>
         <!-- Right aligned container -->
@@ -63,7 +63,56 @@
   <main>
     <div class="pad">
       <article>
-        <h1>404 Page Not Found</h1>
+        <h1>非線形科学</h1>
+<h2>反応拡散系</h2>
+<p>魚の体表の模様などのモデル．</p>
+<h3>Gray-Scott モデル</h3>
+<p>2種類の物質からなる．</p>
+<p>$$
+\begin{align}
+\frac{\partial u}{\partial t} &amp;= D_u\Delta u - uv^2 + f(1-u) \
+\frac{\partial v}{\partial t} &amp;= D_v\Delta v + uv^2 - (f+k)v
+\end{align}
+$$</p>
+<h4>差分形式</h4>
+<p>$u$ に関して，特に2次元平面上においては，</p>
+<p>$$
+\Delta u = \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2}
+$$</p>
+<p>であるから，微分方程式は，</p>
+<p>$$
+\frac{\partial u}{\partial t} = D_u\left(\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2}\right) - uv^2 + f(1-u)
+$$</p>
+<p>となり， $(x, y)$ においては次のように書ける．</p>
+<p>$$
+\frac{\partial u_{x, y}}{\partial t} = D_u\left(\frac{\partial^2 u_{x, y}}{\partial x^2} + \frac{\partial^2 u_{x, y}}{\partial y^2}\right) - u_{x, y}v_{x, y}^2 + f(1-u_{x, y})
+$$</p>
+<p>これを，差分形式，</p>
+<p>$$
+\begin{align}
+\frac{\partial^2 u_{x, y}}{\partial x^2} &amp;\simeq \frac{u_{x+h, y}+u_{x-h, y}-2u_{x, y}}{h^2} \\
+\frac{\partial^2 u_{x, y}}{\partial y^2} &amp;\simeq \frac{u_{x, y+h}+u_{x, y-h}-2u_{x, y}}{h^2}
+\end{align}
+$$</p>
+<p>を用いて表すと，</p>
+<p>$$
+\begin{align}
+\frac{\partial u_{x, y}}{\partial t} &amp;\simeq D_u\left(\frac{u_{x+h, y}+u_{x-h, y}-2u_{x, y}}{h^2} + \frac{u_{x, y+h}+u_{x, y-h}-2u_{x, y}}{h^2}\right) - u_{x, y}v_{x, y}^2 + f(1-u_{x, y}) \\
+&amp;= D_u\left(\frac{u_{x+h, y}+u_{x-h, y}+u_{x, y+h}+u_{x, y-h}-4u_{x, y}}{h^2}\right) - u_{x, y}v_{x, y}^2 + f(1-u_{x, y})
+\end{align}
+$$</p>
+<p>となる． $v$ も同様にして，</p>
+<p>$$
+\frac{\partial v_{x, y}}{\partial t} \simeq D_v\left(\frac{v_{x+h, y}+v_{x-h, y}+v_{x, y+h}+v_{x, y-h}-4v_{x, y}}{h^2}\right) + u_{x, y}v_{x, y}^2 - (f+k)v_{x, y}
+$$</p>
+<p>と書ける．</p>
+<p>シミュレーションする場合は，各 $(x, y)$ について，次のようにオイラー法などで数値計算すればよい．</p>
+<p>$$
+\begin{align}
+u_{x, y}^{t+\delta t} &amp;= u_{x, y}^{t} + \frac{\partial u_{x, y}}{\partial t} \delta t \\
+v_{x, y}^{t+\delta t} &amp;= v_{x, y}^{t} + \frac{\partial v_{x, y}}{\partial t} \delta t
+\end{align}
+$$</p>
 
       </article>
     </div>

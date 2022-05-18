@@ -19,13 +19,13 @@
 
   <!-- MathJax -->
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        inlineMath: [["$", "$"] ],
-        displayMath: [["$$","$$"], ["\\[","\\]"]]
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]]
       }
-    });
+    };
   </script>
 
   <!-- Font Awesome-->
@@ -75,6 +75,7 @@ int main() {
 }
 </code></pre>
 <h2>MathJax</h2>
+<p>This is inline $\pi$ math.</p>
 <p>$$ e^{i x} = \cos{x} + i \sin{x} $$</p>
 <h2>Inner HTML</h2>
 <p class="custom-name">Inline HTML</p>

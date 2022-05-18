@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width">
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/favicon.png">
+  <link href="/styles/main.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400&display=swap" rel="stylesheet">
+
+  <!-- highlight.js -->
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/default.min.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/vs2015.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script>
+
+  <!-- MathJax -->
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]]
+      }
+    };
+  </script>
+
+  <!-- Font Awesome-->
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-E9ZG1KHTVT"></script>
+  <script src='/scripts/google.js'></script>
+
+  <title>グラフ理論用語集 : monman53</title>
+</head>
+
+<body>
+  <header>
+    <div class="pad">
+      <div style="display: flex;">
+        <!-- Left aligned container -->
+        <div style="flex: auto;">
+          <span>
+            <a href="/"><i class="bi bi-house-door-fill"></i></a>
+            / <a href='/science/'>science</a> / <a href='/science/computer/'>computer</a> /
+          </span>
+        </div>
+        <!-- Right aligned container -->
+        <div style="flex: auto; text-align: end;">
+          <span><a href="https://github.com/monman53/monman53.github.io"><i class="bi bi-github"></i></a></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="pad">
+      <article>
+        <h1>グラフ理論用語集</h1>
+<p>グラフ理論の用語集です．</p>
+<ul>
+<li>ループ loop
+<ul>
+<li>2端点が同一である辺</li>
+</ul>
+</li>
+<li>単純グラフ simple graph
+<ul>
+<li>並列辺もループも含まないグラフ</li>
+</ul>
+</li>
+<li>多重グラフ multigraph
+<ul>
+<li>並列辺やループを含むグラフ</li>
+</ul>
+</li>
+<li>DAG (Directed Acyclic Graph)
+<ul>
+<li>閉路のない有向グラフ</li>
+<li>全ての辺が左から右に向くように，各頂点を一直線上に並べることができる．これをトポロジカル順序という．</li>
+</ul>
+</li>
+<li>トーナメントグラフ
+<ul>
+<li>任意の2頂点が1つの有向辺で結ばれているグラフ</li>
+</ul>
+</li>
+<li>ネットワーク
+<ul>
+<li>各辺に実数の重みがつけられているグラフ</li>
+</ul>
+</li>
+<li>次数 degree
+<ul>
+<li>点vに接続している辺の数をvの次数という</li>
+<li>任意のグラフの次数の総和は辺数の2倍に等しい</li>
+<li>任意のグラフの奇点は偶数個存在する</li>
+<li>全ての点の次数が2以上であるグラフには閉路が存在する</li>
+</ul>
+</li>
+<li>ウォーク walk
+<ul>
+<li>点から始まり点で終わる，点と辺を交互に繰り返す点と辺の系列</li>
+<li>辺の数は0でもよい</li>
+</ul>
+</li>
+<li>トレイル trail
+<ul>
+<li>全ての辺が異なるウォーク</li>
+</ul>
+</li>
+<li>路 path
+<ul>
+<li>点が全て異なるウォーク</li>
+<li>路はトレイルである</li>
+</ul>
+</li>
+<li>閉ウォーク closed walk
+<ul>
+<li>端点が等しいウォーク</li>
+</ul>
+</li>
+<li>閉トレイル cosed trail
+<ul>
+<li>全ての辺が異なる閉ウォーク</li>
+</ul>
+</li>
+<li>閉路 cycle
+<ul>
+<li>終点(始点)以外の点が全て異なる長さ(辺の数)が1以上の閉ウォーク</li>
+<li>閉路は閉トレイルである</li>
+</ul>
+</li>
+<li>(強)連結
+<ul>
+<li>無(有)向グラフにおいて，任意の2頂点間に路が存在すること</li>
+</ul>
+</li>
+<li>(強)連結成分
+<ul>
+<li>(強)連結な頂点集合に分解した際の各集合</li>
+</ul>
+</li>
+<li>非連結グラフ disconnected graph
+<ul>
+<li>連結でないグラフ</li>
+</ul>
+</li>
+<li>連結成分 connected component
+<ul>
+<li>極大な連結である部分グラフ</li>
+</ul>
+</li>
+<li>木 tree
+<ul>
+<li>閉路を含まない連結なグラフ</li>
+<li>木の任意の2点は一意的な路で結ばれている</li>
+<li>2点以上からなる木には，次数が1の点が2つ以上存在する</li>
+</ul>
+</li>
+<li>森 forest
+<ul>
+<li>閉路を含まないグラフ</li>
+</ul>
+</li>
+<li>独立点集合 independent vertex set
+<ul>
+<li>グラフの点集合の部分集合のうち，任意の2点が隣接していないもの</li>
+</ul>
+</li>
+<li>2部グラフ bipartite graph
+<ul>
+<li>点集合を2つの独立点集合に分割できるグラフ</li>
+<li>グラフが2部グラフであるための必要十分条件は，グラフが奇閉路を含まないこと</li>
+</ul>
+</li>
+<li>オイラートレイル Euler trail
+<ul>
+<li>全ての点と全ての辺を含むトレイル</li>
+</ul>
+</li>
+<li>オイラー閉トレイル Euler losed trail
+<ul>
+<li>全ての点と全ての辺を含む閉トレイル</li>
+</ul>
+</li>
+<li>準オイラーグラフ
+<ul>
+<li>オイラー閉路は含まないが，オイラー路は含むグラフ</li>
+</ul>
+</li>
+<li>オイラーグラフ Euler graph
+<ul>
+<li>オイラー閉トレイルが存在するグラフ</li>
+<li>必要十分条件は，全ての点が偶点</li>
+<li>一筆書き</li>
+</ul>
+</li>
+<li>完全グラフ complete graph
+<ul>
+<li>全ての異なる2点が辺で結ばれているグラフ</li>
+</ul>
+</li>
+<li>ハミルトン路 Hamilton path
+<ul>
+<li>グラフの全ての点を含む路</li>
+</ul>
+</li>
+<li>ハミルトン閉路 Hamilton cycle
+<ul>
+<li>グラフの全ての点を含む閉路</li>
+</ul>
+</li>
+<li>準ハミルトングラフ
+<ul>
+<li>ハミルトン閉路は含まないが，ハミルトン路は含むグラフ</li>
+</ul>
+</li>
+<li>ハミルトングラフ hamiltonian graph
+<ul>
+<li>ハミルトン閉路の存在するグラフ</li>
+<li>必要十分条件となる特徴づけは知られていない</li>
+<li>巡回セールスマン問題を解けば，ハミルトングラフ判定が可能</li>
+</ul>
+</li>
+</ul>
+
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    <div class="pad">
+      <div style="display: flex;">
+        <!-- Left aligned container -->
+        <div style="flex: auto;">
+          <span><a href="/">monman53.github.io</a></span>
+        </div>
+        <!-- Right aligned container -->
+        <div style="flex: auto; text-align: end;">
+          <span><a href="https://github.com/monman53/monman53.github.io"><i class="bi bi-github"></i></a></span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+<script>hljs.highlightAll();</script>
+
+</html>
