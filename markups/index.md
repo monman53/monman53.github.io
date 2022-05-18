@@ -1,5 +1,3 @@
-[> Sitemap](/sitemap.html)
-
 # Tetsuro Sakamoto
 
 ![](/images/top.jpg)
