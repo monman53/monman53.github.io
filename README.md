@@ -2,7 +2,7 @@
 
 [![Deploy to gh-pages](https://github.com/monman53/monman53.github.io/actions/workflows/main.yml/badge.svg)](https://github.com/monman53/monman53.github.io/actions/workflows/main.yml)
 
-```
+```sh
 # Generate static files
 cargo run
  
