@@ -1,4 +1,5 @@
 use std::fs;
+use std::os::unix::fs::MetadataExt;
 use std::path::Path;
 
 extern crate askama;
@@ -8,6 +9,7 @@ extern crate walkdir;
 
 use askama::Template;
 use walkdir::WalkDir;
+use chrono::prelude::*;
 
 #[derive(askama::Template)]
 #[template(path = "main.html", escape = "none")]
@@ -15,6 +17,7 @@ struct MainTemplate {
     title: String,
     bread: String,
     contents: String,
+    last_modified: String,
 }
 
 fn bread_crumb(dst_path: &std::path::PathBuf) -> std::string::String {
@@ -28,6 +31,11 @@ fn bread_crumb(dst_path: &std::path::PathBuf) -> std::string::String {
         bread += format!(" <a href='{}'>{}</a> /", link, dir_name).as_str();
     }
     bread
+}
+
+fn time_format(seconds: i64) -> std::string::String {
+    let dt = Local.timestamp(seconds, 0);
+    dt.format("%Y-%m-%d %H:%M:%S %:z").to_string()
 }
 
 fn main() -> Result<(), std::io::Error> {
@@ -94,12 +102,17 @@ fn main() -> Result<(), std::io::Error> {
                             // Create bread crumb
                             let bread = bread_crumb(&dst_path);
 
+                            // Get last modified date time
+                            let meta = fs::metadata(&src_path)?;
+                            let last_modified = time_format(meta.mtime());
+
                             // Export to html
                             let dst_path = dst_path.with_extension("html");
                             let html = MainTemplate {
                                 title: title,
                                 bread: bread,
                                 contents: html_output,
+                                last_modified: last_modified,
                             };
                             let html = html.render().unwrap();
                             fs::write(dst_path, html)?;
@@ -172,11 +185,17 @@ fn main() -> Result<(), std::io::Error> {
             // Create bread crumb
             let bread = bread_crumb(&dst_path.to_path_buf());
 
+            // Get last modified time
+            // TODO: Use latest blog modified time
+            let meta = fs::metadata(&dst_path)?;
+            let last_modified = time_format(meta.mtime());
+
             // Export to html
             let html = MainTemplate {
                 title: "Blog top".to_string(),
                 bread: bread,
                 contents: html_output,
+                last_modified: last_modified,
             };
             let html = html.render().unwrap();
             fs::write(dst_path, html)?;
