@@ -28,6 +28,30 @@
     };
   </script>
 
+  <!-- Image caption -->
+  <script>
+    window.onload = (e) => {
+      const container = document.querySelector('article');
+      imgs = container.querySelectorAll('img')
+
+      for (let img of imgs) {
+        const figure = document.createElement('figure');
+        const new_img = document.createElement('img');
+        const figcaption = document.createElement('figcaption');
+        new_img.src = img.src;
+        new_img.alt = img.alt;
+        figcaption.innerText = img.alt;
+
+        figure.appendChild(new_img);
+        if (img.alt !== "") {
+          figure.appendChild(figcaption);
+        }
+
+        imgs[0].replaceWith(figure);
+      }
+    }
+  </script>
+
   <!-- Font Awesome-->
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 

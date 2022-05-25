@@ -80,7 +80,7 @@ $$ e^{i x} = \cos{x} + i \sin{x} $$
 
 ## Image
 
-![Image](/images/favicon.png) 
+![Image description](/images/favicon.png) 
 
 ## Blockquote
 
