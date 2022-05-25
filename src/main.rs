@@ -8,8 +8,8 @@ extern crate pulldown_cmark;
 extern crate walkdir;
 
 use askama::Template;
-use walkdir::WalkDir;
 use chrono::prelude::*;
+use walkdir::WalkDir;
 
 #[derive(askama::Template)]
 #[template(path = "main.html", escape = "none")]
@@ -25,7 +25,7 @@ fn bread_crumb(dst_path: &std::path::PathBuf) -> std::string::String {
     let mut link = String::from("/");
     // TODO:
     let components: Vec<_> = dst_path.components().map(|comp| comp.as_os_str()).collect();
-    for i in 1..components.len()-1 {
+    for i in 1..components.len() - 1 {
         let dir_name = components[i].to_str().unwrap();
         link += format!("{}/", dir_name).as_str();
         bread += format!(" <a href='{}'>{}</a> /", link, dir_name).as_str();
@@ -166,7 +166,9 @@ fn main() -> Result<(), std::io::Error> {
                                 let mut dummy_buffer = String::new();
                                 html::push_html(&mut dummy_buffer, parser);
                                 let dst_path = dst_path.with_extension("html");
-                                file_contents.push_str(format!("* [{}]({})\n", title, dst_path.display()).as_str());
+                                file_contents.push_str(
+                                    format!("* [{}]({})\n", title, dst_path.display()).as_str(),
+                                );
                             }
                         }
                         None => {}
@@ -187,8 +189,7 @@ fn main() -> Result<(), std::io::Error> {
 
             // Get last modified time
             // TODO: Use latest blog modified time
-            let meta = fs::metadata(&dst_path)?;
-            let last_modified = time_format(meta.mtime());
+            let last_modified = time_format(Local::now().timestamp());
 
             // Export to html
             let html = MainTemplate {
