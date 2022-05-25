@@ -28,6 +28,30 @@
     };
   </script>
 
+  <!-- Image caption -->
+  <script>
+    window.onload = (e) => {
+      const container = document.querySelector('article');
+      imgs = container.querySelectorAll('img')
+
+      for (let img of imgs) {
+        const figure = document.createElement('figure');
+        const new_img = document.createElement('img');
+        const figcaption = document.createElement('figcaption');
+        new_img.src = img.src;
+        new_img.alt = img.alt;
+        figcaption.innerText = img.alt;
+
+        figure.appendChild(new_img);
+        if (img.alt !== "") {
+          figure.appendChild(figcaption);
+        }
+
+        imgs[0].replaceWith(figure);
+      }
+    }
+  </script>
+
   <!-- Font Awesome-->
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 
@@ -127,7 +151,7 @@ int main() {
 <h2>Autolink</h2>
 <p><a href="https://monman53.github.io/">https://monman53.github.io/</a></p>
 <h2>Image</h2>
-<p><img src="/images/favicon.png" alt="Image" /> </p>
+<p><img src="/images/favicon.png" alt="Image description" /> </p>
 <h2>Blockquote</h2>
 <blockquote>
 <p>Blockquote </p>
@@ -193,7 +217,7 @@ ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
       <div style="display: flex;">
         <!-- Left aligned container -->
         <div style="flex: auto;">
-          <span>Last modified: 2022-05-25 17:30:03 +00:00</span>
+          <span>Last modified: 2022-05-25 18:04:06 +00:00</span>
           <br>
           <span><a href="/">monman53.github.io</a></span>
           |
