@@ -13,6 +13,6 @@
 
 ## Others
 
-* [Profile](/index.html)
+* [Profile](/profile.html)
 * [Tools](/tools.html)
 * [Twitter Tags](/twitter.html)

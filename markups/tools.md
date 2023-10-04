@@ -46,8 +46,10 @@
 ### 撮影機材
 
 * カメラ
+  * SONY α7 IV ILCE-7M4 (2022 -)
   * OLYMPUS OM-D EM1 mk3 (2021 -)
 * レンズ
+  * FE 50mm F1.2 GM
   * M.ZUIKO DIGITAL ED 40-150mm F2.8 PRO (2021 -)
   * M.ZUIKO DIGITAL 2x Teleconverter MC-20 (2021 -)
   * M.ZUIKO DIGITAL ED 12-40mm F2.8 PRO (2021 -, EM1 mk3 のキットレンズとして)
@@ -164,6 +166,8 @@
   * Philips S5050/05
 * 加湿空気清浄機
   * SHARP KC-L50-W
+* サーキュレーター
+  * IRIS OHYAMA KCF-SDS151T W 
 
 ### その他
 
