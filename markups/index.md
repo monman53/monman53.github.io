@@ -50,9 +50,9 @@
 - MIDI input support
 - Mobile friendly
 
-### [2D DFT(FFT) interactive demo](https://monman53.github.io/demos/2dfft/) [<i class="bi bi-github"></i>](https://github.com/monman53/2dfft)
+### [2D DFT(FFT) interactive demo](https://monman53.github.io/2dfft/) [<i class="bi bi-github"></i>](https://github.com/monman53/2dfft)
 
-[![](https://raw.githubusercontent.com/monman53/2dfft/master/screenshot.png)](https://monman53.github.io/demos/2dfft/)
+[![](https://raw.githubusercontent.com/monman53/2dfft/master/screenshot.png)](https://monman53.github.io/2dfft/)
 
 - See how 2D image is being reconstructed by inverse Fourier transform
   - Edit mask-pattern by your hands (mouse drag)
