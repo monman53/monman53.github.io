@@ -18,7 +18,7 @@
 
 [→ Profile page](/profile.html)
 
-## Works
+## Web Works
 
 ### [Julia set real-time rendering demo](https://monman53.github.io/demos/juliaset/) [<i class="bi bi-github"></i>](https://github.com/monman53/juliaset)
 
@@ -94,3 +94,11 @@
 
 -  
 -->
+
+## Writings
+
+### 写真とカメラ（Japanese text only）
+
+写真の撮影方法、カメラの取り扱い、カメラの仕組みに関する自分の理解をまとめたスライドです。
+
+* [写真とカメラ.pdf](/documents/photography.pdf)
