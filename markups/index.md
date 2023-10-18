@@ -20,9 +20,9 @@
 
 ## Web Works
 
-### [Julia set real-time rendering demo](https://monman53.github.io/demos/juliaset/) [<i class="bi bi-github"></i>](https://github.com/monman53/juliaset)
+### [Julia set real-time rendering demo](https://monman53.github.io/juliaset/) [<i class="bi bi-github"></i>](https://github.com/monman53/juliaset)
 
-[![](https://raw.githubusercontent.com/monman53/juliaset/master/screenshot.png)](https://monman53.github.io/demos/juliaset/)
+[![](https://raw.githubusercontent.com/monman53/juliaset/master/screenshot.png)](https://monman53.github.io/juliaset/)
 
 - Interactive Julia set visualization
 - PNG export supported
