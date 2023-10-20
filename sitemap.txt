@@ -5,4 +5,5 @@ https://monman53.github.io/simple-camera-simulator/
 https://monman53.github.io/temperament/
 https://monman53.github.io/juliaset/
 https://monman53.github.io/plasmidraw/
+https://monman53.github.io/demos/kd-tree/
 https://monman53.github.io/blog/
