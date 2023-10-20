@@ -100,6 +100,7 @@
 
 ### 携帯電話
 
+* Google Pixel 8 (2023 -)
 * Google Pixel 3XL (2020 -)
 * モバイルバッテリー
   * Anker PowerCore III 19200 60W

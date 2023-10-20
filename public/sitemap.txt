@@ -1,4 +1,5 @@
 https://monman53.github.io/
+https://monman53.github.io/sitemap.html
 https://monman53.github.io/profile.html
 https://monman53.github.io/2dfft/
 https://monman53.github.io/simple-camera-simulator/
@@ -7,3 +8,14 @@ https://monman53.github.io/juliaset/
 https://monman53.github.io/plasmidraw/
 https://monman53.github.io/demos/kd-tree/
 https://monman53.github.io/blog/
+https://monman53.github.io/blog/2022042900.md
+https://monman53.github.io/blog/2022050100.md
+https://monman53.github.io/documents/photography.pdf
+https://monman53.github.io/science/
+https://monman53.github.io/science/nonlinear.html
+https://monman53.github.io/science/computer/
+https://monman53.github.io/science/computer/graph.html
+https://monman53.github.io/collection/
+https://monman53.github.io/collection/tools.html
+https://monman53.github.io/collection/cool-words.html
+https://monman53.github.io/collection/twitter-tags.html

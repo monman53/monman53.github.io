@@ -29,4 +29,4 @@
 * [Twitter](https://twitter.com/monman53)
 * [GitHub](https://github.com/monman53)
 * [Blog](/blog/)
-* [My gears](/tools.html)
+* [Collections](/collection/)

@@ -11,5 +11,6 @@ npm install --global http-server
 http-server dist
 
 # Deploy
-git push origin master
+cargo run
+./deploy.sh
 ```
