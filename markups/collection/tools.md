@@ -46,6 +46,7 @@
 ### 撮影機材
 
 * カメラ
+  * DJI Osmo Action 4 (2024 -)
   * SONY α7 IV ILCE-7M4 (2022 -)
   * OLYMPUS OM-D EM1 mk3 (2021 -)
 * レンズ
@@ -74,6 +75,7 @@
 * 三脚
   * Manfrotto MT190XPRO4
   * Velbon Light D25 D
+  * SmallRig BUT2664
 * 雲台
   * NEEWER ジンバル雲台
 * 赤道儀
@@ -87,8 +89,6 @@
 
 ### 音響
 
-* アナログミキサ
-  * YAMAHA MG10XU
 * マイク
   * Shure SM58
 * USB オーディオインターフェース
@@ -97,6 +97,12 @@
   * YAMAHA Pacifica212VFM TBS
 * ギターアンプ
   * VOX StompLab IG
+* PCM Recorder
+  * TASCAM DR-40X
+* ステレオアンプ
+  * TEAC AI-303
+* スピーカー
+  * DALI OPTICON 2 Mk2
 
 ### 携帯電話
 
@@ -109,8 +115,6 @@
 
 * Nintendo Switch
 * Nintendo Switch Proコントローラー
-* Sony PlayStation 5 (2022 -)
-* Fanatec DD Pro (2022 -)
 
 ### 文房具，画材
 
@@ -216,6 +220,17 @@
 * レンズ
   * M.ZUIKO DIGITAL ED 14-150mm F4.0-5.6 II ブラック (2016 - 2021)
     * 身内に譲る
+
+### 音響機器
+
+* アナログミキサ
+  * YAMAHA MG10XU
+    * 売却
+
+### ゲーム機
+
+* Sony PlayStation 5 (2022 - 2024)
+* Fanatec DD Pro (2022 - 2024)
 
 ## 電子部品在庫
 

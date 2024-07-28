@@ -36,10 +36,18 @@
 - Learn how camera works by seeing light rays paths
 - Change camera conditions by hand (mouse) and see how image changes
 - Controllable components
-  - Lens (focal-length, thickness, radius and position)
+  - Lens (thickness, size, position, curvature)
   - Aperture
   - Virtual image sensor
-  - Light sources (position, color, add/remove, intensity and number of rays)
+  - Point and parallel light sources (position, color, add/remove, intensity and number of rays)
+
+### [Fractal Chamber](https://monman53.github.io/fractal-chamber/) [<i class="bi bi-github"></i>](https://github.com/monman53/fractal-chamber)
+
+[![](https://raw.githubusercontent.com/monman53/fractal-chamber/main/screenshot.png)](https://monman53.github.io/fractal-chamber/)
+
+- Cloud-chamber-like L-system pattern generator
+- Various parameters available
+- WebGL2 Transform Feedback is used for the calculation
 
 ### [Temperament Lissajous](https://monman53.github.io/temperament/) [<i class="bi bi-github"></i>](https://github.com/monman53/temperament)
 
@@ -95,10 +103,15 @@
 -  
 -->
 
-## Writings
+## Others
 
-### 写真とカメラ（Japanese text only）
-
-写真の撮影手順、カメラの取り扱い、カメラの仕組みに関する自分の理解をまとめたスライドです。
-
-* [写真とカメラ.pdf](/documents/photography.pdf)
+* YouTube Channel
+  * [もんまん研究所 (monman lab)](https://www.youtube.com/channel/UCJsEX-MdJK95MoD7PYO-63Q)
+    * 車載動画
+    * 関東近辺の都市計画解説
+    * 作ったものの紹介
+* Writings
+  * [写真とカメラ.pdf](/documents/photography.pdf)
+    * 写真の撮影手順、カメラの取り扱い、カメラの仕組みに関する自分の理解をまとめたスライドです。
+* GoogleMyMaps
+  * [群馬・埼玉・東京 都市計画地図（非公式）](https://www.google.com/maps/d/u/0/edit?mid=1_vpive6-bulkCGH1-5J-xCGyDiwSTVM&usp=sharing)
