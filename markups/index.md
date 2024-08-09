@@ -29,6 +29,14 @@
 - Fast real-time rendering (using WebGL fragment shader for calculation)
 - Editable color palette
 
+### [Snowflake simulator](https://monman53.github.io/snowflake/) [<i class="bi bi-github"></i>](https://github.com/monman53/snowflake)
+
+[![](https://raw.githubusercontent.com/monman53/snowflake/main/screenshot.png)](https://monman53.github.io/snowflake/)
+
+- An interactive snowflake formation simulator
+- Based on a following numerical model
+  - J. Gravner, D. Griffeath, MODELING SNOW CRYSTAL GROWTH II: A mesoscopic lattice map with plausible dynamics Physica D: Nonlinear Phenomena, Volume 237, Issue 3, 2008, Pages 385-404
+
 ### [Simple Camera Simulator](https://monman53.github.io/simple-camera-simulator/) [<i class="bi bi-github"></i>](https://github.com/monman53/simple-camera-simulator)
 
 [![](https://raw.githubusercontent.com/monman53/simple-camera-simulator/main/screenshot.png)](https://monman53.github.io/simple-camera-simulator/)
@@ -41,13 +49,20 @@
   - Virtual image sensor
   - Point and parallel light sources (position, color, add/remove, intensity and number of rays)
 
-### [Fractal Chamber](https://monman53.github.io/fractal-chamber/) [<i class="bi bi-github"></i>](https://github.com/monman53/fractal-chamber)
+### [Hata-map Simulator](https://monman53.github.io/hata-map/) [<i class="bi bi-github"></i>](https://github.com/monman53/hata-map)
 
-[![](https://raw.githubusercontent.com/monman53/fractal-chamber/main/screenshot.png)](https://monman53.github.io/fractal-chamber/)
+[![](https://raw.githubusercontent.com/monman53/hata-map/main/screenshot.png)](https://monman53.github.io/hata-map/)
 
-- Cloud-chamber-like L-system pattern generator
-- Various parameters available
-- WebGL2 Transform Feedback is used for the calculation
+- Hata-map simulator and its random pattern generator
+
+### [2D DFT(FFT) interactive demo](https://monman53.github.io/2dfft/) [<i class="bi bi-github"></i>](https://github.com/monman53/2dfft)
+
+[![](https://raw.githubusercontent.com/monman53/2dfft/master/screenshot.png)](https://monman53.github.io/2dfft/)
+
+- See how 2D image is being reconstructed by inverse Fourier transform
+  - Edit mask-pattern by your hands (mouse drag)
+  - Realtime fast response (WebGL fragment shader is used for FFT calculation)
+- Use arbitrary photos as input or mask-pattern on your computer or web
 
 ### [Temperament Lissajous](https://monman53.github.io/temperament/) [<i class="bi bi-github"></i>](https://github.com/monman53/temperament)
 
@@ -58,14 +73,13 @@
 - MIDI input support
 - Mobile friendly
 
-### [2D DFT(FFT) interactive demo](https://monman53.github.io/2dfft/) [<i class="bi bi-github"></i>](https://github.com/monman53/2dfft)
+### [Fractal Chamber](https://monman53.github.io/fractal-chamber/) [<i class="bi bi-github"></i>](https://github.com/monman53/fractal-chamber)
 
-[![](https://raw.githubusercontent.com/monman53/2dfft/master/screenshot.png)](https://monman53.github.io/2dfft/)
+[![](https://raw.githubusercontent.com/monman53/fractal-chamber/main/screenshot.png)](https://monman53.github.io/fractal-chamber/)
 
-- See how 2D image is being reconstructed by inverse Fourier transform
-  - Edit mask-pattern by your hands (mouse drag)
-  - Realtime fast response (WebGL fragment shader is used for FFT calculation)
-- Use arbitrary photos as input or mask-pattern on your computer or web
+- Cloud-chamber-like L-system pattern generator
+- Various parameters available
+- WebGL2 Transform Feedback is used for the calculation
 
 ### [plasmidraw](https://monman53.github.io/plasmidraw/) [<i class="bi bi-github"></i>](https://github.com/monman53/plasmidraw)
 
