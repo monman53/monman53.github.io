@@ -19,6 +19,7 @@
     * ENERMAX ETS-N31-02
   * SSD
     * Samsung MZ-V6E250B/IT
+  * HDD (TBD)
   * 電源
     * SilverStone 850W 80PLUS SST-ST85F-PT (2020 - )
 * マウス
@@ -27,9 +28,11 @@
   * PFU HHKB Professional 2 Type-S (無刻印)
 * ネットワーク
   * ルーター
-    * UniFi Security Gateway 
-    * Unbiquiti EdgeRouter X ER-X (一時停止中)
+    * YAMAHA RTX-1300
+    * UniFi Security Gateway
+    * Unbiquiti EdgeRouter X ER-X
   * アクセスポイント
+    * YAMAHA WLX-222
     * UniFi nanoHD Access Point
   * L2 スイッチ
     * UniFi US-8-60W-U
@@ -102,7 +105,7 @@
 * ステレオアンプ
   * TEAC AI-303
 * スピーカー
-  * DALI OPTICON 2 Mk2
+  * DALI OPTICON 1 Mk2
 
 ### 携帯電話
 
@@ -149,14 +152,20 @@
 
 ### 家電
 
+* テレビ
+  * SONY BRAVIA K-65XR70
 * 冷蔵庫
-  * SHARP SJ-D14C-W
+  * TOSHIBA GR-W460FZ(ZH) (2025 -)
 * 電子レンジ
   * Panasonic NE-EH229-W
 * トースター
   * ニトリ MG08BLQ
+* 炊飯器
+  * 象印 NW-VD10 (2025 -)
+* 食洗機
+  * NP-TZ500 (2025 -)
 * 洗濯機
-  * Panasonic NA-F60PB10
+  * TOSHIBA TW-127XP4 (2025 -)
 * 加湿器
   * アイリスオーヤマ SHM-120D-A
 * 電気ストーブ
@@ -172,10 +181,16 @@
 * 加湿空気清浄機
   * SHARP KC-L50-W
 * サーキュレーター
-  * IRIS OHYAMA KCF-SDS151T W 
+  * IRIS OHYAMA KCF-SDS151T W
+* ミシン
+  * JUKI HZL-F400JP
 
 ### その他
 
+* ガスコンロ
+  * リンナイ RT64MH7R2 (2025 -)
+* 3Dプリンタ
+  * Bambu Lab A1 (2025 -)
 * オシロスコープ
   * RIGOL DS1102Z-E 100MHz 2ch 1GSa/s 24 Mpts 8 Bit
 * 腕時計
@@ -206,6 +221,7 @@
   * ONKYO SA-205HDX
     * ハードオフにて入手
     * 片方のスピーカー出力が無くなる不具合により使用停止
+    * 売却（2024）
 * マウス
   * BUFFALO BSMBU505MRD
 * スピーカー
@@ -231,6 +247,15 @@
 
 * Sony PlayStation 5 (2022 - 2024)
 * Fanatec DD Pro (2022 - 2024)
+
+### 家電
+
+* 冷蔵庫
+  * SHARP SJ-D14C-W (201X - 2025)
+    * 身内に譲る
+* 洗濯機
+  * Panasonic NA-F60PB10 (201X - 2025)
+    * 身内に譲る
 
 ## 電子部品在庫
 
