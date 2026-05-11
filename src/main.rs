@@ -1,6 +1,7 @@
 use std::fs;
 use std::os::unix::fs::MetadataExt;
 use std::path::Path;
+use std::process::Command;
 
 use askama::Template;
 use chrono::prelude::*;
@@ -37,6 +38,24 @@ fn time_format(seconds: i64) -> String {
         .to_string()
 }
 
+fn git_mtime(path: &Path) -> Option<i64> {
+    let output = Command::new("git")
+        .args(["log", "-1", "--format=%ct", "--", path.to_str()?])
+        .output()
+        .ok()?;
+    std::str::from_utf8(&output.stdout)
+        .ok()?
+        .trim()
+        .parse()
+        .ok()
+}
+
+fn last_modified(path: &Path) -> Result<String, Box<dyn std::error::Error>> {
+    let seconds = git_mtime(path)
+        .unwrap_or_else(|| fs::metadata(path).map(|m| m.mtime()).unwrap_or(0));
+    Ok(time_format(seconds))
+}
+
 fn extract_title(content: &str, options: Options) -> String {
     Parser::new_ext(content, options)
         .find_map(|event| match event {
@@ -61,7 +80,7 @@ fn render_page(
     let title = extract_title(&content, options);
     let contents = md_to_html(&content, options);
     let bread = bread_crumb(dst_path);
-    let last_modified = time_format(fs::metadata(src_path)?.mtime());
+    let last_modified = last_modified(src_path)?;
     let html = MainTemplate { title, bread, contents, last_modified }.render()?;
     fs::write(dst_path.with_extension("html"), html)?;
     Ok(())
