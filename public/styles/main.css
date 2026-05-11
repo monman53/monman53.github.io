@@ -25,7 +25,6 @@
 :root {
   --color-background: var(--platanus-light2);
   --color-foreground: var(--platanus-light0);
-  /* --color-header: var(--platanus-dark3); */
   --color-text-default: var(--platanus-dark4);
   --color-text-weak: var(--platanus-dark0);
 }
@@ -103,4 +102,17 @@ figure {
 
 mjx-container {
   overflow-x: auto;
+}
+
+.flex-row {
+  display: flex;
+}
+
+.flex-fill {
+  flex: auto;
+}
+
+.flex-fill-end {
+  flex: auto;
+  text-align: end;
 }
