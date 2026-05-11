@@ -15,12 +15,12 @@ http-server dist
 
 ## デプロイ
 
-`master` ブランチへのプッシュで GitHub Actions が自動的に `dist/` をビルドし GitHub Pages へデプロイする。
+`main` ブランチへのプッシュで GitHub Actions が自動的に `dist/` をビルドし GitHub Pages へデプロイする。
 
 ## ブランチ運用
 
 詳細は [AGENT.md](AGENT.md) を参照。
 
 - 作業は `dev` ブランチで行う
-- `master` へのマージは新しいマージコミットを作成（fast-forward 禁止）
+- `main` へのマージは新しいマージコミットを作成（fast-forward 禁止）
 - マージおよび push は手動で行う
