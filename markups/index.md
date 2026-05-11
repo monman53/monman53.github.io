@@ -109,6 +109,20 @@
 
 - A simple halftone emulator
 
+### [安政遠足侍マラソン 参加者名簿](https://monman53.github.io/ansei-toashi/) [<i class="bi bi-github"></i>](https://github.com/monman53/ansei-toashi)
+
+[![](https://raw.githubusercontent.com/monman53/ansei-toashi/main/screenshot.png)](https://monman53.github.io/ansei-toashi/)
+
+- 安政遠足侍マラソンの参加者名簿を検索・閲覧できるウェブアプリ
+- 氏名・フリガナ検索、性別・都道府県・コースでのフィルタリング機能
+
+### [GUNMA PASSPORT スタンプ設置場所マップ](https://monman53.github.io/gunpass-location/) [<i class="bi bi-github"></i>](https://github.com/monman53/gunpass-location)
+
+[![](https://raw.githubusercontent.com/monman53/gunpass-location/main/screenshot.png)](https://monman53.github.io/gunpass-location/)
+
+- 群馬県内のGUNMA PASSPORTスタンプ設置場所（44か所）を地図上に表示する非公式マップ
+- 訪問済み自治体の記録機能、Google Maps へのリンク
+
 <!-- 
 ### []() [<i class="bi bi-github"></i>]()
 
