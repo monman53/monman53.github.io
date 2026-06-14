@@ -21,3 +21,4 @@ https://monman53.github.io/collection/cool-words.html
 https://monman53.github.io/collection/twitter-tags.html
 https://monman53.github.io/ansei-toashi/
 https://monman53.github.io/gunpass-location/
+https://monman53.github.io/stellated-polyhedra-explorer/

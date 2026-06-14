@@ -29,6 +29,12 @@
 - Fast real-time rendering (using WebGL fragment shader for calculation)
 - Editable color palette
 
+### [Stellated Polyhedra Explorer](https://monman53.github.io/stellated-polyhedra-explorer/) [<i class="bi bi-github"></i>](https://github.com/monman53/stellated-polyhedra-explorer)
+
+[![](https://raw.githubusercontent.com/monman53/stellated-polyhedra-explorer/main/screenshot.png)](https://monman53.github.io/stellated-polyhedra-explorer/)
+
+- Interactive explorer for stellated polyhedra
+
 ### [Snowflake simulator](https://monman53.github.io/snowflake/) [<i class="bi bi-github"></i>](https://github.com/monman53/snowflake)
 
 [![](https://raw.githubusercontent.com/monman53/snowflake/main/screenshot.png)](https://monman53.github.io/snowflake/)
